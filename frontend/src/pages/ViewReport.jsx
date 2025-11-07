@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Button } from '@/components/ui/button';
-import { Snowflake, AlertTriangle, CheckCircle, ShoppingCart, Home, LogIn } from 'lucide-react';
+import { Snowflake, AlertTriangle, CheckCircle, ShoppingCart, Home, LogIn, Calendar, User, Wrench } from 'lucide-react';
 import { toast } from 'sonner';
 import { API } from '../App';
+import PerformanceGauge from '@/components/PerformanceGauge';
 
 const ViewReport = () => {
   const { uniqueLink } = useParams();
