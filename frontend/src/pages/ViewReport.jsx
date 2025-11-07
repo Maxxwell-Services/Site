@@ -257,7 +257,14 @@ const ViewReport = () => {
           {report.notes && (
             <div className="mt-6 p-4 rounded-lg bg-blue-50 border border-blue-200">
               <h4 className="font-semibold text-blue-900 mb-2">Technician Notes</h4>
-              <p className="text-blue-800">{report.notes}</p>
+              <p className="text-blue-800 whitespace-pre-wrap">{report.notes}</p>
+            </div>
+          )}
+
+          {report.other_repair_recommendations && (
+            <div className="mt-4 p-4 rounded-lg bg-orange-50 border border-orange-200">
+              <h4 className="font-semibold text-orange-900 mb-2">Other Repair Recommendations</h4>
+              <p className="text-orange-800 whitespace-pre-wrap">{report.other_repair_recommendations}</p>
             </div>
           )}
         </div>
