@@ -154,28 +154,55 @@ const ViewReport = () => {
 
         {/* Customer & System Info */}
         <div className="grid md:grid-cols-2 gap-6 mb-6">
-          <div className="glass rounded-xl p-6">
-            <h3 className="text-xl font-bold text-blue-900 mb-4">Customer Information</h3>
-            <div className="space-y-2 text-blue-700">
-              <p><span className="font-semibold">Name:</span> {report.customer_name}</p>
-              <p><span className="font-semibold">Email:</span> {report.customer_email}</p>
-              <p><span className="font-semibold">Phone:</span> {report.customer_phone}</p>
-              <p><span className="font-semibold">Technician:</span> {report.technician_name}</p>
+          <div className="glass rounded-xl p-6 border-l-4 border-blue-500">
+            <div className="flex items-center gap-3 mb-4">
+              <User className="w-6 h-6 text-blue-600" />
+              <h3 className="text-xl font-bold text-blue-900">Customer Information</h3>
+            </div>
+            <div className="space-y-3">
+              <div className="flex justify-between py-2 border-b border-blue-100">
+                <span className="text-gray-600">Name:</span>
+                <span className="font-semibold text-blue-900">{report.customer_name}</span>
+              </div>
+              <div className="flex justify-between py-2 border-b border-blue-100">
+                <span className="text-gray-600">Email:</span>
+                <span className="font-semibold text-blue-900">{report.customer_email}</span>
+              </div>
+              <div className="flex justify-between py-2">
+                <span className="text-gray-600">Phone:</span>
+                <span className="font-semibold text-blue-900">{report.customer_phone}</span>
+              </div>
             </div>
           </div>
 
-          <div className="glass rounded-xl p-6">
-            <h3 className="text-xl font-bold text-blue-900 mb-4">System Information</h3>
-            <div className="space-y-2 text-blue-700">
-              <p><span className="font-semibold">Brand:</span> {report.system_brand}</p>
-              <p><span className="font-semibold">Serial Number:</span> {report.serial_number}</p>
+          <div className="glass rounded-xl p-6 border-l-4 border-cyan-500">
+            <div className="flex items-center gap-3 mb-4">
+              <Snowflake className="w-6 h-6 text-cyan-600" />
+              <h3 className="text-xl font-bold text-blue-900">System Information</h3>
+            </div>
+            <div className="space-y-3">
+              <div className="flex justify-between py-2 border-b border-blue-100">
+                <span className="text-gray-600">Brand:</span>
+                <span className="font-semibold text-blue-900">{report.system_brand}</span>
+              </div>
+              <div className="flex justify-between py-2 border-b border-blue-100">
+                <span className="text-gray-600">Serial Number:</span>
+                <span className="font-semibold text-blue-900">{report.serial_number}</span>
+              </div>
               {report.system_age && (
-                <p><span className="font-semibold">System Age:</span> {report.system_age} years</p>
+                <div className="flex justify-between py-2 border-b border-blue-100">
+                  <span className="text-gray-600">System Age:</span>
+                  <span className="font-semibold text-blue-900">{report.system_age} years</span>
+                </div>
               )}
-              {report.installation_year && (
-                <p><span className="font-semibold">Installation Year:</span> {report.installation_year}</p>
-              )}
-              <p><span className="font-semibold">Warranty Status:</span> {report.system_warranty_status}</p>
+              <div className="flex justify-between py-2">
+                <span className="text-gray-600">Warranty Status:</span>
+                <span className={`font-semibold px-3 py-1 rounded-full text-sm ${
+                  report.system_warranty_status === 'Active' 
+                    ? 'bg-green-100 text-green-800' 
+                    : 'bg-gray-100 text-gray-800'
+                }`}>{report.system_warranty_status}</span>
+              </div>
             </div>
           </div>
         </div>
