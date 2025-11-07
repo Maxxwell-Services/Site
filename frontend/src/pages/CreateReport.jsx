@@ -66,10 +66,15 @@ const CreateReport = () => {
 
       toast.success('Report created successfully!');
       
-      // Copy link to clipboard
+      // Try to copy link to clipboard
       const link = `${window.location.origin}/report/${response.data.unique_link}`;
-      navigator.clipboard.writeText(link);
-      toast.success('Report link copied to clipboard!');
+      try {
+        await navigator.clipboard.writeText(link);
+        toast.success('Report link copied to clipboard!')
+      } catch (err) {
+        // Clipboard permission denied - just show the link
+        console.log('Clipboard permission denied:', err);
+      }
       
       navigate('/technician/dashboard');
     } catch (error) {
