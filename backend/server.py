@@ -133,6 +133,7 @@ class MaintenanceReport(BaseModel):
     serial_number: str
     system_age: Optional[int] = None
     installation_year: Optional[int] = None
+    system_warranty_status: str
     refrigerant_type: str
     refrigerant_level: float
     refrigerant_status: str
@@ -147,9 +148,13 @@ class MaintenanceReport(BaseModel):
     amp_draw: float
     rated_amps: float
     amp_status: str  # "Good", "Warning", "Critical"
+    primary_drain: str
+    drain_pan_condition: str
+    air_purifier: str
     filters_replaced: bool
     condenser_coils_cleaned: bool
     notes: Optional[str] = None
+    other_repair_recommendations: Optional[str] = None
     warnings: List[dict] = Field(default_factory=list)
     created_at: str = Field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
 
