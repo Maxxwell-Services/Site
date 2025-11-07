@@ -216,6 +216,42 @@ const ViewReport = () => {
                 Coils {report.condenser_coils_cleaned ? 'Cleaned' : 'Not Cleaned'}
               </p>
             </div>
+
+            {/* Primary Drain */}
+            <div className={`p-4 rounded-lg border-2 ${
+              report.primary_drain === 'Clogged, needs immediate service' 
+                ? 'bg-red-100 border-red-300 text-red-800' 
+                : 'bg-green-100 border-green-300 text-green-800'
+            }`}>
+              <h4 className="font-semibold mb-2">Primary Drain</h4>
+              <p className="text-sm">{report.primary_drain}</p>
+            </div>
+
+            {/* Drain Pan Condition */}
+            <div className={`p-4 rounded-lg border-2 ${
+              report.drain_pan_condition === 'Rusted and should be replaced' || report.drain_pan_condition === 'Poor condition'
+                ? 'bg-red-100 border-red-300 text-red-800'
+                : report.drain_pan_condition === 'Fair condition'
+                ? 'bg-orange-100 border-orange-300 text-orange-800'
+                : 'bg-green-100 border-green-300 text-green-800'
+            }`}>
+              <h4 className="font-semibold mb-2">Drain Pan Condition</h4>
+              <p className="text-sm">{report.drain_pan_condition}</p>
+            </div>
+
+            {/* Air Purifier */}
+            <div className={`p-4 rounded-lg border-2 ${
+              report.air_purifier === 'Air purifier needs replacement'
+                ? 'bg-red-100 border-red-300 text-red-800'
+                : report.air_purifier === 'UV light needs replacement'
+                ? 'bg-orange-100 border-orange-300 text-orange-800'
+                : report.air_purifier === 'None present'
+                ? 'bg-gray-100 border-gray-300 text-gray-800'
+                : 'bg-green-100 border-green-300 text-green-800'
+            }`}>
+              <h4 className="font-semibold mb-2">Air Purifier</h4>
+              <p className="text-sm">{report.air_purifier}</p>
+            </div>
           </div>
 
           {report.notes && (
