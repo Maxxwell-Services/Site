@@ -370,6 +370,7 @@ async def create_report(data: MaintenanceReportCreate, user: dict = Depends(get_
         serial_number=data.serial_number,
         system_age=system_age,
         installation_year=data.installation_year,
+        system_warranty_status=data.system_warranty_status,
         refrigerant_type=data.refrigerant_type,
         refrigerant_level=data.refrigerant_level,
         refrigerant_status=data.refrigerant_status,
@@ -384,9 +385,13 @@ async def create_report(data: MaintenanceReportCreate, user: dict = Depends(get_
         amp_draw=data.amp_draw,
         rated_amps=data.rated_amps,
         amp_status=amp_status,
+        primary_drain=data.primary_drain,
+        drain_pan_condition=data.drain_pan_condition,
+        air_purifier=data.air_purifier,
         filters_replaced=data.filters_replaced,
         condenser_coils_cleaned=data.condenser_coils_cleaned,
         notes=data.notes,
+        other_repair_recommendations=data.other_repair_recommendations,
         warnings=warnings
     )
     
