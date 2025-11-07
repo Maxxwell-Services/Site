@@ -215,6 +215,75 @@ def check_amp_draw(actual: float, rated: float) -> str:
     else:
         return "Critical"
 
+def calculate_performance_score(data) -> int:
+    """Calculate overall system performance score (0-100)"""
+    score = 100
+    
+    # Capacitor health impact (max -40 points)
+    cap_tolerance = data.get('capacitor_tolerance', 0)
+    if cap_tolerance > 20:
+        score -= 40  # Critical - extremely low readings
+    elif cap_tolerance > 15:
+        score -= 30  # Very bad
+    elif cap_tolerance > 10:
+        score -= 20  # Bad - needs replacement
+    elif cap_tolerance > 6:
+        score -= 10  # Minor issue
+    
+    # Delta T impact (max -25 points)
+    delta_t = data.get('delta_t', 18)
+    if delta_t < 10 or delta_t > 28:
+        score -= 25  # Critical
+    elif delta_t < 12 or delta_t > 25:
+        score -= 15  # Warning
+    elif delta_t < 15 or delta_t > 22:
+        score -= 8   # Minor issue
+    
+    # Amp draw impact (max -20 points)
+    amp_tolerance = abs(data.get('amp_draw', 0) - data.get('rated_amps', 0)) / data.get('rated_amps', 1) * 100
+    if amp_tolerance > 25:
+        score -= 20  # Critical
+    elif amp_tolerance > 15:
+        score -= 12  # Warning
+    elif amp_tolerance > 10:
+        score -= 6   # Minor
+    
+    # Refrigerant status impact (max -20 points)
+    ref_status = data.get('refrigerant_status', 'Good')
+    if ref_status == 'Critical':
+        score -= 20
+    elif ref_status == 'Low':
+        score -= 10
+    
+    # Primary drain impact (max -15 points)
+    if data.get('primary_drain') == 'Clogged, needs immediate service':
+        score -= 15
+    
+    # Drain pan condition impact (max -15 points)
+    drain_pan = data.get('drain_pan_condition', 'Good shape')
+    if drain_pan == 'Rusted and should be replaced':
+        score -= 15
+    elif drain_pan == 'Poor condition':
+        score -= 10
+    elif drain_pan == 'Fair condition':
+        score -= 5
+    
+    # Air purifier impact (max -10 points)
+    air_purifier = data.get('air_purifier', 'Good')
+    if air_purifier == 'Air purifier needs replacement':
+        score -= 10
+    elif air_purifier == 'UV light needs replacement':
+        score -= 5
+    
+    # System age impact (max -10 points bonus for newer systems)
+    system_age = data.get('system_age', 0)
+    if system_age > 15:
+        score -= 10
+    elif system_age > 12:
+        score -= 5
+    
+    return max(0, min(100, score))
+
 # Routes
 @api_router.post("/auth/technician/register")
 async def register_technician(data: TechnicianRegister):
