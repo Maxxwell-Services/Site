@@ -1,53 +1,66 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import "@/App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import axios from "axios";
+import Landing from "./pages/Landing";
+import TechnicianLogin from "./pages/TechnicianLogin";
+import TechnicianDashboard from "./pages/TechnicianDashboard";
+import CreateReport from "./pages/CreateReport";
+import ViewReport from "./pages/ViewReport";
+import CustomerSignup from "./pages/CustomerSignup";
+import CustomerLogin from "./pages/CustomerLogin";
+import CustomerDashboard from "./pages/CustomerDashboard";
+import { Toaster } from "@/components/ui/sonner";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-const API = `${BACKEND_URL}/api`;
+export const API = `${BACKEND_URL}/api`;
 
-const Home = () => {
-  const helloWorldApi = async () => {
-    try {
-      const response = await axios.get(`${API}/`);
-      console.log(response.data.message);
-    } catch (e) {
-      console.error(e, `errored out requesting / api`);
-    }
-  };
-
-  useEffect(() => {
-    helloWorldApi();
-  }, []);
-
-  return (
-    <div>
-      <header className="App-header">
-        <a
-          className="App-link"
-          href="https://emergent.sh"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img src="https://avatars.githubusercontent.com/in/1201222?s=120&u=2686cf91179bbafbc7a71bfbc43004cf9ae1acea&v=4" />
-        </a>
-        <p className="mt-5">Building something incredible ~!</p>
-      </header>
-    </div>
-  );
-};
+// Auth Context
+export const AuthContext = React.createContext();
 
 function App() {
+  const [user, setUser] = useState(null);
+  const [token, setToken] = useState(localStorage.getItem('token'));
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem('user');
+    if (storedUser && token) {
+      setUser(JSON.parse(storedUser));
+    }
+  }, [token]);
+
+  const login = (userData, authToken) => {
+    setUser(userData);
+    setToken(authToken);
+    localStorage.setItem('user', JSON.stringify(userData));
+    localStorage.setItem('token', authToken);
+  };
+
+  const logout = () => {
+    setUser(null);
+    setToken(null);
+    localStorage.removeItem('user');
+    localStorage.removeItem('token');
+  };
+
   return (
-    <div className="App">
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />}>
-            <Route index element={<Home />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
-    </div>
+    <AuthContext.Provider value={{ user, token, login, logout }}>
+      <div className="App">
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Landing />} />
+            <Route path="/technician/login" element={<TechnicianLogin />} />
+            <Route path="/technician/dashboard" element={<TechnicianDashboard />} />
+            <Route path="/technician/create-report" element={<CreateReport />} />
+            <Route path="/report/:uniqueLink" element={<ViewReport />} />
+            <Route path="/customer/signup" element={<CustomerSignup />} />
+            <Route path="/customer/login" element={<CustomerLogin />} />
+            <Route path="/customer/dashboard" element={<CustomerDashboard />} />
+          </Routes>
+        </BrowserRouter>
+        <Toaster position="top-right" />
+      </div>
+    </AuthContext.Provider>
   );
 }
 
