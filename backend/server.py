@@ -156,6 +156,7 @@ class MaintenanceReport(BaseModel):
     notes: Optional[str] = None
     other_repair_recommendations: Optional[str] = None
     warnings: List[dict] = Field(default_factory=list)
+    performance_score: int = 100
     created_at: str = Field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
 
 class Part(BaseModel):
