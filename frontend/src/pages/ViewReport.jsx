@@ -208,10 +208,10 @@ const ViewReport = () => {
         </div>
 
         {/* Performance Metrics */}
-        <div className="glass rounded-2xl p-6 mb-6">
-          <h3 className="text-2xl font-bold text-blue-900 mb-6">Performance Readings</h3>
+        <div className="glass rounded-2xl p-8 mb-6 border-2 border-blue-200">
+          <h3 className="text-2xl font-bold text-blue-900 mb-6 pb-3 border-b-2 border-blue-300">System Performance Metrics</h3>
           
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {/* Capacitor */}
             <div className={`p-4 rounded-lg border-2 ${getSeverityColor(report.capacitor_health.toLowerCase())}`}>
               <h4 className="font-semibold mb-2">Capacitor</h4>
