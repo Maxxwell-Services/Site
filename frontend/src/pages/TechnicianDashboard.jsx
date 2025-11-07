@@ -33,10 +33,15 @@ const TechnicianDashboard = () => {
     }
   };
 
-  const copyLink = (uniqueLink) => {
+  const copyLink = async (uniqueLink) => {
     const link = `${window.location.origin}/report/${uniqueLink}`;
-    navigator.clipboard.writeText(link);
-    toast.success('Report link copied to clipboard!');
+    try {
+      await navigator.clipboard.writeText(link);
+      toast.success('Report link copied to clipboard!');
+    } catch (err) {
+      // Clipboard permission denied - show link in toast
+      toast.info(`Link: ${link}`, { duration: 10000 });
+    }
   };
 
   const handleLogout = () => {
