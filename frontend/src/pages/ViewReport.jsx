@@ -160,6 +160,7 @@ const ViewReport = () => {
               {report.installation_year && (
                 <p><span className="font-semibold">Installation Year:</span> {report.installation_year}</p>
               )}
+              <p><span className="font-semibold">Warranty Status:</span> {report.system_warranty_status}</p>
             </div>
           </div>
         </div>
