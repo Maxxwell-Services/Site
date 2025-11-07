@@ -474,6 +474,20 @@ const CreateReport = () => {
               />
             </div>
 
+            {/* Other Repair Recommendations */}
+            <div className="space-y-4">
+              <h2 className="text-xl font-semibold text-blue-900 border-b border-blue-200 pb-2">Other Repair Recommendations</h2>
+              <Textarea
+                id="other_repair_recommendations"
+                value={formData.other_repair_recommendations}
+                onChange={(e) => setFormData({...formData, other_repair_recommendations: e.target.value})}
+                placeholder="List any other repairs or services needed..."
+                rows={4}
+                className="mt-1"
+                data-testid="other-repair-recommendations-textarea"
+              />
+            </div>
+
             <Button
               type="submit"
               className="w-full bg-blue-600 hover:bg-blue-700 text-white text-lg py-6"
