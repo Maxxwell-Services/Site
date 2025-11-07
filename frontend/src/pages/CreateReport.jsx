@@ -375,6 +375,62 @@ const CreateReport = () => {
               </div>
             </div>
 
+            {/* Drainage & Components */}
+            <div className="space-y-4">
+              <h2 className="text-xl font-semibold text-blue-900 border-b border-blue-200 pb-2">Drainage & Components</h2>
+              <div className="grid md:grid-cols-2 gap-4">
+                <div>
+                  <Label htmlFor="primary_drain" className="text-blue-900">Primary Drain *</Label>
+                  <Select 
+                    value={formData.primary_drain} 
+                    onValueChange={(value) => setFormData({...formData, primary_drain: value})}
+                  >
+                    <SelectTrigger className="mt-1" data-testid="primary-drain-select">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="Flushed and draining normally">Flushed and draining normally</SelectItem>
+                      <SelectItem value="Clogged, needs immediate service">Clogged, needs immediate service</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div>
+                  <Label htmlFor="drain_pan_condition" className="text-blue-900">Drain Pan Condition *</Label>
+                  <Select 
+                    value={formData.drain_pan_condition} 
+                    onValueChange={(value) => setFormData({...formData, drain_pan_condition: value})}
+                  >
+                    <SelectTrigger className="mt-1" data-testid="drain-pan-condition-select">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="Good shape">Good shape</SelectItem>
+                      <SelectItem value="Fair condition">Fair condition</SelectItem>
+                      <SelectItem value="Poor condition">Poor condition</SelectItem>
+                      <SelectItem value="Rusted and should be replaced">Rusted and should be replaced</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div>
+                  <Label htmlFor="air_purifier" className="text-blue-900">Air Purifier *</Label>
+                  <Select 
+                    value={formData.air_purifier} 
+                    onValueChange={(value) => setFormData({...formData, air_purifier: value})}
+                  >
+                    <SelectTrigger className="mt-1" data-testid="air-purifier-select">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="Good">Good</SelectItem>
+                      <SelectItem value="UV light needs replacement">UV light needs replacement</SelectItem>
+                      <SelectItem value="Air purifier needs replacement">Air purifier needs replacement</SelectItem>
+                      <SelectItem value="None present">None present</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+              </div>
+            </div>
+
             {/* Maintenance Performed */}
             <div className="space-y-4">
               <h2 className="text-xl font-semibold text-blue-900 border-b border-blue-200 pb-2">Maintenance Performed</h2>
