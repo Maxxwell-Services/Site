@@ -428,6 +428,20 @@ async def create_report(data: MaintenanceReportCreate, user: dict = Depends(get_
             "part_needed": "refrigerant"
         })
     
+    # Calculate performance score
+    score_data = {
+        'capacitor_tolerance': capacitor_tolerance,
+        'delta_t': delta_t,
+        'amp_draw': data.amp_draw,
+        'rated_amps': data.rated_amps,
+        'refrigerant_status': data.refrigerant_status,
+        'primary_drain': data.primary_drain,
+        'drain_pan_condition': data.drain_pan_condition,
+        'air_purifier': data.air_purifier,
+        'system_age': system_age
+    }
+    performance_score = calculate_performance_score(score_data)
+    
     # Create report
     report = MaintenanceReport(
         technician_id=technician["id"],
@@ -461,7 +475,8 @@ async def create_report(data: MaintenanceReportCreate, user: dict = Depends(get_
         condenser_coils_cleaned=data.condenser_coils_cleaned,
         notes=data.notes,
         other_repair_recommendations=data.other_repair_recommendations,
-        warnings=warnings
+        warnings=warnings,
+        performance_score=performance_score
     )
     
     await db.reports.insert_one(report.model_dump())
