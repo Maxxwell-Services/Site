@@ -22,6 +22,7 @@ const CreateReport = () => {
     system_brand: '',
     serial_number: '',
     installation_year: '',
+    system_warranty_status: 'Active',
     refrigerant_type: 'R-410A',
     refrigerant_level: '',
     refrigerant_status: 'Good',
@@ -31,9 +32,13 @@ const CreateReport = () => {
     supply_temp: '',
     amp_draw: '',
     rated_amps: '',
+    primary_drain: 'Flushed and draining normally',
+    drain_pan_condition: 'Good shape',
+    air_purifier: 'Good',
     filters_replaced: false,
     condenser_coils_cleaned: false,
-    notes: ''
+    notes: '',
+    other_repair_recommendations: ''
   });
 
   const handleSubmit = async (e) => {
