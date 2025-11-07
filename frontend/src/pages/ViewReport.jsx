@@ -213,37 +213,95 @@ const ViewReport = () => {
           
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {/* Capacitor */}
-            <div className={`p-4 rounded-lg border-2 ${getSeverityColor(report.capacitor_health.toLowerCase())}`}>
-              <h4 className="font-semibold mb-2">Capacitor</h4>
-              <p className="text-sm">Rating: {report.capacitor_rating}µF</p>
-              <p className="text-sm">Reading: {report.capacitor_reading}µF</p>
-              <p className="text-sm">Tolerance: {report.capacitor_tolerance.toFixed(1)}%</p>
-              <p className="text-xs mt-2 font-semibold">{report.capacitor_health}</p>
+            <div className={`p-5 rounded-xl border-2 shadow-md ${getSeverityColor(report.capacitor_health.toLowerCase())}`}>
+              <h4 className="font-bold mb-3 text-lg flex items-center justify-between">
+                <span>Capacitor</span>
+                <span className={`text-xs px-2 py-1 rounded-full ${
+                  report.capacitor_health === 'Good' ? 'bg-green-200' :
+                  report.capacitor_health === 'Warning' ? 'bg-orange-200' : 'bg-red-200'
+                }`}>{report.capacitor_health}</span>
+              </h4>
+              <div className="space-y-2">
+                <div className="flex justify-between text-sm">
+                  <span className="opacity-80">Rating:</span>
+                  <span className="font-semibold">{report.capacitor_rating}µF</span>
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span className="opacity-80">Reading:</span>
+                  <span className="font-semibold">{report.capacitor_reading}µF</span>
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span className="opacity-80">Variance:</span>
+                  <span className="font-semibold">{report.capacitor_tolerance.toFixed(1)}%</span>
+                </div>
+              </div>
             </div>
 
             {/* Delta T */}
-            <div className={`p-4 rounded-lg border-2 ${getSeverityColor(report.delta_t_status.toLowerCase())}`}>
-              <h4 className="font-semibold mb-2">Temperature (Delta T)</h4>
-              <p className="text-sm">Return: {report.return_temp}°F</p>
-              <p className="text-sm">Supply: {report.supply_temp}°F</p>
-              <p className="text-sm">Delta T: {report.delta_t.toFixed(1)}°F</p>
-              <p className="text-xs mt-2 font-semibold">{report.delta_t_status}</p>
+            <div className={`p-5 rounded-xl border-2 shadow-md ${getSeverityColor(report.delta_t_status.toLowerCase())}`}>
+              <h4 className="font-bold mb-3 text-lg flex items-center justify-between">
+                <span>Temperature</span>
+                <span className={`text-xs px-2 py-1 rounded-full ${
+                  report.delta_t_status === 'Good' ? 'bg-green-200' :
+                  report.delta_t_status === 'Warning' ? 'bg-orange-200' : 'bg-red-200'
+                }`}>{report.delta_t_status}</span>
+              </h4>
+              <div className="space-y-2">
+                <div className="flex justify-between text-sm">
+                  <span className="opacity-80">Return Air:</span>
+                  <span className="font-semibold">{report.return_temp}°F</span>
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span className="opacity-80">Supply Air:</span>
+                  <span className="font-semibold">{report.supply_temp}°F</span>
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span className="opacity-80">Delta T:</span>
+                  <span className="font-semibold">{report.delta_t.toFixed(1)}°F</span>
+                </div>
+              </div>
             </div>
 
             {/* Amp Draw */}
-            <div className={`p-4 rounded-lg border-2 ${getSeverityColor(report.amp_status.toLowerCase())}`}>
-              <h4 className="font-semibold mb-2">Electrical</h4>
-              <p className="text-sm">Rated: {report.rated_amps}A</p>
-              <p className="text-sm">Actual: {report.amp_draw}A</p>
-              <p className="text-xs mt-2 font-semibold">{report.amp_status}</p>
+            <div className={`p-5 rounded-xl border-2 shadow-md ${getSeverityColor(report.amp_status.toLowerCase())}`}>
+              <h4 className="font-bold mb-3 text-lg flex items-center justify-between">
+                <span>Electrical</span>
+                <span className={`text-xs px-2 py-1 rounded-full ${
+                  report.amp_status === 'Good' ? 'bg-green-200' :
+                  report.amp_status === 'Warning' ? 'bg-orange-200' : 'bg-red-200'
+                }`}>{report.amp_status}</span>
+              </h4>
+              <div className="space-y-2">
+                <div className="flex justify-between text-sm">
+                  <span className="opacity-80">Rated Amps:</span>
+                  <span className="font-semibold">{report.rated_amps}A</span>
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span className="opacity-80">Actual Draw:</span>
+                  <span className="font-semibold">{report.amp_draw}A</span>
+                </div>
+              </div>
             </div>
 
             {/* Refrigerant */}
-            <div className={`p-4 rounded-lg border-2 ${getSeverityColor(report.refrigerant_status.toLowerCase())}`}>
-              <h4 className="font-semibold mb-2">Refrigerant</h4>
-              <p className="text-sm">Type: {report.refrigerant_type}</p>
-              <p className="text-sm">Level: {report.refrigerant_level} PSI</p>
-              <p className="text-xs mt-2 font-semibold">{report.refrigerant_status}</p>
+            <div className={`p-5 rounded-xl border-2 shadow-md ${getSeverityColor(report.refrigerant_status.toLowerCase())}`}>
+              <h4 className="font-bold mb-3 text-lg flex items-center justify-between">
+                <span>Refrigerant</span>
+                <span className={`text-xs px-2 py-1 rounded-full ${
+                  report.refrigerant_status === 'Good' ? 'bg-green-200' :
+                  report.refrigerant_status === 'Low' ? 'bg-orange-200' : 'bg-red-200'
+                }`}>{report.refrigerant_status}</span>
+              </h4>
+              <div className="space-y-2">
+                <div className="flex justify-between text-sm">
+                  <span className="opacity-80">Type:</span>
+                  <span className="font-semibold">{report.refrigerant_type}</span>
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span className="opacity-80">Pressure:</span>
+                  <span className="font-semibold">{report.refrigerant_level} PSI</span>
+                </div>
+              </div>
             </div>
 
             {/* Maintenance */}
