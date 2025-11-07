@@ -102,6 +102,7 @@ class MaintenanceReportCreate(BaseModel):
     system_brand: str
     serial_number: str
     installation_year: Optional[int] = None
+    system_warranty_status: str
     refrigerant_type: str
     refrigerant_level: float  # in PSI or percentage
     refrigerant_status: str  # "Good", "Low", "Critical"
@@ -111,9 +112,13 @@ class MaintenanceReportCreate(BaseModel):
     supply_temp: float  # in Fahrenheit
     amp_draw: float
     rated_amps: float
+    primary_drain: str
+    drain_pan_condition: str
+    air_purifier: str
     filters_replaced: bool
     condenser_coils_cleaned: bool
     notes: Optional[str] = None
+    other_repair_recommendations: Optional[str] = None
 
 class MaintenanceReport(BaseModel):
     model_config = ConfigDict(extra="ignore")
