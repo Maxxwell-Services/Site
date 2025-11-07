@@ -115,8 +115,8 @@ const CreateReport = () => {
 
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Customer Information */}
-            <div className="space-y-4">
-              <h2 className="text-xl font-semibold text-blue-900 border-b border-blue-200 pb-2">Customer Information</h2>
+            <div className="glass-dark rounded-xl p-6 space-y-4">
+              <h2 className="text-xl font-semibold text-blue-900 border-b-2 border-blue-300 pb-2">Customer Information</h2>
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
                   <Label htmlFor="customer_name" className="text-blue-900">Customer Name *</Label>
@@ -157,8 +157,8 @@ const CreateReport = () => {
             </div>
 
             {/* System Information */}
-            <div className="space-y-4">
-              <h2 className="text-xl font-semibold text-blue-900 border-b border-blue-200 pb-2">System Information</h2>
+            <div className="glass-dark rounded-xl p-6 space-y-4">
+              <h2 className="text-xl font-semibold text-blue-900 border-b-2 border-blue-300 pb-2">System Information</h2>
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
                   <Label htmlFor="system_brand" className="text-blue-900">System Brand *</Label>
@@ -196,6 +196,23 @@ const CreateReport = () => {
                     placeholder="e.g., 2015"
                     data-testid="installation-year-input"
                   />
+                </div>
+                <div>
+                  <Label htmlFor="system_warranty_status" className="text-blue-900">System Warranty Status *</Label>
+                  <Select 
+                    value={formData.system_warranty_status} 
+                    onValueChange={(value) => setFormData({...formData, system_warranty_status: value})}
+                  >
+                    <SelectTrigger className="mt-1" data-testid="warranty-status-select">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="Active">Active</SelectItem>
+                      <SelectItem value="Expired">Expired</SelectItem>
+                      <SelectItem value="Unknown">Unknown</SelectItem>
+                      <SelectItem value="Extended Warranty">Extended Warranty</SelectItem>
+                    </SelectContent>
+                  </Select>
                 </div>
               </div>
             </div>
