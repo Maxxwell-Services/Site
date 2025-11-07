@@ -1,0 +1,75 @@
+{
+  "timestamp": "2025-11-07T03:40:18.942960",
+  "total_tests": 11,
+  "passed": 11,
+  "failed": 0,
+  "success_rate": "100.0%",
+  "results": [
+    {
+      "test": "Technician Registration",
+      "passed": true,
+      "message": "Registered as tech_034016",
+      "response": null
+    },
+    {
+      "test": "Technician Login",
+      "passed": true,
+      "message": "Login successful",
+      "response": null
+    },
+    {
+      "test": "Customer Registration",
+      "passed": true,
+      "message": "Registered as Customer 034017",
+      "response": null
+    },
+    {
+      "test": "Customer Login",
+      "passed": true,
+      "message": "Login successful",
+      "response": null
+    },
+    {
+      "test": "Create Report",
+      "passed": true,
+      "message": "Report created with link: 6368d62a-66cc-47f8-9aed-b6d0b2104106",
+      "response": null
+    },
+    {
+      "test": "View Report (Public)",
+      "passed": true,
+      "message": "Report retrieved with 1 warnings",
+      "response": null
+    },
+    {
+      "test": "Tolerance Calculations",
+      "passed": true,
+      "message": "All tolerance checks working correctly (3 warnings)",
+      "response": null
+    },
+    {
+      "test": "System Age Calculation",
+      "passed": true,
+      "message": "Correctly calculated age: 15 years",
+      "response": null
+    },
+    {
+      "test": "Get Technician Reports",
+      "passed": true,
+      "message": "Retrieved 3 reports",
+      "response": null
+    },
+    {
+      "test": "Get Customer Reports",
+      "passed": true,
+      "message": "Retrieved 0 reports",
+      "response": null
+    },
+    {
+      "test": "Parts Catalog",
+      "passed": true,
+      "message": "Retrieved 10 parts",
+      "response": null
+    }
+  ]
+}
