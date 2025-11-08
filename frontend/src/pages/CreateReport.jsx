@@ -118,30 +118,30 @@ const CreateReport = () => {
   };
 
   return (
-    <div className="min-h-screen px-4 py-8">
+    <div className="min-h-screen px-2 sm:px-4 py-4 sm:py-8">
       <div className="max-w-4xl mx-auto">
         <Button
           variant="ghost"
           onClick={() => navigate('/technician/dashboard')}
-          className="mb-6 text-blue-700 hover:text-blue-900"
+          className="mb-4 sm:mb-6 text-blue-700 hover:text-blue-900 min-h-[44px]"
           data-testid="back-btn"
         >
           <ArrowLeft className="w-4 h-4 mr-2" />
           Back to Dashboard
         </Button>
 
-        <div className="glass rounded-2xl p-8 fade-in">
-          <div className="flex items-center gap-4 mb-8">
-            <div className="p-3 rounded-full bg-blue-100">
-              <Snowflake className="w-8 h-8 text-blue-600" />
+        <div className="glass rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 fade-in">
+          <div className="flex items-center gap-3 sm:gap-4 mb-6 sm:mb-8">
+            <div className="p-2 sm:p-3 rounded-full bg-blue-100 flex-shrink-0">
+              <Snowflake className="w-6 h-6 sm:w-8 sm:h-8 text-blue-600" />
             </div>
             <div>
-              <h1 className="text-3xl font-bold text-blue-900">Create Maintenance Report</h1>
-              <p className="text-blue-700">Enter all system readings and maintenance details</p>
+              <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-blue-900">Create Maintenance Report</h1>
+              <p className="text-sm sm:text-base text-blue-700">Enter all system readings and maintenance details</p>
             </div>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
             {/* Customer Information */}
             <div className="glass-dark rounded-xl p-6 space-y-4">
               <h2 className="text-xl font-semibold text-blue-900 border-b-2 border-blue-300 pb-2">Customer Information</h2>
