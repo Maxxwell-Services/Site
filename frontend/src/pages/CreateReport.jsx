@@ -385,11 +385,12 @@ const CreateReport = () => {
                     <SelectContent>
                       <SelectItem value="Flushed and draining normally">Flushed and draining normally</SelectItem>
                       <SelectItem value="Clogged, needs immediate service">Clogged, needs immediate service</SelectItem>
+                      <SelectItem value="Need Improvements (See notes below)">Need Improvements (See notes below)</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
                 <div>
-                  <Label htmlFor="drain_pan_condition" className="text-blue-900">Drain Pan Condition *</Label>
+                  <Label htmlFor="drain_pan_condition" className="text-blue-900">Drain Pan *</Label>
                   <Select 
                     value={formData.drain_pan_condition} 
                     onValueChange={(value) => setFormData({...formData, drain_pan_condition: value})}
@@ -400,12 +401,26 @@ const CreateReport = () => {
                     <SelectContent>
                       <SelectItem value="Good shape">Good shape</SelectItem>
                       <SelectItem value="Fair condition">Fair condition</SelectItem>
-                      <SelectItem value="Poor condition">Poor condition</SelectItem>
+                      <SelectItem value="Poor condition (Replace Soon)">Poor condition (Replace Soon)</SelectItem>
                       <SelectItem value="Rusted and should be replaced">Rusted and should be replaced</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
               </div>
+              {formData.primary_drain === "Need Improvements (See notes below)" && (
+                <div className="mt-4">
+                  <Label htmlFor="primary_drain_notes" className="text-blue-900">Primary Drain Notes</Label>
+                  <Textarea
+                    id="primary_drain_notes"
+                    value={formData.primary_drain_notes}
+                    onChange={(e) => setFormData({...formData, primary_drain_notes: e.target.value})}
+                    placeholder="Enter details about improvements needed..."
+                    rows={3}
+                    className="mt-1"
+                    data-testid="primary-drain-notes-textarea"
+                  />
+                </div>
+              )}
               <PhotoUpload
                 photos={formData.drainage_photos}
                 onChange={(photos) => setFormData({...formData, drainage_photos: photos})}
