@@ -80,7 +80,8 @@ const CustomerDashboard = () => {
             <Button
               variant="outline"
               onClick={handleLogout}
-              className="border-cyan-600 text-cyan-700 hover:bg-cyan-50"
+              className="hover:bg-gray-50"
+              style={{borderColor: '#DB7218', color: '#DB7218'}}
               data-testid="logout-btn"
             >
               <LogOut className="w-4 h-4 mr-2" />
