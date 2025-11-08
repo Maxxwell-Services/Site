@@ -59,9 +59,12 @@ const CreateReport = () => {
     try {
       const payload = {
         ...formData,
-        refrigerant_level: parseFloat(formData.refrigerant_level),
-        capacitor_rating: parseFloat(formData.capacitor_rating),
-        capacitor_reading: parseFloat(formData.capacitor_reading),
+        superheat: parseFloat(formData.superheat),
+        subcooling: parseFloat(formData.subcooling),
+        blower_motor_capacitor_rating: parseFloat(formData.blower_motor_capacitor_rating),
+        blower_motor_capacitor_reading: parseFloat(formData.blower_motor_capacitor_reading),
+        condenser_capacitor_rating: parseFloat(formData.condenser_capacitor_rating),
+        condenser_capacitor_reading: parseFloat(formData.condenser_capacitor_reading),
         return_temp: parseFloat(formData.return_temp),
         supply_temp: parseFloat(formData.supply_temp),
         amp_draw: parseFloat(formData.amp_draw),
