@@ -1023,15 +1023,50 @@ Read ALL text carefully and extract the exact values as they appear on the data 
             
             # Calculate age and warranty if we found a year
             if manufacture_year:
-                current_year = datetime.now().year
-                estimated_age = current_year - manufacture_year
+                # Create manufacture date for calculation
+                # Default to January if no specific month available
+                manufacture_month = 1
+                if manufacture_date:
+                    # Extract month number from manufacture_date like "March 2023"
+                    month_names = {
+                        'january': 1, 'february': 2, 'march': 3, 'april': 4,
+                        'may': 5, 'june': 6, 'july': 7, 'august': 8,
+                        'september': 9, 'october': 10, 'november': 11, 'december': 12
+                    }
+                    for month_name, month_num in month_names.items():
+                        if month_name in manufacture_date.lower():
+                            manufacture_month = month_num
+                            break
+                
+                # Calculate precise age in years and months
+                from dateutil.relativedelta import relativedelta
+                manufacture_dt = datetime(manufacture_year, manufacture_month, 1)
+                current_dt = datetime.now()
+                age_delta = relativedelta(current_dt, manufacture_dt)
+                
+                years = age_delta.years
+                months = age_delta.months
                 
                 # Sanity check (equipment shouldn't be more than 50 years old or in the future)
-                if 0 <= estimated_age <= 50:
+                if 0 <= years <= 50:
+                    # Format age string
+                    if years > 0 and months > 0:
+                        estimated_age = f"{years} years {months} months"
+                    elif years > 0:
+                        estimated_age = f"{years} years"
+                    elif months > 0:
+                        estimated_age = f"{months} months"
+                    else:
+                        estimated_age = "Less than 1 month"
+                    
                     # Calculate warranty (assuming 10-year standard warranty)
-                    years_remaining = 10 - estimated_age
-                    if years_remaining > 0:
-                        warranty_status = f"Active ({years_remaining} years remaining)"
+                    total_years = years + (months / 12.0)
+                    years_remaining = 10 - total_years
+                    if years_remaining > 1:
+                        warranty_status = f"Active ({int(years_remaining)} years remaining)"
+                    elif years_remaining > 0:
+                        months_remaining = int(years_remaining * 12)
+                        warranty_status = f"Active ({months_remaining} months remaining)"
                     else:
                         warranty_status = "Expired"
                 else:
@@ -1044,6 +1079,7 @@ Read ALL text carefully and extract the exact values as they appear on the data 
             brand=data.get("brand", "Not found"),
             model_number=data.get("model_number", "Not found"),
             serial_number=data.get("serial_number", "Not found"),
+            date_of_manufacture=manufacture_date,
             estimated_age=estimated_age,
             warranty_status=warranty_status
         )
