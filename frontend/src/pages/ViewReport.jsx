@@ -182,18 +182,18 @@ const ViewReport = () => {
               <h3 className="text-xl font-bold" style={{color: '#1C325E'}}>System Information</h3>
             </div>
             <div className="space-y-3">
-              <div className="flex justify-between py-2 border-b border-blue-100">
+              <div className="flex justify-between py-2 border-b border-gray-200">
                 <span className="text-gray-600">Brand:</span>
-                <span className="font-semibold text-blue-900">{report.system_brand}</span>
+                <span className="font-semibold" style={{color: '#1C325E'}}>{report.system_brand}</span>
               </div>
-              <div className="flex justify-between py-2 border-b border-blue-100">
+              <div className="flex justify-between py-2 border-b border-gray-200">
                 <span className="text-gray-600">Serial Number:</span>
-                <span className="font-semibold text-blue-900">{report.serial_number}</span>
+                <span className="font-semibold" style={{color: '#1C325E'}}>{report.serial_number}</span>
               </div>
               {report.system_age && (
-                <div className="flex justify-between py-2 border-b border-blue-100">
+                <div className="flex justify-between py-2 border-b border-gray-200">
                   <span className="text-gray-600">System Age:</span>
-                  <span className="font-semibold text-blue-900">{report.system_age} years</span>
+                  <span className="font-semibold" style={{color: '#1C325E'}}>{report.system_age} years</span>
                 </div>
               )}
               <div className="flex justify-between py-2">
