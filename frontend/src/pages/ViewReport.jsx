@@ -222,13 +222,20 @@ const ViewReport = () => {
           
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {/* Capacitor */}
-            <div className={`p-5 rounded-xl border-2 shadow-md ${getSeverityColor(report.capacitor_health.toLowerCase())}`}>
+            <div 
+              className={`p-5 rounded-xl border-2 shadow-md cursor-pointer hover:shadow-lg transition-shadow ${getSeverityColor(report.capacitor_health.toLowerCase())}`}
+              onClick={() => openMetricInfo('capacitor', report.capacitor_health.toLowerCase())}
+              data-testid="capacitor-metric-card"
+            >
               <h4 className="font-bold mb-3 text-lg flex items-center justify-between">
                 <span>Capacitor</span>
-                <span className={`text-xs px-2 py-1 rounded-full ${
-                  report.capacitor_health === 'Good' ? 'bg-green-200' :
-                  report.capacitor_health === 'Warning' ? 'bg-orange-200' : 'bg-red-200'
-                }`}>{report.capacitor_health}</span>
+                <div className="flex items-center gap-2">
+                  <span className={`text-xs px-2 py-1 rounded-full ${
+                    report.capacitor_health === 'Good' ? 'bg-green-200' :
+                    report.capacitor_health === 'Warning' ? 'bg-orange-200' : 'bg-red-200'
+                  }`}>{report.capacitor_health}</span>
+                  <Info className="w-4 h-4 opacity-60" />
+                </div>
               </h4>
               <div className="space-y-2">
                 <div className="flex justify-between text-sm">
@@ -244,6 +251,7 @@ const ViewReport = () => {
                   <span className="font-semibold">{report.capacitor_tolerance.toFixed(1)}%</span>
                 </div>
               </div>
+              <p className="text-xs mt-3 opacity-70 italic">Click for more information</p>
             </div>
 
             {/* Delta T */}
