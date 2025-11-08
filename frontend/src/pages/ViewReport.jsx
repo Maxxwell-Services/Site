@@ -472,17 +472,28 @@ const ViewReport = () => {
 
         {/* CTA */}
         <div className="glass rounded-xl p-6 mt-6 text-center">
-          <h3 className="text-xl font-bold text-blue-900 mb-2">Want to track your AC system health over time?</h3>
-          <p className="text-blue-700 mb-4">Sign up for a free account to access report history and performance graphs</p>
+          <h3 className="text-xl font-bold mb-2" style={{color: '#1C325E'}}>Want to track your AC system health over time?</h3>
+          <p className="text-gray-700 mb-4">Sign up for a free account to access report history and performance graphs</p>
           <Button 
             onClick={() => navigate('/customer/signup')} 
-            className="bg-cyan-600 hover:bg-cyan-700 text-white"
+            className="text-white hover:opacity-90"
+            style={{backgroundColor: '#DB7218'}}
             data-testid="signup-cta-btn"
           >
             Create Free Account
           </Button>
         </div>
       </div>
+
+      {/* Metric Info Modal */}
+      {selectedMetric && (
+        <MetricInfoModal
+          isOpen={metricModalOpen}
+          onClose={() => setMetricModalOpen(false)}
+          metric={selectedMetric.metric}
+          status={selectedMetric.status}
+        />
+      )}
     </div>
   );
 };
