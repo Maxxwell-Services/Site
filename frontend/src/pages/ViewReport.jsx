@@ -94,15 +94,15 @@ const ViewReport = () => {
     <div className="min-h-screen px-4 py-8 bg-gradient-to-br from-slate-50 to-blue-50">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
-        <div className="glass rounded-2xl p-8 mb-6 border-2 border-blue-200">
+        <div className="glass rounded-2xl p-8 mb-6 border-2" style={{borderColor: '#1C325E'}}>
           <div className="flex items-center justify-between flex-wrap gap-4 mb-6">
             <div className="flex items-center gap-4">
-              <div className="p-4 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-500 shadow-lg">
+              <div className="p-4 rounded-xl shadow-lg" style={{background: 'linear-gradient(135deg, #1C325E 0%, #2a4580 100%)'}}>
                 <Snowflake className="w-10 h-10 text-white" />
               </div>
               <div>
-                <h1 className="text-4xl font-bold text-blue-900 mb-1">HVAC System Performance Report</h1>
-                <div className="flex items-center gap-4 text-sm text-blue-700">
+                <h1 className="text-4xl font-bold mb-1" style={{color: '#1C325E'}}>HVAC System Performance Report</h1>
+                <div className="flex items-center gap-4 text-sm text-gray-600">
                   <span className="flex items-center gap-1">
                     <Calendar className="w-4 h-4" />
                     {new Date(report.created_at).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
@@ -117,7 +117,8 @@ const ViewReport = () => {
             <Button
               onClick={() => navigate('/customer/signup')}
               variant="outline"
-              className="border-cyan-600 text-cyan-700 hover:bg-cyan-50"
+              className="hover:bg-orange-50"
+              style={{borderColor: '#DB7218', color: '#DB7218'}}
               data-testid="signup-btn"
             >
               <LogIn className="w-4 h-4 mr-2" />
@@ -126,7 +127,7 @@ const ViewReport = () => {
           </div>
 
           {/* Performance Score Gauge - Prominent Display */}
-          <div className="bg-white rounded-xl p-6 shadow-inner border-2 border-blue-100">
+          <div className="bg-white rounded-xl p-6 shadow-inner border-2" style={{borderColor: 'rgba(28, 50, 94, 0.1)'}}>
             <PerformanceGauge score={report.performance_score || 0} />
           </div>
         </div>
