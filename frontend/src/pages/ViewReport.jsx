@@ -155,31 +155,31 @@ const ViewReport = () => {
 
         {/* Customer & System Info */}
         <div className="grid md:grid-cols-2 gap-6 mb-6">
-          <div className="glass rounded-xl p-6 border-l-4 border-blue-500">
+          <div className="glass rounded-xl p-6 border-l-4" style={{borderColor: '#1C325E'}}>
             <div className="flex items-center gap-3 mb-4">
-              <User className="w-6 h-6 text-blue-600" />
-              <h3 className="text-xl font-bold text-blue-900">Customer Information</h3>
+              <User className="w-6 h-6" style={{color: '#1C325E'}} />
+              <h3 className="text-xl font-bold" style={{color: '#1C325E'}}>Customer Information</h3>
             </div>
             <div className="space-y-3">
-              <div className="flex justify-between py-2 border-b border-blue-100">
+              <div className="flex justify-between py-2 border-b border-gray-200">
                 <span className="text-gray-600">Name:</span>
-                <span className="font-semibold text-blue-900">{report.customer_name}</span>
+                <span className="font-semibold" style={{color: '#1C325E'}}>{report.customer_name}</span>
               </div>
-              <div className="flex justify-between py-2 border-b border-blue-100">
+              <div className="flex justify-between py-2 border-b border-gray-200">
                 <span className="text-gray-600">Email:</span>
-                <span className="font-semibold text-blue-900">{report.customer_email}</span>
+                <span className="font-semibold" style={{color: '#1C325E'}}>{report.customer_email}</span>
               </div>
               <div className="flex justify-between py-2">
                 <span className="text-gray-600">Phone:</span>
-                <span className="font-semibold text-blue-900">{report.customer_phone}</span>
+                <span className="font-semibold" style={{color: '#1C325E'}}>{report.customer_phone}</span>
               </div>
             </div>
           </div>
 
-          <div className="glass rounded-xl p-6 border-l-4 border-cyan-500">
+          <div className="glass rounded-xl p-6 border-l-4" style={{borderColor: '#DB7218'}}>
             <div className="flex items-center gap-3 mb-4">
-              <Snowflake className="w-6 h-6 text-cyan-600" />
-              <h3 className="text-xl font-bold text-blue-900">System Information</h3>
+              <Snowflake className="w-6 h-6" style={{color: '#DB7218'}} />
+              <h3 className="text-xl font-bold" style={{color: '#1C325E'}}>System Information</h3>
             </div>
             <div className="space-y-3">
               <div className="flex justify-between py-2 border-b border-blue-100">
