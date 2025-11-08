@@ -50,6 +50,7 @@ const CreateReport = () => {
     rated_amps: '',
     electrical_photos: [],
     primary_drain: 'Flushed and draining normally',
+    primary_drain_notes: '',
     drain_pan_condition: 'Good shape',
     drainage_photos: [],
     air_filters: 'Filters Provided and Replaced',
