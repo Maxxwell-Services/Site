@@ -99,10 +99,6 @@ class MaintenanceReportCreate(BaseModel):
     customer_name: str
     customer_email: EmailStr
     customer_phone: str
-    system_brand: str
-    serial_number: str
-    installation_year: Optional[int] = None
-    system_warranty_status: str
     # Evaporator Coil Details
     evaporator_brand: str
     evaporator_model_number: str
