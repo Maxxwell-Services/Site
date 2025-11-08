@@ -58,6 +58,7 @@ const DataPlateScanner = ({ equipmentType, onDataExtracted }) => {
             brand: data.brand !== "Not found" ? data.brand : "",
             model_number: data.model_number !== "Not found" ? data.model_number : "",
             serial_number: data.serial_number !== "Not found" ? data.serial_number : "",
+            date_of_manufacture: data.date_of_manufacture || "",
             age: data.estimated_age || "",
             warranty_status: data.warranty_status || "Unknown"
           });
