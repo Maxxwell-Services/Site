@@ -335,6 +335,47 @@ const CreateReport = () => {
               </div>
             </div>
 
+            {/* Temperature Readings */}
+            <div className="space-y-4">
+              <h2 className="text-xl font-semibold text-blue-900 border-b border-blue-200 pb-2">Temperature (Delta T)</h2>
+              <div className="grid md:grid-cols-2 gap-4">
+                <div>
+                  <Label htmlFor="return_temp" className="text-blue-900">Return Air Temp (°F) *</Label>
+                  <Input
+                    id="return_temp"
+                    type="number"
+                    step="0.1"
+                    value={formData.return_temp}
+                    onChange={(e) => setFormData({...formData, return_temp: e.target.value})}
+                    required
+                    className="mt-1"
+                    placeholder="e.g., 78"
+                    data-testid="return-temp-input"
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="supply_temp" className="text-blue-900">Supply Air Temp (°F) *</Label>
+                  <Input
+                    id="supply_temp"
+                    type="number"
+                    step="0.1"
+                    value={formData.supply_temp}
+                    onChange={(e) => setFormData({...formData, supply_temp: e.target.value})}
+                    required
+                    className="mt-1"
+                    placeholder="e.g., 60"
+                    data-testid="supply-temp-input"
+                  />
+                </div>
+              </div>
+              <PhotoUpload
+                photos={formData.temperature_photos}
+                onChange={(photos) => setFormData({...formData, temperature_photos: photos})}
+                label="Temperature Reading Photos"
+                maxPhotos={3}
+              />
+            </div>
+
             {/* Refrigerant Readings */}
             <div className="space-y-4">
               <h2 className="text-xl font-semibold text-blue-900 border-b border-blue-200 pb-2">Refrigerant</h2>
