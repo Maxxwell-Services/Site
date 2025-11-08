@@ -450,9 +450,10 @@ async def create_report(data: MaintenanceReportCreate, user: dict = Depends(get_
             "part_needed": "refrigerant"
         })
     
-    # Calculate performance score
+    # Calculate performance score (use worst capacitor tolerance)
+    worst_capacitor_tolerance = max(blower_capacitor_tolerance, condenser_capacitor_tolerance)
     score_data = {
-        'capacitor_tolerance': capacitor_tolerance,
+        'capacitor_tolerance': worst_capacitor_tolerance,
         'delta_t': delta_t,
         'amp_draw': data.amp_draw,
         'rated_amps': data.rated_amps,
