@@ -104,10 +104,13 @@ class MaintenanceReportCreate(BaseModel):
     installation_year: Optional[int] = None
     system_warranty_status: str
     refrigerant_type: str
-    refrigerant_level: float  # in PSI or percentage
-    refrigerant_status: str  # "Good", "Low", "Critical"
-    capacitor_rating: float  # in microfarads
-    capacitor_reading: float  # in microfarads
+    superheat: float  # in Fahrenheit
+    subcooling: float  # in Fahrenheit
+    refrigerant_status: str  # "Good", "Low - Add Refrigerant", "Critical - Repairs may be needed"
+    blower_motor_capacitor_rating: float  # in microfarads
+    blower_motor_capacitor_reading: float  # in microfarads
+    condenser_capacitor_rating: float  # in microfarads
+    condenser_capacitor_reading: float  # in microfarads
     return_temp: float  # in Fahrenheit
     supply_temp: float  # in Fahrenheit
     amp_draw: float
@@ -115,8 +118,9 @@ class MaintenanceReportCreate(BaseModel):
     primary_drain: str
     drain_pan_condition: str
     air_purifier: str
-    filters_replaced: bool
-    condenser_coils_cleaned: bool
+    air_filters: str
+    evaporator_coil: str
+    condenser_coils: str
     notes: Optional[str] = None
     other_repair_recommendations: Optional[str] = None
 
