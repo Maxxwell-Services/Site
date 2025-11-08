@@ -648,19 +648,15 @@ const CreateReport = () => {
                   </div>
                   <div>
                     <Label htmlFor="condenser_warranty_status" className="text-blue-900">Warranty Status *</Label>
-                    <Select 
-                      value={formData.condenser_warranty_status} 
-                      onValueChange={(value) => setFormData({...formData, condenser_warranty_status: value})}
-                    >
-                      <SelectTrigger className="mt-1" data-testid="condenser-warranty-select">
-                        <SelectValue />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="Active">Active</SelectItem>
-                        <SelectItem value="Expired">Expired</SelectItem>
-                        <SelectItem value="Unknown">Unknown</SelectItem>
-                      </SelectContent>
-                    </Select>
+                    <Input
+                      id="condenser_warranty_status"
+                      value={formData.condenser_warranty_status}
+                      onChange={(e) => setFormData({...formData, condenser_warranty_status: e.target.value})}
+                      required
+                      className="mt-1"
+                      placeholder="e.g., Active (5 years remaining)"
+                      data-testid="condenser-warranty-input"
+                    />
                   </div>
                 </div>
                 
