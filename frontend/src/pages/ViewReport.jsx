@@ -99,17 +99,17 @@ const ViewReport = () => {
   const recommendedParts = getRecommendedParts();
 
   return (
-    <div className="min-h-screen px-4 py-8 bg-gradient-to-br from-slate-50 to-blue-50">
+    <div className="min-h-screen px-2 sm:px-4 py-4 sm:py-8 bg-gradient-to-br from-slate-50 to-blue-50">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
-        <div className="glass rounded-2xl p-8 mb-6 border-2" style={{borderColor: '#1C325E'}}>
-          <div className="flex items-center justify-between flex-wrap gap-4 mb-6">
-            <div className="flex items-center gap-4">
-              <div className="p-4 rounded-xl shadow-lg" style={{background: 'linear-gradient(135deg, #1C325E 0%, #2a4580 100%)'}}>
-                <Snowflake className="w-10 h-10 text-white" />
+        <div className="glass rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 mb-4 sm:mb-6 border-2" style={{borderColor: '#1C325E'}}>
+          <div className="flex items-center justify-between flex-wrap gap-3 sm:gap-4 mb-4 sm:mb-6">
+            <div className="flex items-center gap-3 sm:gap-4">
+              <div className="p-2 sm:p-3 md:p-4 rounded-lg sm:rounded-xl shadow-lg flex-shrink-0" style={{background: 'linear-gradient(135deg, #1C325E 0%, #2a4580 100%)'}}>
+                <Snowflake className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 text-white" />
               </div>
               <div>
-                <h1 className="text-4xl font-bold mb-1" style={{color: '#1C325E'}}>HVAC System Performance Report</h1>
+                <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-1" style={{color: '#1C325E'}}>HVAC System Performance Report</h1>
                 <div className="flex items-center gap-4 text-sm text-gray-600">
                   <span className="flex items-center gap-1">
                     <Calendar className="w-4 h-4" />
