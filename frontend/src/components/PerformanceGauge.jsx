@@ -7,9 +7,9 @@ const PerformanceGauge = ({ score }) => {
   // Determine color and label based on score
   const getScoreColor = () => {
     if (score >= 90) return '#22c55e'; // green
-    if (score >= 75) return '#3b82f6'; // blue
-    if (score >= 60) return '#eab308'; // yellow
-    if (score >= 40) return '#f97316'; // orange
+    if (score >= 75) return '#1C325E'; // dark blue (your brand)
+    if (score >= 60) return '#DB7218'; // orange (your brand)
+    if (score >= 40) return '#f97316'; // light orange
     return '#ef4444'; // red
   };
 
