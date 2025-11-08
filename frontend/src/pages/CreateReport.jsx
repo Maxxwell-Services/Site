@@ -193,6 +193,24 @@ const CreateReport = () => {
               {/* Evaporator Coil Subsection */}
               <div className="pt-4">
                 <h3 className="text-lg font-semibold mb-4" style={{color: '#1C325E'}}>Evaporator Coil</h3>
+                
+                {/* Data Plate Scanner */}
+                <div className="mb-4 p-3 sm:p-4 bg-blue-50 rounded-lg border border-blue-200">
+                  <DataPlateScanner
+                    equipmentType="evaporator"
+                    onDataExtracted={(data) => {
+                      setFormData({
+                        ...formData,
+                        evaporator_brand: data.brand || formData.evaporator_brand,
+                        evaporator_model_number: data.model_number || formData.evaporator_model_number,
+                        evaporator_serial_number: data.serial_number || formData.evaporator_serial_number,
+                        evaporator_age: data.age || formData.evaporator_age,
+                        evaporator_warranty_status: data.warranty_status || formData.evaporator_warranty_status
+                      });
+                    }}
+                  />
+                </div>
+
                 <div className="grid md:grid-cols-2 gap-4 mb-4">
                   <div>
                     <Label htmlFor="evaporator_brand" className="text-blue-900">Brand *</Label>
