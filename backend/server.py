@@ -734,6 +734,118 @@ async def get_parts_catalog():
 async def root():
     return {"message": "AC Maintenance Report API"}
 
+# OCR Data Plate Scanning
+class DataPlateOCRRequest(BaseModel):
+    image_base64: str
+    equipment_type: str  # "evaporator" or "condenser"
+
+class DataPlateOCRResponse(BaseModel):
+    brand: str
+    model_number: str
+    serial_number: str
+    estimated_age: Optional[int] = None
+    warranty_status: Optional[str] = None
+
+@api_router.post("/ocr/scan-data-plate", response_model=DataPlateOCRResponse)
+async def scan_data_plate(request: DataPlateOCRRequest):
+    """
+    Extract HVAC equipment information from data plate photo using AI Vision
+    """
+    try:
+        # Get API key from environment
+        api_key = os.environ.get('EMERGENT_LLM_KEY')
+        if not api_key:
+            raise HTTPException(status_code=500, detail="API key not configured")
+        
+        # Initialize LLM Chat with OpenAI Vision
+        chat = LlmChat(
+            api_key=api_key,
+            session_id=f"ocr-{uuid.uuid4()}",
+            system_message="You are an expert at reading HVAC equipment data plates and extracting information accurately."
+        ).with_model("openai", "gpt-4o")
+        
+        # Create image content
+        image_content = ImageContent(image_base64=request.image_base64)
+        
+        # Create user message with specific instructions
+        user_message = UserMessage(
+            text=f"""Analyze this HVAC {request.equipment_type} data plate photo and extract the following information:
+
+1. Brand/Manufacturer name
+2. Model Number
+3. Serial Number
+
+Please respond ONLY with a JSON object in this exact format (no additional text):
+{{
+    "brand": "manufacturer name",
+    "model_number": "model number",
+    "serial_number": "serial number"
+}}
+
+If you cannot read a field clearly, use "Not found" as the value.
+Be precise and only include what you can clearly read from the data plate.""",
+            file_contents=[image_content]
+        )
+        
+        # Send message and get response
+        response = await chat.send_message(user_message)
+        
+        # Parse the JSON response
+        try:
+            # Clean the response - remove markdown code blocks if present
+            clean_response = response.strip()
+            if clean_response.startswith("```json"):
+                clean_response = clean_response[7:]
+            if clean_response.startswith("```"):
+                clean_response = clean_response[3:]
+            if clean_response.endswith("```"):
+                clean_response = clean_response[:-3]
+            clean_response = clean_response.strip()
+            
+            data = json.loads(clean_response)
+        except json.JSONDecodeError:
+            # Try to extract JSON using regex if direct parsing fails
+            json_match = re.search(r'\{[^}]+\}', response, re.DOTALL)
+            if json_match:
+                data = json.loads(json_match.group())
+            else:
+                raise HTTPException(status_code=500, detail="Failed to parse OCR response")
+        
+        # Calculate age and warranty from serial number (basic logic)
+        estimated_age = None
+        warranty_status = "Unknown"
+        
+        serial_number = data.get("serial_number", "")
+        if serial_number and serial_number != "Not found":
+            # Try to extract year from serial number (common patterns)
+            # Many HVAC units use year in first 2 digits or have specific patterns
+            year_match = re.search(r'(19|20)(\d{2})', serial_number)
+            if year_match:
+                manufacture_year = int(year_match.group(0))
+                current_year = datetime.now().year
+                estimated_age = current_year - manufacture_year
+                
+                # Calculate warranty (assuming 10-year standard warranty)
+                years_remaining = 10 - estimated_age
+                if years_remaining > 0:
+                    warranty_status = f"Active ({years_remaining} years remaining)"
+                else:
+                    warranty_status = "Expired"
+            else:
+                warranty_status = "Unable to determine - Manual verification needed"
+        
+        return DataPlateOCRResponse(
+            brand=data.get("brand", "Not found"),
+            model_number=data.get("model_number", "Not found"),
+            serial_number=data.get("serial_number", "Not found"),
+            estimated_age=estimated_age,
+            warranty_status=warranty_status
+        )
+        
+    except Exception as e:
+        logging.error(f"OCR Error: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"OCR processing failed: {str(e)}")
+
 # Include router
 app.include_router(api_router)
 
