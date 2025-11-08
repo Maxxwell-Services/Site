@@ -256,6 +256,29 @@ const ViewReport = () => {
               </div>
             )}
 
+            {/* Condenser Fan Motor */}
+            <div 
+              className={`p-5 rounded-xl border-2 shadow-md cursor-pointer hover:shadow-lg transition-shadow ${
+                report.condenser_fan_motor === 'Inoperative' 
+                  ? 'bg-red-100 border-red-300 text-red-800'
+                  : report.condenser_fan_motor === 'Motor Vibration' || report.condenser_fan_motor === 'Blade Vibration'
+                  ? 'bg-orange-100 border-orange-300 text-orange-800'
+                  : 'bg-green-100 border-green-300 text-green-800'
+              }`}
+              onClick={() => openMetricInfo('condenser_fan_motor', 
+                report.condenser_fan_motor === 'Inoperative' ? 'critical' :
+                report.condenser_fan_motor === 'Motor Vibration' || report.condenser_fan_motor === 'Blade Vibration' ? 'warning' : 'good'
+              )}
+              data-testid="condenser-fan-motor-card"
+            >
+              <h4 className="font-bold mb-3 text-lg flex items-center justify-between">
+                <span>Condenser Fan Motor</span>
+                <Info className="w-4 h-4 opacity-60" />
+              </h4>
+              <p className="text-sm font-medium">{report.condenser_fan_motor}</p>
+              <p className="text-xs mt-3 opacity-70 italic">Click for more information</p>
+            </div>
+
             {/* Condenser Capacitor */}
             <div 
               className={`p-5 rounded-xl border-2 shadow-md cursor-pointer hover:shadow-lg transition-shadow ${getSeverityColor(report.condenser_capacitor_health.toLowerCase())}`}
