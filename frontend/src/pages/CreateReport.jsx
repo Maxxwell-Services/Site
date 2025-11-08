@@ -647,14 +647,24 @@ const CreateReport = () => {
                     />
                   </div>
                   <div>
-                    <Label htmlFor="condenser_age" className="text-blue-900">Age (Years)</Label>
+                    <Label htmlFor="condenser_date_of_manufacture" className="text-blue-900">Date of Manufacture</Label>
+                    <Input
+                      id="condenser_date_of_manufacture"
+                      value={formData.condenser_date_of_manufacture}
+                      onChange={(e) => setFormData({...formData, condenser_date_of_manufacture: e.target.value})}
+                      className="mt-1"
+                      placeholder="e.g., March 2023"
+                      data-testid="condenser-dom-input"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="condenser_age" className="text-blue-900">Age</Label>
                     <Input
                       id="condenser_age"
-                      type="number"
-                      min="0"
                       value={formData.condenser_age}
                       onChange={(e) => setFormData({...formData, condenser_age: e.target.value})}
                       className="mt-1"
+                      placeholder="e.g., 2 years 8 months"
                       data-testid="condenser-age-input"
                     />
                   </div>
