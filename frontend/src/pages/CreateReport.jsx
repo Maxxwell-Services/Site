@@ -496,28 +496,57 @@ const CreateReport = () => {
             {/* Maintenance Performed */}
             <div className="space-y-4">
               <h2 className="text-xl font-semibold text-blue-900 border-b border-blue-200 pb-2">Maintenance Performed</h2>
-              <div className="space-y-4">
-                <div className="flex items-center justify-between p-4 rounded-lg bg-blue-50">
-                  <Label htmlFor="filters_replaced" className="text-blue-900 cursor-pointer">
-                    Filters Replaced
-                  </Label>
-                  <Switch
-                    id="filters_replaced"
-                    checked={formData.filters_replaced}
-                    onCheckedChange={(checked) => setFormData({...formData, filters_replaced: checked})}
-                    data-testid="filters-replaced-switch"
-                  />
+              <div className="grid md:grid-cols-2 gap-4">
+                <div>
+                  <Label htmlFor="air_filters" className="text-blue-900">Air Filters *</Label>
+                  <Select 
+                    value={formData.air_filters} 
+                    onValueChange={(value) => setFormData({...formData, air_filters: value})}
+                  >
+                    <SelectTrigger className="mt-1" data-testid="air-filters-select">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="Filters Provided and Replaced">Filters Provided and Replaced</SelectItem>
+                      <SelectItem value="Filters Supplied by the customer">Filters Supplied by the customer</SelectItem>
+                      <SelectItem value="Customer recently replaced the filters">Customer recently replaced the filters</SelectItem>
+                      <SelectItem value="Customer will replace the filters soon">Customer will replace the filters soon</SelectItem>
+                      <SelectItem value="Tech will return to replace filters">Tech will return to replace filters</SelectItem>
+                    </SelectContent>
+                  </Select>
                 </div>
-                <div className="flex items-center justify-between p-4 rounded-lg bg-blue-50">
-                  <Label htmlFor="condenser_coils_cleaned" className="text-blue-900 cursor-pointer">
-                    Condenser Coils Cleaned
-                  </Label>
-                  <Switch
-                    id="condenser_coils_cleaned"
-                    checked={formData.condenser_coils_cleaned}
-                    onCheckedChange={(checked) => setFormData({...formData, condenser_coils_cleaned: checked})}
-                    data-testid="condenser-coils-cleaned-switch"
-                  />
+                <div>
+                  <Label htmlFor="evaporator_coil" className="text-blue-900">Evaporator Coil *</Label>
+                  <Select 
+                    value={formData.evaporator_coil} 
+                    onValueChange={(value) => setFormData({...formData, evaporator_coil: value})}
+                  >
+                    <SelectTrigger className="mt-1" data-testid="evaporator-coil-select">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="Clean">Clean</SelectItem>
+                      <SelectItem value="Not accessible">Not accessible</SelectItem>
+                      <SelectItem value="Needs cleaning">Needs cleaning</SelectItem>
+                      <SelectItem value="Cleaned">Cleaned</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div>
+                  <Label htmlFor="condenser_coils" className="text-blue-900">Condenser Coils *</Label>
+                  <Select 
+                    value={formData.condenser_coils} 
+                    onValueChange={(value) => setFormData({...formData, condenser_coils: value})}
+                  >
+                    <SelectTrigger className="mt-1" data-testid="condenser-coils-select">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="Cleaned">Cleaned</SelectItem>
+                      <SelectItem value="Hose bib not accessible within 30ft">Hose bib not accessible within 30ft</SelectItem>
+                      <SelectItem value="Need deep cleaning">Need deep cleaning</SelectItem>
+                    </SelectContent>
+                  </Select>
                 </div>
               </div>
             </div>
