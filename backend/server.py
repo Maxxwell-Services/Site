@@ -153,6 +153,20 @@ class MaintenanceReport(BaseModel):
     system_age: Optional[int] = None
     installation_year: Optional[int] = None
     system_warranty_status: str
+    # Evaporator Coil Details
+    evaporator_brand: str
+    evaporator_model_number: str
+    evaporator_serial_number: str
+    evaporator_age: Optional[int] = None
+    evaporator_warranty_status: str
+    evaporator_photos: Optional[List[str]] = Field(default_factory=list)
+    # Condenser Details
+    condenser_brand: str
+    condenser_model_number: str
+    condenser_serial_number: str
+    condenser_age: Optional[int] = None
+    condenser_warranty_status: str
+    condenser_photos: Optional[List[str]] = Field(default_factory=list)
     refrigerant_type: str
     superheat: float
     subcooling: float
@@ -178,6 +192,7 @@ class MaintenanceReport(BaseModel):
     air_filters: str
     evaporator_coil: str
     condenser_coils: str
+    general_photos: Optional[List[str]] = Field(default_factory=list)
     notes: Optional[str] = None
     other_repair_recommendations: Optional[str] = None
     warnings: List[dict] = Field(default_factory=list)
