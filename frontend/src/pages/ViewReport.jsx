@@ -209,8 +209,8 @@ const ViewReport = () => {
         </div>
 
         {/* Performance Metrics */}
-        <div className="glass rounded-2xl p-8 mb-6 border-2 border-blue-200">
-          <h3 className="text-2xl font-bold text-blue-900 mb-6 pb-3 border-b-2 border-blue-300">System Performance Metrics</h3>
+        <div className="glass rounded-2xl p-8 mb-6 border-2" style={{borderColor: '#1C325E'}}>
+          <h3 className="text-2xl font-bold mb-6 pb-3 border-b-2" style={{color: '#1C325E', borderColor: '#DB7218'}}>System Performance Metrics</h3>
           
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {/* Capacitor */}
