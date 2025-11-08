@@ -772,6 +772,29 @@ const CreateReport = () => {
                   maxPhotos={3}
                 />
               </div>
+
+              {/* Condenser Coils */}
+              <div className="border-t-2 border-blue-200 pt-4">
+                <h3 className="text-lg font-semibold mb-3" style={{color: '#1C325E'}}>Condenser Coils</h3>
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div>
+                    <Label htmlFor="condenser_coils" className="text-blue-900">Condenser Coils *</Label>
+                    <Select 
+                      value={formData.condenser_coils} 
+                      onValueChange={(value) => setFormData({...formData, condenser_coils: value})}
+                    >
+                      <SelectTrigger className="mt-1" data-testid="condenser-coils-select">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="Cleaned">Cleaned</SelectItem>
+                        <SelectItem value="Hose bib not accessible within 30ft">Hose bib not accessible within 30ft</SelectItem>
+                        <SelectItem value="Need deep cleaning">Need deep cleaning</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+              </div>
             </div>
 
             {/* Notes */}
