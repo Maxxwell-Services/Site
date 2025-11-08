@@ -463,6 +463,12 @@ const CreateReport = () => {
                   />
                 </div>
               </div>
+              <PhotoUpload
+                photos={formData.refrigerant_photos}
+                onChange={(photos) => setFormData({...formData, refrigerant_photos: photos})}
+                label="Refrigerant Photos"
+                maxPhotos={3}
+              />
             </div>
 
             {/* Capacitor Readings */}
