@@ -251,14 +251,24 @@ const CreateReport = () => {
                     />
                   </div>
                   <div>
-                    <Label htmlFor="evaporator_age" className="text-blue-900">Age (Years)</Label>
+                    <Label htmlFor="evaporator_date_of_manufacture" className="text-blue-900">Date of Manufacture</Label>
+                    <Input
+                      id="evaporator_date_of_manufacture"
+                      value={formData.evaporator_date_of_manufacture}
+                      onChange={(e) => setFormData({...formData, evaporator_date_of_manufacture: e.target.value})}
+                      className="mt-1"
+                      placeholder="e.g., March 2023"
+                      data-testid="evaporator-dom-input"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="evaporator_age" className="text-blue-900">Age</Label>
                     <Input
                       id="evaporator_age"
-                      type="number"
-                      min="0"
                       value={formData.evaporator_age}
                       onChange={(e) => setFormData({...formData, evaporator_age: e.target.value})}
                       className="mt-1"
+                      placeholder="e.g., 2 years 8 months"
                       data-testid="evaporator-age-input"
                     />
                   </div>
