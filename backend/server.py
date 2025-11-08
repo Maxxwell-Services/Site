@@ -13,6 +13,10 @@ from datetime import datetime, timezone, timedelta
 import bcrypt
 import jwt
 from passlib.context import CryptContext
+from emergentintegrations.llm.chat import LlmChat, UserMessage, ImageContent
+import base64
+import re
+import json
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
