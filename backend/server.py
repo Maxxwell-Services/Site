@@ -938,26 +938,53 @@ Read ALL text carefully and extract the exact values as they appear on the data 
                 logging.error(f"No JSON found in response: {response}")
                 raise HTTPException(status_code=500, detail=f"No valid JSON in OCR response. The AI returned: {response[:200]}")
         
-        # Calculate age and warranty from serial number (basic logic)
+        # Calculate age and warranty from serial number (advanced logic)
         estimated_age = None
         warranty_status = "Unknown"
         
         serial_number = data.get("serial_number", "")
+        manufacture_year = None
+        
         if serial_number and serial_number != "Not found":
-            # Try to extract year from serial number (common patterns)
-            # Many HVAC units use year in first 2 digits or have specific patterns
-            year_match = re.search(r'(19|20)(\d{2})', serial_number)
-            if year_match:
-                manufacture_year = int(year_match.group(0))
+            # Try multiple serial number patterns
+            
+            # Pattern 1: First 2 digits are year (e.g., "1523..." = 2015)
+            if len(serial_number) >= 2 and serial_number[:2].isdigit():
+                year_code = int(serial_number[:2])
+                # If year is 00-30, assume 2000-2030, else assume 1980-1999
+                if year_code <= 30:
+                    manufacture_year = 2000 + year_code
+                elif year_code >= 80:
+                    manufacture_year = 1900 + year_code
+            
+            # Pattern 2: Full year format (19XX or 20XX)
+            if not manufacture_year:
+                year_match = re.search(r'(19\d{2}|20\d{2})', serial_number)
+                if year_match:
+                    manufacture_year = int(year_match.group(0))
+            
+            # Pattern 3: Year embedded in middle (e.g., "ABC2015DEF")
+            if not manufacture_year:
+                year_match = re.search(r'[^\d](19\d{2}|20\d{2})[^\d]', serial_number)
+                if year_match:
+                    manufacture_year = int(year_match.group(1))
+            
+            # Calculate age and warranty if we found a year
+            if manufacture_year:
                 current_year = datetime.now().year
                 estimated_age = current_year - manufacture_year
                 
-                # Calculate warranty (assuming 10-year standard warranty)
-                years_remaining = 10 - estimated_age
-                if years_remaining > 0:
-                    warranty_status = f"Active ({years_remaining} years remaining)"
+                # Sanity check (equipment shouldn't be more than 50 years old or in the future)
+                if 0 <= estimated_age <= 50:
+                    # Calculate warranty (assuming 10-year standard warranty)
+                    years_remaining = 10 - estimated_age
+                    if years_remaining > 0:
+                        warranty_status = f"Active ({years_remaining} years remaining)"
+                    else:
+                        warranty_status = "Expired"
                 else:
-                    warranty_status = "Expired"
+                    estimated_age = None
+                    warranty_status = "Unable to determine - Manual verification needed"
             else:
                 warranty_status = "Unable to determine - Manual verification needed"
         
