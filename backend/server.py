@@ -131,6 +131,7 @@ class MaintenanceReportCreate(BaseModel):
     rated_amps: float
     electrical_photos: Optional[List[str]] = Field(default_factory=list)
     primary_drain: str
+    primary_drain_notes: Optional[str] = ""
     drain_pan_condition: str
     drainage_photos: Optional[List[str]] = Field(default_factory=list)
     air_filters: str
