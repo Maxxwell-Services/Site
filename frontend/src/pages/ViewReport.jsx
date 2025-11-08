@@ -14,6 +14,13 @@ const ViewReport = () => {
   const [report, setReport] = useState(null);
   const [parts, setParts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [selectedMetric, setSelectedMetric] = useState(null);
+  const [metricModalOpen, setMetricModalOpen] = useState(false);
+
+  const openMetricInfo = (metric, status) => {
+    setSelectedMetric({ metric, status });
+    setMetricModalOpen(true);
+  };
 
   useEffect(() => {
     fetchReport();
