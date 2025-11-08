@@ -139,12 +139,17 @@ class MaintenanceReport(BaseModel):
     installation_year: Optional[int] = None
     system_warranty_status: str
     refrigerant_type: str
-    refrigerant_level: float
+    superheat: float
+    subcooling: float
     refrigerant_status: str
-    capacitor_rating: float
-    capacitor_reading: float
-    capacitor_health: str  # "Good", "Warning", "Critical"
-    capacitor_tolerance: float  # percentage difference
+    blower_motor_capacitor_rating: float
+    blower_motor_capacitor_reading: float
+    blower_motor_capacitor_health: str  # "Good", "Warning", "Critical"
+    blower_motor_capacitor_tolerance: float  # percentage difference
+    condenser_capacitor_rating: float
+    condenser_capacitor_reading: float
+    condenser_capacitor_health: str  # "Good", "Warning", "Critical"
+    condenser_capacitor_tolerance: float  # percentage difference
     return_temp: float
     supply_temp: float
     delta_t: float
@@ -155,8 +160,9 @@ class MaintenanceReport(BaseModel):
     primary_drain: str
     drain_pan_condition: str
     air_purifier: str
-    filters_replaced: bool
-    condenser_coils_cleaned: bool
+    air_filters: str
+    evaporator_coil: str
+    condenser_coils: str
     notes: Optional[str] = None
     other_repair_recommendations: Optional[str] = None
     warnings: List[dict] = Field(default_factory=list)
