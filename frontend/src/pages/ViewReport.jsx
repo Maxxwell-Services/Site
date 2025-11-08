@@ -187,10 +187,10 @@ const ViewReport = () => {
           <div className="glass rounded-xl p-6 border-l-4" style={{borderColor: '#DB7218'}}>
             <div className="flex items-center gap-3 mb-4">
               <Snowflake className="w-6 h-6" style={{color: '#DB7218'}} />
-              <h3 className="text-xl font-bold" style={{color: '#1C325E'}}>System Information</h3>
+              <h3 className="text-xl font-bold" style={{color: '#1C325E'}}>Indoor Unit / Air Handler</h3>
             </div>
             <div className="space-y-3">
-              <div className="flex justify-between py-2 border-b border-gray-200">
+              <div className="flex justify-between py-2">
                 <span className="text-gray-600">Brand:</span>
                 <span className="font-semibold" style={{color: '#1C325E'}}>{report.system_brand}</span>
               </div>
