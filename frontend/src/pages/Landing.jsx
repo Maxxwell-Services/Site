@@ -55,16 +55,17 @@ const Landing = () => {
             {/* Customer Card */}
             <div className="glass rounded-2xl p-8 card-hover">
               <div className="flex flex-col items-center text-center">
-                <div className="p-4 rounded-full bg-cyan-100 mb-4">
-                  <User className="w-12 h-12 text-cyan-600" />
+                <div className="p-4 rounded-full mb-4" style={{backgroundColor: 'rgba(219, 114, 24, 0.1)'}}>
+                  <User className="w-12 h-12" style={{color: '#DB7218'}} />
                 </div>
-                <h2 className="text-2xl font-bold text-blue-900 mb-3">Customers</h2>
-                <p className="text-blue-700 mb-6">
+                <h2 className="text-2xl font-bold mb-3" style={{color: '#1C325E'}}>Customers</h2>
+                <p className="text-gray-700 mb-6">
                   View your maintenance reports and track your AC system health over time
                 </p>
                 <div className="w-full space-y-3">
                   <Button 
-                    className="w-full bg-cyan-600 hover:bg-cyan-700 text-white"
+                    className="w-full text-white hover:opacity-90"
+                    style={{backgroundColor: '#DB7218'}}
                     onClick={() => navigate('/customer/signup')}
                     data-testid="customer-signup-btn"
                   >
@@ -72,7 +73,8 @@ const Landing = () => {
                   </Button>
                   <Button 
                     variant="outline" 
-                    className="w-full border-cyan-600 text-cyan-700 hover:bg-cyan-50"
+                    className="w-full hover:bg-gray-50"
+                    style={{borderColor: '#DB7218', color: '#DB7218'}}
                     onClick={() => navigate('/customer/login')}
                     data-testid="customer-login-btn"
                   >
