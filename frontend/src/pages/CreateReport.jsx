@@ -585,6 +585,12 @@ const CreateReport = () => {
                   />
                 </div>
               </div>
+              <PhotoUpload
+                photos={formData.temperature_photos}
+                onChange={(photos) => setFormData({...formData, temperature_photos: photos})}
+                label="Temperature Reading Photos"
+                maxPhotos={3}
+              />
             </div>
 
             {/* Amp Draw */}
