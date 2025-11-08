@@ -398,20 +398,31 @@ async def create_report(data: MaintenanceReportCreate, user: dict = Depends(get_
     if system_age is None and data.installation_year:
         system_age = datetime.now().year - data.installation_year
     
-    # Check tolerances
-    capacitor_status, capacitor_tolerance, capacitor_needs_replacement = check_capacitor_tolerance(
-        data.capacitor_rating, data.capacitor_reading
+    # Check tolerances for both capacitors
+    blower_capacitor_status, blower_capacitor_tolerance, blower_capacitor_needs_replacement = check_capacitor_tolerance(
+        data.blower_motor_capacitor_rating, data.blower_motor_capacitor_reading
+    )
+    condenser_capacitor_status, condenser_capacitor_tolerance, condenser_capacitor_needs_replacement = check_capacitor_tolerance(
+        data.condenser_capacitor_rating, data.condenser_capacitor_reading
     )
     delta_t_status = check_delta_t(delta_t)
     amp_status = check_amp_draw(data.amp_draw, data.rated_amps)
     
     # Build warnings list
     warnings = []
-    if capacitor_needs_replacement:
+    if blower_capacitor_needs_replacement:
         warnings.append({
-            "type": "capacitor",
-            "severity": capacitor_status.lower(),
-            "message": f"Capacitor reading is {capacitor_tolerance:.1f}% off from rated value",
+            "type": "blower_capacitor",
+            "severity": blower_capacitor_status.lower(),
+            "message": f"Blower motor capacitor reading is {blower_capacitor_tolerance:.1f}% off from rated value",
+            "part_needed": "capacitor"
+        })
+    
+    if condenser_capacitor_needs_replacement:
+        warnings.append({
+            "type": "condenser_capacitor",
+            "severity": condenser_capacitor_status.lower(),
+            "message": f"Condenser capacitor reading is {condenser_capacitor_tolerance:.1f}% off from rated value",
             "part_needed": "capacitor"
         })
     
