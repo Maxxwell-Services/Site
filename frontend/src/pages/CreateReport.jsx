@@ -27,6 +27,7 @@ const CreateReport = () => {
     evaporator_serial_number: '',
     evaporator_age: '',
     evaporator_warranty_status: 'Active',
+    evaporator_warranty_details: '',
     evaporator_photos: [],
     condenser_brand: '',
     condenser_model_number: '',
