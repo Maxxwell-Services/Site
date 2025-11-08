@@ -340,41 +340,6 @@ const CreateReport = () => {
                   </div>
                 </div>
               </div>
-
-              {/* Condenser Dual Run Capacitor */}
-              <div>
-                <h3 className="text-lg font-semibold text-blue-800 mb-3">Condenser Dual Run Capacitor</h3>
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div>
-                    <Label htmlFor="condenser_capacitor_rating" className="text-blue-900">Rating (µF) *</Label>
-                    <Input
-                      id="condenser_capacitor_rating"
-                      type="number"
-                      step="0.1"
-                      value={formData.condenser_capacitor_rating}
-                      onChange={(e) => setFormData({...formData, condenser_capacitor_rating: e.target.value})}
-                      required
-                      className="mt-1"
-                      placeholder="e.g., 35"
-                      data-testid="condenser-capacitor-rating-input"
-                    />
-                  </div>
-                  <div>
-                    <Label htmlFor="condenser_capacitor_reading" className="text-blue-900">Reading (µF) *</Label>
-                    <Input
-                      id="condenser_capacitor_reading"
-                      type="number"
-                      step="0.1"
-                      value={formData.condenser_capacitor_reading}
-                      onChange={(e) => setFormData({...formData, condenser_capacitor_reading: e.target.value})}
-                      required
-                      className="mt-1"
-                      placeholder="e.g., 32.5"
-                      data-testid="condenser-capacitor-reading-input"
-                    />
-                  </div>
-                </div>
-              </div>
               <PhotoUpload
                 photos={formData.capacitor_photos}
                 onChange={(photos) => setFormData({...formData, capacitor_photos: photos})}
