@@ -113,6 +113,7 @@ class MaintenanceReportCreate(BaseModel):
     condenser_age: Optional[int] = None
     condenser_warranty_status: str
     condenser_photos: Optional[List[str]] = Field(default_factory=list)  # Base64 encoded images
+    condenser_fan_motor: str = "Normal Operation"  # "Normal Operation", "Motor Vibration", "Blade Vibration", "Inoperative"
     refrigerant_type: str
     superheat: float  # in Fahrenheit
     subcooling: float  # in Fahrenheit
