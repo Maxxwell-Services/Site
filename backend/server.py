@@ -252,10 +252,13 @@ def check_capacitor_tolerance(rating: float, reading: float) -> tuple[str, float
     return status, tolerance, needs_replacement
 
 def check_delta_t(delta: float) -> str:
-    # Ideal delta T for AC is 15-20°F
-    if 15 <= delta <= 22:
+    # Delta T thresholds:
+    # 15°F to 24°F = Normal (Good)
+    # 10°F to 14°F = Yellow warning (Warning)
+    # Below 10°F = Red warning (Critical)
+    if 15 <= delta <= 24:
         return "Good"
-    elif 12 <= delta < 15 or 22 < delta <= 25:
+    elif 10 <= delta < 15:
         return "Warning"
     else:
         return "Critical"
