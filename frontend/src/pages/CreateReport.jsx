@@ -618,6 +618,30 @@ const CreateReport = () => {
                 />
               </div>
 
+              {/* Condenser Fan Motor */}
+              <div className="border-t-2 border-blue-200 pt-4">
+                <h3 className="text-lg font-semibold mb-3" style={{color: '#1C325E'}}>Condenser Fan Motor</h3>
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div>
+                    <Label htmlFor="condenser_fan_motor" className="text-blue-900">Condenser Fan Motor *</Label>
+                    <Select 
+                      value={formData.condenser_fan_motor} 
+                      onValueChange={(value) => setFormData({...formData, condenser_fan_motor: value})}
+                    >
+                      <SelectTrigger className="mt-1" data-testid="condenser-fan-motor-select">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="Normal Operation">Normal Operation</SelectItem>
+                        <SelectItem value="Motor Vibration">Motor Vibration</SelectItem>
+                        <SelectItem value="Blade Vibration">Blade Vibration</SelectItem>
+                        <SelectItem value="Inoperative">Inoperative</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+              </div>
+
               {/* Condenser Dual Run Capacitor */}
               <div className="border-t-2 border-blue-200 pt-4">
                 <h3 className="text-lg font-semibold mb-3" style={{color: '#1C325E'}}>Condenser Dual Run Capacitor</h3>
