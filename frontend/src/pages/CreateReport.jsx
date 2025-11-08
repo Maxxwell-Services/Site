@@ -265,7 +265,7 @@ const CreateReport = () => {
 
             {/* Temperature Readings */}
             <div className="space-y-3 sm:space-y-4">
-              <h2 className="text-xl font-semibold text-blue-900 border-b border-blue-200 pb-2">Temperature (Delta T)</h2>
+              <h2 className="text-lg sm:text-xl font-semibold text-blue-900 border-b border-blue-200 pb-2">Temperature (Delta T)</h2>
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
                   <Label htmlFor="return_temp" className="text-blue-900">Return Air Temp (°F) *</Label>
@@ -306,7 +306,7 @@ const CreateReport = () => {
 
             {/* Capacitor Readings */}
             <div className="space-y-3 sm:space-y-4">
-              <h2 className="text-xl font-semibold text-blue-900 border-b border-blue-200 pb-2">Capacitors</h2>
+              <h2 className="text-lg sm:text-xl font-semibold text-blue-900 border-b border-blue-200 pb-2">Capacitors</h2>
               
               {/* Blower Motor Capacitor */}
               <div>
@@ -371,7 +371,7 @@ const CreateReport = () => {
 
             {/* Drainage & Components */}
             <div className="space-y-3 sm:space-y-4">
-              <h2 className="text-xl font-semibold text-blue-900 border-b border-blue-200 pb-2">Drainage & Components</h2>
+              <h2 className="text-lg sm:text-xl font-semibold text-blue-900 border-b border-blue-200 pb-2">Drainage & Components</h2>
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
                   <Label htmlFor="primary_drain" className="text-blue-900">Primary Drain *</Label>
@@ -431,7 +431,7 @@ const CreateReport = () => {
 
             {/* Air Filters */}
             <div className="space-y-3 sm:space-y-4">
-              <h2 className="text-xl font-semibold text-blue-900 border-b border-blue-200 pb-2">Air Filters</h2>
+              <h2 className="text-lg sm:text-xl font-semibold text-blue-900 border-b border-blue-200 pb-2">Air Filters</h2>
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
                   <Label htmlFor="air_filters" className="text-blue-900">Air Filters *</Label>
@@ -456,7 +456,7 @@ const CreateReport = () => {
 
             {/* Indoor Air Quality */}
             <div className="space-y-3 sm:space-y-4">
-              <h2 className="text-xl font-semibold text-blue-900 border-b border-blue-200 pb-2">Indoor Air Quality</h2>
+              <h2 className="text-lg sm:text-xl font-semibold text-blue-900 border-b border-blue-200 pb-2">Indoor Air Quality</h2>
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
                   <Label htmlFor="air_purifier" className="text-blue-900">Air Purifier *</Label>
@@ -518,7 +518,7 @@ const CreateReport = () => {
 
             {/* Evaporator Coil */}
             <div className="space-y-3 sm:space-y-4">
-              <h2 className="text-xl font-semibold text-blue-900 border-b border-blue-200 pb-2">Evaporator Coil</h2>
+              <h2 className="text-lg sm:text-xl font-semibold text-blue-900 border-b border-blue-200 pb-2">Evaporator Coil</h2>
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
                   <Label htmlFor="evaporator_coil" className="text-blue-900">Evaporator Coil *</Label>
@@ -799,7 +799,7 @@ const CreateReport = () => {
 
             {/* Notes */}
             <div className="space-y-3 sm:space-y-4">
-              <h2 className="text-xl font-semibold text-blue-900 border-b border-blue-200 pb-2">Additional Notes</h2>
+              <h2 className="text-lg sm:text-xl font-semibold text-blue-900 border-b border-blue-200 pb-2">Additional Notes</h2>
               <Textarea
                 id="notes"
                 value={formData.notes}
@@ -813,7 +813,7 @@ const CreateReport = () => {
 
             {/* Other Repair Recommendations */}
             <div className="space-y-3 sm:space-y-4">
-              <h2 className="text-xl font-semibold text-blue-900 border-b border-blue-200 pb-2">Other Repair Recommendations</h2>
+              <h2 className="text-lg sm:text-xl font-semibold text-blue-900 border-b border-blue-200 pb-2">Other Repair Recommendations</h2>
               <Textarea
                 id="other_repair_recommendations"
                 value={formData.other_repair_recommendations}
@@ -827,7 +827,7 @@ const CreateReport = () => {
 
             {/* General Photos */}
             <div className="space-y-3 sm:space-y-4">
-              <h2 className="text-xl font-semibold text-blue-900 border-b border-blue-200 pb-2">Additional Photos</h2>
+              <h2 className="text-lg sm:text-xl font-semibold text-blue-900 border-b border-blue-200 pb-2">Additional Photos</h2>
               <PhotoUpload
                 photos={formData.general_photos}
                 onChange={(photos) => setFormData({...formData, general_photos: photos})}
