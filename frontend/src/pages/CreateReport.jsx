@@ -264,7 +264,7 @@ const CreateReport = () => {
             </div>
 
             {/* Temperature Readings */}
-            <div className="space-y-4">
+            <div className="space-y-3 sm:space-y-4">
               <h2 className="text-xl font-semibold text-blue-900 border-b border-blue-200 pb-2">Temperature (Delta T)</h2>
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
@@ -305,7 +305,7 @@ const CreateReport = () => {
             </div>
 
             {/* Capacitor Readings */}
-            <div className="space-y-4">
+            <div className="space-y-3 sm:space-y-4">
               <h2 className="text-xl font-semibold text-blue-900 border-b border-blue-200 pb-2">Capacitors</h2>
               
               {/* Blower Motor Capacitor */}
@@ -370,7 +370,7 @@ const CreateReport = () => {
             </div>
 
             {/* Drainage & Components */}
-            <div className="space-y-4">
+            <div className="space-y-3 sm:space-y-4">
               <h2 className="text-xl font-semibold text-blue-900 border-b border-blue-200 pb-2">Drainage & Components</h2>
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
@@ -430,7 +430,7 @@ const CreateReport = () => {
             </div>
 
             {/* Air Filters */}
-            <div className="space-y-4">
+            <div className="space-y-3 sm:space-y-4">
               <h2 className="text-xl font-semibold text-blue-900 border-b border-blue-200 pb-2">Air Filters</h2>
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
@@ -455,7 +455,7 @@ const CreateReport = () => {
             </div>
 
             {/* Indoor Air Quality */}
-            <div className="space-y-4">
+            <div className="space-y-3 sm:space-y-4">
               <h2 className="text-xl font-semibold text-blue-900 border-b border-blue-200 pb-2">Indoor Air Quality</h2>
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
@@ -517,7 +517,7 @@ const CreateReport = () => {
             </div>
 
             {/* Evaporator Coil */}
-            <div className="space-y-4">
+            <div className="space-y-3 sm:space-y-4">
               <h2 className="text-xl font-semibold text-blue-900 border-b border-blue-200 pb-2">Evaporator Coil</h2>
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
@@ -798,7 +798,7 @@ const CreateReport = () => {
             </div>
 
             {/* Notes */}
-            <div className="space-y-4">
+            <div className="space-y-3 sm:space-y-4">
               <h2 className="text-xl font-semibold text-blue-900 border-b border-blue-200 pb-2">Additional Notes</h2>
               <Textarea
                 id="notes"
@@ -812,7 +812,7 @@ const CreateReport = () => {
             </div>
 
             {/* Other Repair Recommendations */}
-            <div className="space-y-4">
+            <div className="space-y-3 sm:space-y-4">
               <h2 className="text-xl font-semibold text-blue-900 border-b border-blue-200 pb-2">Other Repair Recommendations</h2>
               <Textarea
                 id="other_repair_recommendations"
@@ -826,7 +826,7 @@ const CreateReport = () => {
             </div>
 
             {/* General Photos */}
-            <div className="space-y-4">
+            <div className="space-y-3 sm:space-y-4">
               <h2 className="text-xl font-semibold text-blue-900 border-b border-blue-200 pb-2">Additional Photos</h2>
               <PhotoUpload
                 photos={formData.general_photos}
