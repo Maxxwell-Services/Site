@@ -118,8 +118,9 @@ class MaintenanceReportCreate(BaseModel):
     subcooling: float  # in Fahrenheit
     refrigerant_status: str  # "Good", "Low - Add Refrigerant", "Critical - Repairs may be needed"
     refrigerant_photos: Optional[List[str]] = Field(default_factory=list)
-    blower_motor_capacitor_rating: float  # in microfarads
-    blower_motor_capacitor_reading: float  # in microfarads
+    blower_motor_type: str = "PSC Motor"  # "PSC Motor" or "ECM Motor"
+    blower_motor_capacitor_rating: Optional[float] = None  # in microfarads, required for PSC Motor only
+    blower_motor_capacitor_reading: Optional[float] = None  # in microfarads, required for PSC Motor only
     condenser_capacitor_rating: float  # in microfarads
     condenser_capacitor_reading: float  # in microfarads
     capacitor_photos: Optional[List[str]] = Field(default_factory=list)
