@@ -180,6 +180,7 @@ class MaintenanceReport(BaseModel):
     superheat: float
     subcooling: float
     refrigerant_status: str
+    refrigerant_photos: Optional[List[str]] = Field(default_factory=list)
     blower_motor_capacitor_rating: float
     blower_motor_capacitor_reading: float
     blower_motor_capacitor_health: str  # "Good", "Warning", "Critical"
@@ -188,19 +189,27 @@ class MaintenanceReport(BaseModel):
     condenser_capacitor_reading: float
     condenser_capacitor_health: str  # "Good", "Warning", "Critical"
     condenser_capacitor_tolerance: float  # percentage difference
+    capacitor_photos: Optional[List[str]] = Field(default_factory=list)
     return_temp: float
     supply_temp: float
     delta_t: float
     delta_t_status: str  # "Good", "Warning", "Critical"
+    temperature_photos: Optional[List[str]] = Field(default_factory=list)
     amp_draw: float
     rated_amps: float
     amp_status: str  # "Good", "Warning", "Critical"
+    electrical_photos: Optional[List[str]] = Field(default_factory=list)
     primary_drain: str
     drain_pan_condition: str
-    air_purifier: str
+    drainage_photos: Optional[List[str]] = Field(default_factory=list)
     air_filters: str
     evaporator_coil: str
     condenser_coils: str
+    # Indoor Air Quality
+    air_purifier: str
+    plenums: str
+    ductwork: str
+    indoor_air_quality_photos: Optional[List[str]] = Field(default_factory=list)
     general_photos: Optional[List[str]] = Field(default_factory=list)
     notes: Optional[str] = None
     other_repair_recommendations: Optional[str] = None
