@@ -287,35 +287,6 @@ const ViewReport = () => {
               <p className="text-xs mt-3 opacity-70 italic">Click for more information</p>
             </div>
 
-            {/* Amp Draw */}
-            <div 
-              className={`p-5 rounded-xl border-2 shadow-md cursor-pointer hover:shadow-lg transition-shadow ${getSeverityColor(report.amp_status.toLowerCase())}`}
-              onClick={() => openMetricInfo('electrical', report.amp_status.toLowerCase())}
-              data-testid="electrical-metric-card"
-            >
-              <h4 className="font-bold mb-3 text-lg flex items-center justify-between">
-                <span>Electrical</span>
-                <div className="flex items-center gap-2">
-                  <span className={`text-xs px-2 py-1 rounded-full ${
-                    report.amp_status === 'Good' ? 'bg-green-200' :
-                    report.amp_status === 'Warning' ? 'bg-orange-200' : 'bg-red-200'
-                  }`}>{report.amp_status}</span>
-                  <Info className="w-4 h-4 opacity-60" />
-                </div>
-              </h4>
-              <div className="space-y-2">
-                <div className="flex justify-between text-sm">
-                  <span className="opacity-80">Rated Amps:</span>
-                  <span className="font-semibold">{report.rated_amps}A</span>
-                </div>
-                <div className="flex justify-between text-sm">
-                  <span className="opacity-80">Actual Draw:</span>
-                  <span className="font-semibold">{report.amp_draw}A</span>
-                </div>
-              </div>
-              <p className="text-xs mt-3 opacity-70 italic">Click for more information</p>
-            </div>
-
             {/* Refrigerant */}
             <div 
               className={`p-5 rounded-xl border-2 shadow-md cursor-pointer hover:shadow-lg transition-shadow ${getSeverityColor(report.refrigerant_status.toLowerCase())}`}
@@ -340,6 +311,35 @@ const ViewReport = () => {
                 <div className="flex justify-between text-sm">
                   <span className="opacity-80">Pressure:</span>
                   <span className="font-semibold">{report.refrigerant_level} PSI</span>
+                </div>
+              </div>
+              <p className="text-xs mt-3 opacity-70 italic">Click for more information</p>
+            </div>
+
+            {/* Amp Draw */}
+            <div 
+              className={`p-5 rounded-xl border-2 shadow-md cursor-pointer hover:shadow-lg transition-shadow ${getSeverityColor(report.amp_status.toLowerCase())}`}
+              onClick={() => openMetricInfo('electrical', report.amp_status.toLowerCase())}
+              data-testid="electrical-metric-card"
+            >
+              <h4 className="font-bold mb-3 text-lg flex items-center justify-between">
+                <span>Electrical</span>
+                <div className="flex items-center gap-2">
+                  <span className={`text-xs px-2 py-1 rounded-full ${
+                    report.amp_status === 'Good' ? 'bg-green-200' :
+                    report.amp_status === 'Warning' ? 'bg-orange-200' : 'bg-red-200'
+                  }`}>{report.amp_status}</span>
+                  <Info className="w-4 h-4 opacity-60" />
+                </div>
+              </h4>
+              <div className="space-y-2">
+                <div className="flex justify-between text-sm">
+                  <span className="opacity-80">Rated Amps:</span>
+                  <span className="font-semibold">{report.rated_amps}A</span>
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span className="opacity-80">Actual Draw:</span>
+                  <span className="font-semibold">{report.amp_draw}A</span>
                 </div>
               </div>
               <p className="text-xs mt-3 opacity-70 italic">Click for more information</p>
