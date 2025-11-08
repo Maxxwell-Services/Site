@@ -359,39 +359,70 @@ const ViewReport = () => {
             </div>
 
             {/* Primary Drain */}
-            <div className={`p-4 rounded-lg border-2 ${
-              report.primary_drain === 'Clogged, needs immediate service' 
-                ? 'bg-red-100 border-red-300 text-red-800' 
-                : 'bg-green-100 border-green-300 text-green-800'
-            }`}>
-              <h4 className="font-semibold mb-2">Primary Drain</h4>
-              <p className="text-sm">{report.primary_drain}</p>
+            <div 
+              className={`p-5 rounded-xl border-2 shadow-md cursor-pointer hover:shadow-lg transition-shadow ${
+                report.primary_drain === 'Clogged, needs immediate service' 
+                  ? 'bg-red-100 border-red-300 text-red-800' 
+                  : 'bg-green-100 border-green-300 text-green-800'
+              }`}
+              onClick={() => openMetricInfo('drain', report.primary_drain === 'Clogged, needs immediate service' ? 'critical' : 'good')}
+              data-testid="drain-metric-card"
+            >
+              <h4 className="font-bold mb-3 text-lg flex items-center justify-between">
+                <span>Primary Drain</span>
+                <Info className="w-4 h-4 opacity-60" />
+              </h4>
+              <p className="text-sm font-medium">{report.primary_drain}</p>
+              <p className="text-xs mt-3 opacity-70 italic">Click for more information</p>
             </div>
 
             {/* Drain Pan Condition */}
-            <div className={`p-4 rounded-lg border-2 ${
-              report.drain_pan_condition === 'Rusted and should be replaced' || report.drain_pan_condition === 'Poor condition'
-                ? 'bg-red-100 border-red-300 text-red-800'
-                : report.drain_pan_condition === 'Fair condition'
-                ? 'bg-orange-100 border-orange-300 text-orange-800'
-                : 'bg-green-100 border-green-300 text-green-800'
-            }`}>
-              <h4 className="font-semibold mb-2">Drain Pan Condition</h4>
-              <p className="text-sm">{report.drain_pan_condition}</p>
+            <div 
+              className={`p-5 rounded-xl border-2 shadow-md cursor-pointer hover:shadow-lg transition-shadow ${
+                report.drain_pan_condition === 'Rusted and should be replaced' || report.drain_pan_condition === 'Poor condition'
+                  ? 'bg-red-100 border-red-300 text-red-800'
+                  : report.drain_pan_condition === 'Fair condition'
+                  ? 'bg-orange-100 border-orange-300 text-orange-800'
+                  : 'bg-green-100 border-green-300 text-green-800'
+              }`}
+              onClick={() => openMetricInfo('drain_pan', 
+                report.drain_pan_condition === 'Rusted and should be replaced' || report.drain_pan_condition === 'Poor condition' ? 'critical' :
+                report.drain_pan_condition === 'Fair condition' ? 'warning' : 'good'
+              )}
+              data-testid="drain-pan-metric-card"
+            >
+              <h4 className="font-bold mb-3 text-lg flex items-center justify-between">
+                <span>Drain Pan</span>
+                <Info className="w-4 h-4 opacity-60" />
+              </h4>
+              <p className="text-sm font-medium">{report.drain_pan_condition}</p>
+              <p className="text-xs mt-3 opacity-70 italic">Click for more information</p>
             </div>
 
             {/* Air Purifier */}
-            <div className={`p-4 rounded-lg border-2 ${
-              report.air_purifier === 'Air purifier needs replacement'
-                ? 'bg-red-100 border-red-300 text-red-800'
-                : report.air_purifier === 'UV light needs replacement'
-                ? 'bg-orange-100 border-orange-300 text-orange-800'
-                : report.air_purifier === 'None present'
-                ? 'bg-gray-100 border-gray-300 text-gray-800'
-                : 'bg-green-100 border-green-300 text-green-800'
-            }`}>
-              <h4 className="font-semibold mb-2">Air Purifier</h4>
-              <p className="text-sm">{report.air_purifier}</p>
+            <div 
+              className={`p-5 rounded-xl border-2 shadow-md cursor-pointer hover:shadow-lg transition-shadow ${
+                report.air_purifier === 'Air purifier needs replacement'
+                  ? 'bg-red-100 border-red-300 text-red-800'
+                  : report.air_purifier === 'UV light needs replacement'
+                  ? 'bg-orange-100 border-orange-300 text-orange-800'
+                  : report.air_purifier === 'None present'
+                  ? 'bg-gray-100 border-gray-300 text-gray-800'
+                  : 'bg-green-100 border-green-300 text-green-800'
+              }`}
+              onClick={() => openMetricInfo('air_purifier',
+                report.air_purifier === 'Air purifier needs replacement' ? 'critical' :
+                report.air_purifier === 'UV light needs replacement' ? 'warning' :
+                report.air_purifier === 'None present' ? 'none' : 'good'
+              )}
+              data-testid="air-purifier-metric-card"
+            >
+              <h4 className="font-bold mb-3 text-lg flex items-center justify-between">
+                <span>Air Purifier</span>
+                <Info className="w-4 h-4 opacity-60" />
+              </h4>
+              <p className="text-sm font-medium">{report.air_purifier}</p>
+              <p className="text-xs mt-3 opacity-70 italic">Click for more information</p>
             </div>
           </div>
 
