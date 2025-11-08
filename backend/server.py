@@ -433,9 +433,6 @@ async def create_report(data: MaintenanceReportCreate, user: dict = Depends(get_
     
     # Calculate derived values
     delta_t = data.return_temp - data.supply_temp
-    system_age = calculate_system_age(data.serial_number)
-    if system_age is None and data.installation_year:
-        system_age = datetime.now().year - data.installation_year
     
     # Check tolerances for both capacitors
     blower_capacitor_status, blower_capacitor_tolerance, blower_capacitor_needs_replacement = check_capacitor_tolerance(
