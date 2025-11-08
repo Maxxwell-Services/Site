@@ -294,35 +294,75 @@ const CreateReport = () => {
 
             {/* Capacitor Readings */}
             <div className="space-y-4">
-              <h2 className="text-xl font-semibold text-blue-900 border-b border-blue-200 pb-2">Capacitor</h2>
-              <div className="grid md:grid-cols-2 gap-4">
-                <div>
-                  <Label htmlFor="capacitor_rating" className="text-blue-900">Capacitor Rating (µF) *</Label>
-                  <Input
-                    id="capacitor_rating"
-                    type="number"
-                    step="0.1"
-                    value={formData.capacitor_rating}
-                    onChange={(e) => setFormData({...formData, capacitor_rating: e.target.value})}
-                    required
-                    className="mt-1"
-                    placeholder="e.g., 35"
-                    data-testid="capacitor-rating-input"
-                  />
+              <h2 className="text-xl font-semibold text-blue-900 border-b border-blue-200 pb-2">Capacitors</h2>
+              
+              {/* Blower Motor Capacitor */}
+              <div>
+                <h3 className="text-lg font-semibold text-blue-800 mb-3">Blower Motor Capacitor</h3>
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div>
+                    <Label htmlFor="blower_motor_capacitor_rating" className="text-blue-900">Rating (µF) *</Label>
+                    <Input
+                      id="blower_motor_capacitor_rating"
+                      type="number"
+                      step="0.1"
+                      value={formData.blower_motor_capacitor_rating}
+                      onChange={(e) => setFormData({...formData, blower_motor_capacitor_rating: e.target.value})}
+                      required
+                      className="mt-1"
+                      placeholder="e.g., 7.5"
+                      data-testid="blower-capacitor-rating-input"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="blower_motor_capacitor_reading" className="text-blue-900">Reading (µF) *</Label>
+                    <Input
+                      id="blower_motor_capacitor_reading"
+                      type="number"
+                      step="0.1"
+                      value={formData.blower_motor_capacitor_reading}
+                      onChange={(e) => setFormData({...formData, blower_motor_capacitor_reading: e.target.value})}
+                      required
+                      className="mt-1"
+                      placeholder="e.g., 7.2"
+                      data-testid="blower-capacitor-reading-input"
+                    />
+                  </div>
                 </div>
-                <div>
-                  <Label htmlFor="capacitor_reading" className="text-blue-900">Capacitor Reading (µF) *</Label>
-                  <Input
-                    id="capacitor_reading"
-                    type="number"
-                    step="0.1"
-                    value={formData.capacitor_reading}
-                    onChange={(e) => setFormData({...formData, capacitor_reading: e.target.value})}
-                    required
-                    className="mt-1"
-                    placeholder="e.g., 32.5"
-                    data-testid="capacitor-reading-input"
-                  />
+              </div>
+
+              {/* Condenser Dual Run Capacitor */}
+              <div>
+                <h3 className="text-lg font-semibold text-blue-800 mb-3">Condenser Dual Run Capacitor</h3>
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div>
+                    <Label htmlFor="condenser_capacitor_rating" className="text-blue-900">Rating (µF) *</Label>
+                    <Input
+                      id="condenser_capacitor_rating"
+                      type="number"
+                      step="0.1"
+                      value={formData.condenser_capacitor_rating}
+                      onChange={(e) => setFormData({...formData, condenser_capacitor_rating: e.target.value})}
+                      required
+                      className="mt-1"
+                      placeholder="e.g., 35"
+                      data-testid="condenser-capacitor-rating-input"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="condenser_capacitor_reading" className="text-blue-900">Reading (µF) *</Label>
+                    <Input
+                      id="condenser_capacitor_reading"
+                      type="number"
+                      step="0.1"
+                      value={formData.condenser_capacitor_reading}
+                      onChange={(e) => setFormData({...formData, condenser_capacitor_reading: e.target.value})}
+                      required
+                      className="mt-1"
+                      placeholder="e.g., 32.5"
+                      data-testid="condenser-capacitor-reading-input"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
