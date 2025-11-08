@@ -744,6 +744,17 @@ const CreateReport = () => {
               />
             </div>
 
+            {/* General Photos */}
+            <div className="space-y-4">
+              <h2 className="text-xl font-semibold text-blue-900 border-b border-blue-200 pb-2">Additional Photos</h2>
+              <PhotoUpload
+                photos={formData.general_photos}
+                onChange={(photos) => setFormData({...formData, general_photos: photos})}
+                label="General System Photos"
+                maxPhotos={10}
+              />
+            </div>
+
             <Button
               type="submit"
               className="w-full text-white text-lg py-6 hover:opacity-90"
