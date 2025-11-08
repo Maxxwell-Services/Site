@@ -32,6 +32,7 @@ const CreateReport = () => {
     condenser_age: '',
     condenser_warranty_status: 'Active',
     condenser_photos: [],
+    condenser_fan_motor: 'Normal Operation',
     refrigerant_type: 'R-410A',
     superheat: '',
     subcooling: '',
