@@ -11,6 +11,7 @@ import { Snowflake, ArrowLeft, Send } from 'lucide-react';
 import { toast } from 'sonner';
 import { API, AuthContext } from '../App';
 import PhotoUpload from '@/components/PhotoUpload';
+import DataPlateScanner from '@/components/DataPlateScanner';
 
 const CreateReport = () => {
   const navigate = useNavigate();
