@@ -497,7 +497,7 @@ async def create_report(data: MaintenanceReportCreate, user: dict = Depends(get_
         'primary_drain': data.primary_drain,
         'drain_pan_condition': data.drain_pan_condition,
         'air_purifier': data.air_purifier,
-        'system_age': system_age
+        'system_age': data.evaporator_age or data.condenser_age  # Use component age instead
     }
     performance_score = calculate_performance_score(score_data)
     
