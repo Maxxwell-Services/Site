@@ -209,6 +209,7 @@ const CreateReport = () => {
                         evaporator_brand: data.brand || formData.evaporator_brand,
                         evaporator_model_number: data.model_number || formData.evaporator_model_number,
                         evaporator_serial_number: data.serial_number || formData.evaporator_serial_number,
+                        evaporator_date_of_manufacture: data.date_of_manufacture || formData.evaporator_date_of_manufacture,
                         evaporator_age: data.age || formData.evaporator_age,
                         evaporator_warranty_status: data.warranty_status || formData.evaporator_warranty_status
                       });
