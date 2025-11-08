@@ -68,8 +68,8 @@ input, textarea, select {
 
 input:focus, textarea:focus, select:focus {
   outline: none;
-  border-color: #1976d2;
-  box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.1);
+  border-color: var(--dark-blue);
+  box-shadow: 0 0 0 3px rgba(28, 50, 94, 0.1);
 }
 
 /* Card hover effect */
