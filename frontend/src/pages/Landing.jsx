@@ -110,7 +110,7 @@ const Landing = () => {
       </div>
 
       {/* Footer */}
-      <footer className="py-6 text-center text-blue-800">
+      <footer className="py-6 text-center" style={{color: '#1C325E'}}>
         <p className="text-sm">© 2025 AC Maintenance Reports. Professional HVAC Service Solutions.</p>
       </footer>
     </div>
