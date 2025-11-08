@@ -221,34 +221,69 @@ const ViewReport = () => {
           <h3 className="text-2xl font-bold mb-6 pb-3 border-b-2" style={{color: '#1C325E', borderColor: '#DB7218'}}>System Performance Metrics</h3>
           
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* Capacitor */}
+            {/* Blower Motor Capacitor - Only show if PSC Motor */}
+            {report.blower_motor_type === "PSC Motor" && report.blower_motor_capacitor_health && (
+              <div 
+                className={`p-5 rounded-xl border-2 shadow-md cursor-pointer hover:shadow-lg transition-shadow ${getSeverityColor(report.blower_motor_capacitor_health.toLowerCase())}`}
+                onClick={() => openMetricInfo('capacitor', report.blower_motor_capacitor_health.toLowerCase())}
+                data-testid="blower-capacitor-metric-card"
+              >
+                <h4 className="font-bold mb-3 text-lg flex items-center justify-between">
+                  <span>Blower Motor Capacitor</span>
+                  <div className="flex items-center gap-2">
+                    <span className={`text-xs px-2 py-1 rounded-full ${
+                      report.blower_motor_capacitor_health === 'Good' ? 'bg-green-200' :
+                      report.blower_motor_capacitor_health === 'Warning' ? 'bg-orange-200' : 'bg-red-200'
+                    }`}>{report.blower_motor_capacitor_health}</span>
+                    <Info className="w-4 h-4 opacity-60" />
+                  </div>
+                </h4>
+                <div className="space-y-2">
+                  <div className="flex justify-between text-sm">
+                    <span className="opacity-80">Rating:</span>
+                    <span className="font-semibold">{report.blower_motor_capacitor_rating}µF</span>
+                  </div>
+                  <div className="flex justify-between text-sm">
+                    <span className="opacity-80">Reading:</span>
+                    <span className="font-semibold">{report.blower_motor_capacitor_reading}µF</span>
+                  </div>
+                  <div className="flex justify-between text-sm">
+                    <span className="opacity-80">Variance:</span>
+                    <span className="font-semibold">{report.blower_motor_capacitor_tolerance?.toFixed(1)}%</span>
+                  </div>
+                </div>
+                <p className="text-xs mt-3 opacity-70 italic">Click for more information</p>
+              </div>
+            )}
+
+            {/* Condenser Capacitor */}
             <div 
-              className={`p-5 rounded-xl border-2 shadow-md cursor-pointer hover:shadow-lg transition-shadow ${getSeverityColor(report.capacitor_health.toLowerCase())}`}
-              onClick={() => openMetricInfo('capacitor', report.capacitor_health.toLowerCase())}
-              data-testid="capacitor-metric-card"
+              className={`p-5 rounded-xl border-2 shadow-md cursor-pointer hover:shadow-lg transition-shadow ${getSeverityColor(report.condenser_capacitor_health.toLowerCase())}`}
+              onClick={() => openMetricInfo('capacitor', report.condenser_capacitor_health.toLowerCase())}
+              data-testid="condenser-capacitor-metric-card"
             >
               <h4 className="font-bold mb-3 text-lg flex items-center justify-between">
-                <span>Capacitor</span>
+                <span>Condenser Capacitor</span>
                 <div className="flex items-center gap-2">
                   <span className={`text-xs px-2 py-1 rounded-full ${
-                    report.capacitor_health === 'Good' ? 'bg-green-200' :
-                    report.capacitor_health === 'Warning' ? 'bg-orange-200' : 'bg-red-200'
-                  }`}>{report.capacitor_health}</span>
+                    report.condenser_capacitor_health === 'Good' ? 'bg-green-200' :
+                    report.condenser_capacitor_health === 'Warning' ? 'bg-orange-200' : 'bg-red-200'
+                  }`}>{report.condenser_capacitor_health}</span>
                   <Info className="w-4 h-4 opacity-60" />
                 </div>
               </h4>
               <div className="space-y-2">
                 <div className="flex justify-between text-sm">
                   <span className="opacity-80">Rating:</span>
-                  <span className="font-semibold">{report.capacitor_rating}µF</span>
+                  <span className="font-semibold">{report.condenser_capacitor_rating}µF</span>
                 </div>
                 <div className="flex justify-between text-sm">
                   <span className="opacity-80">Reading:</span>
-                  <span className="font-semibold">{report.capacitor_reading}µF</span>
+                  <span className="font-semibold">{report.condenser_capacitor_reading}µF</span>
                 </div>
                 <div className="flex justify-between text-sm">
                   <span className="opacity-80">Variance:</span>
-                  <span className="font-semibold">{report.capacitor_tolerance.toFixed(1)}%</span>
+                  <span className="font-semibold">{report.condenser_capacitor_tolerance.toFixed(1)}%</span>
                 </div>
               </div>
               <p className="text-xs mt-3 opacity-70 italic">Click for more information</p>
