@@ -751,7 +751,7 @@ const CreateReport = () => {
                     />
                   </div>
                   <div>
-                    <Label htmlFor="rated_amps" className="text-blue-900">Rated Amps *</Label>
+                    <Label htmlFor="rated_amps" className="text-blue-900">Compressor Rated Amps *</Label>
                     <Input
                       id="rated_amps"
                       type="number"
