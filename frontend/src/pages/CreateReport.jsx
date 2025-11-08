@@ -606,6 +606,7 @@ const CreateReport = () => {
                         condenser_brand: data.brand || formData.condenser_brand,
                         condenser_model_number: data.model_number || formData.condenser_model_number,
                         condenser_serial_number: data.serial_number || formData.condenser_serial_number,
+                        condenser_date_of_manufacture: data.date_of_manufacture || formData.condenser_date_of_manufacture,
                         condenser_age: data.age || formData.condenser_age,
                         condenser_warranty_status: data.warranty_status || formData.condenser_warranty_status
                       });
