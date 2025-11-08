@@ -185,8 +185,8 @@ const CreateReport = () => {
             </div>
 
             {/* Indoor Unit / Air Handler */}
-            <div className="glass-dark rounded-xl p-6 space-y-6">
-              <h2 className="text-xl font-semibold text-blue-900 border-b-2 border-blue-300 pb-2">Indoor Unit / Air Handler</h2>
+            <div className="glass-dark rounded-lg sm:rounded-xl p-4 sm:p-6 space-y-4 sm:space-y-6">
+              <h2 className="text-lg sm:text-xl font-semibold text-blue-900 border-b-2 border-blue-300 pb-2">Indoor Unit / Air Handler</h2>
 
               {/* Evaporator Coil Subsection */}
               <div className="pt-4">
