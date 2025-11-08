@@ -746,6 +746,110 @@ class DataPlateOCRResponse(BaseModel):
     estimated_age: Optional[int] = None
     warranty_status: Optional[str] = None
 
+class WarrantyOCRRequest(BaseModel):
+    image_base64: str
+    brand: str
+    serial_number: str
+
+class WarrantyOCRResponse(BaseModel):
+    age: Optional[str] = None
+    warranty_status: str
+    warranty_details: str
+
+@api_router.post("/ocr/scan-warranty", response_model=WarrantyOCRResponse)
+async def scan_warranty(request: WarrantyOCRRequest):
+    """
+    Extract warranty information from manufacturer warranty lookup screenshot using AI Vision
+    """
+    try:
+        # Get API key from environment
+        api_key = os.environ.get('EMERGENT_LLM_KEY')
+        if not api_key:
+            raise HTTPException(status_code=500, detail="API key not configured")
+        
+        # Initialize LLM Chat with OpenAI Vision
+        chat = LlmChat(
+            api_key=api_key,
+            session_id=f"warranty-ocr-{uuid.uuid4()}",
+            system_message="You are an expert at reading HVAC equipment warranty information from manufacturer websites and extracting detailed coverage information."
+        ).with_model("openai", "gpt-4o")
+        
+        # Create image content
+        image_content = ImageContent(image_base64=request.image_base64)
+        
+        # Create user message with specific instructions
+        user_message = UserMessage(
+            text=f"""Analyze this warranty lookup screenshot from {request.brand} for serial number {request.serial_number}.
+
+Extract the following warranty information:
+
+1. Equipment Age (manufacture date or years old)
+2. Warranty Status (Active/Expired/Years Remaining)
+3. Detailed Coverage Information including:
+   - Compressor warranty period
+   - Heat exchanger warranty period
+   - Parts coverage period
+   - Labor coverage period (if any)
+   - Any extended warranty information
+   - Expiration dates if shown
+   - Any special conditions or notes
+
+Please respond ONLY with a JSON object in this exact format (no additional text):
+{{
+    "age": "age in years or manufacture date",
+    "warranty_status": "Active (X years remaining)" or "Expired" or "Active - see details",
+    "warranty_details": "Complete detailed coverage information including all parts coverage, labor coverage, compressor warranty, heat exchanger warranty, expiration dates, and any special conditions. Format this as a clear, readable summary."
+}}
+
+If you cannot read the warranty information clearly, use "Not found" for warranty_details.
+Be thorough and include ALL warranty details visible in the screenshot.""",
+            file_contents=[image_content]
+        )
+        
+        # Send message and get response
+        response = await chat.send_message(user_message)
+        
+        # Log the raw response for debugging
+        logging.info(f"Warranty OCR Raw Response: {response}")
+        
+        # Parse the JSON response
+        try:
+            # Clean the response - remove markdown code blocks if present
+            clean_response = response.strip()
+            if clean_response.startswith("```json"):
+                clean_response = clean_response[7:]
+            if clean_response.startswith("```"):
+                clean_response = clean_response[3:]
+            if clean_response.endswith("```"):
+                clean_response = clean_response[:-3]
+            clean_response = clean_response.strip()
+            
+            logging.info(f"Warranty OCR Cleaned Response: {clean_response}")
+            data = json.loads(clean_response)
+        except json.JSONDecodeError as e:
+            logging.error(f"JSON Parse Error: {str(e)}, Response: {response}")
+            # Try to extract JSON using regex if direct parsing fails
+            json_match = re.search(r'\{[^}]+\}', response, re.DOTALL)
+            if json_match:
+                try:
+                    data = json.loads(json_match.group())
+                except json.JSONDecodeError:
+                    logging.error(f"Regex extraction also failed. Full response: {response}")
+                    raise HTTPException(status_code=500, detail=f"Failed to parse warranty OCR response")
+            else:
+                logging.error(f"No JSON found in response: {response}")
+                raise HTTPException(status_code=500, detail=f"No valid JSON in warranty OCR response")
+        
+        return WarrantyOCRResponse(
+            age=data.get("age"),
+            warranty_status=data.get("warranty_status", "Unknown"),
+            warranty_details=data.get("warranty_details", "Not found")
+        )
+        
+    except Exception as e:
+        logging.error(f"Warranty OCR Error: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Warranty OCR processing failed: {str(e)}")
+
 @api_router.post("/ocr/scan-data-plate", response_model=DataPlateOCRResponse)
 async def scan_data_plate(request: DataPlateOCRRequest):
     """
