@@ -17,10 +17,10 @@ const Landing = () => {
                 <Snowflake className="w-16 h-16 text-blue-600" />
               </div>
             </div>
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-blue-900 mb-6">
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6" style={{color: '#1C325E'}}>
               AC Maintenance Reports
             </h1>
-            <p className="text-lg sm:text-xl text-blue-800 max-w-2xl mx-auto">
+            <p className="text-lg sm:text-xl text-gray-700 max-w-2xl mx-auto">
               Professional seasonal maintenance reporting for air conditioning systems.
               Track performance, identify issues, and maintain optimal efficiency.
             </p>
