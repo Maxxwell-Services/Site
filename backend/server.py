@@ -170,6 +170,7 @@ class MaintenanceReport(BaseModel):
     condenser_age: Optional[int] = None
     condenser_warranty_status: str
     condenser_photos: Optional[List[str]] = Field(default_factory=list)
+    condenser_fan_motor: str
     refrigerant_type: str
     superheat: float
     subcooling: float
