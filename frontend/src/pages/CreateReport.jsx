@@ -670,29 +670,18 @@ const CreateReport = () => {
                     </SelectContent>
                   </Select>
                 </div>
-                <div>
-                  <Label htmlFor="air_purifier" className="text-blue-900">Air Purifier *</Label>
-                  <Select 
-                    value={formData.air_purifier} 
-                    onValueChange={(value) => setFormData({...formData, air_purifier: value})}
-                  >
-                    <SelectTrigger className="mt-1" data-testid="air-purifier-select">
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="Good">Good</SelectItem>
-                      <SelectItem value="UV light needs replacement">UV light needs replacement</SelectItem>
-                      <SelectItem value="Air purifier needs replacement">Air purifier needs replacement</SelectItem>
-                      <SelectItem value="None present">None present</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
               </div>
+              <PhotoUpload
+                photos={formData.drainage_photos}
+                onChange={(photos) => setFormData({...formData, drainage_photos: photos})}
+                label="Drainage Photos"
+                maxPhotos={3}
+              />
             </div>
 
-            {/* Maintenance Performed */}
+            {/* Air Filters */}
             <div className="space-y-4">
-              <h2 className="text-xl font-semibold text-blue-900 border-b border-blue-200 pb-2">Maintenance Performed</h2>
+              <h2 className="text-xl font-semibold text-blue-900 border-b border-blue-200 pb-2">Air Filters</h2>
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
                   <Label htmlFor="air_filters" className="text-blue-900">Air Filters *</Label>
@@ -746,6 +735,68 @@ const CreateReport = () => {
                   </Select>
                 </div>
               </div>
+            </div>
+
+            {/* Indoor Air Quality */}
+            <div className="space-y-4">
+              <h2 className="text-xl font-semibold text-blue-900 border-b border-blue-200 pb-2">Indoor Air Quality</h2>
+              <div className="grid md:grid-cols-2 gap-4">
+                <div>
+                  <Label htmlFor="air_purifier" className="text-blue-900">Air Purifier *</Label>
+                  <Select 
+                    value={formData.air_purifier} 
+                    onValueChange={(value) => setFormData({...formData, air_purifier: value})}
+                  >
+                    <SelectTrigger className="mt-1" data-testid="air-purifier-select">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="Good">Good</SelectItem>
+                      <SelectItem value="UV light needs replacement">UV light needs replacement</SelectItem>
+                      <SelectItem value="Air purifier needs replacement">Air purifier needs replacement</SelectItem>
+                      <SelectItem value="None present">None present</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div>
+                  <Label htmlFor="plenums" className="text-blue-900">Plenums *</Label>
+                  <Select 
+                    value={formData.plenums} 
+                    onValueChange={(value) => setFormData({...formData, plenums: value})}
+                  >
+                    <SelectTrigger className="mt-1" data-testid="plenums-select">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="Good condition">Good condition</SelectItem>
+                      <SelectItem value="Repairs needed">Repairs needed</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div>
+                  <Label htmlFor="ductwork" className="text-blue-900">Ductwork *</Label>
+                  <Select 
+                    value={formData.ductwork} 
+                    onValueChange={(value) => setFormData({...formData, ductwork: value})}
+                  >
+                    <SelectTrigger className="mt-1" data-testid="ductwork-select">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="Good condition">Good condition</SelectItem>
+                      <SelectItem value="Deterioration noticed">Deterioration noticed</SelectItem>
+                      <SelectItem value="Need repairs">Need repairs</SelectItem>
+                      <SelectItem value="Need replacement">Need replacement</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+              </div>
+              <PhotoUpload
+                photos={formData.indoor_air_quality_photos}
+                onChange={(photos) => setFormData({...formData, indoor_air_quality_photos: photos})}
+                label="Indoor Air Quality Photos"
+                maxPhotos={5}
+              />
             </div>
 
             {/* Notes */}
