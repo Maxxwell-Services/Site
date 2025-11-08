@@ -185,63 +185,6 @@ const CreateReport = () => {
             {/* System Information */}
             <div className="glass-dark rounded-xl p-6 space-y-6">
               <h2 className="text-xl font-semibold text-blue-900 border-b-2 border-blue-300 pb-2">System Information</h2>
-              
-              <div className="grid md:grid-cols-2 gap-4">
-                <div>
-                  <Label htmlFor="system_brand" className="text-blue-900">System Brand *</Label>
-                  <Input
-                    id="system_brand"
-                    value={formData.system_brand}
-                    onChange={(e) => setFormData({...formData, system_brand: e.target.value})}
-                    required
-                    className="mt-1"
-                    placeholder="e.g., Carrier, Trane, Lennox"
-                    data-testid="system-brand-input"
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="serial_number" className="text-blue-900">Serial Number *</Label>
-                  <Input
-                    id="serial_number"
-                    value={formData.serial_number}
-                    onChange={(e) => setFormData({...formData, serial_number: e.target.value})}
-                    required
-                    className="mt-1"
-                    data-testid="serial-number-input"
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="installation_year" className="text-blue-900">Installation Year (Optional)</Label>
-                  <Input
-                    id="installation_year"
-                    type="number"
-                    min="1980"
-                    max={new Date().getFullYear()}
-                    value={formData.installation_year}
-                    onChange={(e) => setFormData({...formData, installation_year: e.target.value})}
-                    className="mt-1"
-                    placeholder="e.g., 2015"
-                    data-testid="installation-year-input"
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="system_warranty_status" className="text-blue-900">System Warranty Status *</Label>
-                  <Select 
-                    value={formData.system_warranty_status} 
-                    onValueChange={(value) => setFormData({...formData, system_warranty_status: value})}
-                  >
-                    <SelectTrigger className="mt-1" data-testid="warranty-status-select">
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="Active">Active</SelectItem>
-                      <SelectItem value="Expired">Expired</SelectItem>
-                      <SelectItem value="Unknown">Unknown</SelectItem>
-                      <SelectItem value="Extended Warranty">Extended Warranty</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-              </div>
 
               {/* Evaporator Coil Subsection */}
               <div className="border-t-2 border-blue-200 pt-4">
