@@ -176,6 +176,7 @@ class MaintenanceReport(BaseModel):
     condenser_serial_number: str
     condenser_age: Optional[int] = None
     condenser_warranty_status: str
+    condenser_warranty_details: Optional[str] = ""
     condenser_photos: Optional[List[str]] = Field(default_factory=list)
     condenser_fan_motor: str
     refrigerant_type: str
