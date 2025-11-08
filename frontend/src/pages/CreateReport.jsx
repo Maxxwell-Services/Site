@@ -12,6 +12,7 @@ import { toast } from 'sonner';
 import { API, AuthContext } from '../App';
 import PhotoUpload from '@/components/PhotoUpload';
 import DataPlateScanner from '@/components/DataPlateScanner';
+import WarrantyScanner from '@/components/WarrantyScanner';
 
 const CreateReport = () => {
   const navigate = useNavigate();
