@@ -107,7 +107,8 @@ class MaintenanceReportCreate(BaseModel):
     evaporator_brand: str
     evaporator_model_number: str
     evaporator_serial_number: str
-    evaporator_age: Optional[int] = None
+    evaporator_date_of_manufacture: Optional[str] = ""
+    evaporator_age: Optional[str] = ""
     evaporator_warranty_status: str
     evaporator_warranty_details: Optional[str] = ""
     evaporator_photos: Optional[List[str]] = Field(default_factory=list)  # Base64 encoded images
