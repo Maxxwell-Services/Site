@@ -89,20 +89,20 @@ const Landing = () => {
           <div className="mt-16 grid sm:grid-cols-3 gap-6 max-w-4xl mx-auto">
             <div className="text-center">
               <div className="glass-dark rounded-xl p-6">
-                <h3 className="font-semibold text-blue-900 mb-2">Comprehensive Reports</h3>
-                <p className="text-sm text-blue-700">Track all critical system metrics and readings</p>
+                <h3 className="font-semibold mb-2" style={{color: '#1C325E'}}>Comprehensive Reports</h3>
+                <p className="text-sm text-gray-700">Track all critical system metrics and readings</p>
               </div>
             </div>
             <div className="text-center">
               <div className="glass-dark rounded-xl p-6">
-                <h3 className="font-semibold text-blue-900 mb-2">Smart Warnings</h3>
-                <p className="text-sm text-blue-700">Automatic alerts for out-of-tolerance readings</p>
+                <h3 className="font-semibold mb-2" style={{color: '#1C325E'}}>Smart Warnings</h3>
+                <p className="text-sm text-gray-700">Automatic alerts for out-of-tolerance readings</p>
               </div>
             </div>
             <div className="text-center">
               <div className="glass-dark rounded-xl p-6">
-                <h3 className="font-semibold text-blue-900 mb-2">Parts Catalog</h3>
-                <p className="text-sm text-blue-700">Direct links to purchase recommended parts</p>
+                <h3 className="font-semibold mb-2" style={{color: '#1C325E'}}>Parts Catalog</h3>
+                <p className="text-sm text-gray-700">Direct links to purchase recommended parts</p>
               </div>
             </div>
           </div>
