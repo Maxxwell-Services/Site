@@ -255,13 +255,20 @@ const ViewReport = () => {
             </div>
 
             {/* Delta T */}
-            <div className={`p-5 rounded-xl border-2 shadow-md ${getSeverityColor(report.delta_t_status.toLowerCase())}`}>
+            <div 
+              className={`p-5 rounded-xl border-2 shadow-md cursor-pointer hover:shadow-lg transition-shadow ${getSeverityColor(report.delta_t_status.toLowerCase())}`}
+              onClick={() => openMetricInfo('temperature', report.delta_t_status.toLowerCase())}
+              data-testid="temperature-metric-card"
+            >
               <h4 className="font-bold mb-3 text-lg flex items-center justify-between">
                 <span>Temperature</span>
-                <span className={`text-xs px-2 py-1 rounded-full ${
-                  report.delta_t_status === 'Good' ? 'bg-green-200' :
-                  report.delta_t_status === 'Warning' ? 'bg-orange-200' : 'bg-red-200'
-                }`}>{report.delta_t_status}</span>
+                <div className="flex items-center gap-2">
+                  <span className={`text-xs px-2 py-1 rounded-full ${
+                    report.delta_t_status === 'Good' ? 'bg-green-200' :
+                    report.delta_t_status === 'Warning' ? 'bg-orange-200' : 'bg-red-200'
+                  }`}>{report.delta_t_status}</span>
+                  <Info className="w-4 h-4 opacity-60" />
+                </div>
               </h4>
               <div className="space-y-2">
                 <div className="flex justify-between text-sm">
@@ -277,6 +284,7 @@ const ViewReport = () => {
                   <span className="font-semibold">{report.delta_t.toFixed(1)}°F</span>
                 </div>
               </div>
+              <p className="text-xs mt-3 opacity-70 italic">Click for more information</p>
             </div>
 
             {/* Amp Draw */}
