@@ -490,7 +490,8 @@ const CreateReport = () => {
 
             <Button
               type="submit"
-              className="w-full bg-blue-600 hover:bg-blue-700 text-white text-lg py-6"
+              className="w-full text-white text-lg py-6 hover:opacity-90"
+              style={{backgroundColor: '#DB7218'}}
               disabled={loading}
               data-testid="submit-report-btn"
             >
