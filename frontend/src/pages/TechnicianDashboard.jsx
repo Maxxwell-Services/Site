@@ -68,7 +68,8 @@ const TechnicianDashboard = () => {
             <div className="flex gap-3">
               <Button
                 onClick={() => navigate('/technician/create-report')}
-                className="bg-blue-600 hover:bg-blue-700 text-white"
+                className="text-white hover:opacity-90"
+                style={{backgroundColor: '#DB7218'}}
                 data-testid="create-report-btn"
               >
                 <Plus className="w-4 h-4 mr-2" />
@@ -77,7 +78,8 @@ const TechnicianDashboard = () => {
               <Button
                 variant="outline"
                 onClick={handleLogout}
-                className="border-blue-600 text-blue-700 hover:bg-blue-50"
+                className="hover:bg-gray-50"
+                style={{borderColor: '#1C325E', color: '#1C325E'}}
                 data-testid="logout-btn"
               >
                 <LogOut className="w-4 h-4 mr-2" />
