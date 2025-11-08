@@ -227,7 +227,7 @@ const CreateReport = () => {
             {/* Refrigerant Readings */}
             <div className="space-y-4">
               <h2 className="text-xl font-semibold text-blue-900 border-b border-blue-200 pb-2">Refrigerant</h2>
-              <div className="grid md:grid-cols-3 gap-4">
+              <div className="grid md:grid-cols-2 gap-4">
                 <div>
                   <Label htmlFor="refrigerant_type" className="text-blue-900">Refrigerant Type *</Label>
                   <Select 
@@ -246,19 +246,6 @@ const CreateReport = () => {
                   </Select>
                 </div>
                 <div>
-                  <Label htmlFor="refrigerant_level" className="text-blue-900">Refrigerant Level (PSI) *</Label>
-                  <Input
-                    id="refrigerant_level"
-                    type="number"
-                    step="0.1"
-                    value={formData.refrigerant_level}
-                    onChange={(e) => setFormData({...formData, refrigerant_level: e.target.value})}
-                    required
-                    className="mt-1"
-                    data-testid="refrigerant-level-input"
-                  />
-                </div>
-                <div>
                   <Label htmlFor="refrigerant_status" className="text-blue-900">Refrigerant Status *</Label>
                   <Select 
                     value={formData.refrigerant_status} 
@@ -269,10 +256,38 @@ const CreateReport = () => {
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="Good">Good</SelectItem>
-                      <SelectItem value="Low">Low</SelectItem>
-                      <SelectItem value="Critical">Critical</SelectItem>
+                      <SelectItem value="Low - Add Refrigerant">Low - Add Refrigerant</SelectItem>
+                      <SelectItem value="Critical - Repairs may be needed">Critical - Repairs may be needed</SelectItem>
                     </SelectContent>
                   </Select>
+                </div>
+                <div>
+                  <Label htmlFor="superheat" className="text-blue-900">Superheat (°F) *</Label>
+                  <Input
+                    id="superheat"
+                    type="number"
+                    step="0.1"
+                    value={formData.superheat}
+                    onChange={(e) => setFormData({...formData, superheat: e.target.value})}
+                    required
+                    className="mt-1"
+                    placeholder="e.g., 10.5"
+                    data-testid="superheat-input"
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="subcooling" className="text-blue-900">Subcooling (°F) *</Label>
+                  <Input
+                    id="subcooling"
+                    type="number"
+                    step="0.1"
+                    value={formData.subcooling}
+                    onChange={(e) => setFormData({...formData, subcooling: e.target.value})}
+                    required
+                    className="mt-1"
+                    placeholder="e.g., 8.5"
+                    data-testid="subcooling-input"
+                  />
                 </div>
               </div>
             </div>
