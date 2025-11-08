@@ -64,12 +64,25 @@ button:active {
 input, textarea, select {
   font-family: 'Inter', sans-serif;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  min-height: 44px; /* Touch-friendly minimum height */
 }
 
 input:focus, textarea:focus, select:focus {
   outline: none;
   border-color: var(--dark-blue);
   box-shadow: 0 0 0 3px rgba(28, 50, 94, 0.1);
+}
+
+/* Mobile-specific improvements */
+@media (max-width: 640px) {
+  input, textarea, select, button {
+    font-size: 16px; /* Prevents iOS zoom on focus */
+  }
+  
+  .glass, .glass-dark {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
 }
 
 /* Card hover effect */
