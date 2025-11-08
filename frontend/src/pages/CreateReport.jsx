@@ -626,6 +626,12 @@ const CreateReport = () => {
                   />
                 </div>
               </div>
+              <PhotoUpload
+                photos={formData.electrical_photos}
+                onChange={(photos) => setFormData({...formData, electrical_photos: photos})}
+                label="Electrical Photos"
+                maxPhotos={3}
+              />
             </div>
 
             {/* Drainage & Components */}
