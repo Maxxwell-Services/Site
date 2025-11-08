@@ -1066,15 +1066,26 @@ Read ALL text carefully and extract the exact values as they appear on the data 
                         estimated_age = "Less than 1 month"
                     
                     # Calculate warranty (assuming 10-year standard warranty)
-                    total_years = years + (months / 12.0)
-                    years_remaining = 10 - total_years
-                    if years_remaining > 1:
-                        warranty_status = f"Active ({int(years_remaining)} years remaining)"
-                    elif years_remaining > 0:
-                        months_remaining = int(years_remaining * 12)
-                        warranty_status = f"Active ({months_remaining} months remaining)"
-                    else:
+                    # Calculate warranty end date
+                    warranty_end_dt = manufacture_dt + relativedelta(years=10)
+                    warranty_remaining = relativedelta(warranty_end_dt, current_dt)
+                    
+                    remaining_years = warranty_remaining.years
+                    remaining_months = warranty_remaining.months
+                    
+                    # Check if warranty has expired
+                    if warranty_end_dt < current_dt:
                         warranty_status = "Expired"
+                    else:
+                        # Format warranty remaining string
+                        if remaining_years > 0 and remaining_months > 0:
+                            warranty_status = f"Active ({remaining_years} years {remaining_months} months remaining)"
+                        elif remaining_years > 0:
+                            warranty_status = f"Active ({remaining_years} years remaining)"
+                        elif remaining_months > 0:
+                            warranty_status = f"Active ({remaining_months} months remaining)"
+                        else:
+                            warranty_status = "Active (less than 1 month remaining)"
                 else:
                     estimated_age = None
                     warranty_status = "Unable to determine - Manual verification needed"
