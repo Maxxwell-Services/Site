@@ -143,7 +143,8 @@ const CustomerDashboard = () => {
                       <Button
                         size="sm"
                         onClick={() => window.open(`/report/${report.unique_link}`, '_blank')}
-                        className="bg-cyan-600 hover:bg-cyan-700 text-white"
+                        className="text-white hover:opacity-90"
+                        style={{backgroundColor: '#DB7218'}}
                         data-testid={`view-report-btn-${report.id}`}
                       >
                         <ExternalLink className="w-4 h-4 mr-2" />
