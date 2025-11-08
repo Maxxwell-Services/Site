@@ -667,6 +667,24 @@ const CreateReport = () => {
                     </Select>
                   </div>
                 </div>
+                
+                {/* Warranty Scanner */}
+                <div className="p-3 sm:p-4 bg-orange-50 rounded-lg border border-orange-200">
+                  <h4 className="text-sm font-semibold mb-2" style={{color: '#DB7218'}}>Automatic Warranty Lookup</h4>
+                  <WarrantyScanner
+                    brand={formData.condenser_brand}
+                    serialNumber={formData.condenser_serial_number}
+                    onWarrantyExtracted={(data) => {
+                      setFormData({
+                        ...formData,
+                        condenser_age: data.age || formData.condenser_age,
+                        condenser_warranty_status: data.warranty_status || formData.condenser_warranty_status,
+                        condenser_warranty_details: data.warranty_details || formData.condenser_warranty_details
+                      });
+                    }}
+                  />
+                </div>
+
                 <PhotoUpload
                   photos={formData.condenser_photos}
                   onChange={(photos) => setFormData({...formData, condenser_photos: photos})}
