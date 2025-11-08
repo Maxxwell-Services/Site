@@ -538,6 +538,7 @@ async def create_report(data: MaintenanceReportCreate, user: dict = Depends(get_
         evaporator_serial_number=data.evaporator_serial_number,
         evaporator_age=data.evaporator_age,
         evaporator_warranty_status=data.evaporator_warranty_status,
+        evaporator_warranty_details=data.evaporator_warranty_details or "",
         evaporator_photos=data.evaporator_photos or [],
         condenser_brand=data.condenser_brand,
         condenser_model_number=data.condenser_model_number,
