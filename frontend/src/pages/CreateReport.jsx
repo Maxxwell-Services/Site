@@ -513,119 +513,238 @@ const CreateReport = () => {
               />
             </div>
 
-            {/* Refrigerant Readings */}
-            <div className="space-y-4">
-              <h2 className="text-xl font-semibold text-blue-900 border-b border-blue-200 pb-2">Refrigerant</h2>
-              <div className="grid md:grid-cols-2 gap-4">
-                <div>
-                  <Label htmlFor="refrigerant_type" className="text-blue-900">Refrigerant Type *</Label>
-                  <Select 
-                    value={formData.refrigerant_type} 
-                    onValueChange={(value) => setFormData({...formData, refrigerant_type: value})}
-                  >
-                    <SelectTrigger className="mt-1" data-testid="refrigerant-type-select">
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="R-410A">R-410A (Puron)</SelectItem>
-                      <SelectItem value="R-22">R-22 (Freon)</SelectItem>
-                      <SelectItem value="R-32">R-32</SelectItem>
-                      <SelectItem value="R-134A">R-134A</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-                <div>
-                  <Label htmlFor="refrigerant_status" className="text-blue-900">Refrigerant Status *</Label>
-                  <Select 
-                    value={formData.refrigerant_status} 
-                    onValueChange={(value) => setFormData({...formData, refrigerant_status: value})}
-                  >
-                    <SelectTrigger className="mt-1" data-testid="refrigerant-status-select">
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="Good">Good</SelectItem>
-                      <SelectItem value="Low - Add Refrigerant">Low - Add Refrigerant</SelectItem>
-                      <SelectItem value="Critical - Repairs may be needed">Critical - Repairs may be needed</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-                <div>
-                  <Label htmlFor="superheat" className="text-blue-900">Superheat (°F) *</Label>
-                  <Input
-                    id="superheat"
-                    type="number"
-                    step="0.1"
-                    value={formData.superheat}
-                    onChange={(e) => setFormData({...formData, superheat: e.target.value})}
-                    required
-                    className="mt-1"
-                    placeholder="e.g., 10.5"
-                    data-testid="superheat-input"
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="subcooling" className="text-blue-900">Subcooling (°F) *</Label>
-                  <Input
-                    id="subcooling"
-                    type="number"
-                    step="0.1"
-                    value={formData.subcooling}
-                    onChange={(e) => setFormData({...formData, subcooling: e.target.value})}
-                    required
-                    className="mt-1"
-                    placeholder="e.g., 8.5"
-                    data-testid="subcooling-input"
-                  />
-                </div>
-              </div>
-              <PhotoUpload
-                photos={formData.refrigerant_photos}
-                onChange={(photos) => setFormData({...formData, refrigerant_photos: photos})}
-                label="Refrigerant Photos"
-                maxPhotos={3}
-              />
-            </div>
+            {/* Condenser */}
+            <div className="glass-dark rounded-xl p-6 space-y-6">
+              <h2 className="text-xl font-semibold text-blue-900 border-b-2 border-blue-300 pb-2">Condenser</h2>
 
-            {/* Amp Draw */}
-            <div className="space-y-4">
-              <h2 className="text-xl font-semibold text-blue-900 border-b border-blue-200 pb-2">Electrical</h2>
-              <div className="grid md:grid-cols-2 gap-4">
-                <div>
-                  <Label htmlFor="amp_draw" className="text-blue-900">Actual Amp Draw *</Label>
-                  <Input
-                    id="amp_draw"
-                    type="number"
-                    step="0.1"
-                    value={formData.amp_draw}
-                    onChange={(e) => setFormData({...formData, amp_draw: e.target.value})}
-                    required
-                    className="mt-1"
-                    placeholder="e.g., 18.5"
-                    data-testid="amp-draw-input"
-                  />
+              {/* Condenser Information */}
+              <div className="pt-4">
+                <div className="grid md:grid-cols-2 gap-4 mb-4">
+                  <div>
+                    <Label htmlFor="condenser_brand" className="text-blue-900">Brand *</Label>
+                    <Input
+                      id="condenser_brand"
+                      value={formData.condenser_brand}
+                      onChange={(e) => setFormData({...formData, condenser_brand: e.target.value})}
+                      required
+                      className="mt-1"
+                      data-testid="condenser-brand-input"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="condenser_model_number" className="text-blue-900">Model Number *</Label>
+                    <Input
+                      id="condenser_model_number"
+                      value={formData.condenser_model_number}
+                      onChange={(e) => setFormData({...formData, condenser_model_number: e.target.value})}
+                      required
+                      className="mt-1"
+                      data-testid="condenser-model-input"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="condenser_serial_number" className="text-blue-900">Serial Number *</Label>
+                    <Input
+                      id="condenser_serial_number"
+                      value={formData.condenser_serial_number}
+                      onChange={(e) => setFormData({...formData, condenser_serial_number: e.target.value})}
+                      required
+                      className="mt-1"
+                      data-testid="condenser-serial-input"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="condenser_age" className="text-blue-900">Age (Years)</Label>
+                    <Input
+                      id="condenser_age"
+                      type="number"
+                      min="0"
+                      value={formData.condenser_age}
+                      onChange={(e) => setFormData({...formData, condenser_age: e.target.value})}
+                      className="mt-1"
+                      data-testid="condenser-age-input"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="condenser_warranty_status" className="text-blue-900">Warranty Status *</Label>
+                    <Select 
+                      value={formData.condenser_warranty_status} 
+                      onValueChange={(value) => setFormData({...formData, condenser_warranty_status: value})}
+                    >
+                      <SelectTrigger className="mt-1" data-testid="condenser-warranty-select">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="Active">Active</SelectItem>
+                        <SelectItem value="Expired">Expired</SelectItem>
+                        <SelectItem value="Unknown">Unknown</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
                 </div>
-                <div>
-                  <Label htmlFor="rated_amps" className="text-blue-900">Rated Amps *</Label>
-                  <Input
-                    id="rated_amps"
-                    type="number"
-                    step="0.1"
-                    value={formData.rated_amps}
-                    onChange={(e) => setFormData({...formData, rated_amps: e.target.value})}
-                    required
-                    className="mt-1"
-                    placeholder="e.g., 20"
-                    data-testid="rated-amps-input"
-                  />
-                </div>
+                <PhotoUpload
+                  photos={formData.condenser_photos}
+                  onChange={(photos) => setFormData({...formData, condenser_photos: photos})}
+                  label="Condenser Photos"
+                  maxPhotos={5}
+                />
               </div>
-              <PhotoUpload
-                photos={formData.electrical_photos}
-                onChange={(photos) => setFormData({...formData, electrical_photos: photos})}
-                label="Electrical Photos"
-                maxPhotos={3}
-              />
+
+              {/* Condenser Dual Run Capacitor */}
+              <div className="border-t-2 border-blue-200 pt-4">
+                <h3 className="text-lg font-semibold mb-3" style={{color: '#1C325E'}}>Condenser Dual Run Capacitor</h3>
+                <div className="grid md:grid-cols-2 gap-4 mb-4">
+                  <div>
+                    <Label htmlFor="condenser_capacitor_rating" className="text-blue-900">Rating (µF) *</Label>
+                    <Input
+                      id="condenser_capacitor_rating"
+                      type="number"
+                      step="0.1"
+                      value={formData.condenser_capacitor_rating}
+                      onChange={(e) => setFormData({...formData, condenser_capacitor_rating: e.target.value})}
+                      required
+                      className="mt-1"
+                      placeholder="e.g., 35"
+                      data-testid="condenser-capacitor-rating-input"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="condenser_capacitor_reading" className="text-blue-900">Reading (µF) *</Label>
+                    <Input
+                      id="condenser_capacitor_reading"
+                      type="number"
+                      step="0.1"
+                      value={formData.condenser_capacitor_reading}
+                      onChange={(e) => setFormData({...formData, condenser_capacitor_reading: e.target.value})}
+                      required
+                      className="mt-1"
+                      placeholder="e.g., 32.5"
+                      data-testid="condenser-capacitor-reading-input"
+                    />
+                  </div>
+                </div>
+                <PhotoUpload
+                  photos={formData.capacitor_photos}
+                  onChange={(photos) => setFormData({...formData, capacitor_photos: photos})}
+                  label="Capacitor Photos"
+                  maxPhotos={3}
+                />
+              </div>
+
+              {/* Refrigerant */}
+              <div className="border-t-2 border-blue-200 pt-4">
+                <h3 className="text-lg font-semibold mb-3" style={{color: '#1C325E'}}>Refrigerant</h3>
+                <div className="grid md:grid-cols-2 gap-4 mb-4">
+                  <div>
+                    <Label htmlFor="refrigerant_type" className="text-blue-900">Refrigerant Type *</Label>
+                    <Select 
+                      value={formData.refrigerant_type} 
+                      onValueChange={(value) => setFormData({...formData, refrigerant_type: value})}
+                    >
+                      <SelectTrigger className="mt-1" data-testid="refrigerant-type-select">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="R-410A">R-410A (Puron)</SelectItem>
+                        <SelectItem value="R-22">R-22 (Freon)</SelectItem>
+                        <SelectItem value="R-32">R-32</SelectItem>
+                        <SelectItem value="R-134A">R-134A</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div>
+                    <Label htmlFor="refrigerant_status" className="text-blue-900">Refrigerant Status *</Label>
+                    <Select 
+                      value={formData.refrigerant_status} 
+                      onValueChange={(value) => setFormData({...formData, refrigerant_status: value})}
+                    >
+                      <SelectTrigger className="mt-1" data-testid="refrigerant-status-select">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="Good">Good</SelectItem>
+                        <SelectItem value="Low - Add Refrigerant">Low - Add Refrigerant</SelectItem>
+                        <SelectItem value="Critical - Repairs may be needed">Critical - Repairs may be needed</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div>
+                    <Label htmlFor="superheat" className="text-blue-900">Superheat (°F) *</Label>
+                    <Input
+                      id="superheat"
+                      type="number"
+                      step="0.1"
+                      value={formData.superheat}
+                      onChange={(e) => setFormData({...formData, superheat: e.target.value})}
+                      required
+                      className="mt-1"
+                      placeholder="e.g., 10.5"
+                      data-testid="superheat-input"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="subcooling" className="text-blue-900">Subcooling (°F) *</Label>
+                    <Input
+                      id="subcooling"
+                      type="number"
+                      step="0.1"
+                      value={formData.subcooling}
+                      onChange={(e) => setFormData({...formData, subcooling: e.target.value})}
+                      required
+                      className="mt-1"
+                      placeholder="e.g., 8.5"
+                      data-testid="subcooling-input"
+                    />
+                  </div>
+                </div>
+                <PhotoUpload
+                  photos={formData.refrigerant_photos}
+                  onChange={(photos) => setFormData({...formData, refrigerant_photos: photos})}
+                  label="Refrigerant Photos"
+                  maxPhotos={3}
+                />
+              </div>
+
+              {/* Electrical */}
+              <div className="border-t-2 border-blue-200 pt-4">
+                <h3 className="text-lg font-semibold mb-3" style={{color: '#1C325E'}}>Electrical</h3>
+                <div className="grid md:grid-cols-2 gap-4 mb-4">
+                  <div>
+                    <Label htmlFor="amp_draw" className="text-blue-900">Actual Amp Draw *</Label>
+                    <Input
+                      id="amp_draw"
+                      type="number"
+                      step="0.1"
+                      value={formData.amp_draw}
+                      onChange={(e) => setFormData({...formData, amp_draw: e.target.value})}
+                      required
+                      className="mt-1"
+                      placeholder="e.g., 18.5"
+                      data-testid="amp-draw-input"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="rated_amps" className="text-blue-900">Rated Amps *</Label>
+                    <Input
+                      id="rated_amps"
+                      type="number"
+                      step="0.1"
+                      value={formData.rated_amps}
+                      onChange={(e) => setFormData({...formData, rated_amps: e.target.value})}
+                      required
+                      className="mt-1"
+                      placeholder="e.g., 20"
+                      data-testid="rated-amps-input"
+                    />
+                  </div>
+                </div>
+                <PhotoUpload
+                  photos={formData.electrical_photos}
+                  onChange={(photos) => setFormData({...formData, electrical_photos: photos})}
+                  label="Electrical Photos"
+                  maxPhotos={3}
+                />
+              </div>
             </div>
 
             {/* Notes */}
