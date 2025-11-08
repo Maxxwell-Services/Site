@@ -87,7 +87,6 @@ const CreateReport = () => {
         supply_temp: parseFloat(formData.supply_temp),
         amp_draw: parseFloat(formData.amp_draw),
         rated_amps: parseFloat(formData.rated_amps),
-        installation_year: formData.installation_year ? parseInt(formData.installation_year) : null,
         evaporator_age: formData.evaporator_age ? parseInt(formData.evaporator_age) : null,
         condenser_age: formData.condenser_age ? parseInt(formData.condenser_age) : null
       };
