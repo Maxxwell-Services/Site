@@ -445,8 +445,8 @@ async def create_report(data: MaintenanceReportCreate, user: dict = Depends(get_
     if data.refrigerant_status != "Good":
         warnings.append({
             "type": "refrigerant",
-            "severity": data.refrigerant_status.lower(),
-            "message": f"Refrigerant level is {data.refrigerant_status.lower()}",
+            "severity": "warning" if "Low" in data.refrigerant_status else "critical",
+            "message": f"Refrigerant status: {data.refrigerant_status}",
             "part_needed": "refrigerant"
         })
     
