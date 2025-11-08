@@ -838,15 +838,16 @@ const CreateReport = () => {
 
             <Button
               type="submit"
-              className="w-full text-white text-lg py-6 hover:opacity-90"
+              className="w-full text-white text-base sm:text-lg py-5 sm:py-6 hover:opacity-90 min-h-[52px] sm:min-h-[60px]"
               style={{backgroundColor: '#DB7218'}}
               disabled={loading}
               data-testid="submit-report-btn"
             >
               {loading ? 'Creating Report...' : (
                 <>
-                  <Send className="w-5 h-5 mr-2" />
-                  Create Report & Generate Link
+                  <Send className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
+                  <span className="hidden sm:inline">Create Report & Generate Link</span>
+                  <span className="sm:hidden">Create Report</span>
                 </>
               )}
             </Button>
