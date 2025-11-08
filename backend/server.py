@@ -954,36 +954,71 @@ Read ALL text carefully and extract the exact values as they appear on the data 
                 logging.error(f"No JSON found in response: {response}")
                 raise HTTPException(status_code=500, detail=f"No valid JSON in OCR response. The AI returned: {response[:200]}")
         
-        # Calculate age and warranty from serial number (advanced logic)
-        estimated_age = None
-        warranty_status = "Unknown"
+        # Manufacturer-specific serial number parsing
+        def parse_lennox_serial(serial):
+            """
+            Lennox format:
+            - Positions 3-4: Year (e.g., 23 = 2023)
+            - Position 5: Month letter (A=Jan, B=Feb, C=Mar, etc.)
+            """
+            if len(serial) >= 5:
+                try:
+                    year_code = int(serial[2:4])  # Positions 3-4 (0-indexed: [2:4])
+                    month_letter = serial[4].upper()  # Position 5 (0-indexed: [4])
+                    
+                    # Convert 2-digit year to 4-digit
+                    if year_code <= 30:
+                        year = 2000 + year_code
+                    else:
+                        year = 1900 + year_code
+                    
+                    # Month mapping (note: no 'I' in the sequence)
+                    month_map = {
+                        'A': 'January', 'B': 'February', 'C': 'March', 'D': 'April',
+                        'E': 'May', 'F': 'June', 'G': 'July', 'H': 'August',
+                        'J': 'September', 'K': 'October', 'L': 'November', 'M': 'December'
+                    }
+                    month_name = month_map.get(month_letter, 'Unknown')
+                    
+                    return year, f"{month_name} {year}"
+                except (ValueError, IndexError):
+                    return None, None
+            return None, None
         
-        serial_number = data.get("serial_number", "")
-        manufacture_year = None
-        
-        if serial_number and serial_number != "Not found":
-            # Try multiple serial number patterns
-            
-            # Pattern 1: First 2 digits are year (e.g., "1523..." = 2015)
-            if len(serial_number) >= 2 and serial_number[:2].isdigit():
-                year_code = int(serial_number[:2])
-                # If year is 00-30, assume 2000-2030, else assume 1980-1999
+        def parse_generic_serial(serial):
+            """Generic parsing for other manufacturers"""
+            # Pattern 1: First 2 digits are year
+            if len(serial) >= 2 and serial[:2].isdigit():
+                year_code = int(serial[:2])
                 if year_code <= 30:
-                    manufacture_year = 2000 + year_code
+                    return 2000 + year_code, None
                 elif year_code >= 80:
-                    manufacture_year = 1900 + year_code
+                    return 1900 + year_code, None
             
             # Pattern 2: Full year format (19XX or 20XX)
-            if not manufacture_year:
-                year_match = re.search(r'(19\d{2}|20\d{2})', serial_number)
-                if year_match:
-                    manufacture_year = int(year_match.group(0))
+            year_match = re.search(r'(19\d{2}|20\d{2})', serial)
+            if year_match:
+                return int(year_match.group(0)), None
             
-            # Pattern 3: Year embedded in middle (e.g., "ABC2015DEF")
-            if not manufacture_year:
-                year_match = re.search(r'[^\d](19\d{2}|20\d{2})[^\d]', serial_number)
-                if year_match:
-                    manufacture_year = int(year_match.group(1))
+            return None, None
+        
+        # Calculate age and warranty from serial number
+        estimated_age = None
+        warranty_status = "Unknown"
+        manufacture_date = None
+        
+        serial_number = data.get("serial_number", "")
+        brand = data.get("brand", "").upper()
+        
+        if serial_number and serial_number != "Not found":
+            manufacture_year = None
+            
+            # Use manufacturer-specific parsing
+            if "LENNOX" in brand:
+                manufacture_year, manufacture_date = parse_lennox_serial(serial_number)
+            else:
+                # Use generic parsing for other brands
+                manufacture_year, _ = parse_generic_serial(serial_number)
             
             # Calculate age and warranty if we found a year
             if manufacture_year:
