@@ -310,36 +310,55 @@ const CreateReport = () => {
               {/* Blower Motor Capacitor */}
               <div>
                 <h3 className="text-lg font-semibold text-blue-800 mb-3">Blower Motor Capacitor</h3>
-                <div className="grid md:grid-cols-2 gap-4">
+                <div className="grid md:grid-cols-2 gap-4 mb-4">
                   <div>
-                    <Label htmlFor="blower_motor_capacitor_rating" className="text-blue-900">Rating (µF) *</Label>
-                    <Input
-                      id="blower_motor_capacitor_rating"
-                      type="number"
-                      step="0.1"
-                      value={formData.blower_motor_capacitor_rating}
-                      onChange={(e) => setFormData({...formData, blower_motor_capacitor_rating: e.target.value})}
-                      required
-                      className="mt-1"
-                      placeholder="e.g., 7.5"
-                      data-testid="blower-capacitor-rating-input"
-                    />
-                  </div>
-                  <div>
-                    <Label htmlFor="blower_motor_capacitor_reading" className="text-blue-900">Reading (µF) *</Label>
-                    <Input
-                      id="blower_motor_capacitor_reading"
-                      type="number"
-                      step="0.1"
-                      value={formData.blower_motor_capacitor_reading}
-                      onChange={(e) => setFormData({...formData, blower_motor_capacitor_reading: e.target.value})}
-                      required
-                      className="mt-1"
-                      placeholder="e.g., 7.2"
-                      data-testid="blower-capacitor-reading-input"
-                    />
+                    <Label htmlFor="blower_motor_type" className="text-blue-900">Blower Motor Type *</Label>
+                    <Select 
+                      value={formData.blower_motor_type} 
+                      onValueChange={(value) => setFormData({...formData, blower_motor_type: value})}
+                    >
+                      <SelectTrigger className="mt-1" data-testid="blower-motor-type-select">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="PSC Motor">PSC Motor</SelectItem>
+                        <SelectItem value="ECM Motor">ECM Motor</SelectItem>
+                      </SelectContent>
+                    </Select>
                   </div>
                 </div>
+                {formData.blower_motor_type === 'PSC Motor' && (
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div>
+                      <Label htmlFor="blower_motor_capacitor_rating" className="text-blue-900">Rating (µF) *</Label>
+                      <Input
+                        id="blower_motor_capacitor_rating"
+                        type="number"
+                        step="0.1"
+                        value={formData.blower_motor_capacitor_rating}
+                        onChange={(e) => setFormData({...formData, blower_motor_capacitor_rating: e.target.value})}
+                        required
+                        className="mt-1"
+                        placeholder="e.g., 7.5"
+                        data-testid="blower-capacitor-rating-input"
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="blower_motor_capacitor_reading" className="text-blue-900">Reading (µF) *</Label>
+                      <Input
+                        id="blower_motor_capacitor_reading"
+                        type="number"
+                        step="0.1"
+                        value={formData.blower_motor_capacitor_reading}
+                        onChange={(e) => setFormData({...formData, blower_motor_capacitor_reading: e.target.value})}
+                        required
+                        className="mt-1"
+                        placeholder="e.g., 7.2"
+                        data-testid="blower-capacitor-reading-input"
+                      />
+                    </div>
+                  </div>
+                )}
               </div>
               <PhotoUpload
                 photos={formData.capacitor_photos}
