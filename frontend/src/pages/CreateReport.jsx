@@ -37,6 +37,7 @@ const CreateReport = () => {
     subcooling: '',
     refrigerant_status: 'Good',
     refrigerant_photos: [],
+    blower_motor_type: 'PSC Motor',
     blower_motor_capacitor_rating: '',
     blower_motor_capacitor_reading: '',
     condenser_capacitor_rating: '',
