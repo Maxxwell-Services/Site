@@ -789,26 +789,42 @@ async def scan_warranty(request: WarrantyOCRRequest):
 
 Extract the following warranty information:
 
-1. Equipment Age (manufacture date or years old)
-2. Warranty Status (Active/Expired/Years Remaining)
+1. Equipment Age - Look for:
+   - Manufacture date (e.g., "Manufactured: 05/2015" or "Date of Manufacture: 2015")
+   - Age in years (e.g., "9 years old")
+   - Installation date if shown
+   - Any date reference that indicates when unit was made
+   
+2. Warranty Status - Determine if warranty is:
+   - Active with specific years remaining (e.g., "Active (2 years remaining)")
+   - Expired
+   - Calculate remaining years if expiration date is shown
+   
 3. Detailed Coverage Information including:
-   - Compressor warranty period
+   - Compressor warranty period and expiration
    - Heat exchanger warranty period
-   - Parts coverage period
-   - Labor coverage period (if any)
-   - Any extended warranty information
-   - Expiration dates if shown
+   - Parts coverage period and expiration
+   - Labor coverage period (if any) and expiration
+   - Extended warranty information
+   - Specific expiration dates
+   - Registration status
    - Any special conditions or notes
+
+IMPORTANT:
+- If you see a manufacture date or year, calculate the age: Current year (2024) - Manufacture year = Age
+- If you see warranty expiration dates, calculate years remaining
+- Be specific about coverage periods (e.g., "10 years", "20 years")
+- Include actual dates when visible
 
 Please respond ONLY with a JSON object in this exact format (no additional text):
 {{
-    "age": "age in years or manufacture date",
-    "warranty_status": "Active (X years remaining)" or "Expired" or "Active - see details",
-    "warranty_details": "Complete detailed coverage information including all parts coverage, labor coverage, compressor warranty, heat exchanger warranty, expiration dates, and any special conditions. Format this as a clear, readable summary."
+    "age": "X years (Manufactured YYYY)" or "Manufactured: MM/YYYY" or "X years old",
+    "warranty_status": "Active (X years remaining on parts)" or "Expired" or specific status with years,
+    "warranty_details": "Detailed breakdown: Compressor: X-year warranty, expires YYYY. Heat Exchanger: X-year warranty. Parts: X-year coverage, expires YYYY. Labor: [included/not included]. Extended warranty: [yes/no/details]. Special conditions: [any notes]"
 }}
 
-If you cannot read the warranty information clearly, use "Not found" for warranty_details.
-Be thorough and include ALL warranty details visible in the screenshot.""",
+If age or dates are not visible in the screenshot, use "Not shown" for age.
+Be thorough and extract ALL details visible.""",
             file_contents=[image_content]
         )
         
