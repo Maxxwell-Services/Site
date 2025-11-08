@@ -436,10 +436,18 @@ async def create_report(data: MaintenanceReportCreate, user: dict = Depends(get_
     # Calculate derived values
     delta_t = data.return_temp - data.supply_temp
     
-    # Check tolerances for both capacitors
-    blower_capacitor_status, blower_capacitor_tolerance, blower_capacitor_needs_replacement = check_capacitor_tolerance(
-        data.blower_motor_capacitor_rating, data.blower_motor_capacitor_reading
-    )
+    # Check tolerances for capacitors
+    # Blower motor capacitor - only check if PSC Motor
+    if data.blower_motor_type == "PSC Motor" and data.blower_motor_capacitor_rating and data.blower_motor_capacitor_reading:
+        blower_capacitor_status, blower_capacitor_tolerance, blower_capacitor_needs_replacement = check_capacitor_tolerance(
+            data.blower_motor_capacitor_rating, data.blower_motor_capacitor_reading
+        )
+    else:
+        # ECM Motor - no capacitor needed
+        blower_capacitor_status = "N/A"
+        blower_capacitor_tolerance = 0.0
+        blower_capacitor_needs_replacement = False
+    
     condenser_capacitor_status, condenser_capacitor_tolerance, condenser_capacitor_needs_replacement = check_capacitor_tolerance(
         data.condenser_capacitor_rating, data.condenser_capacitor_reading
     )
