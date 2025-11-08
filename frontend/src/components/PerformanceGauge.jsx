@@ -53,7 +53,7 @@ const PerformanceGauge = ({ score }) => {
           <path
             d="M 100 20 A 80 80 0 0 1 144 34"
             fill="none"
-            stroke="#eab308"
+            stroke="#DB7218"
             strokeWidth="16"
             strokeLinecap="round"
           />
@@ -66,7 +66,7 @@ const PerformanceGauge = ({ score }) => {
           />
           
           {/* Center circle */}
-          <circle cx="100" cy="90" r="8" fill="#1e40af" />
+          <circle cx="100" cy="90" r="8" fill="#1C325E" />
           
           {/* Needle */}
           <line
