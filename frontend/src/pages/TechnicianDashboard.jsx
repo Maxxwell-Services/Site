@@ -135,7 +135,8 @@ const TechnicianDashboard = () => {
                         variant="outline"
                         size="sm"
                         onClick={() => copyLink(report.unique_link)}
-                        className="border-blue-600 text-blue-700 hover:bg-blue-50"
+                        className="hover:bg-gray-50"
+                        style={{borderColor: '#1C325E', color: '#1C325E'}}
                         data-testid={`copy-link-btn-${report.id}`}
                       >
                         <Copy className="w-4 h-4 mr-2" />
@@ -144,7 +145,8 @@ const TechnicianDashboard = () => {
                       <Button
                         size="sm"
                         onClick={() => window.open(`/report/${report.unique_link}`, '_blank')}
-                        className="bg-blue-600 hover:bg-blue-700 text-white"
+                        className="text-white hover:opacity-90"
+                        style={{backgroundColor: '#DB7218'}}
                         data-testid={`view-report-btn-${report.id}`}
                       >
                         <ExternalLink className="w-4 h-4 mr-2" />
