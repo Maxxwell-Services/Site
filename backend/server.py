@@ -173,10 +173,11 @@ class MaintenanceReport(BaseModel):
     subcooling: float
     refrigerant_status: str
     refrigerant_photos: Optional[List[str]] = Field(default_factory=list)
-    blower_motor_capacitor_rating: float
-    blower_motor_capacitor_reading: float
-    blower_motor_capacitor_health: str  # "Good", "Warning", "Critical"
-    blower_motor_capacitor_tolerance: float  # percentage difference
+    blower_motor_type: str
+    blower_motor_capacitor_rating: Optional[float] = None
+    blower_motor_capacitor_reading: Optional[float] = None
+    blower_motor_capacitor_health: Optional[str] = None  # "Good", "Warning", "Critical" (only for PSC Motor)
+    blower_motor_capacitor_tolerance: Optional[float] = None  # percentage difference (only for PSC Motor)
     condenser_capacitor_rating: float
     condenser_capacitor_reading: float
     condenser_capacitor_health: str  # "Good", "Warning", "Critical"
