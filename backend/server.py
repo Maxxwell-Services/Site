@@ -797,6 +797,9 @@ Read ALL text carefully and extract the exact values as they appear on the data 
         # Send message and get response
         response = await chat.send_message(user_message)
         
+        # Log the raw response for debugging
+        logging.info(f"OCR Raw Response: {response}")
+        
         # Parse the JSON response
         try:
             # Clean the response - remove markdown code blocks if present
@@ -809,14 +812,21 @@ Read ALL text carefully and extract the exact values as they appear on the data 
                 clean_response = clean_response[:-3]
             clean_response = clean_response.strip()
             
+            logging.info(f"OCR Cleaned Response: {clean_response}")
             data = json.loads(clean_response)
-        except json.JSONDecodeError:
+        except json.JSONDecodeError as e:
+            logging.error(f"JSON Parse Error: {str(e)}, Response: {response}")
             # Try to extract JSON using regex if direct parsing fails
             json_match = re.search(r'\{[^}]+\}', response, re.DOTALL)
             if json_match:
-                data = json.loads(json_match.group())
+                try:
+                    data = json.loads(json_match.group())
+                except json.JSONDecodeError:
+                    logging.error(f"Regex extraction also failed. Full response: {response}")
+                    raise HTTPException(status_code=500, detail=f"Failed to parse OCR response. The AI returned: {response[:200]}")
             else:
-                raise HTTPException(status_code=500, detail="Failed to parse OCR response")
+                logging.error(f"No JSON found in response: {response}")
+                raise HTTPException(status_code=500, detail=f"No valid JSON in OCR response. The AI returned: {response[:200]}")
         
         # Calculate age and warranty from serial number (basic logic)
         estimated_age = None
