@@ -451,39 +451,6 @@ const CreateReport = () => {
                     </SelectContent>
                   </Select>
                 </div>
-                <div>
-                  <Label htmlFor="evaporator_coil" className="text-blue-900">Evaporator Coil *</Label>
-                  <Select 
-                    value={formData.evaporator_coil} 
-                    onValueChange={(value) => setFormData({...formData, evaporator_coil: value})}
-                  >
-                    <SelectTrigger className="mt-1" data-testid="evaporator-coil-select">
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="Clean">Clean</SelectItem>
-                      <SelectItem value="Not accessible">Not accessible</SelectItem>
-                      <SelectItem value="Needs cleaning">Needs cleaning</SelectItem>
-                      <SelectItem value="Cleaned">Cleaned</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-                <div>
-                  <Label htmlFor="condenser_coils" className="text-blue-900">Condenser Coils *</Label>
-                  <Select 
-                    value={formData.condenser_coils} 
-                    onValueChange={(value) => setFormData({...formData, condenser_coils: value})}
-                  >
-                    <SelectTrigger className="mt-1" data-testid="condenser-coils-select">
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="Cleaned">Cleaned</SelectItem>
-                      <SelectItem value="Hose bib not accessible within 30ft">Hose bib not accessible within 30ft</SelectItem>
-                      <SelectItem value="Need deep cleaning">Need deep cleaning</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
               </div>
             </div>
 
