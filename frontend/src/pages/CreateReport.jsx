@@ -143,8 +143,8 @@ const CreateReport = () => {
 
           <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
             {/* Customer Information */}
-            <div className="glass-dark rounded-xl p-6 space-y-4">
-              <h2 className="text-xl font-semibold text-blue-900 border-b-2 border-blue-300 pb-2">Customer Information</h2>
+            <div className="glass-dark rounded-lg sm:rounded-xl p-4 sm:p-6 space-y-3 sm:space-y-4">
+              <h2 className="text-lg sm:text-xl font-semibold text-blue-900 border-b-2 border-blue-300 pb-2">Customer Information</h2>
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
                   <Label htmlFor="customer_name" className="text-blue-900">Customer Name *</Label>
