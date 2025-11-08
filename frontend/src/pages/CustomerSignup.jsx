@@ -99,7 +99,8 @@ const CustomerSignup = () => {
 
             <Button 
               type="submit" 
-              className="w-full bg-cyan-600 hover:bg-cyan-700 text-white"
+              className="w-full text-white hover:opacity-90"
+              style={{backgroundColor: '#DB7218'}}
               disabled={loading}
               data-testid="submit-btn"
             >
