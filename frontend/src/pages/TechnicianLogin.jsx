@@ -111,7 +111,8 @@ const TechnicianLogin = () => {
 
             <Button 
               type="submit" 
-              className="w-full bg-blue-600 hover:bg-blue-700 text-white"
+              className="w-full text-white hover:opacity-90"
+              style={{backgroundColor: '#1C325E'}}
               disabled={loading}
               data-testid="submit-btn"
             >
