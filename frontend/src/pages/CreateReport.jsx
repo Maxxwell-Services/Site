@@ -10,6 +10,7 @@ import { Switch } from '@/components/ui/switch';
 import { Snowflake, ArrowLeft, Send } from 'lucide-react';
 import { toast } from 'sonner';
 import { API, AuthContext } from '../App';
+import PhotoUpload from '@/components/PhotoUpload';
 
 const CreateReport = () => {
   const navigate = useNavigate();
