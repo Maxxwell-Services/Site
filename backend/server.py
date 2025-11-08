@@ -545,6 +545,7 @@ async def create_report(data: MaintenanceReportCreate, user: dict = Depends(get_
         condenser_serial_number=data.condenser_serial_number,
         condenser_age=data.condenser_age,
         condenser_warranty_status=data.condenser_warranty_status,
+        condenser_warranty_details=data.condenser_warranty_details or "",
         condenser_photos=data.condenser_photos or [],
         condenser_fan_motor=data.condenser_fan_motor,
         refrigerant_type=data.refrigerant_type,
