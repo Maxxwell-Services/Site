@@ -33,6 +33,7 @@ const CreateReport = () => {
     condenser_brand: '',
     condenser_model_number: '',
     condenser_serial_number: '',
+    condenser_date_of_manufacture: '',
     condenser_age: '',
     condenser_warranty_status: 'Active',
     condenser_warranty_details: '',
