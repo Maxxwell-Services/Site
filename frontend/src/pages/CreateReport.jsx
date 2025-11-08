@@ -566,6 +566,23 @@ const CreateReport = () => {
 
               {/* Condenser Information */}
               <div className="pt-4">
+                {/* Data Plate Scanner */}
+                <div className="mb-4 p-3 sm:p-4 bg-blue-50 rounded-lg border border-blue-200">
+                  <DataPlateScanner
+                    equipmentType="condenser"
+                    onDataExtracted={(data) => {
+                      setFormData({
+                        ...formData,
+                        condenser_brand: data.brand || formData.condenser_brand,
+                        condenser_model_number: data.model_number || formData.condenser_model_number,
+                        condenser_serial_number: data.serial_number || formData.condenser_serial_number,
+                        condenser_age: data.age || formData.condenser_age,
+                        condenser_warranty_status: data.warranty_status || formData.condenser_warranty_status
+                      });
+                    }}
+                  />
+                </div>
+
                 <div className="grid md:grid-cols-2 gap-4 mb-4">
                   <div>
                     <Label htmlFor="condenser_brand" className="text-blue-900">Brand *</Label>
