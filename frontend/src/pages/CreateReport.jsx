@@ -516,6 +516,30 @@ const CreateReport = () => {
               />
             </div>
 
+            {/* Evaporator Coil */}
+            <div className="space-y-4">
+              <h2 className="text-xl font-semibold text-blue-900 border-b border-blue-200 pb-2">Evaporator Coil</h2>
+              <div className="grid md:grid-cols-2 gap-4">
+                <div>
+                  <Label htmlFor="evaporator_coil" className="text-blue-900">Evaporator Coil *</Label>
+                  <Select 
+                    value={formData.evaporator_coil} 
+                    onValueChange={(value) => setFormData({...formData, evaporator_coil: value})}
+                  >
+                    <SelectTrigger className="mt-1" data-testid="evaporator-coil-select">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="Clean">Clean</SelectItem>
+                      <SelectItem value="Not accessible">Not accessible</SelectItem>
+                      <SelectItem value="Needs cleaning">Needs cleaning</SelectItem>
+                      <SelectItem value="Cleaned">Cleaned</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+              </div>
+            </div>
+
             {/* Condenser */}
             <div className="glass-dark rounded-xl p-6 space-y-6">
               <h2 className="text-xl font-semibold text-blue-900 border-b-2 border-blue-300 pb-2">Condenser</h2>
