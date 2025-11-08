@@ -749,7 +749,8 @@ class DataPlateOCRResponse(BaseModel):
     brand: str
     model_number: str
     serial_number: str
-    estimated_age: Optional[int] = None
+    date_of_manufacture: Optional[str] = None
+    estimated_age: Optional[str] = None
     warranty_status: Optional[str] = None
 
 class WarrantyOCRRequest(BaseModel):
