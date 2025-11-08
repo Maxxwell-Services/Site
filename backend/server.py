@@ -771,9 +771,16 @@ async def scan_data_plate(request: DataPlateOCRRequest):
         user_message = UserMessage(
             text=f"""Analyze this HVAC {request.equipment_type} data plate photo and extract the following information:
 
-1. Brand/Manufacturer name
-2. Model Number
-3. Serial Number
+1. Brand/Manufacturer name - Look for company logos or names like "LENNOX", "TRANE", "CARRIER", "GOODMAN", etc.
+2. Model Number - May be labeled as "MODEL", "MODEL NO.", "M/N", "MODEL #", or just appear as a product code
+3. Serial Number - May be labeled as "SERIAL", "SERIAL NO.", "S/N", "SERIAL #", or appear as a unique identifier
+
+IMPORTANT NOTES:
+- Data plates may use abbreviations: "M/N" = Model Number, "S/N" = Serial Number
+- Model numbers often contain letters and numbers (e.g., "CBA25UH-048-230-02")
+- Serial numbers are typically numeric or alphanumeric codes (e.g., "1523C65202")
+- Look carefully at all text on the data plate, even if it's in small print
+- The model number is often one of the most prominent codes on the plate
 
 Please respond ONLY with a JSON object in this exact format (no additional text):
 {{
@@ -783,7 +790,7 @@ Please respond ONLY with a JSON object in this exact format (no additional text)
 }}
 
 If you cannot read a field clearly, use "Not found" as the value.
-Be precise and only include what you can clearly read from the data plate.""",
+Read ALL text carefully and extract the exact values as they appear on the data plate.""",
             file_contents=[image_content]
         )
         
