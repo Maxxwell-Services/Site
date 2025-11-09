@@ -1040,9 +1040,7 @@ const ViewReport = () => {
                   <img 
                     src={photo} 
                     alt={`${photoModalTitle} ${index + 1}`}
-                    className="w-full h-64 object-cover cursor-pointer hover:scale-105 transition-transform"
-                    onClick={() => window.open(photo, '_blank')}
-                    title="Click to view full size"
+                    className="w-full h-64 object-cover"
                   />
                   <div className="p-2 bg-gray-50 text-center text-xs text-gray-600">
                     Photo {index + 1} of {selectedPhotos.length}
