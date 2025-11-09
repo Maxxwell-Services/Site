@@ -494,7 +494,6 @@ async def create_report(data: MaintenanceReportCreate, user: dict = Depends(get_
         condenser_capacitor_status = fan_capacitor_status
     
     delta_t_status = check_delta_t(delta_t)
-    amp_status = check_amp_draw(data.amp_draw, data.rated_amps)
     
     # Build warnings list
     warnings = []
@@ -526,14 +525,6 @@ async def create_report(data: MaintenanceReportCreate, user: dict = Depends(get_
             "type": "delta_t",
             "severity": delta_t_status.lower(),
             "message": f"Delta T is {delta_t:.1f}°F (ideal range: 15-22°F)",
-            "part_needed": None
-        })
-    
-    if amp_status != "Good":
-        warnings.append({
-            "type": "amp_draw",
-            "severity": amp_status.lower(),
-            "message": f"Amp draw is outside normal range (actual: {data.amp_draw}A, rated: {data.rated_amps}A)",
             "part_needed": None
         })
     
