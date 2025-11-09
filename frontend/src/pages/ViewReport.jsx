@@ -746,12 +746,17 @@ const ViewReport = () => {
 
             {/* Air Filters */}
             <div 
-              className="p-5 rounded-xl border-2 shadow-md bg-blue-100 border-blue-300 text-blue-800"
+              className={`p-3 rounded-lg border-2 shadow-sm ${
+                currentData.air_filters === "Customer will replace the filters soon" || 
+                currentData.air_filters === "Tech will return to replace filters"
+                  ? 'bg-orange-100 border-orange-300 text-orange-800'
+                  : 'bg-green-100 border-green-300 text-green-800'
+              }`}
               data-testid="air-filters-metric-card"
             >
-              <h4 className="font-medium mb-2 text-sm flex items-center justify-between">
+              <h4 className="font-semibold mb-2 text-sm flex items-center justify-between">
                 <span>Air Filters</span>
-                <Filter className="w-5 h-5 opacity-60" />
+                <Filter className="w-4 h-4 opacity-60" />
               </h4>
               <p className="text-xs font-medium">{currentData.air_filters}</p>
               {currentData.filters_list && currentData.filters_list.length > 0 && (
