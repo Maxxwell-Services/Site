@@ -306,7 +306,7 @@ const ViewReport = () => {
                 {/* Performance Circle */}
                 <div className="flex flex-col items-center">
                   <div className="relative w-32 h-32 md:w-40 md:h-40">
-                    <svg className="transform -rotate-90 w-32 h-32 md:w-40 md:h-40">
+                    <svg className="transform -rotate-90 w-full h-full" viewBox="0 0 128 128">
                       <circle
                         cx="64"
                         cy="64"
@@ -341,7 +341,7 @@ const ViewReport = () => {
                 {/* System Health Circle */}
                 <div className="flex flex-col items-center">
                   <div className="relative w-32 h-32 md:w-40 md:h-40">
-                    <svg className="transform -rotate-90 w-32 h-32 md:w-40 md:h-40">
+                    <svg className="transform -rotate-90 w-full h-full" viewBox="0 0 128 128">
                       <circle
                         cx="64"
                         cy="64"
@@ -370,13 +370,13 @@ const ViewReport = () => {
                       </span>
                     </div>
                   </div>
-                  <p className="mt-3 text-sm md:text-base font-semibold text-center" style={{color: '#1C325E'}}>System<br/>Health</p>
+                  <p className="mt-3 text-sm md:text-base font-semibold whitespace-nowrap" style={{color: '#1C325E'}}>System Health</p>
                 </div>
 
                 {/* Deficiencies Circle */}
                 <div className="flex flex-col items-center">
                   <div className="relative w-32 h-32 md:w-40 md:h-40">
-                    <svg className="transform -rotate-90 w-32 h-32 md:w-40 md:h-40">
+                    <svg className="transform -rotate-90 w-full h-full" viewBox="0 0 128 128">
                       <circle
                         cx="64"
                         cy="64"
