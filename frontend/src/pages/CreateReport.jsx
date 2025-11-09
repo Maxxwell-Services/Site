@@ -1087,9 +1087,10 @@ const CreateReport = () => {
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="Cleaned">Cleaned</SelectItem>
-                        <SelectItem value="Hose bib not accessible within 30ft">Hose bib not accessible within 30ft</SelectItem>
-                        <SelectItem value="Need deep cleaning">Need deep cleaning</SelectItem>
+                        <SelectItem value="Cleaned with Fresh Water">Cleaned with Fresh Water</SelectItem>
+                        <SelectItem value="Unable to clean (Hose bib not accessible within 40ft)">Unable to clean (Hose bib not accessible within 40ft)</SelectItem>
+                        <SelectItem value="Coils excessively dirty (Cabinet must be disassembled to properly clean)">Coils excessively dirty (Cabinet must be disassembled to properly clean)</SelectItem>
+                        <SelectItem value="Debris and leaves clogging coils (Cabinet must be disassembled to properly clean)">Debris and leaves clogging coils (Cabinet must be disassembled to properly clean)</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
