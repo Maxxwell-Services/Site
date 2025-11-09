@@ -1198,4 +1198,4 @@ const EditReport = () => {
   );
 };
 
-export default CreateReport;
+export default EditReport;
