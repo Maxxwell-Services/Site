@@ -403,18 +403,7 @@ const ViewReport = () => {
               <p className="text-xs mt-3 opacity-70 italic">Click for more information</p>
             </div>
 
-            {/* Maintenance */}
-            <div className="p-4 rounded-lg border-2 bg-blue-50 border-blue-300 text-blue-800">
-              <h4 className="font-semibold mb-2">Maintenance</h4>
-              <p className="text-sm flex items-center gap-2">
-                {report.filters_replaced ? <CheckCircle className="w-4 h-4 text-green-600" /> : <span className="w-4 h-4" />}
-                Filters {report.filters_replaced ? 'Replaced' : 'Not Replaced'}
-              </p>
-              <p className="text-sm flex items-center gap-2">
-                {report.condenser_coils_cleaned ? <CheckCircle className="w-4 h-4 text-green-600" /> : <span className="w-4 h-4" />}
-                Coils {report.condenser_coils_cleaned ? 'Cleaned' : 'Not Cleaned'}
-              </p>
-            </div>
+            {/* Maintenance section removed */}
 
             {/* Air Purifier */}
             <div 
