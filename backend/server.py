@@ -776,6 +776,7 @@ async def edit_report(report_id: str, data: MaintenanceReportCreate, user: dict 
         "delta_t": delta_t,
         "delta_t_status": delta_t_status,
         "temperature_photos": data.temperature_photos or [],
+        "overflow_float_switch": data.overflow_float_switch,
         "primary_drain": data.primary_drain,
         "primary_drain_notes": data.primary_drain_notes,
         "drain_pan_condition": data.drain_pan_condition,
