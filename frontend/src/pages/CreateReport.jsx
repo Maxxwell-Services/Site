@@ -424,6 +424,27 @@ const CreateReport = () => {
               />
             </div>
 
+            {/* Overflow / Float Switch */}
+            <div className="space-y-3 sm:space-y-4">
+              <h2 className="text-lg sm:text-xl font-semibold text-blue-900 border-b border-blue-200 pb-2">Overflow / Float Switch</h2>
+              <div>
+                <Label htmlFor="overflow_float_switch" className="text-blue-900">Status *</Label>
+                <Select 
+                  value={formData.overflow_float_switch} 
+                  onValueChange={(value) => setFormData({...formData, overflow_float_switch: value})}
+                >
+                  <SelectTrigger className="mt-1" data-testid="overflow-float-switch-select">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="Normal Operation">Normal Operation</SelectItem>
+                    <SelectItem value="Inoperative (see note below)">Inoperative (see note below)</SelectItem>
+                    <SelectItem value="Overflow / Float Switch Missing">Overflow / Float Switch Missing</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+
             {/* Drainage & Components */}
             <div className="space-y-3 sm:space-y-4">
               <h2 className="text-lg sm:text-xl font-semibold text-blue-900 border-b border-blue-200 pb-2">Drainage & Components</h2>
