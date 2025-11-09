@@ -169,7 +169,7 @@ const PhotoUpload = ({ photos, onChange, label, maxPhotos = 5 }) => {
       )}
 
       <p className="text-xs text-gray-500">
-        Max file size: 5MB per photo. Supported formats: JPG, PNG, HEIC
+        Images are automatically compressed and resized. Supported formats: JPG, PNG, HEIC, WebP
       </p>
     </div>
   );
