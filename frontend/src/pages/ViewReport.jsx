@@ -260,31 +260,94 @@ const ViewReport = () => {
           <div className="glass rounded-xl p-6 border-l-4" style={{borderColor: '#DB7218'}}>
             <div className="flex items-center gap-3 mb-4">
               <Snowflake className="w-6 h-6" style={{color: '#DB7218'}} />
-              <h3 className="text-xl font-bold" style={{color: '#1C325E'}}>Indoor Unit / Air Handler</h3>
+              <h3 className="text-xl font-bold" style={{color: '#1C325E'}}>Indoor Unit / Air Handler (Evaporator)</h3>
             </div>
             <div className="space-y-3">
-              <div className="flex justify-between py-2">
+              <div className="flex justify-between py-2 border-b border-gray-200">
                 <span className="text-gray-600">Brand:</span>
-                <span className="font-semibold" style={{color: '#1C325E'}}>{currentData.system_brand}</span>
+                <span className="font-semibold" style={{color: '#1C325E'}}>{currentData.evaporator_brand}</span>
+              </div>
+              <div className="flex justify-between py-2 border-b border-gray-200">
+                <span className="text-gray-600">Model Number:</span>
+                <span className="font-semibold" style={{color: '#1C325E'}}>{currentData.evaporator_model_number}</span>
               </div>
               <div className="flex justify-between py-2 border-b border-gray-200">
                 <span className="text-gray-600">Serial Number:</span>
-                <span className="font-semibold" style={{color: '#1C325E'}}>{currentData.serial_number}</span>
+                <span className="font-semibold" style={{color: '#1C325E'}}>{currentData.evaporator_serial_number}</span>
               </div>
-              {currentData.system_age && (
+              {currentData.evaporator_date_of_manufacture && (
                 <div className="flex justify-between py-2 border-b border-gray-200">
-                  <span className="text-gray-600">System Age:</span>
-                  <span className="font-semibold" style={{color: '#1C325E'}}>{currentData.system_age} years</span>
+                  <span className="text-gray-600">Date of Manufacture:</span>
+                  <span className="font-semibold" style={{color: '#1C325E'}}>{currentData.evaporator_date_of_manufacture}</span>
                 </div>
               )}
-              <div className="flex justify-between py-2">
+              {currentData.evaporator_age && (
+                <div className="flex justify-between py-2 border-b border-gray-200">
+                  <span className="text-gray-600">Age:</span>
+                  <span className="font-semibold" style={{color: '#1C325E'}}>{currentData.evaporator_age}</span>
+                </div>
+              )}
+              <div className="flex justify-between py-2 border-b border-gray-200">
                 <span className="text-gray-600">Warranty Status:</span>
                 <span className={`font-semibold px-3 py-1 rounded-full text-sm ${
-                  currentData.system_warranty_status === 'Active' 
+                  currentData.evaporator_warranty_status === 'Active' 
                     ? 'bg-green-100 text-green-800' 
                     : 'bg-gray-100 text-gray-800'
-                }`}>{currentData.system_warranty_status}</span>
+                }`}>{currentData.evaporator_warranty_status}</span>
               </div>
+              {currentData.evaporator_warranty_details && (
+                <div className="flex justify-between py-2">
+                  <span className="text-gray-600">Warranty Details:</span>
+                  <span className="font-semibold text-sm" style={{color: '#1C325E'}}>{currentData.evaporator_warranty_details}</span>
+                </div>
+              )}
+            </div>
+          </div>
+
+          <div className="glass rounded-xl p-6 border-l-4" style={{borderColor: '#DB7218'}}>
+            <div className="flex items-center gap-3 mb-4">
+              <Snowflake className="w-6 h-6" style={{color: '#DB7218'}} />
+              <h3 className="text-xl font-bold" style={{color: '#1C325E'}}>Condenser Unit</h3>
+            </div>
+            <div className="space-y-3">
+              <div className="flex justify-between py-2 border-b border-gray-200">
+                <span className="text-gray-600">Brand:</span>
+                <span className="font-semibold" style={{color: '#1C325E'}}>{currentData.condenser_brand}</span>
+              </div>
+              <div className="flex justify-between py-2 border-b border-gray-200">
+                <span className="text-gray-600">Model Number:</span>
+                <span className="font-semibold" style={{color: '#1C325E'}}>{currentData.condenser_model_number}</span>
+              </div>
+              <div className="flex justify-between py-2 border-b border-gray-200">
+                <span className="text-gray-600">Serial Number:</span>
+                <span className="font-semibold" style={{color: '#1C325E'}}>{currentData.condenser_serial_number}</span>
+              </div>
+              {currentData.condenser_date_of_manufacture && (
+                <div className="flex justify-between py-2 border-b border-gray-200">
+                  <span className="text-gray-600">Date of Manufacture:</span>
+                  <span className="font-semibold" style={{color: '#1C325E'}}>{currentData.condenser_date_of_manufacture}</span>
+                </div>
+              )}
+              {currentData.condenser_age && (
+                <div className="flex justify-between py-2 border-b border-gray-200">
+                  <span className="text-gray-600">Age:</span>
+                  <span className="font-semibold" style={{color: '#1C325E'}}>{currentData.condenser_age}</span>
+                </div>
+              )}
+              <div className="flex justify-between py-2 border-b border-gray-200">
+                <span className="text-gray-600">Warranty Status:</span>
+                <span className={`font-semibold px-3 py-1 rounded-full text-sm ${
+                  currentData.condenser_warranty_status === 'Active' 
+                    ? 'bg-green-100 text-green-800' 
+                    : 'bg-gray-100 text-gray-800'
+                }`}>{currentData.condenser_warranty_status}</span>
+              </div>
+              {currentData.condenser_warranty_details && (
+                <div className="flex justify-between py-2">
+                  <span className="text-gray-600">Warranty Details:</span>
+                  <span className="font-semibold text-sm" style={{color: '#1C325E'}}>{currentData.condenser_warranty_details}</span>
+                </div>
+              )}
             </div>
           </div>
         </div>
