@@ -245,8 +245,11 @@ class ACMaintenanceAPITester:
             if response.status_code == 200:
                 data = response.json()
                 
-                # Verify report structure
-                required_fields = ['customer_name', 'system_brand', 'delta_t', 'capacitor_tolerance', 'warnings']
+                # Verify report structure with new capacitor fields
+                required_fields = ['customer_name', 'condenser_brand', 'delta_t', 'condenser_capacitor_tolerance', 'warnings',
+                                 'condenser_capacitor_herm_rating', 'condenser_capacitor_herm_reading',
+                                 'condenser_capacitor_fan_rating', 'condenser_capacitor_fan_reading',
+                                 'condenser_capacitor_health']
                 missing_fields = [f for f in required_fields if f not in data]
                 
                 if missing_fields:
