@@ -33,6 +33,9 @@ const ViewReport = () => {
     try {
       const response = await axios.get(`${API}/reports/view/${uniqueLink}`);
       setReport(response.data);
+      // Set initial version - show current version by default
+      setSelectedVersion(response.data.current_version || 1);
+      setDisplayData(response.data);
     } catch (error) {
       toast.error('Report not found');
     } finally {
