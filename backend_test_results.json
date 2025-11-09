@@ -1,14 +1,14 @@
 {
-  "timestamp": "2025-11-09T06:37:16.005066",
-  "total_tests": 15,
-  "passed": 14,
+  "timestamp": "2025-11-09T07:23:50.855321",
+  "total_tests": 17,
+  "passed": 16,
   "failed": 1,
-  "success_rate": "93.3%",
+  "success_rate": "94.1%",
   "results": [
     {
       "test": "Technician Registration",
       "passed": true,
-      "message": "Registered as tech_063713",
+      "message": "Registered as tech_072348",
       "response": null
     },
     {
@@ -20,7 +20,7 @@
     {
       "test": "Customer Registration",
       "passed": true,
-      "message": "Registered as Customer 063714",
+      "message": "Registered as Customer 072349",
       "response": null
     },
     {
@@ -30,9 +30,21 @@
       "response": null
     },
     {
+      "test": "Electrical Section Removal",
+      "passed": true,
+      "message": "\u2705 Report created successfully without electrical fields. Performance score: 100, Delta T: 18.0\u00b0F, Capacitor health: Good, Warnings: 0",
+      "response": null
+    },
+    {
+      "test": "Electrical Fields Rejection",
+      "passed": true,
+      "message": "API ignores old electrical fields (not stored in response)",
+      "response": null
+    },
+    {
       "test": "Create Report",
       "passed": true,
-      "message": "Report created with link: 74a6c7dd-188a-4ff2-b098-114604b1b374",
+      "message": "Report created with link: 912e2da9-12e2-4727-bf2c-1be27419b2d0",
       "response": null
     },
     {
@@ -68,7 +80,7 @@
     {
       "test": "Tolerance Calculations",
       "passed": true,
-      "message": "All tolerance checks working correctly (3 warnings)",
+      "message": "All tolerance checks working correctly (2 warnings)",
       "response": null
     },
     {
@@ -80,7 +92,7 @@
     {
       "test": "Get Technician Reports",
       "passed": true,
-      "message": "Retrieved 7 reports",
+      "message": "Retrieved 9 reports",
       "response": null
     },
     {
