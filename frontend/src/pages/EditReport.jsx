@@ -79,6 +79,92 @@ const EditReport = () => {
     other_repair_recommendations: ''
   });
 
+  useEffect(() => {
+    if (!user || !token) {
+      navigate('/technician/login');
+      return;
+    }
+    fetchReport();
+  }, [reportId, user, token, navigate]);
+
+  const fetchReport = async () => {
+    try {
+      const response = await axios.get(`${API}/reports/edit/${reportId}`, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      
+      const report = response.data;
+      setEditInfo({
+        current_version: report.current_version || 1,
+        edit_count: report.edit_count || 0
+      });
+      
+      // Pre-fill form with existing data
+      setFormData({
+        customer_name: report.customer_name || '',
+        customer_email: report.customer_email || '',
+        customer_phone: report.customer_phone || '',
+        evaporator_brand: report.evaporator_brand || '',
+        evaporator_model_number: report.evaporator_model_number || '',
+        evaporator_serial_number: report.evaporator_serial_number || '',
+        evaporator_date_of_manufacture: report.evaporator_date_of_manufacture || '',
+        evaporator_age: report.evaporator_age || '',
+        evaporator_warranty_status: report.evaporator_warranty_status || 'Active',
+        evaporator_warranty_details: report.evaporator_warranty_details || '',
+        evaporator_photos: report.evaporator_photos || [],
+        condenser_brand: report.condenser_brand || '',
+        condenser_model_number: report.condenser_model_number || '',
+        condenser_serial_number: report.condenser_serial_number || '',
+        condenser_date_of_manufacture: report.condenser_date_of_manufacture || '',
+        condenser_age: report.condenser_age || '',
+        condenser_warranty_status: report.condenser_warranty_status || 'Active',
+        condenser_warranty_details: report.condenser_warranty_details || '',
+        condenser_photos: report.condenser_photos || [],
+        condenser_fan_motor: report.condenser_fan_motor || 'Normal Operation',
+        rated_rla: report.rated_rla || '',
+        rated_lra: report.rated_lra || '',
+        actual_rla: report.actual_rla || '',
+        actual_lra: report.actual_lra || '',
+        refrigerant_type: report.refrigerant_type || 'R-410A',
+        superheat: report.superheat || '',
+        subcooling: report.subcooling || '',
+        refrigerant_status: report.refrigerant_status || 'Good',
+        refrigerant_photos: report.refrigerant_photos || [],
+        blower_motor_type: report.blower_motor_type || 'PSC Motor',
+        blower_motor_capacitor_rating: report.blower_motor_capacitor_rating || '',
+        blower_motor_capacitor_reading: report.blower_motor_capacitor_reading || '',
+        condenser_capacitor_herm_rating: report.condenser_capacitor_herm_rating || '',
+        condenser_capacitor_herm_reading: report.condenser_capacitor_herm_reading || '',
+        condenser_capacitor_fan_rating: report.condenser_capacitor_fan_rating || '',
+        condenser_capacitor_fan_reading: report.condenser_capacitor_fan_reading || '',
+        capacitor_photos: report.capacitor_photos || [],
+        return_temp: report.return_temp || '',
+        supply_temp: report.supply_temp || '',
+        temperature_photos: report.temperature_photos || [],
+        primary_drain: report.primary_drain || 'Good',
+        primary_drain_notes: report.primary_drain_notes || '',
+        drain_pan_condition: report.drain_pan_condition || 'Good shape',
+        drainage_photos: report.drainage_photos || [],
+        air_filters: report.air_filters || 'Filters Replaced (Provided by the technician)',
+        filters_list: report.filters_list || [{size: '', quantity: ''}],
+        evaporator_coil: report.evaporator_coil || 'Clean and in good condition',
+        condenser_coils: report.condenser_coils || 'Cleaned with Fresh Water',
+        air_purifier: report.air_purifier || 'Good',
+        plenums: report.plenums || 'Good',
+        ductwork: report.ductwork || 'Good',
+        indoor_air_quality_photos: report.indoor_air_quality_photos || [],
+        general_photos: report.general_photos || [],
+        notes: report.notes || '',
+        other_repair_recommendations: report.other_repair_recommendations || ''
+      });
+      
+      setLoading(false);
+    } catch (error) {
+      toast.error(error.response?.data?.detail || 'Failed to load report');
+      navigate('/technician/dashboard');
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     
