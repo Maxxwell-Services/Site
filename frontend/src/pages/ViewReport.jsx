@@ -438,7 +438,7 @@ const ViewReport = () => {
 
             {/* Condenser Fan Motor */}
             <div 
-              className={`p-5 rounded-xl border-2 shadow-md cursor-pointer hover:shadow-lg transition-shadow ${
+              className={`p-3 rounded-lg border-2 shadow-sm cursor-pointer hover:shadow-md transition-shadow ${
                 currentData.condenser_fan_motor === 'Inoperative' 
                   ? 'bg-red-100 border-red-300 text-red-800'
                   : currentData.condenser_fan_motor === 'Motor Vibration' || currentData.condenser_fan_motor === 'Blade Vibration'
