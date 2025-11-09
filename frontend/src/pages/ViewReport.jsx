@@ -670,7 +670,10 @@ const ViewReport = () => {
               data-testid="air-purifier-metric-card"
             >
               <h4 className="font-bold mb-3 text-lg flex items-center justify-between">
-                <span>Air Purifier</span>
+                <div className="flex items-center gap-2">
+                  <AirFlow className="w-5 h-5 opacity-70" />
+                  <span>Air Purifier</span>
+                </div>
                 <div className="flex items-center gap-2">
                   {currentData.indoor_air_quality_photos && currentData.indoor_air_quality_photos.length > 0 && (
                     <button
