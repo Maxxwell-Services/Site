@@ -280,7 +280,7 @@ const ViewReport = () => {
               <div className="flex justify-between py-2">
                 <span className="text-gray-600">Warranty Status:</span>
                 <span className={`font-semibold px-3 py-1 rounded-full text-sm ${
-                  report.system_warranty_status === 'Active' 
+                  currentData.system_warranty_status === 'Active' 
                     ? 'bg-green-100 text-green-800' 
                     : 'bg-gray-100 text-gray-800'
                 }`}>{currentData.system_warranty_status}</span>
