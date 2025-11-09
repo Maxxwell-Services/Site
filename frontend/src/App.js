@@ -53,6 +53,7 @@ function App() {
             <Route path="/technician/login" element={<TechnicianLogin />} />
             <Route path="/technician/dashboard" element={<TechnicianDashboard />} />
             <Route path="/technician/create-report" element={<CreateReport />} />
+            <Route path="/technician/edit-report/:reportId" element={<EditReport />} />
             <Route path="/report/:uniqueLink" element={<ViewReport />} />
             <Route path="/customer/signup" element={<CustomerSignup />} />
             <Route path="/customer/login" element={<CustomerLogin />} />
