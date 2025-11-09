@@ -174,7 +174,7 @@ const EditReport = () => {
       return;
     }
 
-    setLoading(true);
+    setLoadingSubmit(true);
 
     try {
       const payload = {
