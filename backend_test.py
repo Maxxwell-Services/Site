@@ -685,19 +685,18 @@ class ACMaintenanceAPITester:
             "customer_name": "Age Test",
             "customer_email": "age@test.com",
             "customer_phone": "555-0000",
-            "system_brand": "Test",
-            "serial_number": "2010ABC123",  # Should calculate age from 2010
-            "refrigerant_type": "R-410A",
-            "refrigerant_level": 120.0,
-            "refrigerant_status": "Good",
-            "capacitor_rating": 35.0,
-            "capacitor_reading": 35.0,
-            "return_temp": 78.0,
-            "supply_temp": 60.0,
-            "amp_draw": 20.0,
-            "rated_amps": 20.0,
-            "filters_replaced": True,
-            "condenser_coils_cleaned": True
+            "evaporator_brand": "Test", "evaporator_model_number": "EVP", "evaporator_serial_number": "2010ABC123", "evaporator_warranty_status": "Active",
+            "condenser_brand": "Test", "condenser_model_number": "CON", "condenser_serial_number": "2010DEF456", "condenser_warranty_status": "Active",
+            "refrigerant_type": "R-410A", "superheat": 8.0, "subcooling": 10.0, "refrigerant_status": "Good",
+            "blower_motor_type": "ECM Motor",
+            "condenser_capacitor_herm_rating": 35.0,
+            "condenser_capacitor_herm_reading": 35.0,
+            "condenser_capacitor_fan_rating": 5.0,
+            "condenser_capacitor_fan_reading": 5.0,
+            "return_temp": 78.0, "supply_temp": 60.0, "amp_draw": 20.0, "rated_amps": 20.0,
+            "primary_drain": "Clear and flowing", "drain_pan_condition": "Good shape",
+            "air_filters": "Clean", "evaporator_coil": "Clean", "condenser_coils": "Clean",
+            "air_purifier": "Good", "plenums": "Good", "ductwork": "Good"
         }
         
         try:
