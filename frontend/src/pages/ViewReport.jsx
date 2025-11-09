@@ -533,7 +533,10 @@ const ViewReport = () => {
               data-testid="temperature-metric-card"
             >
               <h4 className="font-bold mb-3 text-lg flex items-center justify-between">
-                <span>Temperature</span>
+                <div className="flex items-center gap-2">
+                  <Thermometer className="w-5 h-5 opacity-70" />
+                  <span>Temperature</span>
+                </div>
                 <div className="flex items-center gap-2">
                   <span className={`text-xs px-2 py-1 rounded-full ${
                     currentData.delta_t_status === 'Good' ? 'bg-green-200' :
