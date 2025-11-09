@@ -879,7 +879,7 @@ class ACMaintenanceAPITester:
                 data = response.json()
                 unique_link = data.get('unique_link')
                 
-                report_response = requests.get(f"{self.base_url}/reports/{unique_link}")
+                report_response = requests.get(f"{self.base_url}/reports/view/{unique_link}")
                 if report_response.status_code == 200:
                     report = report_response.json()
                     electrical_fields = ['amp_draw', 'rated_amps', 'amp_status', 'electrical_photos']
@@ -897,6 +897,389 @@ class ACMaintenanceAPITester:
                 self.log_result("Electrical Fields Rejection", False, f"Unexpected status {response.status_code}: {response.text}")
         except Exception as e:
             self.log_result("Electrical Fields Rejection", False, f"Error: {str(e)}")
+        
+        return False
+
+    def test_photo_fields_storage(self):
+        """Test that all photo fields are properly stored and retrieved"""
+        if not self.tech_token:
+            self.log_result("Photo Fields Storage", False, "No technician token available")
+            return False
+        
+        # Sample base64 image data (small 1x1 pixel PNG)
+        sample_image = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg=="
+        
+        payload = {
+            "customer_name": "Photo Test Customer",
+            "customer_email": "photo.test@example.com",
+            "customer_phone": "555-PHOTO",
+            "evaporator_brand": "Carrier", "evaporator_model_number": "EVP-PHOTO", "evaporator_serial_number": "PHOTO123", "evaporator_warranty_status": "Active",
+            "condenser_brand": "Carrier", "condenser_model_number": "CON-PHOTO", "condenser_serial_number": "PHOTO456", "condenser_warranty_status": "Active",
+            "refrigerant_type": "R-410A", "superheat": 8.0, "subcooling": 10.0, "refrigerant_status": "Good",
+            "blower_motor_type": "PSC Motor", "blower_motor_capacitor_rating": 7.5, "blower_motor_capacitor_reading": 7.3,
+            "condenser_capacitor_herm_rating": 35.0, "condenser_capacitor_herm_reading": 34.5,
+            "condenser_capacitor_fan_rating": 5.0, "condenser_capacitor_fan_reading": 4.9,
+            "return_temp": 78.0, "supply_temp": 60.0,
+            "primary_drain": "Clear and flowing", "drain_pan_condition": "Good shape",
+            "air_filters": "Clean", "evaporator_coil": "Clean", "condenser_coils": "Clean",
+            "air_purifier": "Good", "plenums": "Good", "ductwork": "Good",
+            # All photo fields with sample data
+            "evaporator_photos": [sample_image, sample_image],
+            "condenser_photos": [sample_image],
+            "refrigerant_photos": [sample_image, sample_image, sample_image],
+            "capacitor_photos": [sample_image],
+            "temperature_photos": [sample_image, sample_image],
+            "drainage_photos": [sample_image],
+            "indoor_air_quality_photos": [sample_image, sample_image],
+            "general_photos": [sample_image, sample_image, sample_image, sample_image]
+        }
+        
+        try:
+            headers = {'Authorization': f'Bearer {self.tech_token}'}
+            response = requests.post(f"{self.base_url}/reports/create", json=payload, headers=headers)
+            
+            if response.status_code == 200:
+                data = response.json()
+                unique_link = data.get('unique_link')
+                
+                # Fetch the report to verify all photo fields are stored
+                report_response = requests.get(f"{self.base_url}/reports/view/{unique_link}")
+                if report_response.status_code == 200:
+                    report = report_response.json()
+                    
+                    # Check all photo fields
+                    photo_fields = [
+                        'evaporator_photos', 'condenser_photos', 'refrigerant_photos',
+                        'capacitor_photos', 'temperature_photos', 'drainage_photos',
+                        'indoor_air_quality_photos', 'general_photos'
+                    ]
+                    
+                    missing_fields = []
+                    incorrect_counts = []
+                    
+                    expected_counts = {
+                        'evaporator_photos': 2, 'condenser_photos': 1, 'refrigerant_photos': 3,
+                        'capacitor_photos': 1, 'temperature_photos': 2, 'drainage_photos': 1,
+                        'indoor_air_quality_photos': 2, 'general_photos': 4
+                    }
+                    
+                    for field in photo_fields:
+                        if field not in report:
+                            missing_fields.append(field)
+                        else:
+                            actual_count = len(report[field]) if report[field] else 0
+                            expected_count = expected_counts[field]
+                            if actual_count != expected_count:
+                                incorrect_counts.append(f"{field}: expected {expected_count}, got {actual_count}")
+                    
+                    if missing_fields:
+                        self.log_result("Photo Fields Storage", False, f"Missing photo fields: {missing_fields}")
+                        return False
+                    
+                    if incorrect_counts:
+                        self.log_result("Photo Fields Storage", False, f"Incorrect photo counts: {incorrect_counts}")
+                        return False
+                    
+                    self.log_result("Photo Fields Storage", True, "All photo fields stored and retrieved correctly")
+                    return True
+                else:
+                    self.log_result("Photo Fields Storage", False, "Failed to fetch created report")
+            else:
+                self.log_result("Photo Fields Storage", False, f"Status {response.status_code}: {response.text}")
+        except Exception as e:
+            self.log_result("Photo Fields Storage", False, f"Error: {str(e)}")
+        
+        return False
+
+    def test_report_edit_functionality(self):
+        """Test report editing with version history"""
+        if not self.tech_token:
+            self.log_result("Report Edit Functionality", False, "No technician token available")
+            return False
+        
+        # First create a report
+        original_payload = {
+            "customer_name": "Edit Test Customer",
+            "customer_email": "edit.test@example.com",
+            "customer_phone": "555-EDIT",
+            "evaporator_brand": "Original Brand", "evaporator_model_number": "ORIG-123", "evaporator_serial_number": "ORIG123", "evaporator_warranty_status": "Active",
+            "condenser_brand": "Original Brand", "condenser_model_number": "ORIG-456", "condenser_serial_number": "ORIG456", "condenser_warranty_status": "Active",
+            "refrigerant_type": "R-410A", "superheat": 8.0, "subcooling": 10.0, "refrigerant_status": "Good",
+            "blower_motor_type": "PSC Motor", "blower_motor_capacitor_rating": 7.5, "blower_motor_capacitor_reading": 7.3,
+            "condenser_capacitor_herm_rating": 35.0, "condenser_capacitor_herm_reading": 34.5,
+            "condenser_capacitor_fan_rating": 5.0, "condenser_capacitor_fan_reading": 4.9,
+            "return_temp": 78.0, "supply_temp": 60.0,
+            "primary_drain": "Clear and flowing", "drain_pan_condition": "Good shape",
+            "air_filters": "Clean", "evaporator_coil": "Clean", "condenser_coils": "Clean",
+            "air_purifier": "Good", "plenums": "Good", "ductwork": "Good",
+            "notes": "Original report before editing"
+        }
+        
+        try:
+            headers = {'Authorization': f'Bearer {self.tech_token}'}
+            
+            # Create original report
+            create_response = requests.post(f"{self.base_url}/reports/create", json=original_payload, headers=headers)
+            if create_response.status_code != 200:
+                self.log_result("Report Edit Functionality", False, f"Failed to create original report: {create_response.status_code}")
+                return False
+            
+            create_data = create_response.json()
+            report_id = create_data.get('report_id')
+            
+            # Test GET /api/reports/edit/{report_id} endpoint
+            edit_get_response = requests.get(f"{self.base_url}/reports/edit/{report_id}", headers=headers)
+            if edit_get_response.status_code != 200:
+                self.log_result("Report Edit Functionality", False, f"Failed to get report for editing: {edit_get_response.status_code}")
+                return False
+            
+            # Prepare edited data
+            edited_payload = original_payload.copy()
+            edited_payload.update({
+                "customer_name": "Edited Customer Name",
+                "refrigerant_status": "Low - Add Refrigerant",
+                "notes": "Report after first edit - refrigerant needs attention",
+                "superheat": 12.0,  # Changed value
+                "subcooling": 8.0   # Changed value
+            })
+            
+            # Test PUT /api/reports/{report_id}/edit endpoint
+            edit_response = requests.put(f"{self.base_url}/reports/{report_id}/edit", json=edited_payload, headers=headers)
+            if edit_response.status_code != 200:
+                self.log_result("Report Edit Functionality", False, f"Failed to edit report: {edit_response.status_code} - {edit_response.text}")
+                return False
+            
+            edit_data = edit_response.json()
+            
+            # Verify edit response
+            if edit_data.get('current_version') != 2:
+                self.log_result("Report Edit Functionality", False, f"Expected version 2, got {edit_data.get('current_version')}")
+                return False
+            
+            if edit_data.get('edit_count') != 1:
+                self.log_result("Report Edit Functionality", False, f"Expected edit_count 1, got {edit_data.get('edit_count')}")
+                return False
+            
+            # Fetch the edited report to verify changes
+            view_response = requests.get(f"{self.base_url}/reports/view/{create_data.get('unique_link')}")
+            if view_response.status_code != 200:
+                self.log_result("Report Edit Functionality", False, "Failed to fetch edited report")
+                return False
+            
+            edited_report = view_response.json()
+            
+            # Verify changes were applied
+            if edited_report.get('customer_name') != "Edited Customer Name":
+                self.log_result("Report Edit Functionality", False, "Customer name was not updated")
+                return False
+            
+            if edited_report.get('refrigerant_status') != "Low - Add Refrigerant":
+                self.log_result("Report Edit Functionality", False, "Refrigerant status was not updated")
+                return False
+            
+            # Verify version history exists
+            versions = edited_report.get('versions', [])
+            if len(versions) != 2:
+                self.log_result("Report Edit Functionality", False, f"Expected 2 versions, got {len(versions)}")
+                return False
+            
+            # Check version labels
+            version_labels = [v.get('label') for v in versions]
+            expected_labels = ['Before Repair', 'After Repair 1']
+            if version_labels != expected_labels:
+                self.log_result("Report Edit Functionality", False, f"Expected labels {expected_labels}, got {version_labels}")
+                return False
+            
+            self.log_result("Report Edit Functionality", True, 
+                          f"Report editing successful - Version: {edit_data.get('current_version')}, "
+                          f"Edit count: {edit_data.get('edit_count')}, Versions stored: {len(versions)}")
+            return True
+            
+        except Exception as e:
+            self.log_result("Report Edit Functionality", False, f"Error: {str(e)}")
+        
+        return False
+
+    def test_edit_authorization(self):
+        """Test that only report creator can edit reports"""
+        if not self.tech_token:
+            self.log_result("Edit Authorization", False, "No technician token available")
+            return False
+        
+        # Create a second technician
+        timestamp = datetime.now().strftime('%H%M%S%f')
+        second_tech_payload = {
+            "username": f"tech2_{timestamp}",
+            "email": f"tech2_{timestamp}@test.com",
+            "password": "TestPass123!"
+        }
+        
+        try:
+            # Register second technician
+            register_response = requests.post(f"{self.base_url}/auth/technician/register", json=second_tech_payload)
+            if register_response.status_code != 200:
+                self.log_result("Edit Authorization", False, "Failed to register second technician")
+                return False
+            
+            second_tech_token = register_response.json().get('token')
+            
+            # Create report with first technician
+            report_payload = {
+                "customer_name": "Auth Test Customer",
+                "customer_email": "auth.test@example.com",
+                "customer_phone": "555-AUTH",
+                "evaporator_brand": "Test", "evaporator_model_number": "AUTH-123", "evaporator_serial_number": "AUTH123", "evaporator_warranty_status": "Active",
+                "condenser_brand": "Test", "condenser_model_number": "AUTH-456", "condenser_serial_number": "AUTH456", "condenser_warranty_status": "Active",
+                "refrigerant_type": "R-410A", "superheat": 8.0, "subcooling": 10.0, "refrigerant_status": "Good",
+                "blower_motor_type": "ECM Motor",
+                "condenser_capacitor_herm_rating": 35.0, "condenser_capacitor_herm_reading": 35.0,
+                "condenser_capacitor_fan_rating": 5.0, "condenser_capacitor_fan_reading": 5.0,
+                "return_temp": 78.0, "supply_temp": 60.0,
+                "primary_drain": "Clear and flowing", "drain_pan_condition": "Good shape",
+                "air_filters": "Clean", "evaporator_coil": "Clean", "condenser_coils": "Clean",
+                "air_purifier": "Good", "plenums": "Good", "ductwork": "Good"
+            }
+            
+            headers1 = {'Authorization': f'Bearer {self.tech_token}'}
+            create_response = requests.post(f"{self.base_url}/reports/create", json=report_payload, headers=headers1)
+            if create_response.status_code != 200:
+                self.log_result("Edit Authorization", False, "Failed to create report")
+                return False
+            
+            report_id = create_response.json().get('report_id')
+            
+            # Try to edit with second technician (should fail)
+            headers2 = {'Authorization': f'Bearer {second_tech_token}'}
+            edit_response = requests.put(f"{self.base_url}/reports/{report_id}/edit", json=report_payload, headers=headers2)
+            
+            if edit_response.status_code == 403:
+                self.log_result("Edit Authorization", True, "Correctly denied edit access to non-creator")
+                return True
+            else:
+                self.log_result("Edit Authorization", False, f"Expected 403, got {edit_response.status_code}")
+                return False
+                
+        except Exception as e:
+            self.log_result("Edit Authorization", False, f"Error: {str(e)}")
+        
+        return False
+
+    def test_edit_limit(self):
+        """Test that reports can only be edited 3 times"""
+        if not self.tech_token:
+            self.log_result("Edit Limit", False, "No technician token available")
+            return False
+        
+        # Create a report
+        report_payload = {
+            "customer_name": "Limit Test Customer",
+            "customer_email": "limit.test@example.com",
+            "customer_phone": "555-LIMIT",
+            "evaporator_brand": "Test", "evaporator_model_number": "LIMIT-123", "evaporator_serial_number": "LIMIT123", "evaporator_warranty_status": "Active",
+            "condenser_brand": "Test", "condenser_model_number": "LIMIT-456", "condenser_serial_number": "LIMIT456", "condenser_warranty_status": "Active",
+            "refrigerant_type": "R-410A", "superheat": 8.0, "subcooling": 10.0, "refrigerant_status": "Good",
+            "blower_motor_type": "ECM Motor",
+            "condenser_capacitor_herm_rating": 35.0, "condenser_capacitor_herm_reading": 35.0,
+            "condenser_capacitor_fan_rating": 5.0, "condenser_capacitor_fan_reading": 5.0,
+            "return_temp": 78.0, "supply_temp": 60.0,
+            "primary_drain": "Clear and flowing", "drain_pan_condition": "Good shape",
+            "air_filters": "Clean", "evaporator_coil": "Clean", "condenser_coils": "Clean",
+            "air_purifier": "Good", "plenums": "Good", "ductwork": "Good"
+        }
+        
+        try:
+            headers = {'Authorization': f'Bearer {self.tech_token}'}
+            
+            # Create report
+            create_response = requests.post(f"{self.base_url}/reports/create", json=report_payload, headers=headers)
+            if create_response.status_code != 200:
+                self.log_result("Edit Limit", False, "Failed to create report")
+                return False
+            
+            report_id = create_response.json().get('report_id')
+            
+            # Perform 3 edits (should all succeed)
+            for i in range(1, 4):
+                edit_payload = report_payload.copy()
+                edit_payload['notes'] = f"Edit number {i}"
+                
+                edit_response = requests.put(f"{self.base_url}/reports/{report_id}/edit", json=edit_payload, headers=headers)
+                if edit_response.status_code != 200:
+                    self.log_result("Edit Limit", False, f"Edit {i} failed: {edit_response.status_code}")
+                    return False
+            
+            # Try 4th edit (should fail)
+            edit_payload = report_payload.copy()
+            edit_payload['notes'] = "This should fail - 4th edit"
+            
+            fourth_edit_response = requests.put(f"{self.base_url}/reports/{report_id}/edit", json=edit_payload, headers=headers)
+            
+            if fourth_edit_response.status_code == 400:
+                self.log_result("Edit Limit", True, "Correctly enforced 3-edit limit")
+                return True
+            else:
+                self.log_result("Edit Limit", False, f"Expected 400 for 4th edit, got {fourth_edit_response.status_code}")
+                return False
+                
+        except Exception as e:
+            self.log_result("Edit Limit", False, f"Error: {str(e)}")
+        
+        return False
+
+    def test_report_by_id_endpoint(self):
+        """Test GET /api/reports/id/{reportId} endpoint"""
+        if not self.tech_token:
+            self.log_result("Report By ID Endpoint", False, "No technician token available")
+            return False
+        
+        # Create a report first
+        report_payload = {
+            "customer_name": "ID Test Customer",
+            "customer_email": "id.test@example.com",
+            "customer_phone": "555-IDTEST",
+            "evaporator_brand": "Test", "evaporator_model_number": "ID-123", "evaporator_serial_number": "ID123", "evaporator_warranty_status": "Active",
+            "condenser_brand": "Test", "condenser_model_number": "ID-456", "condenser_serial_number": "ID456", "condenser_warranty_status": "Active",
+            "refrigerant_type": "R-410A", "superheat": 8.0, "subcooling": 10.0, "refrigerant_status": "Good",
+            "blower_motor_type": "ECM Motor",
+            "condenser_capacitor_herm_rating": 35.0, "condenser_capacitor_herm_reading": 35.0,
+            "condenser_capacitor_fan_rating": 5.0, "condenser_capacitor_fan_reading": 5.0,
+            "return_temp": 78.0, "supply_temp": 60.0,
+            "primary_drain": "Clear and flowing", "drain_pan_condition": "Good shape",
+            "air_filters": "Clean", "evaporator_coil": "Clean", "condenser_coils": "Clean",
+            "air_purifier": "Good", "plenums": "Good", "ductwork": "Good"
+        }
+        
+        try:
+            headers = {'Authorization': f'Bearer {self.tech_token}'}
+            
+            # Create report
+            create_response = requests.post(f"{self.base_url}/reports/create", json=report_payload, headers=headers)
+            if create_response.status_code != 200:
+                self.log_result("Report By ID Endpoint", False, "Failed to create report")
+                return False
+            
+            report_id = create_response.json().get('report_id')
+            
+            # Test GET by ID endpoint (this endpoint might not exist yet, so we'll check)
+            id_response = requests.get(f"{self.base_url}/reports/id/{report_id}")
+            
+            if id_response.status_code == 200:
+                report_data = id_response.json()
+                if report_data.get('customer_name') == "ID Test Customer":
+                    self.log_result("Report By ID Endpoint", True, "Successfully retrieved report by ID")
+                    return True
+                else:
+                    self.log_result("Report By ID Endpoint", False, "Retrieved report has incorrect data")
+                    return False
+            elif id_response.status_code == 404:
+                self.log_result("Report By ID Endpoint", False, "Endpoint /api/reports/id/{reportId} not implemented")
+                return False
+            else:
+                self.log_result("Report By ID Endpoint", False, f"Unexpected status {id_response.status_code}")
+                return False
+                
+        except Exception as e:
+            self.log_result("Report By ID Endpoint", False, f"Error: {str(e)}")
         
         return False
 
