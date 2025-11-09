@@ -131,19 +131,35 @@ const TechnicianDashboard = () => {
         {/* Reports List */}
         <div className="space-y-4">
           <div className="flex items-center justify-between mb-4 flex-wrap gap-4">
-            <h2 className="text-2xl font-bold text-blue-900">
-              {showArchived ? 'Archived Reports' : 'Active Reports'}
-            </h2>
+            <h2 className="text-2xl font-bold text-blue-900">Your Reports</h2>
             <div className="flex items-center gap-2">
               <Button
-                variant={showArchived ? "default" : "outline"}
+                variant={viewFilter === 'all' ? "default" : "outline"}
                 size="sm"
-                onClick={() => setShowArchived(!showArchived)}
-                style={showArchived ? {backgroundColor: '#1C325E'} : {borderColor: '#1C325E', color: '#1C325E'}}
-                className={showArchived ? "text-white" : ""}
+                onClick={() => setViewFilter('all')}
+                style={viewFilter === 'all' ? {backgroundColor: '#1C325E'} : {borderColor: '#1C325E', color: '#1C325E'}}
+                className={viewFilter === 'all' ? "text-white" : ""}
               >
-                {showArchived ? <Archive className="w-4 h-4 mr-2" /> : <Archive className="w-4 h-4 mr-2" />}
-                {showArchived ? 'Hide Archived' : 'Show Archived'}
+                All
+              </Button>
+              <Button
+                variant={viewFilter === 'active' ? "default" : "outline"}
+                size="sm"
+                onClick={() => setViewFilter('active')}
+                style={viewFilter === 'active' ? {backgroundColor: '#16a34a'} : {borderColor: '#16a34a', color: '#16a34a'}}
+                className={viewFilter === 'active' ? "text-white" : ""}
+              >
+                Active
+              </Button>
+              <Button
+                variant={viewFilter === 'archived' ? "default" : "outline"}
+                size="sm"
+                onClick={() => setViewFilter('archived')}
+                style={viewFilter === 'archived' ? {backgroundColor: '#f59e0b'} : {borderColor: '#f59e0b', color: '#f59e0b'}}
+                className={viewFilter === 'archived' ? "text-white" : ""}
+              >
+                <Archive className="w-4 h-4 mr-1" />
+                Archived
               </Button>
             </div>
           </div>
