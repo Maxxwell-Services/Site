@@ -165,9 +165,50 @@ const ViewReport = () => {
 
           {/* Performance Score Gauge - Prominent Display */}
           <div className="bg-white rounded-xl p-6 shadow-inner border-2" style={{borderColor: 'rgba(28, 50, 94, 0.1)'}}>
-            <PerformanceGauge score={report.performance_score || 0} />
+            <PerformanceGauge score={displayData?.performance_score || report.performance_score || 0} />
           </div>
         </div>
+
+        {/* Version Selector */}
+        {report.versions && report.versions.length > 0 && (
+          <div className="glass rounded-xl p-4 mb-6 border-2" style={{borderColor: '#1C325E'}}>
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+              <div>
+                <h3 className="text-lg font-semibold text-blue-900 mb-1">Report Version</h3>
+                <p className="text-sm text-gray-600">
+                  {report.versions.find(v => v.version === selectedVersion)?.timestamp 
+                    ? new Date(report.versions.find(v => v.version === selectedVersion)?.timestamp).toLocaleString('en-US', { 
+                        year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' 
+                      })
+                    : new Date(report.created_at).toLocaleString('en-US', { 
+                        year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' 
+                      })
+                  }
+                </p>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {[...Array(Math.max(report.current_version || 1, report.versions.length))].map((_, i) => {
+                  const versionNum = i + 1;
+                  const versionExists = versionNum === 1 || report.versions.some(v => v.version === versionNum);
+                  if (!versionExists) return null;
+                  
+                  return (
+                    <Button
+                      key={versionNum}
+                      onClick={() => handleVersionChange(versionNum)}
+                      variant={selectedVersion === versionNum ? "default" : "outline"}
+                      size="sm"
+                      className={selectedVersion === versionNum ? "" : "hover:bg-blue-50"}
+                      style={selectedVersion === versionNum ? {backgroundColor: '#1C325E'} : {borderColor: '#1C325E', color: '#1C325E'}}
+                    >
+                      {getVersionLabel(versionNum)}
+                    </Button>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* Warnings Section */}
         {report.warnings && report.warnings.length > 0 && (
