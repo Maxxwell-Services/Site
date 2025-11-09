@@ -120,7 +120,65 @@ const TechnicianDashboard = () => {
 
         {/* Reports List */}
         <div className="space-y-4">
-          <h2 className="text-2xl font-bold text-blue-900 mb-4">Your Reports</h2>
+          <div className="flex items-center justify-between mb-4 flex-wrap gap-4">
+            <h2 className="text-2xl font-bold text-blue-900">Your Reports</h2>
+            <div className="flex items-center gap-2">
+              <Button
+                variant={showArchived ? "default" : "outline"}
+                size="sm"
+                onClick={() => setShowArchived(!showArchived)}
+                style={showArchived ? {backgroundColor: '#1C325E'} : {borderColor: '#1C325E', color: '#1C325E'}}
+                className="text-white"
+              >
+                {showArchived ? <ArchiveRestore className="w-4 h-4 mr-2" /> : <Archive className="w-4 h-4 mr-2" />}
+                {showArchived ? 'Show Active' : 'Show Archived'}
+              </Button>
+            </div>
+          </div>
+
+          {/* Search and Filters */}
+          <div className="glass rounded-xl p-4 mb-4">
+            <div className="grid sm:grid-cols-2 gap-4">
+              <div className="relative">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+                <input
+                  type="text"
+                  placeholder="Search by customer name or email..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                />
+              </div>
+              <div className="relative">
+                <Filter className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+                <input
+                  type="date"
+                  placeholder="Filter by date..."
+                  value={dateFilter}
+                  onChange={(e) => setDateFilter(e.target.value)}
+                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                />
+              </div>
+            </div>
+            {(searchQuery || dateFilter) && (
+              <div className="mt-3 flex items-center gap-2">
+                <span className="text-sm text-gray-600">
+                  Showing {filteredReports.length} of {reports.length} reports
+                </span>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => {
+                    setSearchQuery('');
+                    setDateFilter('');
+                  }}
+                  className="text-xs"
+                >
+                  Clear Filters
+                </Button>
+              </div>
+            )}
+          </div>
           
           {loading ? (
             <div className="glass rounded-xl p-8 text-center">
