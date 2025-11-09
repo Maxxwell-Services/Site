@@ -731,6 +731,179 @@ class ACMaintenanceAPITester:
         
         return False
 
+    def test_electrical_section_removal(self):
+        """Test that electrical fields are removed and API works without them"""
+        if not self.tech_token:
+            self.log_result("Electrical Section Removal", False, "No technician token available")
+            return False
+        
+        # Test report creation WITHOUT electrical fields
+        payload = {
+            "customer_name": "John Smith",
+            "customer_email": "john.smith@example.com",
+            "customer_phone": "555-9876",
+            # Evaporator Details
+            "evaporator_brand": "Lennox",
+            "evaporator_model_number": "CBA25UH-048",
+            "evaporator_serial_number": "2020ABC123",
+            "evaporator_warranty_status": "Active",
+            # Condenser Details
+            "condenser_brand": "Lennox",
+            "condenser_model_number": "13ACX-048",
+            "condenser_serial_number": "2020DEF456",
+            "condenser_warranty_status": "Active",
+            "refrigerant_type": "R-410A",
+            "superheat": 9.5,
+            "subcooling": 12.0,
+            "refrigerant_status": "Good",
+            "blower_motor_type": "PSC Motor",
+            "blower_motor_capacitor_rating": 7.5,
+            "blower_motor_capacitor_reading": 7.2,
+            # Condenser dual run capacitor fields (4 separate fields)
+            "condenser_capacitor_herm_rating": 35.0,
+            "condenser_capacitor_herm_reading": 34.8,
+            "condenser_capacitor_fan_rating": 5.0,
+            "condenser_capacitor_fan_reading": 4.9,
+            "return_temp": 76.0,
+            "supply_temp": 58.0,  # Delta T = 18°F - Good
+            # NO electrical fields: amp_draw, rated_amps, electrical_photos
+            "primary_drain": "Clear and flowing",
+            "drain_pan_condition": "Good shape",
+            "air_filters": "Filters Replaced (Provided by the technician)",
+            "filters_list": [{"size": "16x25x1", "quantity": 2}],
+            "evaporator_coil": "Clean",
+            "condenser_coils": "Cleaned with Fresh Water",
+            "air_purifier": "Good",
+            "plenums": "Good",
+            "ductwork": "Good",
+            "notes": "Test report without electrical section"
+        }
+        
+        try:
+            headers = {'Authorization': f'Bearer {self.tech_token}'}
+            response = requests.post(f"{self.base_url}/reports/create", json=payload, headers=headers)
+            
+            if response.status_code == 200:
+                data = response.json()
+                unique_link = data.get('unique_link')
+                
+                # Fetch the report to verify electrical fields are not present
+                report_response = requests.get(f"{self.base_url}/reports/{unique_link}")
+                if report_response.status_code == 200:
+                    report = report_response.json()
+                    
+                    # Verify electrical fields are NOT in the response
+                    electrical_fields = ['amp_draw', 'rated_amps', 'amp_status', 'electrical_photos']
+                    found_electrical_fields = [field for field in electrical_fields if field in report]
+                    
+                    if found_electrical_fields:
+                        self.log_result("Electrical Section Removal", False, f"Found electrical fields that should be removed: {found_electrical_fields}")
+                        return False
+                    
+                    # Verify performance score calculation works without amp draw
+                    performance_score = report.get('performance_score')
+                    if performance_score is None:
+                        self.log_result("Electrical Section Removal", False, "Performance score not calculated")
+                        return False
+                    
+                    # Verify warnings don't include amp draw warnings
+                    warnings = report.get('warnings', [])
+                    amp_warnings = [w for w in warnings if 'amp' in w.get('message', '').lower() or w.get('type') == 'amp_draw']
+                    
+                    if amp_warnings:
+                        self.log_result("Electrical Section Removal", False, f"Found amp draw warnings that should be removed: {amp_warnings}")
+                        return False
+                    
+                    # Verify Delta T calculations still work
+                    expected_delta_t = 76.0 - 58.0  # 18°F
+                    actual_delta_t = report.get('delta_t')
+                    
+                    if abs(actual_delta_t - expected_delta_t) > 0.1:
+                        self.log_result("Electrical Section Removal", False, f"Delta T calculation wrong: expected {expected_delta_t}, got {actual_delta_t}")
+                        return False
+                    
+                    # Verify capacitor health calculations still work
+                    capacitor_health = report.get('condenser_capacitor_health')
+                    if not capacitor_health:
+                        self.log_result("Electrical Section Removal", False, "Capacitor health not calculated")
+                        return False
+                    
+                    self.log_result("Electrical Section Removal", True, 
+                                  f"✅ Report created successfully without electrical fields. "
+                                  f"Performance score: {performance_score}, Delta T: {actual_delta_t}°F, "
+                                  f"Capacitor health: {capacitor_health}, Warnings: {len(warnings)}")
+                    return True
+                else:
+                    self.log_result("Electrical Section Removal", False, "Failed to fetch created report")
+            else:
+                self.log_result("Electrical Section Removal", False, f"Status {response.status_code}: {response.text}")
+        except Exception as e:
+            self.log_result("Electrical Section Removal", False, f"Error: {str(e)}")
+        
+        return False
+
+    def test_electrical_fields_rejection(self):
+        """Test that API rejects requests with old electrical fields"""
+        if not self.tech_token:
+            self.log_result("Electrical Fields Rejection", False, "No technician token available")
+            return False
+        
+        # Test with old electrical fields that should be rejected
+        payload = {
+            "customer_name": "Test Rejection",
+            "customer_email": "test.rejection@example.com",
+            "customer_phone": "555-0000",
+            "evaporator_brand": "Test", "evaporator_model_number": "EVP", "evaporator_serial_number": "TEST123", "evaporator_warranty_status": "Active",
+            "condenser_brand": "Test", "condenser_model_number": "CON", "condenser_serial_number": "TEST456", "condenser_warranty_status": "Active",
+            "refrigerant_type": "R-410A", "superheat": 8.0, "subcooling": 10.0, "refrigerant_status": "Good",
+            "blower_motor_type": "ECM Motor",
+            "condenser_capacitor_herm_rating": 35.0, "condenser_capacitor_herm_reading": 35.0,
+            "condenser_capacitor_fan_rating": 5.0, "condenser_capacitor_fan_reading": 5.0,
+            "return_temp": 78.0, "supply_temp": 60.0,
+            # Include old electrical fields that should be rejected
+            "amp_draw": 18.5,
+            "rated_amps": 20.0,
+            "electrical_photos": ["base64image"],
+            "primary_drain": "Clear and flowing", "drain_pan_condition": "Good shape",
+            "air_filters": "Clean", "evaporator_coil": "Clean", "condenser_coils": "Clean",
+            "air_purifier": "Good", "plenums": "Good", "ductwork": "Good"
+        }
+        
+        try:
+            headers = {'Authorization': f'Bearer {self.tech_token}'}
+            response = requests.post(f"{self.base_url}/reports/create", json=payload, headers=headers)
+            
+            # The API should either reject the request (422) or ignore the electrical fields and succeed (200)
+            if response.status_code == 422:
+                # API properly rejects unknown fields
+                self.log_result("Electrical Fields Rejection", True, "API properly rejects requests with old electrical fields")
+                return True
+            elif response.status_code == 200:
+                # API ignores unknown fields - verify electrical fields are not in response
+                data = response.json()
+                unique_link = data.get('unique_link')
+                
+                report_response = requests.get(f"{self.base_url}/reports/{unique_link}")
+                if report_response.status_code == 200:
+                    report = report_response.json()
+                    electrical_fields = ['amp_draw', 'rated_amps', 'amp_status', 'electrical_photos']
+                    found_electrical_fields = [field for field in electrical_fields if field in report]
+                    
+                    if found_electrical_fields:
+                        self.log_result("Electrical Fields Rejection", False, f"API accepted and stored electrical fields: {found_electrical_fields}")
+                        return False
+                    else:
+                        self.log_result("Electrical Fields Rejection", True, "API ignores old electrical fields (not stored in response)")
+                        return True
+                else:
+                    self.log_result("Electrical Fields Rejection", False, "Failed to fetch created report")
+            else:
+                self.log_result("Electrical Fields Rejection", False, f"Unexpected status {response.status_code}: {response.text}")
+        except Exception as e:
+            self.log_result("Electrical Fields Rejection", False, f"Error: {str(e)}")
+        
+        return False
+
     def run_all_tests(self):
         """Run all tests in sequence"""
         print("=" * 60)
@@ -746,6 +919,11 @@ class ACMaintenanceAPITester:
         self.test_technician_login()
         self.test_customer_register()
         self.test_customer_login()
+        
+        # ELECTRICAL SECTION REMOVAL TESTS (Priority)
+        print("\n📋 ELECTRICAL SECTION REMOVAL TESTS")
+        self.test_electrical_section_removal()
+        self.test_electrical_fields_rejection()
         
         # Report tests
         print("\n📋 REPORT TESTS")
