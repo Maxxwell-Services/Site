@@ -198,10 +198,8 @@ const ViewReport = () => {
           </div>
         )}
 
-        {/* Main Content Grid */}
-        <div className="grid lg:grid-cols-3 gap-4">
-          {/* Left Column - Performance & System Info */}
-          <div className="lg:col-span-2 space-y-4">
+        {/* Main Content */}
+        <div className="space-y-4">
             {/* Performance Score Card */}
             <div className="bg-white rounded-lg shadow-sm p-6 border" style={{borderColor: '#e5e7eb'}}>
               <div className="flex items-center justify-between mb-4">
