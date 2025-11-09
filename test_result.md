@@ -249,6 +249,42 @@ frontend:
       - working: "NA"
         agent: "user"
         comment: "User requested: 1) Only report creator can edit, 2) Edit from dashboard, 3) Toggle between versions in customer view, 4) All fields editable, 5) Max 3 edits with timestamps"
+  
+  - task: "Photo Modal with Grid View"
+    implemented: false
+    working: "NA"
+    file: "/app/frontend/src/pages/ViewReport.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: "NA"
+        agent: "main"
+        comment: "Will implement PhotoModal component with grid layout (2-3 columns) for displaying multiple metric photos. Modal should be responsive, show photos in a clean grid format, and include close functionality. Photos should be clickable for larger view if needed."
+  
+  - task: "Photo Indicators on Metric Cards"
+    implemented: false
+    working: "NA"
+    file: "/app/frontend/src/pages/ViewReport.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: "NA"
+        agent: "main"
+        comment: "Will add camera icon indicators to all metric cards that have associated photos. Indicators should only appear when photos exist for that metric. Affected metrics: Evaporator Coil (evaporator_photos), Condenser Coils (condenser_photos), Refrigerant (refrigerant_photos), Capacitors (capacitor_photos - for both blower motor and condenser capacitors), Temperature/Delta T (temperature_photos), Drainage (drainage_photos - for primary drain and drain pan), Indoor Air Quality (indoor_air_quality_photos - for air purifier, plenums, ductwork)."
+  
+  - task: "Metric Card Icons"
+    implemented: false
+    working: "NA"
+    file: "/app/frontend/src/pages/ViewReport.jsx"
+    stuck_count: 0
+    priority: "medium"
+    needs_retesting: true
+    status_history:
+      - working: "NA"
+        agent: "main"
+        comment: "Will add specific icons to each metric card based on user-provided reference image. Icons needed for: Evaporator Coil (pyramid/triangle), Condenser Coil (horizontal lines), Blower Motor Capacitor (plug), Condenser Fan Motor (fan), Primary Drain (pipe), Drain Pan (pan), Overflow Switch (switch), Air Purifier (purifier), Temperature (thermometer), Cooling (snowflake), Refrigerant (tank/bottle), and others as specified in reference image."
 
 metadata:
   created_by: "main_agent"
