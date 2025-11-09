@@ -232,6 +232,10 @@ class MaintenanceReport(BaseModel):
     warnings: List[dict] = Field(default_factory=list)
     performance_score: int = 100
     created_at: str = Field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
+    # Versioning fields for edit history
+    current_version: int = 1  # 1-4 (original + 3 edits)
+    edit_count: int = 0  # 0-3 edits allowed
+    versions: List[dict] = Field(default_factory=list)  # Stores all versions with timestamps
 
 class Part(BaseModel):
     model_config = ConfigDict(extra="ignore")
