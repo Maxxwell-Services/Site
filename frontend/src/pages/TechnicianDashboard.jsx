@@ -130,7 +130,7 @@ const TechnicianDashboard = () => {
                         <p><span className="font-semibold">Date:</span> {new Date(report.created_at).toLocaleDateString()}</p>
                       </div>
                     </div>
-                    <div className="flex gap-2">
+                    <div className="flex flex-wrap gap-2">
                       <Button
                         variant="outline"
                         size="sm"
@@ -142,6 +142,19 @@ const TechnicianDashboard = () => {
                         <Copy className="w-4 h-4 mr-2" />
                         Copy Link
                       </Button>
+                      {(report.edit_count || 0) < 3 && (
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => navigate(`/technician/edit-report/${report.id}`)}
+                          className="hover:bg-blue-50"
+                          style={{borderColor: '#1C325E', color: '#1C325E'}}
+                          data-testid={`edit-report-btn-${report.id}`}
+                        >
+                          <Edit className="w-4 h-4 mr-2" />
+                          Edit {report.edit_count > 0 && `(${report.edit_count}/3)`}
+                        </Button>
+                      )}
                       <Button
                         size="sm"
                         onClick={() => window.open(`/report/${report.unique_link}`, '_blank')}
