@@ -834,11 +834,16 @@ async def edit_report(report_id: str, data: MaintenanceReportCreate, user: dict 
     versions.append(new_version)
     
     # Update the report
+    # Prepare update data - exclude photos from the update to avoid MongoDB document size limit
+    # Photos are already stored in the main report document from creation/previous edits
+    update_data_without_photos = {k: v for k, v in updated_report_data.items() 
+                                   if not k.endswith('_photos')}
+    
     update_result = await db.reports.update_one(
         {"id": report_id},
         {
             "$set": {
-                **updated_report_data,
+                **update_data_without_photos,
                 "current_version": new_version_number,
                 "edit_count": existing_report.get("edit_count", 0) + 1,
                 "versions": versions
