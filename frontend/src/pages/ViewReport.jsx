@@ -429,7 +429,7 @@ const ViewReport = () => {
                 </div>
                 <div className="flex justify-between text-sm">
                   <span className="opacity-80">Delta T:</span>
-                  <span className="font-semibold">currentData.delta_t.toFixed(1)}°F</span>
+                  <span className="font-semibold">{currentData.delta_t.toFixed(1)}°F</span>
                 </div>
               </div>
               <p className="text-xs mt-3 opacity-70 italic">Click for more information</p>
