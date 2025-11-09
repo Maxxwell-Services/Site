@@ -451,7 +451,7 @@ const ViewReport = () => {
               )}
               data-testid="condenser-fan-motor-card"
             >
-              <h4 className="font-bold mb-3 text-lg flex items-center justify-between">
+              <h4 className="font-semibold mb-2 text-sm flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <Fan className="w-5 h-5 opacity-70" />
                   <span>Condenser Fan Motor</span>
@@ -468,7 +468,7 @@ const ViewReport = () => {
               onClick={() => openMetricInfo('capacitor', currentData.condenser_capacitor_health.toLowerCase())}
               data-testid="condenser-capacitor-metric-card"
             >
-              <h4 className="font-bold mb-3 text-lg flex items-center justify-between">
+              <h4 className="font-semibold mb-2 text-sm flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <Zap className="w-5 h-5 opacity-70" />
                   <span>Condenser Dual Run Capacitor</span>
@@ -533,7 +533,7 @@ const ViewReport = () => {
               onClick={() => openMetricInfo('temperature', currentData.delta_t_status.toLowerCase())}
               data-testid="temperature-metric-card"
             >
-              <h4 className="font-bold mb-3 text-lg flex items-center justify-between">
+              <h4 className="font-semibold mb-2 text-sm flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <Thermometer className="w-5 h-5 opacity-70" />
                   <span>Temperature</span>
@@ -585,7 +585,7 @@ const ViewReport = () => {
               onClick={() => openMetricInfo('drain', currentData.primary_drain === 'Clogged, needs immediate service' ? 'critical' : 'good')}
               data-testid="drain-metric-card"
             >
-              <h4 className="font-bold mb-3 text-lg flex items-center justify-between">
+              <h4 className="font-semibold mb-2 text-sm flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <Droplets className="w-5 h-5 opacity-70" />
                   <span>Primary Drain</span>
@@ -625,7 +625,7 @@ const ViewReport = () => {
               )}
               data-testid="drain-pan-metric-card"
             >
-              <h4 className="font-bold mb-3 text-lg flex items-center justify-between">
+              <h4 className="font-semibold mb-2 text-sm flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <Container className="w-5 h-5 opacity-70" />
                   <span>Drain Pan</span>
@@ -670,7 +670,7 @@ const ViewReport = () => {
               )}
               data-testid="air-purifier-metric-card"
             >
-              <h4 className="font-bold mb-3 text-lg flex items-center justify-between">
+              <h4 className="font-semibold mb-2 text-sm flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <AirFlow className="w-5 h-5 opacity-70" />
                   <span>Air Purifier</span>
@@ -701,7 +701,7 @@ const ViewReport = () => {
               onClick={() => openMetricInfo('refrigerant', currentData.refrigerant_status.toLowerCase())}
               data-testid="refrigerant-metric-card"
             >
-              <h4 className="font-bold mb-3 text-lg flex items-center justify-between">
+              <h4 className="font-semibold mb-2 text-sm flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <Refrigerator className="w-5 h-5 opacity-70" />
                   <span>Refrigerant</span>
@@ -755,7 +755,7 @@ const ViewReport = () => {
               )}
               data-testid="overflow-switch-metric-card"
             >
-              <h4 className="font-bold mb-3 text-lg flex items-center justify-between">
+              <h4 className="font-semibold mb-2 text-sm flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <Wind className="w-5 h-5 opacity-70" />
                   <span>Overflow / Float Switch</span>
@@ -771,7 +771,7 @@ const ViewReport = () => {
               className="p-5 rounded-xl border-2 shadow-md bg-blue-100 border-blue-300 text-blue-800"
               data-testid="air-filters-metric-card"
             >
-              <h4 className="font-bold mb-3 text-lg flex items-center justify-between">
+              <h4 className="font-semibold mb-2 text-sm flex items-center justify-between">
                 <span>Air Filters</span>
                 <Filter className="w-5 h-5 opacity-60" />
               </h4>
@@ -797,7 +797,7 @@ const ViewReport = () => {
               )}
               data-testid="evaporator-coil-metric-card"
             >
-              <h4 className="font-bold mb-3 text-lg flex items-center justify-between">
+              <h4 className="font-semibold mb-2 text-sm flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <Triangle className="w-5 h-5 opacity-70" />
                   <span>Evaporator Coil</span>
@@ -839,7 +839,7 @@ const ViewReport = () => {
               )}
               data-testid="condenser-coils-metric-card"
             >
-              <h4 className="font-bold mb-3 text-lg flex items-center justify-between">
+              <h4 className="font-semibold mb-2 text-sm flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <Layers className="w-5 h-5 opacity-70" />
                   <span>Condenser Coils</span>
@@ -876,7 +876,7 @@ const ViewReport = () => {
               )}
               data-testid="plenums-metric-card"
             >
-              <h4 className="font-bold mb-3 text-lg flex items-center justify-between">
+              <h4 className="font-semibold mb-2 text-sm flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <Square className="w-5 h-5 opacity-70" />
                   <span>Plenums</span>
@@ -916,7 +916,7 @@ const ViewReport = () => {
               )}
               data-testid="ductwork-metric-card"
             >
-              <h4 className="font-bold mb-3 text-lg flex items-center justify-between">
+              <h4 className="font-semibold mb-2 text-sm flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <Network className="w-5 h-5 opacity-70" />
                   <span>Ductwork</span>
