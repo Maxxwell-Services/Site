@@ -751,6 +751,15 @@ class ACMaintenanceAPITester:
         print("\n📋 REPORT TESTS")
         self.test_create_report()
         self.test_view_report_public()
+        
+        # Condenser Dual Run Capacitor Tests
+        print("\n📋 CONDENSER DUAL RUN CAPACITOR TESTS")
+        self.test_condenser_capacitor_scenario_1_both_good()
+        self.test_condenser_capacitor_scenario_2_herm_critical()
+        self.test_condenser_capacitor_scenario_3_fan_warning()
+        self.test_condenser_capacitor_scenario_4_both_critical()
+        
+        print("\n📋 OTHER TOLERANCE TESTS")
         self.test_tolerance_calculations()
         self.test_system_age_calculation()
         
