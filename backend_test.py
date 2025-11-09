@@ -295,7 +295,7 @@ class ACMaintenanceAPITester:
             "condenser_capacitor_herm_reading": 34.5,  # 1.4% off - Good
             "condenser_capacitor_fan_rating": 5.0,
             "condenser_capacitor_fan_reading": 4.9,    # 2% off - Good
-            "return_temp": 78.0, "supply_temp": 60.0, "amp_draw": 18.5, "rated_amps": 20.0,
+            "return_temp": 78.0, "supply_temp": 60.0,
             "primary_drain": "Clear and flowing", "drain_pan_condition": "Good shape",
             "air_filters": "Clean", "evaporator_coil": "Clean", "condenser_coils": "Clean",
             "air_purifier": "Good", "plenums": "Good", "ductwork": "Good"
@@ -347,7 +347,7 @@ class ACMaintenanceAPITester:
             "condenser_capacitor_herm_reading": 30.0,  # 14.3% off - Critical
             "condenser_capacitor_fan_rating": 5.0,
             "condenser_capacitor_fan_reading": 4.9,    # 2% off - Good
-            "return_temp": 78.0, "supply_temp": 60.0, "amp_draw": 18.5, "rated_amps": 20.0,
+            "return_temp": 78.0, "supply_temp": 60.0,
             "primary_drain": "Clear and flowing", "drain_pan_condition": "Good shape",
             "air_filters": "Clean", "evaporator_coil": "Clean", "condenser_coils": "Clean",
             "air_purifier": "Good", "plenums": "Good", "ductwork": "Good"
@@ -413,7 +413,7 @@ class ACMaintenanceAPITester:
             "condenser_capacitor_herm_reading": 34.5,  # 1.4% off - Good
             "condenser_capacitor_fan_rating": 5.0,
             "condenser_capacitor_fan_reading": 4.5,    # 10% off - Warning
-            "return_temp": 78.0, "supply_temp": 60.0, "amp_draw": 18.5, "rated_amps": 20.0,
+            "return_temp": 78.0, "supply_temp": 60.0,
             "primary_drain": "Clear and flowing", "drain_pan_condition": "Good shape",
             "air_filters": "Clean", "evaporator_coil": "Clean", "condenser_coils": "Clean",
             "air_purifier": "Good", "plenums": "Good", "ductwork": "Good"
@@ -479,7 +479,7 @@ class ACMaintenanceAPITester:
             "condenser_capacitor_herm_reading": 28.0,  # 20% off - Critical
             "condenser_capacitor_fan_rating": 5.0,
             "condenser_capacitor_fan_reading": 3.0,    # 40% off - Critical
-            "return_temp": 78.0, "supply_temp": 60.0, "amp_draw": 18.5, "rated_amps": 20.0,
+            "return_temp": 78.0, "supply_temp": 60.0,
             "primary_drain": "Clear and flowing", "drain_pan_condition": "Good shape",
             "air_filters": "Clean", "evaporator_coil": "Clean", "condenser_coils": "Clean",
             "air_purifier": "Good", "plenums": "Good", "ductwork": "Good"
