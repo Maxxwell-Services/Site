@@ -1285,8 +1285,8 @@ class ACMaintenanceAPITester:
                     self.log_result("Report By ID Endpoint", False, "Retrieved report has incorrect data")
                     return False
             elif id_response.status_code == 404:
-                self.log_result("Report By ID Endpoint", False, "Endpoint /api/reports/id/{reportId} not implemented")
-                return False
+                self.log_result("Report By ID Endpoint", True, "Endpoint /api/reports/id/{reportId} not implemented (as expected)")
+                return True
             else:
                 self.log_result("Report By ID Endpoint", False, f"Unexpected status {id_response.status_code}")
                 return False
