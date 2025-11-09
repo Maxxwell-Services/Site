@@ -456,7 +456,7 @@ const ViewReport = () => {
                     <Fan className="w-4 h-4 opacity-70" />
                   <span>Condenser Fan Motor</span>
                 </div>
-                <Info className="w-4 h-4 opacity-60" />
+                <Info className="w-3 h-3 opacity-60" />
               </h4>
               <p className="text-sm font-medium">{currentData.condenser_fan_motor}</p>
               <p className="text-[10px] mt-2 opacity-70 italic">Click for info</p>
@@ -490,7 +490,7 @@ const ViewReport = () => {
                       <Camera className="w-5 h-5 text-blue-600" />
                     </button>
                   )}
-                  <Info className="w-4 h-4 opacity-60" />
+                  <Info className="w-3 h-3 opacity-60" />
                 </div>
               </h4>
               <div className="space-y-3">
@@ -555,7 +555,7 @@ const ViewReport = () => {
                       <Camera className="w-5 h-5 text-blue-600" />
                     </button>
                   )}
-                  <Info className="w-4 h-4 opacity-60" />
+                  <Info className="w-3 h-3 opacity-60" />
                 </div>
               </h4>
               <div className="space-y-2">
@@ -603,7 +603,7 @@ const ViewReport = () => {
                       <Camera className="w-5 h-5 text-blue-600" />
                     </button>
                   )}
-                  <Info className="w-4 h-4 opacity-60" />
+                  <Info className="w-3 h-3 opacity-60" />
                 </div>
               </h4>
               <p className="text-sm font-medium">{currentData.primary_drain}</p>
@@ -643,7 +643,7 @@ const ViewReport = () => {
                       <Camera className="w-5 h-5 text-blue-600" />
                     </button>
                   )}
-                  <Info className="w-4 h-4 opacity-60" />
+                  <Info className="w-3 h-3 opacity-60" />
                 </div>
               </h4>
               <p className="text-sm font-medium">{currentData.drain_pan_condition}</p>
@@ -688,7 +688,7 @@ const ViewReport = () => {
                       <Camera className="w-5 h-5 text-blue-600" />
                     </button>
                   )}
-                  <Info className="w-4 h-4 opacity-60" />
+                  <Info className="w-3 h-3 opacity-60" />
                 </div>
               </h4>
               <p className="text-sm font-medium">{currentData.air_purifier}</p>
@@ -723,7 +723,7 @@ const ViewReport = () => {
                       <Camera className="w-5 h-5 text-blue-600" />
                     </button>
                   )}
-                  <Info className="w-4 h-4 opacity-60" />
+                  <Info className="w-3 h-3 opacity-60" />
                 </div>
               </h4>
               <div className="space-y-2">
@@ -760,7 +760,7 @@ const ViewReport = () => {
                   <Wind className="w-4 h-4 opacity-70" />
                   <span>Overflow / Float Switch</span>
                 </div>
-                <Info className="w-4 h-4 opacity-60" />
+                <Info className="w-3 h-3 opacity-60" />
               </h4>
               <p className="text-sm font-medium">{currentData.overflow_float_switch}</p>
               <p className="text-[10px] mt-2 opacity-70 italic">Click for info</p>
@@ -815,7 +815,7 @@ const ViewReport = () => {
                       <Camera className="w-5 h-5 text-blue-600" />
                     </button>
                   )}
-                  <Info className="w-4 h-4 opacity-60" />
+                  <Info className="w-3 h-3 opacity-60" />
                 </div>
               </h4>
               <p className="text-sm font-medium">{currentData.evaporator_coil}</p>
@@ -857,7 +857,7 @@ const ViewReport = () => {
                       <Camera className="w-5 h-5 text-blue-600" />
                     </button>
                   )}
-                  <Info className="w-4 h-4 opacity-60" />
+                  <Info className="w-3 h-3 opacity-60" />
                 </div>
               </h4>
               <p className="text-sm font-medium">{currentData.condenser_coils}</p>
@@ -894,7 +894,7 @@ const ViewReport = () => {
                       <Camera className="w-5 h-5 text-blue-600" />
                     </button>
                   )}
-                  <Info className="w-4 h-4 opacity-60" />
+                  <Info className="w-3 h-3 opacity-60" />
                 </div>
               </h4>
               <p className="text-sm font-medium">{currentData.plenums}</p>
@@ -934,7 +934,7 @@ const ViewReport = () => {
                       <Camera className="w-5 h-5 text-blue-600" />
                     </button>
                   )}
-                  <Info className="w-4 h-4 opacity-60" />
+                  <Info className="w-3 h-3 opacity-60" />
                 </div>
               </h4>
               <p className="text-sm font-medium">{currentData.ductwork}</p>
