@@ -1305,9 +1305,20 @@ class ACMaintenanceAPITester:
         self.test_electrical_fields_rejection()
         
         # Report tests
-        print("\n📋 REPORT TESTS")
+        print("\n📋 REPORT CREATION & RETRIEVAL TESTS")
         self.test_create_report()
         self.test_view_report_public()
+        self.test_report_by_id_endpoint()
+        
+        # Photo fields tests
+        print("\n📋 PHOTO FIELDS TESTS")
+        self.test_photo_fields_storage()
+        
+        # Report editing tests
+        print("\n📋 REPORT EDITING TESTS")
+        self.test_report_edit_functionality()
+        self.test_edit_authorization()
+        self.test_edit_limit()
         
         # Condenser Dual Run Capacitor Tests
         print("\n📋 CONDENSER DUAL RUN CAPACITOR TESTS")
