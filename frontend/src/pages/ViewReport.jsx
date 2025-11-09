@@ -86,7 +86,12 @@ const ViewReport = () => {
       // Find the version data from versions array
       const versionData = report.versions.find(v => v.version === version);
       if (versionData && versionData.data) {
-        setDisplayData(versionData.data);
+        // Merge version data with current report to fill in missing fields (like photos, system info)
+        // This ensures UI doesn't break when viewing older versions with limited data
+        setDisplayData({
+          ...report,  // Start with current report (has all fields including photos)
+          ...versionData.data  // Override with version-specific data (metrics, status)
+        });
       }
     }
   };
