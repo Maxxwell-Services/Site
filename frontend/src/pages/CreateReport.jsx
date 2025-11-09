@@ -498,8 +498,8 @@ const CreateReport = () => {
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="Filters Provided and Replaced">Filters Provided and Replaced</SelectItem>
-                      <SelectItem value="Filters Supplied by the customer">Filters Supplied by the customer</SelectItem>
+                      <SelectItem value="Filters Replaced (Provided by the technician)">Filters Replaced (Provided by the technician)</SelectItem>
+                      <SelectItem value="Filters Replaced (Provided by the Customer)">Filters Replaced (Provided by the Customer)</SelectItem>
                       <SelectItem value="Customer recently replaced the filters">Customer recently replaced the filters</SelectItem>
                       <SelectItem value="Customer will replace the filters soon">Customer will replace the filters soon</SelectItem>
                       <SelectItem value="Tech will return to replace filters">Tech will return to replace filters</SelectItem>
@@ -507,6 +507,80 @@ const CreateReport = () => {
                   </Select>
                 </div>
               </div>
+              
+              {/* Filter Details - Show when technician provided filters */}
+              {formData.air_filters === "Filters Replaced (Provided by the technician)" && (
+                <div className="mt-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                  <div className="flex justify-between items-center mb-3">
+                    <h3 className="text-sm font-semibold text-blue-900">Filter Details</h3>
+                    <Button
+                      type="button"
+                      onClick={() => {
+                        const newFilters = [...formData.filters_list, { size: '', quantity: '' }];
+                        setFormData({...formData, filters_list: newFilters});
+                      }}
+                      size="sm"
+                      className="text-white"
+                      style={{backgroundColor: '#DB7218'}}
+                    >
+                      <span className="mr-1">+</span> Add Filter
+                    </Button>
+                  </div>
+                  
+                  {formData.filters_list.map((filter, index) => (
+                    <div key={index} className="grid md:grid-cols-2 gap-4 mb-3">
+                      <div>
+                        <Label htmlFor={`filter_size_${index}`} className="text-blue-900">Filter Size</Label>
+                        <Input
+                          id={`filter_size_${index}`}
+                          value={filter.size}
+                          onChange={(e) => {
+                            const newFilters = [...formData.filters_list];
+                            newFilters[index].size = e.target.value;
+                            setFormData({...formData, filters_list: newFilters});
+                          }}
+                          className="mt-1"
+                          placeholder="e.g., 16x25x1"
+                        />
+                      </div>
+                      <div className="flex gap-2">
+                        <div className="flex-1">
+                          <Label htmlFor={`filter_quantity_${index}`} className="text-blue-900">Quantity</Label>
+                          <Input
+                            id={`filter_quantity_${index}`}
+                            type="number"
+                            min="1"
+                            value={filter.quantity}
+                            onChange={(e) => {
+                              const newFilters = [...formData.filters_list];
+                              newFilters[index].quantity = e.target.value;
+                              setFormData({...formData, filters_list: newFilters});
+                            }}
+                            className="mt-1"
+                            placeholder="e.g., 2"
+                          />
+                        </div>
+                        {formData.filters_list.length > 1 && (
+                          <div className="flex items-end">
+                            <Button
+                              type="button"
+                              onClick={() => {
+                                const newFilters = formData.filters_list.filter((_, i) => i !== index);
+                                setFormData({...formData, filters_list: newFilters});
+                              }}
+                              variant="outline"
+                              size="sm"
+                              className="text-red-600 border-red-300 hover:bg-red-50"
+                            >
+                              Remove
+                            </Button>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
 
             {/* Indoor Air Quality */}
