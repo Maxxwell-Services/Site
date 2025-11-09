@@ -574,7 +574,21 @@ const ViewReport = () => {
             >
               <h4 className="font-bold mb-3 text-lg flex items-center justify-between">
                 <span>Primary Drain</span>
-                <Info className="w-4 h-4 opacity-60" />
+                <div className="flex items-center gap-2">
+                  {currentData.drainage_photos && currentData.drainage_photos.length > 0 && (
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        openPhotoModal(currentData.drainage_photos, 'Drainage Photos');
+                      }}
+                      className="hover:scale-110 transition-transform"
+                      title={`${currentData.drainage_photos.length} photo(s) available`}
+                    >
+                      <Camera className="w-5 h-5 text-blue-600" />
+                    </button>
+                  )}
+                  <Info className="w-4 h-4 opacity-60" />
+                </div>
               </h4>
               <p className="text-sm font-medium">{currentData.primary_drain}</p>
               <p className="text-xs mt-3 opacity-70 italic">Click for more information</p>
