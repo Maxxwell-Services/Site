@@ -840,11 +840,26 @@ async def edit_report(report_id: str, data: MaintenanceReportCreate, user: dict 
         "edit_count": existing_report.get("edit_count", 0) + 1
     }
 
-@api_router.get("/reports/{unique_link}")
+@api_router.get("/reports/view/{unique_link}")
 async def get_report_by_link(unique_link: str):
     report = await db.reports.find_one({"unique_link": unique_link}, {"_id": 0})
     if not report:
         raise HTTPException(status_code=404, detail="Report not found")
+    return report
+
+@api_router.get("/reports/edit/{report_id}")
+async def get_report_for_edit(report_id: str, user: dict = Depends(get_current_user)):
+    if user.get("type") != "technician":
+        raise HTTPException(status_code=403, detail="Only technicians can access this endpoint")
+    
+    report = await db.reports.find_one({"id": report_id}, {"_id": 0})
+    if not report:
+        raise HTTPException(status_code=404, detail="Report not found")
+    
+    # Verify the technician is the creator
+    if report["technician_id"] != user["sub"]:
+        raise HTTPException(status_code=403, detail="Only the report creator can edit this report")
+    
     return report
 
 @api_router.get("/reports")
