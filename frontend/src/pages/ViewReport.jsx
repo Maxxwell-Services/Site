@@ -279,14 +279,14 @@ const ViewReport = () => {
               <p className="text-xs mt-3 opacity-70 italic">Click for more information</p>
             </div>
 
-            {/* Condenser Capacitor */}
+            {/* Condenser Dual Run Capacitor */}
             <div 
               className={`p-5 rounded-xl border-2 shadow-md cursor-pointer hover:shadow-lg transition-shadow ${getSeverityColor(report.condenser_capacitor_health.toLowerCase())}`}
               onClick={() => openMetricInfo('capacitor', report.condenser_capacitor_health.toLowerCase())}
               data-testid="condenser-capacitor-metric-card"
             >
               <h4 className="font-bold mb-3 text-lg flex items-center justify-between">
-                <span>Condenser Capacitor</span>
+                <span>Condenser Dual Run Capacitor</span>
                 <div className="flex items-center gap-2">
                   <span className={`text-xs px-2 py-1 rounded-full ${
                     report.condenser_capacitor_health === 'Good' ? 'bg-green-200' :
@@ -295,17 +295,34 @@ const ViewReport = () => {
                   <Info className="w-4 h-4 opacity-60" />
                 </div>
               </h4>
-              <div className="space-y-2">
-                <div className="flex justify-between text-sm">
-                  <span className="opacity-80">Rating:</span>
-                  <span className="font-semibold">{report.condenser_capacitor_rating}µF</span>
+              <div className="space-y-3">
+                {/* Herm Terminal */}
+                <div className="border-b border-gray-200 pb-2">
+                  <div className="text-xs font-semibold text-gray-600 mb-1">Common to Herm Terminal</div>
+                  <div className="flex justify-between text-sm">
+                    <span className="opacity-80">Rating:</span>
+                    <span className="font-semibold">{report.condenser_capacitor_herm_rating}µF</span>
+                  </div>
+                  <div className="flex justify-between text-sm">
+                    <span className="opacity-80">Reading:</span>
+                    <span className="font-semibold">{report.condenser_capacitor_herm_reading}µF</span>
+                  </div>
                 </div>
-                <div className="flex justify-between text-sm">
-                  <span className="opacity-80">Reading:</span>
-                  <span className="font-semibold">{report.condenser_capacitor_reading}µF</span>
+                {/* Fan Terminal */}
+                <div className="border-b border-gray-200 pb-2">
+                  <div className="text-xs font-semibold text-gray-600 mb-1">Common to Fan Terminal</div>
+                  <div className="flex justify-between text-sm">
+                    <span className="opacity-80">Rating:</span>
+                    <span className="font-semibold">{report.condenser_capacitor_fan_rating}µF</span>
+                  </div>
+                  <div className="flex justify-between text-sm">
+                    <span className="opacity-80">Reading:</span>
+                    <span className="font-semibold">{report.condenser_capacitor_fan_reading}µF</span>
+                  </div>
                 </div>
+                {/* Overall Variance */}
                 <div className="flex justify-between text-sm">
-                  <span className="opacity-80">Variance:</span>
+                  <span className="opacity-80">Max Variance:</span>
                   <span className="font-semibold">{report.condenser_capacitor_tolerance.toFixed(1)}%</span>
                 </div>
               </div>
