@@ -235,7 +235,7 @@ const ViewReport = () => {
                   <AlertTriangle className="w-5 h-5" style={{color: '#DB7218'}} />
                   <h2 className="text-lg font-bold" style={{color: '#1C325E'}}>ATTENTION REQUIRED</h2>
                 </div>
-                <div className="space-y-2">
+                <div className="space-y-1">
                   {displayData.warnings.map((warning, index) => (
                 <div 
                   key={index} 
@@ -558,7 +558,7 @@ const ViewReport = () => {
                   <Info className="w-3 h-3 opacity-60" />
                 </div>
               </h4>
-              <div className="space-y-2">
+              <div className="space-y-1">
                 <div className="flex justify-between text-sm">
                   <span className="opacity-80">Return Air:</span>
                   <span className="font-semibold">{currentData.return_temp}°F</span>
@@ -726,7 +726,7 @@ const ViewReport = () => {
                   <Info className="w-3 h-3 opacity-60" />
                 </div>
               </h4>
-              <div className="space-y-2">
+              <div className="space-y-1">
                 <div className="flex justify-between text-sm">
                   <span className="opacity-80">Type:</span>
                   <span className="font-semibold">{currentData.refrigerant_type}</span>
