@@ -119,15 +119,18 @@ backend:
   
   - task: "Condenser Dual Run Capacitor - Backend logic for 4 separate fields"
     implemented: true
-    working: "NA"
+    working: true
     file: "/app/backend/server.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: "NA"
         agent: "main"
         comment: "Updated Pydantic models (Report and ReportResponse) to replace condenser_capacitor_rating/reading with 4 new fields: condenser_capacitor_herm_rating, condenser_capacitor_herm_reading, condenser_capacitor_fan_rating, condenser_capacitor_fan_reading. Updated create_report endpoint logic to check both Herm and Fan capacitor tolerances separately using check_capacitor_tolerance() and calculate overall health based on worst status. Updated warning message generation to include details for both terminals when needed. Updated response construction to pass all 4 new fields."
+      - working: true
+        agent: "testing"
+        comment: "✅ VERIFIED: All 4 condenser dual run capacitor scenarios tested successfully. Scenario 1 (Both terminals good): condenser_capacitor_health = 'Good' ✓. Scenario 2 (Herm terminal >10% off): condenser_capacitor_health = 'Critical' with warning 'Condenser dual run capacitor - Herm terminal: 14.3% off' ✓. Scenario 3 (Fan terminal 6-10% off): condenser_capacitor_health = 'Warning' with warning 'Condenser dual run capacitor - Fan terminal: 10.0% off' ✓. Scenario 4 (Both terminals >10% off): condenser_capacitor_health = 'Critical' with warning 'Condenser dual run capacitor - Herm terminal: 20.0% off, Fan terminal: 40.0% off' ✓. API correctly accepts all 4 new fields, calculates overall health as worst of both terminals, calculates condenser_capacitor_tolerance as maximum variance, and generates detailed warning messages for problematic terminals. All response fields present and functioning correctly."
 
 frontend:
   - task: "Air Filters Section - Conditional Filter Details Display"
