@@ -193,22 +193,11 @@ const EditReport = () => {
         condenser_age: formData.condenser_age || ""
       };
 
-      const response = await axios.post(`${API}/reports/create`, payload, {
+      const response = await axios.put(`${API}/reports/${reportId}/edit`, payload, {
         headers: { Authorization: `Bearer ${token}` }
       });
 
-      toast.success('Report created successfully!');
-      
-      // Try to copy link to clipboard
-      const link = `${window.location.origin}/report/${response.data.unique_link}`;
-      try {
-        await navigator.clipboard.writeText(link);
-        toast.success('Report link copied to clipboard!')
-      } catch (err) {
-        // Clipboard permission denied - just show the link
-        console.log('Clipboard permission denied:', err);
-      }
-      
+      toast.success(`Report updated successfully! (Version ${response.data.current_version})`);
       navigate('/technician/dashboard');
     } catch (error) {
       toast.error(error.response?.data?.detail || 'Failed to create report');
