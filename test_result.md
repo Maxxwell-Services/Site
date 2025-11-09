@@ -261,6 +261,12 @@ frontend:
       - working: true
         agent: "testing"
         comment: "✅ BACKEND EDIT FUNCTIONALITY FULLY TESTED AND WORKING: 1) PUT /api/reports/{reportId}/edit endpoint working perfectly with technician authorization (only creator can edit) ✓, 2) GET /api/reports/edit/{reportId} endpoint for loading report data working ✓, 3) 3-edit limit properly enforced (4th edit returns 400 error) ✓, 4) Version history storage working - creates 'Before Repair' (version 1) and 'After Repair X' (versions 2-4) with timestamps ✓, 5) All report fields editable and properly updated ✓, 6) Edit count tracking working (0-3 edits allowed) ✓, 7) Current version tracking working (1-4) ✓, 8) Authorization properly denies edit access to non-creators (403 error) ✓. Backend implementation is complete and fully functional."
+      - working: true
+        agent: "main"
+        comment: "Fixed DocumentTooLarge error when editing reports with photos. Split photo updates into separate MongoDB operations to avoid 16MB update command limit. Photos can now be added/updated during report editing without errors."
+      - working: "NA"
+        agent: "user"
+        comment: "User reported 'Failed to update report' error when trying to add pictures during report editing on desktop."
   
   - task: "Photo Modal with Grid View"
     implemented: false
