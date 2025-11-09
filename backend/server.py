@@ -621,6 +621,225 @@ async def create_report(data: MaintenanceReportCreate, user: dict = Depends(get_
         "message": "Report created successfully"
     }
 
+@api_router.put("/reports/{report_id}/edit")
+async def edit_report(report_id: str, data: MaintenanceReportCreate, user: dict = Depends(get_current_user)):
+    if user.get("type") != "technician":
+        raise HTTPException(status_code=403, detail="Only technicians can edit reports")
+    
+    # Get the existing report
+    existing_report = await db.reports.find_one({"id": report_id})
+    if not existing_report:
+        raise HTTPException(status_code=404, detail="Report not found")
+    
+    # Verify the technician is the creator
+    if existing_report["technician_id"] != user["sub"]:
+        raise HTTPException(status_code=403, detail="Only the report creator can edit this report")
+    
+    # Check edit limit
+    if existing_report.get("edit_count", 0) >= 3:
+        raise HTTPException(status_code=400, detail="Maximum edit limit (3) reached for this report")
+    
+    # Calculate derived values (same as create_report)
+    delta_t = data.return_temp - data.supply_temp
+    
+    # Check tolerances for capacitors
+    # For blower motor capacitor (PSC Motor only)
+    if data.blower_motor_type == "PSC Motor":
+        blower_capacitor_status, blower_capacitor_tolerance, blower_capacitor_needs_replacement = check_capacitor_tolerance(
+            data.blower_motor_capacitor_rating, data.blower_motor_capacitor_reading
+        )
+    else:
+        blower_capacitor_status = "N/A"
+        blower_capacitor_tolerance = 0.0
+        blower_capacitor_needs_replacement = False
+    
+    # Check both Herm and Fan capacitor readings
+    herm_capacitor_status, herm_capacitor_tolerance, herm_capacitor_needs_replacement = check_capacitor_tolerance(
+        data.condenser_capacitor_herm_rating, data.condenser_capacitor_herm_reading
+    )
+    fan_capacitor_status, fan_capacitor_tolerance, fan_capacitor_needs_replacement = check_capacitor_tolerance(
+        data.condenser_capacitor_fan_rating, data.condenser_capacitor_fan_reading
+    )
+    
+    # Use the worst status for overall condenser capacitor health
+    condenser_capacitor_needs_replacement = herm_capacitor_needs_replacement or fan_capacitor_needs_replacement
+    condenser_capacitor_tolerance = max(herm_capacitor_tolerance, fan_capacitor_tolerance)
+    
+    # Determine overall condenser capacitor status (worst of both)
+    status_priority = {"Critical": 3, "Warning": 2, "Good": 1}
+    if status_priority.get(herm_capacitor_status, 0) >= status_priority.get(fan_capacitor_status, 0):
+        condenser_capacitor_status = herm_capacitor_status
+    else:
+        condenser_capacitor_status = fan_capacitor_status
+    
+    delta_t_status = check_delta_t(delta_t)
+    
+    # Build warnings list
+    warnings = []
+    if blower_capacitor_needs_replacement:
+        warnings.append({
+            "type": "blower_capacitor",
+            "severity": blower_capacitor_status.lower(),
+            "message": f"Blower motor capacitor reading is {blower_capacitor_tolerance:.1f}% off from rated value",
+            "part_needed": "capacitor"
+        })
+    
+    if condenser_capacitor_needs_replacement:
+        cap_message_parts = []
+        if herm_capacitor_needs_replacement:
+            cap_message_parts.append(f"Herm terminal: {herm_capacitor_tolerance:.1f}% off")
+        if fan_capacitor_needs_replacement:
+            cap_message_parts.append(f"Fan terminal: {fan_capacitor_tolerance:.1f}% off")
+        
+        warnings.append({
+            "type": "condenser_capacitor",
+            "severity": condenser_capacitor_status.lower(),
+            "message": f"Condenser dual run capacitor - {', '.join(cap_message_parts)}",
+            "part_needed": "capacitor"
+        })
+    
+    if delta_t_status != "Good":
+        warnings.append({
+            "type": "delta_t",
+            "severity": delta_t_status.lower(),
+            "message": f"Delta T is {delta_t:.1f}°F (ideal range: 15-22°F)",
+            "part_needed": None
+        })
+    
+    if data.refrigerant_status != "Good":
+        warnings.append({
+            "type": "refrigerant",
+            "severity": "warning" if "Low" in data.refrigerant_status else "critical",
+            "message": f"Refrigerant status: {data.refrigerant_status}",
+            "part_needed": "refrigerant"
+        })
+    
+    # Calculate performance score
+    worst_capacitor_tolerance = max(blower_capacitor_tolerance, condenser_capacitor_tolerance)
+    score_data = {
+        'capacitor_tolerance': worst_capacitor_tolerance,
+        'delta_t': delta_t,
+        'refrigerant_status': data.refrigerant_status,
+        'primary_drain': data.primary_drain,
+        'drain_pan_condition': data.drain_pan_condition,
+        'air_purifier': data.air_purifier,
+        'system_age': 0
+    }
+    performance_score = calculate_performance_score(score_data)
+    
+    # Create updated report data
+    updated_report_data = {
+        "customer_name": data.customer_name,
+        "customer_email": data.customer_email,
+        "customer_phone": data.customer_phone,
+        "evaporator_brand": data.evaporator_brand,
+        "evaporator_model_number": data.evaporator_model_number,
+        "evaporator_serial_number": data.evaporator_serial_number,
+        "evaporator_date_of_manufacture": data.evaporator_date_of_manufacture,
+        "evaporator_age": data.evaporator_age,
+        "evaporator_warranty_status": data.evaporator_warranty_status,
+        "evaporator_warranty_details": data.evaporator_warranty_details or "",
+        "evaporator_photos": data.evaporator_photos or [],
+        "condenser_brand": data.condenser_brand,
+        "condenser_model_number": data.condenser_model_number,
+        "condenser_serial_number": data.condenser_serial_number,
+        "condenser_date_of_manufacture": data.condenser_date_of_manufacture,
+        "condenser_age": data.condenser_age,
+        "condenser_warranty_status": data.condenser_warranty_status,
+        "condenser_warranty_details": data.condenser_warranty_details or "",
+        "condenser_photos": data.condenser_photos or [],
+        "condenser_fan_motor": data.condenser_fan_motor,
+        "rated_rla": data.rated_rla,
+        "rated_lra": data.rated_lra,
+        "actual_rla": data.actual_rla,
+        "actual_lra": data.actual_lra,
+        "refrigerant_type": data.refrigerant_type,
+        "superheat": data.superheat,
+        "subcooling": data.subcooling,
+        "refrigerant_status": data.refrigerant_status,
+        "refrigerant_photos": data.refrigerant_photos or [],
+        "blower_motor_type": data.blower_motor_type,
+        "blower_motor_capacitor_rating": data.blower_motor_capacitor_rating,
+        "blower_motor_capacitor_reading": data.blower_motor_capacitor_reading,
+        "blower_motor_capacitor_health": blower_capacitor_status if data.blower_motor_type == "PSC Motor" else None,
+        "blower_motor_capacitor_tolerance": blower_capacitor_tolerance if data.blower_motor_type == "PSC Motor" else None,
+        "condenser_capacitor_herm_rating": data.condenser_capacitor_herm_rating,
+        "condenser_capacitor_herm_reading": data.condenser_capacitor_herm_reading,
+        "condenser_capacitor_fan_rating": data.condenser_capacitor_fan_rating,
+        "condenser_capacitor_fan_reading": data.condenser_capacitor_fan_reading,
+        "condenser_capacitor_health": condenser_capacitor_status,
+        "condenser_capacitor_tolerance": condenser_capacitor_tolerance,
+        "capacitor_photos": data.capacitor_photos or [],
+        "return_temp": data.return_temp,
+        "supply_temp": data.supply_temp,
+        "delta_t": delta_t,
+        "delta_t_status": delta_t_status,
+        "temperature_photos": data.temperature_photos or [],
+        "primary_drain": data.primary_drain,
+        "primary_drain_notes": data.primary_drain_notes,
+        "drain_pan_condition": data.drain_pan_condition,
+        "drainage_photos": data.drainage_photos or [],
+        "air_filters": data.air_filters,
+        "filters_list": data.filters_list or [],
+        "evaporator_coil": data.evaporator_coil,
+        "condenser_coils": data.condenser_coils,
+        "air_purifier": data.air_purifier,
+        "plenums": data.plenums,
+        "ductwork": data.ductwork,
+        "indoor_air_quality_photos": data.indoor_air_quality_photos or [],
+        "general_photos": data.general_photos or [],
+        "notes": data.notes,
+        "other_repair_recommendations": data.other_repair_recommendations,
+        "warnings": warnings,
+        "performance_score": performance_score,
+        "timestamp": datetime.now(timezone.utc).isoformat()
+    }
+    
+    # Store current version in versions list if it's the first edit
+    versions = existing_report.get("versions", [])
+    if len(versions) == 0:
+        # This is the first edit, so store the original report as version 1
+        original_version = {
+            "version": 1,
+            "label": "Before Repair",
+            "timestamp": existing_report.get("created_at"),
+            "data": {k: v for k, v in existing_report.items() if k not in ["_id", "versions", "current_version", "edit_count"]}
+        }
+        versions.append(original_version)
+    
+    # Add new version
+    new_version_number = existing_report.get("edit_count", 0) + 2  # +2 because version 1 is original
+    new_version = {
+        "version": new_version_number,
+        "label": f"After Repair {new_version_number - 1}",
+        "timestamp": updated_report_data["timestamp"],
+        "data": updated_report_data
+    }
+    versions.append(new_version)
+    
+    # Update the report
+    update_result = await db.reports.update_one(
+        {"id": report_id},
+        {
+            "$set": {
+                **updated_report_data,
+                "current_version": new_version_number,
+                "edit_count": existing_report.get("edit_count", 0) + 1,
+                "versions": versions
+            }
+        }
+    )
+    
+    if update_result.modified_count == 0:
+        raise HTTPException(status_code=500, detail="Failed to update report")
+    
+    return {
+        "report_id": report_id,
+        "message": "Report updated successfully",
+        "current_version": new_version_number,
+        "edit_count": existing_report.get("edit_count", 0) + 1
+    }
+
 @api_router.get("/reports/{unique_link}")
 async def get_report_by_link(unique_link: str):
     report = await db.reports.find_one({"unique_link": unique_link}, {"_id": 0})
