@@ -1,14 +1,14 @@
 {
-  "timestamp": "2025-11-07T03:40:18.942960",
-  "total_tests": 11,
-  "passed": 11,
-  "failed": 0,
-  "success_rate": "100.0%",
+  "timestamp": "2025-11-09T06:37:16.005066",
+  "total_tests": 15,
+  "passed": 14,
+  "failed": 1,
+  "success_rate": "93.3%",
   "results": [
     {
       "test": "Technician Registration",
       "passed": true,
-      "message": "Registered as tech_034016",
+      "message": "Registered as tech_063713",
       "response": null
     },
     {
@@ -20,7 +20,7 @@
     {
       "test": "Customer Registration",
       "passed": true,
-      "message": "Registered as Customer 034017",
+      "message": "Registered as Customer 063714",
       "response": null
     },
     {
@@ -32,13 +32,37 @@
     {
       "test": "Create Report",
       "passed": true,
-      "message": "Report created with link: 6368d62a-66cc-47f8-9aed-b6d0b2104106",
+      "message": "Report created with link: 74a6c7dd-188a-4ff2-b098-114604b1b374",
       "response": null
     },
     {
       "test": "View Report (Public)",
       "passed": true,
-      "message": "Report retrieved with 1 warnings",
+      "message": "Report retrieved successfully with capacitor health: Good",
+      "response": null
+    },
+    {
+      "test": "Condenser Capacitor Scenario 1 (Both Good)",
+      "passed": true,
+      "message": "Both terminals in good condition - health is 'Good'",
+      "response": null
+    },
+    {
+      "test": "Condenser Capacitor Scenario 2 (Herm Critical)",
+      "passed": true,
+      "message": "Herm terminal critical detected - health is 'Critical', warning: Condenser dual run capacitor - Herm terminal: 14.3% off",
+      "response": null
+    },
+    {
+      "test": "Condenser Capacitor Scenario 3 (Fan Warning)",
+      "passed": true,
+      "message": "Fan terminal warning detected - health is 'Warning', warning: Condenser dual run capacitor - Fan terminal: 10.0% off",
+      "response": null
+    },
+    {
+      "test": "Condenser Capacitor Scenario 4 (Both Critical)",
+      "passed": true,
+      "message": "Both terminals critical detected - health is 'Critical', warning: Condenser dual run capacitor - Herm terminal: 20.0% off, Fan terminal: 40.0% off",
       "response": null
     },
     {
@@ -49,14 +73,14 @@
     },
     {
       "test": "System Age Calculation",
-      "passed": true,
-      "message": "Correctly calculated age: 15 years",
+      "passed": false,
+      "message": "System age not calculated",
       "response": null
     },
     {
       "test": "Get Technician Reports",
       "passed": true,
-      "message": "Retrieved 3 reports",
+      "message": "Retrieved 7 reports",
       "response": null
     },
     {
