@@ -800,24 +800,29 @@ async def edit_report(report_id: str, data: MaintenanceReportCreate, user: dict 
     }
     
     # Store current version in versions list if it's the first edit
+    # Exclude photo arrays to prevent document size issues
+    photo_fields = ["evaporator_photos", "condenser_photos", "refrigerant_photos", "capacitor_photos", 
+                    "temperature_photos", "drainage_photos", "indoor_air_quality_photos", "general_photos"]
+    
     versions = existing_report.get("versions", [])
     if len(versions) == 0:
-        # This is the first edit, so store the original report as version 1
+        # This is the first edit, so store the original report as version 1 (without photos)
         original_version = {
             "version": 1,
             "label": "Before Repair",
             "timestamp": existing_report.get("created_at"),
-            "data": {k: v for k, v in existing_report.items() if k not in ["_id", "versions", "current_version", "edit_count"]}
+            "data": {k: v for k, v in existing_report.items() if k not in ["_id", "versions", "current_version", "edit_count"] + photo_fields}
         }
         versions.append(original_version)
     
-    # Add new version
+    # Add new version (without photos to keep document size manageable)
     new_version_number = existing_report.get("edit_count", 0) + 2  # +2 because version 1 is original
+    version_data = {k: v for k, v in updated_report_data.items() if k not in photo_fields}
     new_version = {
         "version": new_version_number,
         "label": f"After Repair {new_version_number - 1}",
         "timestamp": updated_report_data["timestamp"],
-        "data": updated_report_data
+        "data": version_data
     }
     versions.append(new_version)
     
