@@ -354,14 +354,14 @@ const ViewReport = () => {
                         strokeWidth="12"
                         fill="none"
                         strokeDasharray={`${2 * Math.PI * 56}`}
-                        strokeDashoffset={`${2 * Math.PI * 56 * (1 - (displayData?.system_health_score || 90) / 100)}`}
+                        strokeDashoffset={`${2 * Math.PI * 56 * (1 - systemHealthScore / 100)}`}
                         className="text-green-500 transition-all duration-1000 ease-out"
                         strokeLinecap="round"
                       />
                     </svg>
                     <div className="absolute inset-0 flex items-center justify-center">
                       <span className="text-4xl md:text-5xl font-bold text-white">
-                        {Math.round(displayData?.system_health_score || 90)}
+                        {systemHealthScore}
                       </span>
                     </div>
                   </div>
