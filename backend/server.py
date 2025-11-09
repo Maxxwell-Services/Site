@@ -909,19 +909,26 @@ async def scan_data_plate(request: DataPlateOCRRequest):
 1. Brand/Manufacturer name - Look for company logos or names like "LENNOX", "TRANE", "CARRIER", "GOODMAN", etc.
 2. Model Number - May be labeled as "MODEL", "MODEL NO.", "M/N", "MODEL #", or just appear as a product code
 3. Serial Number - May be labeled as "SERIAL", "SERIAL NO.", "S/N", "SERIAL #", or appear as a unique identifier
+4. RLA (Rated Load Amps) - May be labeled as "RLA", "RATED LOAD AMPS", "R.L.A.", or "AMPS"
+5. LRA (Locked Rotor Amps) - May be labeled as "LRA", "LOCKED ROTOR AMPS", "L.R.A.", or "STARTING AMPS"
 
 IMPORTANT NOTES:
 - Data plates may use abbreviations: "M/N" = Model Number, "S/N" = Serial Number
 - Model numbers often contain letters and numbers (e.g., "CBA25UH-048-230-02")
 - Serial numbers are typically numeric or alphanumeric codes (e.g., "1523C65202")
+- RLA is the normal operating amperage (e.g., "18.5" or "18.5A")
+- LRA is the starting/locked rotor amperage, usually higher (e.g., "95" or "95A")
 - Look carefully at all text on the data plate, even if it's in small print
 - The model number is often one of the most prominent codes on the plate
+- Electrical specifications (RLA/LRA) are often in a separate section on the data plate
 
 Please respond ONLY with a JSON object in this exact format (no additional text):
 {{
     "brand": "manufacturer name",
     "model_number": "model number",
-    "serial_number": "serial number"
+    "serial_number": "serial number",
+    "rla": "RLA value (just the number, e.g., 18.5)",
+    "lra": "LRA value (just the number, e.g., 95)"
 }}
 
 If you cannot read a field clearly, use "Not found" as the value.
