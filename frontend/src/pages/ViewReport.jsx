@@ -147,6 +147,84 @@ const ViewReport = () => {
   // Use displayData if available, otherwise fallback to report
   const currentData = displayData || report;
 
+  // Calculate System Health Score based on metric statuses
+  const calculateSystemHealthScore = () => {
+    let totalPoints = 0;
+    let maxPoints = 0;
+    
+    // Check capacitors (if applicable)
+    if (currentData.blower_motor_type === "PSC Motor" && currentData.blower_motor_capacitor_health) {
+      maxPoints += 10;
+      if (currentData.blower_motor_capacitor_health === 'Good') totalPoints += 10;
+      else if (currentData.blower_motor_capacitor_health === 'Warning') totalPoints += 5;
+    }
+    
+    if (currentData.condenser_capacitor_health) {
+      maxPoints += 10;
+      if (currentData.condenser_capacitor_health === 'Good') totalPoints += 10;
+      else if (currentData.condenser_capacitor_health === 'Warning') totalPoints += 5;
+    }
+    
+    // Check Delta T / Temperature
+    if (currentData.delta_t_status) {
+      maxPoints += 15;
+      if (currentData.delta_t_status === 'Good') totalPoints += 15;
+      else if (currentData.delta_t_status === 'Warning') totalPoints += 8;
+    }
+    
+    // Check Refrigerant
+    if (currentData.refrigerant_status) {
+      maxPoints += 15;
+      if (currentData.refrigerant_status === 'Good') totalPoints += 15;
+      else if (currentData.refrigerant_status === 'Low') totalPoints += 5;
+    }
+    
+    // Check Drainage (Primary Drain)
+    if (currentData.primary_drain) {
+      maxPoints += 10;
+      if (currentData.primary_drain === 'Draining properly') totalPoints += 10;
+      else if (currentData.primary_drain === 'Slow drainage') totalPoints += 5;
+    }
+    
+    // Check Drain Pan
+    if (currentData.drain_pan_condition) {
+      maxPoints += 10;
+      if (currentData.drain_pan_condition === 'Clean') totalPoints += 10;
+      else if (currentData.drain_pan_condition === 'Some buildup') totalPoints += 5;
+    }
+    
+    // Check Air Filters
+    if (currentData.air_filters) {
+      maxPoints += 10;
+      const goodFilters = ['Filters Replaced (Provided by the technician)', 
+                          'Filters Replaced (Provided by the Customer)', 
+                          'Customer recently replaced the filters'];
+      if (goodFilters.includes(currentData.air_filters)) totalPoints += 10;
+      else totalPoints += 3;
+    }
+    
+    // Check Coils (Evaporator)
+    if (currentData.evaporator_coil) {
+      maxPoints += 10;
+      if (currentData.evaporator_coil === 'Clean') totalPoints += 10;
+      else if (currentData.evaporator_coil === 'Slightly dirty') totalPoints += 5;
+    }
+    
+    // Check Condenser Coils
+    if (currentData.condenser_coils) {
+      maxPoints += 10;
+      if (currentData.condenser_coils === 'Clean') totalPoints += 10;
+      else if (currentData.condenser_coils === 'Slightly dirty') totalPoints += 5;
+    }
+    
+    return maxPoints > 0 ? Math.round((totalPoints / maxPoints) * 100) : 90;
+  };
+  
+  const systemHealthScore = calculateSystemHealthScore();
+  
+  // Calculate Deficiencies percentage based on warnings
+  const deficienciesPercentage = Math.min((currentData?.warnings?.length || 0) * 15, 100);
+
   return (
     <div className="min-h-screen px-2 sm:px-4 py-4 sm:py-8" style={{backgroundColor: '#f8f9fa'}}>
       <div className="max-w-7xl mx-auto">
