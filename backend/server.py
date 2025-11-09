@@ -214,6 +214,7 @@ class MaintenanceReport(BaseModel):
     delta_t: float
     delta_t_status: str  # "Good", "Warning", "Critical"
     temperature_photos: Optional[List[str]] = Field(default_factory=list)
+    overflow_float_switch: str
     primary_drain: str
     primary_drain_notes: Optional[str] = ""
     drain_pan_condition: str
