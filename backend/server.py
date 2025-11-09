@@ -169,6 +169,7 @@ class MaintenanceReport(BaseModel):
     customer_name: str
     customer_email: EmailStr
     customer_phone: str
+    archived: bool = False
     # Evaporator Coil Details
     evaporator_brand: str
     evaporator_model_number: str
