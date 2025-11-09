@@ -234,22 +234,12 @@ const TechnicianDashboard = () => {
             <div className="grid gap-4">
               {filteredReports.map((report) => (
                 <div key={report.id} className="glass rounded-xl p-6 card-hover" data-testid={`report-${report.id}`}>
-                  <div className="flex items-start justify-between flex-wrap gap-4">
+                  <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                     <div className="flex-1">
-                      <div className="flex items-center gap-3 mb-3">
-                        <h3 className="text-xl font-bold text-blue-900">{report.customer_name}</h3>
-                        {report.warnings.length > 0 && (
-                          <span className="px-3 py-1 rounded-full text-xs font-semibold bg-red-100 text-red-700">
-                            {report.warnings.length} Warning{report.warnings.length > 1 ? 's' : ''}
-                          </span>
-                        )}
-                      </div>
-                      <div className="grid sm:grid-cols-2 gap-2 text-sm text-blue-700">
-                        <p><span className="font-semibold">Email:</span> {report.customer_email}</p>
-                        <p><span className="font-semibold">Phone:</span> {report.customer_phone}</p>
-                        <p><span className="font-semibold">Date:</span> {new Date(report.created_at).toLocaleDateString()}</p>
-                        <p><span className="font-semibold">Performance:</span> {report.performance_score}%</p>
-                      </div>
+                      <h3 className="text-xl font-bold text-blue-900 mb-1">{report.customer_name}</h3>
+                      <p className="text-sm text-blue-700">
+                        <span className="font-semibold">Created:</span> {new Date(report.created_at).toLocaleDateString()}
+                      </p>
                     </div>
                     <div className="flex flex-wrap gap-2">
                       <Button
