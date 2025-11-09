@@ -242,7 +242,7 @@ const ViewReport = () => {
                   className={`p-4 rounded-lg border-2 ${getSeverityColor(warning.severity)}`}
                   data-testid={`warning-${index}`}
                 >
-                  <p className="font-semibold">{warning.message}</p>
+                  <p className="font-medium">{warning.message}</p>
                 </div>
               ))}
                 </div>
@@ -260,20 +260,20 @@ const ViewReport = () => {
             <div>
               <div className="flex items-center gap-2 mb-4">
                 <User className="w-5 h-5" style={{color: '#1C325E'}} />
-                <h3 className="text-lg font-semibold" style={{color: '#1C325E'}}>Customer</h3>
+                <h3 className="text-lg font-medium" style={{color: '#1C325E'}}>Customer</h3>
               </div>
               <div className="space-y-3">
                 <div>
                   <span className="text-xs text-gray-500 uppercase tracking-wide">Name</span>
-                  <p className="font-semibold" style={{color: '#1C325E'}}>{currentData.customer_name}</p>
+                  <p className="font-medium" style={{color: '#1C325E'}}>{currentData.customer_name}</p>
                 </div>
                 <div>
                   <span className="text-xs text-gray-500 uppercase tracking-wide">Email</span>
-                  <p className="font-semibold text-sm" style={{color: '#1C325E'}}>{currentData.customer_email}</p>
+                  <p className="font-medium text-sm" style={{color: '#1C325E'}}>{currentData.customer_email}</p>
                 </div>
                 <div>
                   <span className="text-xs text-gray-500 uppercase tracking-wide">Phone</span>
-                  <p className="font-semibold" style={{color: '#1C325E'}}>{currentData.customer_phone}</p>
+                  <p className="font-medium" style={{color: '#1C325E'}}>{currentData.customer_phone}</p>
                 </div>
               </div>
             </div>
@@ -282,37 +282,37 @@ const ViewReport = () => {
             <div className="border-l-2 pl-6" style={{borderColor: '#DB7218'}}>
               <div className="flex items-center gap-2 mb-4">
                 <Snowflake className="w-5 h-5" style={{color: '#DB7218'}} />
-                <h3 className="text-lg font-semibold" style={{color: '#1C325E'}}>Indoor Unit (Evaporator)</h3>
+                <h3 className="text-lg font-medium" style={{color: '#1C325E'}}>Indoor Unit (Evaporator)</h3>
               </div>
               <div className="space-y-3">
                 <div>
                   <span className="text-xs text-gray-500 uppercase tracking-wide">Brand</span>
-                  <p className="font-semibold" style={{color: '#1C325E'}}>{currentData.evaporator_brand}</p>
+                  <p className="font-medium" style={{color: '#1C325E'}}>{currentData.evaporator_brand}</p>
                 </div>
                 <div>
                   <span className="text-xs text-gray-500 uppercase tracking-wide">Model Number</span>
-                  <p className="font-semibold text-sm" style={{color: '#1C325E'}}>{currentData.evaporator_model_number}</p>
+                  <p className="font-medium text-sm" style={{color: '#1C325E'}}>{currentData.evaporator_model_number}</p>
                 </div>
                 <div>
                   <span className="text-xs text-gray-500 uppercase tracking-wide">Serial Number</span>
-                  <p className="font-semibold text-sm" style={{color: '#1C325E'}}>{currentData.evaporator_serial_number}</p>
+                  <p className="font-medium text-sm" style={{color: '#1C325E'}}>{currentData.evaporator_serial_number}</p>
                 </div>
                 {currentData.evaporator_date_of_manufacture && (
                   <div>
                     <span className="text-xs text-gray-500 uppercase tracking-wide">Manufactured</span>
-                    <p className="font-semibold text-sm" style={{color: '#1C325E'}}>{currentData.evaporator_date_of_manufacture}</p>
+                    <p className="font-medium text-sm" style={{color: '#1C325E'}}>{currentData.evaporator_date_of_manufacture}</p>
                   </div>
                 )}
                 {currentData.evaporator_age && (
                   <div>
                     <span className="text-xs text-gray-500 uppercase tracking-wide">Age</span>
-                    <p className="font-semibold" style={{color: '#1C325E'}}>{currentData.evaporator_age}</p>
+                    <p className="font-medium" style={{color: '#1C325E'}}>{currentData.evaporator_age}</p>
                   </div>
                 )}
                 <div>
                   <span className="text-xs text-gray-500 uppercase tracking-wide">Warranty</span>
                   <div className="mt-1">
-                    <span className={`inline-block font-semibold px-3 py-1 rounded-full text-xs ${
+                    <span className={`inline-block font-medium px-3 py-1 rounded-full text-xs ${
                       currentData.evaporator_warranty_status === 'Active' 
                         ? 'bg-green-100 text-green-800' 
                         : 'bg-gray-100 text-gray-800'
@@ -329,37 +329,37 @@ const ViewReport = () => {
             <div className="border-l-2 pl-6" style={{borderColor: '#DB7218'}}>
               <div className="flex items-center gap-2 mb-4">
                 <Snowflake className="w-5 h-5" style={{color: '#DB7218'}} />
-                <h3 className="text-lg font-semibold" style={{color: '#1C325E'}}>Condenser Unit</h3>
+                <h3 className="text-lg font-medium" style={{color: '#1C325E'}}>Condenser Unit</h3>
               </div>
               <div className="space-y-3">
                 <div>
                   <span className="text-xs text-gray-500 uppercase tracking-wide">Brand</span>
-                  <p className="font-semibold" style={{color: '#1C325E'}}>{currentData.condenser_brand}</p>
+                  <p className="font-medium" style={{color: '#1C325E'}}>{currentData.condenser_brand}</p>
                 </div>
                 <div>
                   <span className="text-xs text-gray-500 uppercase tracking-wide">Model Number</span>
-                  <p className="font-semibold text-sm" style={{color: '#1C325E'}}>{currentData.condenser_model_number}</p>
+                  <p className="font-medium text-sm" style={{color: '#1C325E'}}>{currentData.condenser_model_number}</p>
                 </div>
                 <div>
                   <span className="text-xs text-gray-500 uppercase tracking-wide">Serial Number</span>
-                  <p className="font-semibold text-sm" style={{color: '#1C325E'}}>{currentData.condenser_serial_number}</p>
+                  <p className="font-medium text-sm" style={{color: '#1C325E'}}>{currentData.condenser_serial_number}</p>
                 </div>
                 {currentData.condenser_date_of_manufacture && (
                   <div>
                     <span className="text-xs text-gray-500 uppercase tracking-wide">Manufactured</span>
-                    <p className="font-semibold text-sm" style={{color: '#1C325E'}}>{currentData.condenser_date_of_manufacture}</p>
+                    <p className="font-medium text-sm" style={{color: '#1C325E'}}>{currentData.condenser_date_of_manufacture}</p>
                   </div>
                 )}
                 {currentData.condenser_age && (
                   <div>
                     <span className="text-xs text-gray-500 uppercase tracking-wide">Age</span>
-                    <p className="font-semibold" style={{color: '#1C325E'}}>{currentData.condenser_age}</p>
+                    <p className="font-medium" style={{color: '#1C325E'}}>{currentData.condenser_age}</p>
                   </div>
                 )}
                 <div>
                   <span className="text-xs text-gray-500 uppercase tracking-wide">Warranty</span>
                   <div className="mt-1">
-                    <span className={`inline-block font-semibold px-3 py-1 rounded-full text-xs ${
+                    <span className={`inline-block font-medium px-3 py-1 rounded-full text-xs ${
                       currentData.condenser_warranty_status === 'Active' 
                         ? 'bg-green-100 text-green-800' 
                         : 'bg-gray-100 text-gray-800'
@@ -393,7 +393,7 @@ const ViewReport = () => {
                 onClick={() => openMetricInfo('capacitor', currentData.blower_motor_capacitor_health.toLowerCase())}
                 data-testid="blower-capacitor-metric-card"
               >
-                <h4 className="font-semibold mb-2 text-sm flex items-center justify-between">
+                <h4 className="font-medium mb-2 text-sm flex items-center justify-between">
                   <div className="flex items-center gap-1.5">
                     <Plug2 className="w-4 h-4 opacity-70" />
                     <span className="text-xs">Blower Motor Capacitor</span>
@@ -451,7 +451,7 @@ const ViewReport = () => {
               )}
               data-testid="condenser-fan-motor-card"
             >
-              <h4 className="font-semibold mb-2 text-sm flex items-center justify-between">
+              <h4 className="font-medium mb-2 text-sm flex items-center justify-between">
                   <div className="flex items-center gap-1.5">
                     <Fan className="w-4 h-4 opacity-70" />
                   <span>Condenser Fan Motor</span>
@@ -468,7 +468,7 @@ const ViewReport = () => {
               onClick={() => openMetricInfo('capacitor', currentData.condenser_capacitor_health.toLowerCase())}
               data-testid="condenser-capacitor-metric-card"
             >
-              <h4 className="font-semibold mb-2 text-sm flex items-center justify-between">
+              <h4 className="font-medium mb-2 text-sm flex items-center justify-between">
                   <div className="flex items-center gap-1.5">
                     <Zap className="w-4 h-4 opacity-70" />
                   <span>Condenser Dual Run Capacitor</span>
@@ -496,32 +496,32 @@ const ViewReport = () => {
               <div className="space-y-3">
                 {/* Herm Terminal */}
                 <div className="border-b border-gray-200 pb-2">
-                  <div className="text-xs font-semibold text-gray-600 mb-1">Common to Herm Terminal</div>
+                  <div className="text-xs font-medium text-gray-600 mb-1">Common to Herm Terminal</div>
                   <div className="flex justify-between text-xs">
                     <span className="opacity-80">Rating:</span>
-                    <span className="font-semibold">{currentData.condenser_capacitor_herm_rating}µF</span>
+                    <span className="font-medium">{currentData.condenser_capacitor_herm_rating}µF</span>
                   </div>
                   <div className="flex justify-between text-xs">
                     <span className="opacity-80">Reading:</span>
-                    <span className="font-semibold">{currentData.condenser_capacitor_herm_reading}µF</span>
+                    <span className="font-medium">{currentData.condenser_capacitor_herm_reading}µF</span>
                   </div>
                 </div>
                 {/* Fan Terminal */}
                 <div className="border-b border-gray-200 pb-2">
-                  <div className="text-xs font-semibold text-gray-600 mb-1">Common to Fan Terminal</div>
+                  <div className="text-xs font-medium text-gray-600 mb-1">Common to Fan Terminal</div>
                   <div className="flex justify-between text-xs">
                     <span className="opacity-80">Rating:</span>
-                    <span className="font-semibold">{currentData.condenser_capacitor_fan_rating}µF</span>
+                    <span className="font-medium">{currentData.condenser_capacitor_fan_rating}µF</span>
                   </div>
                   <div className="flex justify-between text-xs">
                     <span className="opacity-80">Reading:</span>
-                    <span className="font-semibold">{currentData.condenser_capacitor_fan_reading}µF</span>
+                    <span className="font-medium">{currentData.condenser_capacitor_fan_reading}µF</span>
                   </div>
                 </div>
                 {/* Overall Variance */}
                 <div className="flex justify-between text-xs">
                   <span className="opacity-80">Max Variance:</span>
-                  <span className="font-semibold">{currentData.condenser_capacitor_tolerance.toFixed(1)}%</span>
+                  <span className="font-medium">{currentData.condenser_capacitor_tolerance.toFixed(1)}%</span>
                 </div>
               </div>
               <p className="text-[10px] mt-2 opacity-70 italic">Click for info</p>
@@ -533,7 +533,7 @@ const ViewReport = () => {
               onClick={() => openMetricInfo('temperature', currentData.delta_t_status.toLowerCase())}
               data-testid="temperature-metric-card"
             >
-              <h4 className="font-semibold mb-2 text-sm flex items-center justify-between">
+              <h4 className="font-medium mb-2 text-sm flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <Thermometer className="w-4 h-4 opacity-70" />
                   <span>Temperature</span>
@@ -561,15 +561,15 @@ const ViewReport = () => {
               <div className="space-y-1">
                 <div className="flex justify-between text-xs">
                   <span className="opacity-80">Return Air:</span>
-                  <span className="font-semibold">{currentData.return_temp}°F</span>
+                  <span className="font-medium">{currentData.return_temp}°F</span>
                 </div>
                 <div className="flex justify-between text-xs">
                   <span className="opacity-80">Supply Air:</span>
-                  <span className="font-semibold">{currentData.supply_temp}°F</span>
+                  <span className="font-medium">{currentData.supply_temp}°F</span>
                 </div>
                 <div className="flex justify-between text-xs">
                   <span className="opacity-80">Delta T:</span>
-                  <span className="font-semibold">{currentData.delta_t.toFixed(1)}°F</span>
+                  <span className="font-medium">{currentData.delta_t.toFixed(1)}°F</span>
                 </div>
               </div>
               <p className="text-[10px] mt-2 opacity-70 italic">Click for info</p>
@@ -585,7 +585,7 @@ const ViewReport = () => {
               onClick={() => openMetricInfo('drain', currentData.primary_drain === 'Clogged, needs immediate service' ? 'critical' : 'good')}
               data-testid="drain-metric-card"
             >
-              <h4 className="font-semibold mb-2 text-sm flex items-center justify-between">
+              <h4 className="font-medium mb-2 text-sm flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <Droplets className="w-4 h-4 opacity-70" />
                   <span>Primary Drain</span>
@@ -625,7 +625,7 @@ const ViewReport = () => {
               )}
               data-testid="drain-pan-metric-card"
             >
-              <h4 className="font-semibold mb-2 text-sm flex items-center justify-between">
+              <h4 className="font-medium mb-2 text-sm flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <Container className="w-4 h-4 opacity-70" />
                   <span>Drain Pan</span>
@@ -670,7 +670,7 @@ const ViewReport = () => {
               )}
               data-testid="air-purifier-metric-card"
             >
-              <h4 className="font-semibold mb-2 text-sm flex items-center justify-between">
+              <h4 className="font-medium mb-2 text-sm flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <AirFlow className="w-4 h-4 opacity-70" />
                   <span>Air Purifier</span>
@@ -701,7 +701,7 @@ const ViewReport = () => {
               onClick={() => openMetricInfo('refrigerant', currentData.refrigerant_status.toLowerCase())}
               data-testid="refrigerant-metric-card"
             >
-              <h4 className="font-semibold mb-2 text-sm flex items-center justify-between">
+              <h4 className="font-medium mb-2 text-sm flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <Refrigerator className="w-4 h-4 opacity-70" />
                   <span>Refrigerant</span>
@@ -729,15 +729,15 @@ const ViewReport = () => {
               <div className="space-y-1">
                 <div className="flex justify-between text-xs">
                   <span className="opacity-80">Type:</span>
-                  <span className="font-semibold">{currentData.refrigerant_type}</span>
+                  <span className="font-medium">{currentData.refrigerant_type}</span>
                 </div>
                 <div className="flex justify-between text-xs">
                   <span className="opacity-80">Superheat:</span>
-                  <span className="font-semibold">{currentData.superheat}°F</span>
+                  <span className="font-medium">{currentData.superheat}°F</span>
                 </div>
                 <div className="flex justify-between text-xs">
                   <span className="opacity-80">Subcooling:</span>
-                  <span className="font-semibold">{currentData.subcooling}°F</span>
+                  <span className="font-medium">{currentData.subcooling}°F</span>
                 </div>
               </div>
               <p className="text-[10px] mt-2 opacity-70 italic">Click for info</p>
@@ -755,7 +755,7 @@ const ViewReport = () => {
               )}
               data-testid="overflow-switch-metric-card"
             >
-              <h4 className="font-semibold mb-2 text-sm flex items-center justify-between">
+              <h4 className="font-medium mb-2 text-sm flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <Wind className="w-4 h-4 opacity-70" />
                   <span>Overflow / Float Switch</span>
@@ -771,7 +771,7 @@ const ViewReport = () => {
               className="p-5 rounded-xl border-2 shadow-md bg-blue-100 border-blue-300 text-blue-800"
               data-testid="air-filters-metric-card"
             >
-              <h4 className="font-semibold mb-2 text-sm flex items-center justify-between">
+              <h4 className="font-medium mb-2 text-sm flex items-center justify-between">
                 <span>Air Filters</span>
                 <Filter className="w-5 h-5 opacity-60" />
               </h4>
@@ -797,7 +797,7 @@ const ViewReport = () => {
               )}
               data-testid="evaporator-coil-metric-card"
             >
-              <h4 className="font-semibold mb-2 text-sm flex items-center justify-between">
+              <h4 className="font-medium mb-2 text-sm flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <Triangle className="w-4 h-4 opacity-70" />
                   <span>Evaporator Coil</span>
@@ -839,7 +839,7 @@ const ViewReport = () => {
               )}
               data-testid="condenser-coils-metric-card"
             >
-              <h4 className="font-semibold mb-2 text-sm flex items-center justify-between">
+              <h4 className="font-medium mb-2 text-sm flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <Layers className="w-4 h-4 opacity-70" />
                   <span>Condenser Coils</span>
@@ -876,7 +876,7 @@ const ViewReport = () => {
               )}
               data-testid="plenums-metric-card"
             >
-              <h4 className="font-semibold mb-2 text-sm flex items-center justify-between">
+              <h4 className="font-medium mb-2 text-sm flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <Square className="w-4 h-4 opacity-70" />
                   <span>Plenums</span>
@@ -916,7 +916,7 @@ const ViewReport = () => {
               )}
               data-testid="ductwork-metric-card"
             >
-              <h4 className="font-semibold mb-2 text-sm flex items-center justify-between">
+              <h4 className="font-medium mb-2 text-sm flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <Network className="w-4 h-4 opacity-70" />
                   <span>Ductwork</span>
@@ -946,14 +946,14 @@ const ViewReport = () => {
 
           {currentData.notes && (
             <div className="mt-6 p-4 rounded-lg bg-blue-50 border border-blue-200">
-              <h4 className="font-semibold text-blue-900 mb-2">Technician Notes</h4>
+              <h4 className="font-medium text-blue-900 mb-2">Technician Notes</h4>
               <p className="text-blue-800 whitespace-pre-wrap">{currentData.notes}</p>
             </div>
           )}
 
           {currentData.other_repair_recommendations && (
             <div className="mt-4 p-4 rounded-lg bg-orange-50 border border-orange-200">
-              <h4 className="font-semibold text-orange-900 mb-2">Other Repair Recommendations</h4>
+              <h4 className="font-medium text-orange-900 mb-2">Other Repair Recommendations</h4>
               <p className="text-orange-800 whitespace-pre-wrap">{currentData.other_repair_recommendations}</p>
             </div>
           )}
@@ -968,7 +968,7 @@ const ViewReport = () => {
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {recommendedParts.map((part) => (
                 <div key={part.id} className="border-2 border-blue-200 rounded-xl p-4 hover:shadow-lg transition-shadow">
-                  <h4 className="font-semibold text-blue-900 mb-2">{part.name}</h4>
+                  <h4 className="font-medium text-blue-900 mb-2">{part.name}</h4>
                   <p className="text-sm text-blue-700 mb-3">{part.description}</p>
                   <div className="flex items-center justify-between">
                     <span className="text-lg font-bold text-blue-900">${part.price.toFixed(2)}</span>
