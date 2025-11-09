@@ -147,83 +147,87 @@ const ViewReport = () => {
   // Use displayData if available, otherwise fallback to report
   const currentData = displayData || report;
 
-  // Calculate System Health Score based on metric statuses
-  const calculateSystemHealthScore = () => {
-    let totalPoints = 0;
-    let maxPoints = 0;
+  // Calculate System Performance Score with impact-based penalties
+  const calculateSystemPerformance = () => {
+    let performanceScore = 100; // Start at 100%
     
-    // Check capacitors (if applicable)
+    // Air Filters - 15% impact
+    if (currentData.air_filters) {
+      const needsReplacement = ['Customer will replace the filters soon', 'Tech will return to replace filters'];
+      if (needsReplacement.includes(currentData.air_filters)) {
+        performanceScore -= 15;
+      }
+    }
+    
+    // Capacitors - 20% impact each
     if (currentData.blower_motor_type === "PSC Motor" && currentData.blower_motor_capacitor_health) {
-      maxPoints += 10;
-      if (currentData.blower_motor_capacitor_health === 'Good') totalPoints += 10;
-      else if (currentData.blower_motor_capacitor_health === 'Warning') totalPoints += 5;
+      if (currentData.blower_motor_capacitor_health === 'Critical') performanceScore -= 20;
+      else if (currentData.blower_motor_capacitor_health === 'Warning') performanceScore -= 10;
     }
     
     if (currentData.condenser_capacitor_health) {
-      maxPoints += 10;
-      if (currentData.condenser_capacitor_health === 'Good') totalPoints += 10;
-      else if (currentData.condenser_capacitor_health === 'Warning') totalPoints += 5;
+      if (currentData.condenser_capacitor_health === 'Critical') performanceScore -= 20;
+      else if (currentData.condenser_capacitor_health === 'Warning') performanceScore -= 10;
     }
     
-    // Check Delta T / Temperature
-    if (currentData.delta_t_status) {
-      maxPoints += 15;
-      if (currentData.delta_t_status === 'Good') totalPoints += 15;
-      else if (currentData.delta_t_status === 'Warning') totalPoints += 8;
-    }
-    
-    // Check Refrigerant
+    // Refrigerant - 25% impact (highest priority)
     if (currentData.refrigerant_status) {
-      maxPoints += 15;
-      if (currentData.refrigerant_status === 'Good') totalPoints += 15;
-      else if (currentData.refrigerant_status === 'Low') totalPoints += 5;
+      if (currentData.refrigerant_status === 'Critical') performanceScore -= 25;
+      else if (currentData.refrigerant_status === 'Low') performanceScore -= 15;
     }
     
-    // Check Drainage (Primary Drain)
-    if (currentData.primary_drain) {
-      maxPoints += 10;
-      if (currentData.primary_drain === 'Draining properly') totalPoints += 10;
-      else if (currentData.primary_drain === 'Slow drainage') totalPoints += 5;
+    // Delta T / Temperature - 15% impact
+    if (currentData.delta_t_status) {
+      if (currentData.delta_t_status === 'Critical') performanceScore -= 15;
+      else if (currentData.delta_t_status === 'Warning') performanceScore -= 8;
     }
     
-    // Check Drain Pan
-    if (currentData.drain_pan_condition) {
-      maxPoints += 10;
-      if (currentData.drain_pan_condition === 'Clean') totalPoints += 10;
-      else if (currentData.drain_pan_condition === 'Some buildup') totalPoints += 5;
-    }
-    
-    // Check Air Filters
-    if (currentData.air_filters) {
-      maxPoints += 10;
-      const goodFilters = ['Filters Replaced (Provided by the technician)', 
-                          'Filters Replaced (Provided by the Customer)', 
-                          'Customer recently replaced the filters'];
-      if (goodFilters.includes(currentData.air_filters)) totalPoints += 10;
-      else totalPoints += 3;
-    }
-    
-    // Check Coils (Evaporator)
+    // Coils - 10% impact each
     if (currentData.evaporator_coil) {
-      maxPoints += 10;
-      if (currentData.evaporator_coil === 'Clean') totalPoints += 10;
-      else if (currentData.evaporator_coil === 'Slightly dirty') totalPoints += 5;
+      if (currentData.evaporator_coil === 'Very dirty') performanceScore -= 10;
+      else if (currentData.evaporator_coil === 'Slightly dirty') performanceScore -= 5;
     }
     
-    // Check Condenser Coils
     if (currentData.condenser_coils) {
-      maxPoints += 10;
-      if (currentData.condenser_coils === 'Clean') totalPoints += 10;
-      else if (currentData.condenser_coils === 'Slightly dirty') totalPoints += 5;
+      if (currentData.condenser_coils === 'Very dirty') performanceScore -= 10;
+      else if (currentData.condenser_coils === 'Slightly dirty') performanceScore -= 5;
     }
     
-    return maxPoints > 0 ? Math.round((totalPoints / maxPoints) * 100) : 90;
+    // Drainage - 10% impact
+    if (currentData.primary_drain) {
+      if (currentData.primary_drain === 'Clogged') performanceScore -= 10;
+      else if (currentData.primary_drain === 'Slow drainage') performanceScore -= 5;
+    }
+    
+    if (currentData.drain_pan_condition) {
+      if (currentData.drain_pan_condition === 'Rusty or cracked') performanceScore -= 8;
+      else if (currentData.drain_pan_condition === 'Some buildup') performanceScore -= 3;
+    }
+    
+    // Ensure score doesn't go below 0
+    return Math.max(0, Math.round(performanceScore));
   };
   
-  const systemHealthScore = calculateSystemHealthScore();
+  const systemPerformanceScore = calculateSystemPerformance();
   
-  // Calculate Deficiencies percentage based on warnings
-  const deficienciesPercentage = Math.min((currentData?.warnings?.length || 0) * 15, 100);
+  // System Health = 100 - Deficiencies (they add up to 100%)
+  // Deficiencies are calculated from warnings and issues
+  const calculateDeficiencies = () => {
+    let deficiencyPoints = 0;
+    
+    // Count warnings (each warning = 15 points)
+    deficiencyPoints += (currentData?.warnings?.length || 0) * 15;
+    
+    // Add points for critical issues not in warnings
+    if (currentData.air_filters === 'Tech will return to replace filters') deficiencyPoints += 5;
+    if (currentData.refrigerant_status === 'Critical' || currentData.refrigerant_status === 'Low') deficiencyPoints += 10;
+    if (currentData.primary_drain === 'Clogged') deficiencyPoints += 10;
+    
+    return Math.min(100, deficiencyPoints);
+  };
+  
+  const deficienciesPercentage = calculateDeficiencies();
+  const systemHealthScore = 100 - deficienciesPercentage; // Health and Deficiencies add up to 100%
 
   return (
     <div className="min-h-screen px-2 sm:px-4 py-4 sm:py-8" style={{backgroundColor: '#f8f9fa'}}>
