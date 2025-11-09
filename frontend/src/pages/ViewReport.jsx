@@ -29,7 +29,7 @@ const ViewReport = () => {
 
   const fetchReport = async () => {
     try {
-      const response = await axios.get(`${API}/reports/${uniqueLink}`);
+      const response = await axios.get(`${API}/reports/view/${uniqueLink}`);
       setReport(response.data);
     } catch (error) {
       toast.error('Report not found');
