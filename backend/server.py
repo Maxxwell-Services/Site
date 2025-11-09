@@ -1107,7 +1107,9 @@ Read ALL text carefully and extract the exact values as they appear on the data 
             serial_number=data.get("serial_number", "Not found"),
             date_of_manufacture=manufacture_date,
             estimated_age=estimated_age,
-            warranty_status=warranty_status
+            warranty_status=warranty_status,
+            rla=data.get("rla", "Not found") if data.get("rla") != "Not found" else None,
+            lra=data.get("lra", "Not found") if data.get("lra") != "Not found" else None
         )
         
     except Exception as e:
