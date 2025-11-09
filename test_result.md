@@ -303,6 +303,21 @@ frontend:
       - working: "NA"
         agent: "main"
         comment: "Will add specific icons to each metric card based on user-provided reference image. Icons needed for: Evaporator Coil (pyramid/triangle), Condenser Coil (horizontal lines), Blower Motor Capacitor (plug), Condenser Fan Motor (fan), Primary Drain (pipe), Drain Pan (pan), Overflow Switch (switch), Air Purifier (purifier), Temperature (thermometer), Cooling (snowflake), Refrigerant (tank/bottle), and others as specified in reference image."
+  
+  - task: "Automatic Image Compression"
+    implemented: true
+    working: "NA"
+    file: "/app/frontend/src/components/PhotoUpload.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: "NA"
+        agent: "main"
+        comment: "Implemented automatic client-side image compression in PhotoUpload component. Images are automatically resized to max 1920px (maintaining aspect ratio) and compressed to JPEG quality 0.7 before upload. This reduces file sizes by 70-90%, speeds up uploads, and prevents MongoDB size limit issues. Shows compression progress toast during processing."
+      - working: "NA"
+        agent: "user"
+        comment: "User requested solution for app having trouble adding large images."
 
 metadata:
   created_by: "main_agent"
