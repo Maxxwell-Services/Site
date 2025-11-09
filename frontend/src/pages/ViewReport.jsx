@@ -249,136 +249,114 @@ const ViewReport = () => {
               </div>
             )}
 
-            {/* Customer & System Info - Unified Layout */}
-            <div className="bg-white rounded-lg shadow-sm p-6 border" style={{borderColor: '#e5e7eb'}}>
-          <h2 className="text-2xl font-bold mb-6 pb-3 border-b-2" style={{color: '#1C325E', borderColor: '#DB7218'}}>
-            Service Information
-          </h2>
-          
-          <div className="grid md:grid-cols-3 gap-6 sm:gap-8">
-            {/* Customer Information */}
-            <div>
-              <div className="flex items-center gap-2 mb-4">
-                <User className="w-5 h-5" style={{color: '#1C325E'}} />
-                <h3 className="text-lg font-medium" style={{color: '#1C325E'}}>Customer</h3>
-              </div>
-              <div className="space-y-3">
-                <div>
-                  <span className="text-xs text-gray-500 uppercase tracking-wide">Name</span>
-                  <p className="font-medium" style={{color: '#1C325E'}}>{currentData.customer_name}</p>
+            {/* Compact Customer & System Info */}
+            <div className="bg-white rounded-lg shadow-sm p-3 mb-3 border" style={{borderColor: '#e5e7eb'}}>
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+                {/* Customer Information - Compact */}
+                <div className="bg-gray-50 rounded p-2">
+                  <div className="flex items-center gap-1.5 mb-2">
+                    <User className="w-3.5 h-3.5" style={{color: '#1C325E'}} />
+                    <h3 className="text-xs font-semibold" style={{color: '#1C325E'}}>Customer</h3>
+                  </div>
+                  <div className="space-y-1.5">
+                    <div>
+                      <span className="text-[10px] text-gray-500 uppercase">Name</span>
+                      <p className="text-xs font-medium" style={{color: '#1C325E'}}>{currentData.customer_name}</p>
+                    </div>
+                    <div>
+                      <span className="text-[10px] text-gray-500 uppercase">Email</span>
+                      <p className="text-[11px] font-medium truncate" style={{color: '#1C325E'}}>{currentData.customer_email}</p>
+                    </div>
+                    <div>
+                      <span className="text-[10px] text-gray-500 uppercase">Phone</span>
+                      <p className="text-xs font-medium" style={{color: '#1C325E'}}>{currentData.customer_phone}</p>
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  <span className="text-xs text-gray-500 uppercase tracking-wide">Email</span>
-                  <p className="font-medium text-sm" style={{color: '#1C325E'}}>{currentData.customer_email}</p>
-                </div>
-                <div>
-                  <span className="text-xs text-gray-500 uppercase tracking-wide">Phone</span>
-                  <p className="font-medium" style={{color: '#1C325E'}}>{currentData.customer_phone}</p>
-                </div>
-              </div>
-            </div>
 
-            {/* Indoor Unit / Air Handler */}
-            <div className="border-l-2 pl-6" style={{borderColor: '#DB7218'}}>
-              <div className="flex items-center gap-2 mb-4">
-                <Snowflake className="w-5 h-5" style={{color: '#DB7218'}} />
-                <h3 className="text-lg font-medium" style={{color: '#1C325E'}}>Indoor Unit (Evaporator)</h3>
-              </div>
-              <div className="space-y-3">
-                <div>
-                  <span className="text-xs text-gray-500 uppercase tracking-wide">Brand</span>
-                  <p className="font-medium" style={{color: '#1C325E'}}>{currentData.evaporator_brand}</p>
-                </div>
-                <div>
-                  <span className="text-xs text-gray-500 uppercase tracking-wide">Model Number</span>
-                  <p className="font-medium text-sm" style={{color: '#1C325E'}}>{currentData.evaporator_model_number}</p>
-                </div>
-                <div>
-                  <span className="text-xs text-gray-500 uppercase tracking-wide">Serial Number</span>
-                  <p className="font-medium text-sm" style={{color: '#1C325E'}}>{currentData.evaporator_serial_number}</p>
-                </div>
-                {currentData.evaporator_date_of_manufacture && (
-                  <div>
-                    <span className="text-xs text-gray-500 uppercase tracking-wide">Manufactured</span>
-                    <p className="font-medium text-sm" style={{color: '#1C325E'}}>{currentData.evaporator_date_of_manufacture}</p>
+                {/* Indoor Unit - Compact */}
+                <div className="bg-blue-50 rounded p-2">
+                  <div className="flex items-center gap-1.5 mb-2">
+                    <Snowflake className="w-3.5 h-3.5" style={{color: '#DB7218'}} />
+                    <h3 className="text-xs font-semibold" style={{color: '#1C325E'}}>Indoor Unit</h3>
                   </div>
-                )}
-                {currentData.evaporator_age && (
-                  <div>
-                    <span className="text-xs text-gray-500 uppercase tracking-wide">Age</span>
-                    <p className="font-medium" style={{color: '#1C325E'}}>{currentData.evaporator_age}</p>
-                  </div>
-                )}
-                <div>
-                  <span className="text-xs text-gray-500 uppercase tracking-wide">Warranty</span>
-                  <div className="mt-1">
-                    <span className={`inline-block font-medium px-3 py-1 rounded-full text-xs ${
-                      currentData.evaporator_warranty_status === 'Active' 
-                        ? 'bg-green-100 text-green-800' 
-                        : 'bg-gray-100 text-gray-800'
-                    }`}>{currentData.evaporator_warranty_status}</span>
-                    {currentData.evaporator_warranty_details && (
-                      <p className="text-xs text-gray-600 mt-1">{currentData.evaporator_warranty_details}</p>
-                    )}
+                  <div className="space-y-1.5">
+                    <div>
+                      <span className="text-[10px] text-gray-500 uppercase">Brand</span>
+                      <p className="text-xs font-medium" style={{color: '#1C325E'}}>{currentData.evaporator_brand}</p>
+                    </div>
+                    <div>
+                      <span className="text-[10px] text-gray-500 uppercase">Model</span>
+                      <p className="text-[11px] font-medium truncate" style={{color: '#1C325E'}}>{currentData.evaporator_model_number}</p>
+                    </div>
+                    <div>
+                      <span className="text-[10px] text-gray-500 uppercase">Age</span>
+                      <p className="text-xs font-medium" style={{color: '#1C325E'}}>{currentData.evaporator_age || 'N/A'}</p>
+                    </div>
+                    <div>
+                      <span className={`inline-block text-[10px] font-medium px-2 py-0.5 rounded-full ${
+                        currentData.evaporator_warranty_status === 'Active' 
+                          ? 'bg-green-100 text-green-800' 
+                          : 'bg-gray-100 text-gray-800'
+                      }`}>{currentData.evaporator_warranty_status}</span>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>
 
-            {/* Condenser Unit */}
-            <div className="border-l-2 pl-6" style={{borderColor: '#DB7218'}}>
-              <div className="flex items-center gap-2 mb-4">
-                <Snowflake className="w-5 h-5" style={{color: '#DB7218'}} />
-                <h3 className="text-lg font-medium" style={{color: '#1C325E'}}>Condenser Unit</h3>
-              </div>
-              <div className="space-y-3">
-                <div>
-                  <span className="text-xs text-gray-500 uppercase tracking-wide">Brand</span>
-                  <p className="font-medium" style={{color: '#1C325E'}}>{currentData.condenser_brand}</p>
-                </div>
-                <div>
-                  <span className="text-xs text-gray-500 uppercase tracking-wide">Model Number</span>
-                  <p className="font-medium text-sm" style={{color: '#1C325E'}}>{currentData.condenser_model_number}</p>
-                </div>
-                <div>
-                  <span className="text-xs text-gray-500 uppercase tracking-wide">Serial Number</span>
-                  <p className="font-medium text-sm" style={{color: '#1C325E'}}>{currentData.condenser_serial_number}</p>
-                </div>
-                {currentData.condenser_date_of_manufacture && (
-                  <div>
-                    <span className="text-xs text-gray-500 uppercase tracking-wide">Manufactured</span>
-                    <p className="font-medium text-sm" style={{color: '#1C325E'}}>{currentData.condenser_date_of_manufacture}</p>
+                {/* Condenser Unit - Compact */}
+                <div className="bg-orange-50 rounded p-2">
+                  <div className="flex items-center gap-1.5 mb-2">
+                    <Snowflake className="w-3.5 h-3.5" style={{color: '#DB7218'}} />
+                    <h3 className="text-xs font-semibold" style={{color: '#1C325E'}}>Condenser Unit</h3>
                   </div>
-                )}
-                {currentData.condenser_age && (
-                  <div>
-                    <span className="text-xs text-gray-500 uppercase tracking-wide">Age</span>
-                    <p className="font-medium" style={{color: '#1C325E'}}>{currentData.condenser_age}</p>
+                  <div className="space-y-1.5">
+                    <div>
+                      <span className="text-[10px] text-gray-500 uppercase">Brand</span>
+                      <p className="text-xs font-medium" style={{color: '#1C325E'}}>{currentData.condenser_brand}</p>
+                    </div>
+                    <div>
+                      <span className="text-[10px] text-gray-500 uppercase">Model</span>
+                      <p className="text-[11px] font-medium truncate" style={{color: '#1C325E'}}>{currentData.condenser_model_number}</p>
+                    </div>
+                    <div>
+                      <span className="text-[10px] text-gray-500 uppercase">Age</span>
+                      <p className="text-xs font-medium" style={{color: '#1C325E'}}>{currentData.condenser_age || 'N/A'}</p>
+                    </div>
+                    <div>
+                      <span className={`inline-block text-[10px] font-medium px-2 py-0.5 rounded-full ${
+                        currentData.condenser_warranty_status === 'Active' 
+                          ? 'bg-green-100 text-green-800' 
+                          : 'bg-gray-100 text-gray-800'
+                      }`}>{currentData.condenser_warranty_status}</span>
+                    </div>
                   </div>
-                )}
-                <div>
-                  <span className="text-xs text-gray-500 uppercase tracking-wide">Warranty</span>
-                  <div className="mt-1">
-                    <span className={`inline-block font-medium px-3 py-1 rounded-full text-xs ${
-                      currentData.condenser_warranty_status === 'Active' 
-                        ? 'bg-green-100 text-green-800' 
-                        : 'bg-gray-100 text-gray-800'
-                    }`}>{currentData.condenser_warranty_status}</span>
-                    {currentData.condenser_warranty_details && (
-                      <p className="text-xs text-gray-600 mt-1">{currentData.condenser_warranty_details}</p>
-                    )}
+                </div>
+
+                {/* Service Date - Compact */}
+                <div className="bg-purple-50 rounded p-2">
+                  <div className="flex items-center gap-1.5 mb-2">
+                    <Calendar className="w-3.5 h-3.5" style={{color: '#1C325E'}} />
+                    <h3 className="text-xs font-semibold" style={{color: '#1C325E'}}>Service Info</h3>
+                  </div>
+                  <div className="space-y-1.5">
+                    <div>
+                      <span className="text-[10px] text-gray-500 uppercase">Date</span>
+                      <p className="text-xs font-medium" style={{color: '#1C325E'}}>{new Date(currentData.created_at).toLocaleDateString()}</p>
+                    </div>
+                    <div>
+                      <span className="text-[10px] text-gray-500 uppercase">Technician</span>
+                      <p className="text-xs font-medium truncate" style={{color: '#1C325E'}}>{currentData.technician_name || 'N/A'}</p>
+                    </div>
+                    <div>
+                      <span className="text-[10px] text-gray-500 uppercase">Version</span>
+                      <p className="text-xs font-medium" style={{color: '#1C325E'}}>
+                        {currentData.current_version === 1 ? 'Initial' : `Repair ${currentData.current_version - 1}`}
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-
-          {/* Quick Summary */}
-          <div className="bg-white rounded-lg shadow-sm p-4 mt-4 border" style={{borderColor: '#e5e7eb'}}>
-            <h3 className="text-sm font-bold mb-2" style={{color: '#1C325E'}}>QUICK SUMMARY</h3>
-            <p className="text-xs text-gray-600">System details at a glance</p>
-          </div>
         </div>
 
         {/* Performance Metrics */}
