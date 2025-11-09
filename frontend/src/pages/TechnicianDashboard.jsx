@@ -223,10 +223,10 @@ const TechnicianDashboard = () => {
                         )}
                       </div>
                       <div className="grid sm:grid-cols-2 gap-2 text-sm text-blue-700">
-                        <p><span className="font-semibold">System:</span> {report.system_brand}</p>
-                        <p><span className="font-semibold">Serial:</span> {report.serial_number}</p>
                         <p><span className="font-semibold">Email:</span> {report.customer_email}</p>
+                        <p><span className="font-semibold">Phone:</span> {report.customer_phone}</p>
                         <p><span className="font-semibold">Date:</span> {new Date(report.created_at).toLocaleDateString()}</p>
+                        <p><span className="font-semibold">Performance:</span> {report.performance_score}%</p>
                       </div>
                     </div>
                     <div className="flex flex-wrap gap-2">
