@@ -474,7 +474,7 @@ const ViewReport = () => {
                   <span>Condenser Dual Run Capacitor</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className={`text-xs px-2 py-1 rounded-full ${
+                  <span className={`text-[10px] px-1.5 py-0.5 rounded-full ${
                     currentData.condenser_capacitor_health === 'Good' ? 'bg-green-200' :
                     currentData.condenser_capacitor_health === 'Warning' ? 'bg-orange-200' : 'bg-red-200'
                   }`}>{currentData.condenser_capacitor_health}</span>
@@ -539,7 +539,7 @@ const ViewReport = () => {
                   <span>Temperature</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className={`text-xs px-2 py-1 rounded-full ${
+                  <span className={`text-[10px] px-1.5 py-0.5 rounded-full ${
                     currentData.delta_t_status === 'Good' ? 'bg-green-200' :
                     currentData.delta_t_status === 'Warning' ? 'bg-orange-200' : 'bg-red-200'
                   }`}>{currentData.delta_t_status}</span>
@@ -707,7 +707,7 @@ const ViewReport = () => {
                   <span>Refrigerant</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className={`text-xs px-2 py-1 rounded-full ${
+                  <span className={`text-[10px] px-1.5 py-0.5 rounded-full ${
                     currentData.refrigerant_status === 'Good' ? 'bg-green-200' :
                     currentData.refrigerant_status === 'Low' ? 'bg-orange-200' : 'bg-red-200'
                   }`}>{currentData.refrigerant_status}</span>
