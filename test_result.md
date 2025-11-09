@@ -171,7 +171,8 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Air Filters Section - Conditional Filter Details Display"
+    - "Condenser Dual Run Capacitor - Split into 4 separate fields"
+    - "Condenser Dual Run Capacitor - Backend logic for 4 separate fields"
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
