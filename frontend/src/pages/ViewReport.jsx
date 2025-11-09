@@ -752,7 +752,10 @@ const ViewReport = () => {
               data-testid="overflow-switch-metric-card"
             >
               <h4 className="font-bold mb-3 text-lg flex items-center justify-between">
-                <span>Overflow / Float Switch</span>
+                <div className="flex items-center gap-2">
+                  <Wind className="w-5 h-5 opacity-70" />
+                  <span>Overflow / Float Switch</span>
+                </div>
                 <Info className="w-4 h-4 opacity-60" />
               </h4>
               <p className="text-sm font-medium">{currentData.overflow_float_switch}</p>
