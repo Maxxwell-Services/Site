@@ -299,13 +299,14 @@ const ViewReport = () => {
 
         {/* Main Content */}
         <div className="space-y-4">
-            {/* Performance Score Card */}
-            <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-lg shadow-lg p-6 border border-gray-700">
-              <div className="flex items-center justify-center gap-8 md:gap-12">
+            {/* System Performance Score Card */}
+            <div className="bg-white rounded-lg shadow-sm p-6 border" style={{borderColor: '#e5e7eb'}}>
+              <h2 className="text-xl font-bold mb-6 text-center" style={{color: '#1C325E'}}>System Performance</h2>
+              <div className="flex items-center justify-center gap-8 md:gap-16">
                 {/* Performance Circle */}
                 <div className="flex flex-col items-center">
-                  <div className="relative w-32 h-32 md:w-36 md:h-36">
-                    <svg className="transform -rotate-90 w-32 h-32 md:w-36 md:h-36">
+                  <div className="relative w-32 h-32 md:w-40 md:h-40">
+                    <svg className="transform -rotate-90 w-32 h-32 md:w-40 md:h-40">
                       <circle
                         cx="64"
                         cy="64"
@@ -313,7 +314,7 @@ const ViewReport = () => {
                         stroke="currentColor"
                         strokeWidth="12"
                         fill="none"
-                        className="text-gray-700"
+                        className="text-gray-200"
                       />
                       <circle
                         cx="64"
@@ -323,24 +324,24 @@ const ViewReport = () => {
                         strokeWidth="12"
                         fill="none"
                         strokeDasharray={`${2 * Math.PI * 56}`}
-                        strokeDashoffset={`${2 * Math.PI * 56 * (1 - (displayData?.performance_score || 0) / 100)}`}
+                        strokeDashoffset={`${2 * Math.PI * 56 * (1 - systemPerformanceScore / 100)}`}
                         className="text-green-500 transition-all duration-1000 ease-out"
                         strokeLinecap="round"
                       />
                     </svg>
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <span className="text-4xl md:text-5xl font-bold text-white">
-                        {Math.round(displayData?.performance_score || 0)}
+                      <span className="text-4xl md:text-5xl font-bold" style={{color: '#1C325E'}}>
+                        {systemPerformanceScore}
                       </span>
                     </div>
                   </div>
-                  <p className="mt-3 text-sm md:text-base font-semibold text-white">Performance</p>
+                  <p className="mt-3 text-sm md:text-base font-semibold" style={{color: '#1C325E'}}>Performance</p>
                 </div>
 
-                {/* HVAC System Health Circle */}
+                {/* System Health Circle */}
                 <div className="flex flex-col items-center">
-                  <div className="relative w-32 h-32 md:w-36 md:h-36">
-                    <svg className="transform -rotate-90 w-32 h-32 md:w-36 md:h-36">
+                  <div className="relative w-32 h-32 md:w-40 md:h-40">
+                    <svg className="transform -rotate-90 w-32 h-32 md:w-40 md:h-40">
                       <circle
                         cx="64"
                         cy="64"
@@ -348,7 +349,7 @@ const ViewReport = () => {
                         stroke="currentColor"
                         strokeWidth="12"
                         fill="none"
-                        className="text-gray-700"
+                        className="text-gray-200"
                       />
                       <circle
                         cx="64"
@@ -364,18 +365,18 @@ const ViewReport = () => {
                       />
                     </svg>
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <span className="text-4xl md:text-5xl font-bold text-white">
+                      <span className="text-4xl md:text-5xl font-bold" style={{color: '#1C325E'}}>
                         {systemHealthScore}
                       </span>
                     </div>
                   </div>
-                  <p className="mt-3 text-sm md:text-base font-semibold text-white text-center">HVAC System<br/>Health</p>
+                  <p className="mt-3 text-sm md:text-base font-semibold text-center" style={{color: '#1C325E'}}>System<br/>Health</p>
                 </div>
 
                 {/* Deficiencies Circle */}
                 <div className="flex flex-col items-center">
-                  <div className="relative w-32 h-32 md:w-36 md:h-36">
-                    <svg className="transform -rotate-90 w-32 h-32 md:w-36 md:h-36">
+                  <div className="relative w-32 h-32 md:w-40 md:h-40">
+                    <svg className="transform -rotate-90 w-32 h-32 md:w-40 md:h-40">
                       <circle
                         cx="64"
                         cy="64"
@@ -383,7 +384,7 @@ const ViewReport = () => {
                         stroke="currentColor"
                         strokeWidth="12"
                         fill="none"
-                        className="text-gray-700"
+                        className="text-gray-200"
                       />
                       <circle
                         cx="64"
@@ -399,12 +400,12 @@ const ViewReport = () => {
                       />
                     </svg>
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <span className="text-4xl md:text-5xl font-bold text-white">
+                      <span className="text-4xl md:text-5xl font-bold" style={{color: '#1C325E'}}>
                         {deficienciesPercentage}
                       </span>
                     </div>
                   </div>
-                  <p className="mt-3 text-sm md:text-base font-semibold text-white">Deficiencies</p>
+                  <p className="mt-3 text-sm md:text-base font-semibold" style={{color: '#1C325E'}}>Deficiencies</p>
                 </div>
               </div>
             </div>
