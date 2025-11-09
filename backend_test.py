@@ -238,7 +238,7 @@ class ACMaintenanceAPITester:
             return False
         
         try:
-            response = requests.get(f"{self.base_url}/reports/{self.report_unique_link}")
+            response = requests.get(f"{self.base_url}/reports/view/{self.report_unique_link}")
             
             if response.status_code == 200:
                 data = response.json()
