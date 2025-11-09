@@ -663,9 +663,11 @@ const ViewReport = () => {
             </div>
           </div>
         )}
+          </div>
+        </div>
 
         {/* CTA */}
-        <div className="glass rounded-xl p-6 mt-6 text-center">
+        <div className="bg-white rounded-lg shadow-sm p-6 mt-4 text-center border" style={{borderColor: '#e5e7eb'}}>
           <h3 className="text-xl font-bold mb-2" style={{color: '#1C325E'}}>Want to track your AC system health over time?</h3>
           <p className="text-gray-700 mb-4">Sign up for a free account to access report history and performance graphs</p>
           <Button 
