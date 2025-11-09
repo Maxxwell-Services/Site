@@ -1,14 +1,14 @@
 {
-  "timestamp": "2025-11-09T19:08:36.845550",
+  "timestamp": "2025-11-09T19:09:11.594916",
   "total_tests": 22,
-  "passed": 8,
-  "failed": 14,
-  "success_rate": "36.4%",
+  "passed": 19,
+  "failed": 3,
+  "success_rate": "86.4%",
   "results": [
     {
       "test": "Technician Registration",
       "passed": true,
-      "message": "Registered as tech_190834",
+      "message": "Registered as tech_190908",
       "response": null
     },
     {
@@ -20,7 +20,7 @@
     {
       "test": "Customer Registration",
       "passed": true,
-      "message": "Registered as Customer 190834",
+      "message": "Registered as Customer 190909",
       "response": null
     },
     {
@@ -31,80 +31,80 @@
     },
     {
       "test": "Electrical Section Removal",
-      "passed": false,
-      "message": "Status 422: {\"detail\":[{\"type\":\"missing\",\"loc\":[\"body\",\"overflow_float_switch\"],\"msg\":\"Field required\",\"input\":{\"customer_name\":\"John Smith\",\"customer_email\":\"john.smith@example.com\",\"customer_phone\":\"555-9876\",\"evaporator_brand\":\"Lennox\",\"evaporator_model_number\":\"CBA25UH-048\",\"evaporator_serial_number\":\"2020ABC123\",\"evaporator_warranty_status\":\"Active\",\"condenser_brand\":\"Lennox\",\"condenser_model_number\":\"13ACX-048\",\"condenser_serial_number\":\"2020DEF456\",\"condenser_warranty_status\":\"Active\",\"refrigerant_type\":\"R-410A\",\"superheat\":9.5,\"subcooling\":12.0,\"refrigerant_status\":\"Good\",\"blower_motor_type\":\"PSC Motor\",\"blower_motor_capacitor_rating\":7.5,\"blower_motor_capacitor_reading\":7.2,\"condenser_capacitor_herm_rating\":35.0,\"condenser_capacitor_herm_reading\":34.8,\"condenser_capacitor_fan_rating\":5.0,\"condenser_capacitor_fan_reading\":4.9,\"return_temp\":76.0,\"supply_temp\":58.0,\"primary_drain\":\"Clear and flowing\",\"drain_pan_condition\":\"Good shape\",\"air_filters\":\"Filters Replaced (Provided by the technician)\",\"filters_list\":[{\"size\":\"16x25x1\",\"quantity\":2}],\"evaporator_coil\":\"Clean\",\"condenser_coils\":\"Cleaned with Fresh Water\",\"air_purifier\":\"Good\",\"plenums\":\"Good\",\"ductwork\":\"Good\",\"notes\":\"Test report without electrical section\"},\"url\":\"https://errors.pydantic.dev/2.12/v/missing\"}]}",
+      "passed": true,
+      "message": "\u2705 Report created successfully without electrical fields. Performance score: 100, Delta T: 18.0\u00b0F, Capacitor health: Good, Warnings: 0",
       "response": null
     },
     {
       "test": "Electrical Fields Rejection",
       "passed": true,
-      "message": "API properly rejects requests with old electrical fields",
+      "message": "API ignores old electrical fields (not stored in response)",
       "response": null
     },
     {
       "test": "Create Report",
-      "passed": false,
-      "message": "Status 422: {\"detail\":[{\"type\":\"missing\",\"loc\":[\"body\",\"overflow_float_switch\"],\"msg\":\"Field required\",\"input\":{\"customer_name\":\"John Doe\",\"customer_email\":\"john.doe@example.com\",\"customer_phone\":\"555-1234\",\"evaporator_brand\":\"Carrier\",\"evaporator_model_number\":\"EVP123\",\"evaporator_serial_number\":\"2015ABC123\",\"evaporator_warranty_status\":\"Active\",\"condenser_brand\":\"Carrier\",\"condenser_model_number\":\"CON456\",\"condenser_serial_number\":\"2015DEF456\",\"condenser_warranty_status\":\"Active\",\"refrigerant_type\":\"R-410A\",\"superheat\":8.0,\"subcooling\":10.0,\"refrigerant_status\":\"Good\",\"blower_motor_type\":\"PSC Motor\",\"blower_motor_capacitor_rating\":7.5,\"blower_motor_capacitor_reading\":7.3,\"condenser_capacitor_herm_rating\":35.0,\"condenser_capacitor_herm_reading\":34.5,\"condenser_capacitor_fan_rating\":5.0,\"condenser_capacitor_fan_reading\":4.9,\"return_temp\":78.0,\"supply_temp\":60.0,\"primary_drain\":\"Clear and flowing\",\"drain_pan_condition\":\"Good shape\",\"air_filters\":\"Filters Replaced (Provided by the technician)\",\"evaporator_coil\":\"Clean\",\"condenser_coils\":\"Clean\",\"air_purifier\":\"Good\",\"plenums\":\"Good\",\"ductwork\":\"Good\",\"notes\":\"Test report with new dual run capacitor fields\"},\"url\":\"https://errors.pydantic.dev/2.12/v/missing\"}]}",
+      "passed": true,
+      "message": "Report created with link: 9560a610-02b9-43c8-b87a-f47eff9f3b89",
       "response": null
     },
     {
       "test": "View Report (Public)",
-      "passed": false,
-      "message": "No report link available",
+      "passed": true,
+      "message": "Report retrieved successfully with capacitor health: Good",
       "response": null
     },
     {
       "test": "Report By ID Endpoint",
       "passed": false,
-      "message": "Failed to create report",
+      "message": "Endpoint /api/reports/id/{reportId} not implemented",
       "response": null
     },
     {
       "test": "Photo Fields Storage",
-      "passed": false,
-      "message": "Status 422: {\"detail\":[{\"type\":\"missing\",\"loc\":[\"body\",\"overflow_float_switch\"],\"msg\":\"Field required\",\"input\":{\"customer_name\":\"Photo Test Customer\",\"customer_email\":\"photo.test@example.com\",\"customer_phone\":\"555-PHOTO\",\"evaporator_brand\":\"Carrier\",\"evaporator_model_number\":\"EVP-PHOTO\",\"evaporator_serial_number\":\"PHOTO123\",\"evaporator_warranty_status\":\"Active\",\"condenser_brand\":\"Carrier\",\"condenser_model_number\":\"CON-PHOTO\",\"condenser_serial_number\":\"PHOTO456\",\"condenser_warranty_status\":\"Active\",\"refrigerant_type\":\"R-410A\",\"superheat\":8.0,\"subcooling\":10.0,\"refrigerant_status\":\"Good\",\"blower_motor_type\":\"PSC Motor\",\"blower_motor_capacitor_rating\":7.5,\"blower_motor_capacitor_reading\":7.3,\"condenser_capacitor_herm_rating\":35.0,\"condenser_capacitor_herm_reading\":34.5,\"condenser_capacitor_fan_rating\":5.0,\"condenser_capacitor_fan_reading\":4.9,\"return_temp\":78.0,\"supply_temp\":60.0,\"primary_drain\":\"Clear and flowing\",\"drain_pan_condition\":\"Good shape\",\"air_filters\":\"Clean\",\"evaporator_coil\":\"Clean\",\"condenser_coils\":\"Clean\",\"air_purifier\":\"Good\",\"plenums\":\"Good\",\"ductwork\":\"Good\",\"evaporator_photos\":[\"iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==\",\"iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==\"],\"condenser_photos\":[\"iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==\"],\"refrigerant_photos\":[\"iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==\",\"iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==\",\"iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==\"],\"capacitor_photos\":[\"iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==\"],\"temperature_photos\":[\"iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==\",\"iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==\"],\"drainage_photos\":[\"iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==\"],\"indoor_air_quality_photos\":[\"iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==\",\"iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==\"],\"general_photos\":[\"iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==\",\"iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==\",\"iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==\",\"iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==\"]},\"url\":\"https://errors.pydantic.dev/2.12/v/missing\"}]}",
+      "passed": true,
+      "message": "All photo fields stored and retrieved correctly",
       "response": null
     },
     {
       "test": "Report Edit Functionality",
-      "passed": false,
-      "message": "Failed to create original report: 422",
+      "passed": true,
+      "message": "Report editing successful - Version: 2, Edit count: 1, Versions stored: 2",
       "response": null
     },
     {
       "test": "Edit Authorization",
-      "passed": false,
-      "message": "Failed to create report",
+      "passed": true,
+      "message": "Correctly denied edit access to non-creator",
       "response": null
     },
     {
       "test": "Edit Limit",
-      "passed": false,
-      "message": "Failed to create report",
+      "passed": true,
+      "message": "Correctly enforced 3-edit limit",
       "response": null
     },
     {
       "test": "Condenser Capacitor Scenario 1 (Both Good)",
-      "passed": false,
-      "message": "Status 422: {\"detail\":[{\"type\":\"missing\",\"loc\":[\"body\",\"overflow_float_switch\"],\"msg\":\"Field required\",\"input\":{\"customer_name\":\"Scenario 1 Test\",\"customer_email\":\"scenario1@test.com\",\"customer_phone\":\"555-0001\",\"evaporator_brand\":\"Test\",\"evaporator_model_number\":\"EVP1\",\"evaporator_serial_number\":\"EVP001\",\"evaporator_warranty_status\":\"Active\",\"condenser_brand\":\"Test\",\"condenser_model_number\":\"CON1\",\"condenser_serial_number\":\"CON001\",\"condenser_warranty_status\":\"Active\",\"refrigerant_type\":\"R-410A\",\"superheat\":8.0,\"subcooling\":10.0,\"refrigerant_status\":\"Good\",\"blower_motor_type\":\"ECM Motor\",\"condenser_capacitor_herm_rating\":35.0,\"condenser_capacitor_herm_reading\":34.5,\"condenser_capacitor_fan_rating\":5.0,\"condenser_capacitor_fan_reading\":4.9,\"return_temp\":78.0,\"supply_temp\":60.0,\"primary_drain\":\"Clear and flowing\",\"drain_pan_condition\":\"Good shape\",\"air_filters\":\"Clean\",\"evaporator_coil\":\"Clean\",\"condenser_coils\":\"Clean\",\"air_purifier\":\"Good\",\"plenums\":\"Good\",\"ductwork\":\"Good\"},\"url\":\"https://errors.pydantic.dev/2.12/v/missing\"}]}",
+      "passed": true,
+      "message": "Both terminals in good condition - health is 'Good'",
       "response": null
     },
     {
       "test": "Condenser Capacitor Scenario 2 (Herm Critical)",
-      "passed": false,
-      "message": "Status 422: {\"detail\":[{\"type\":\"missing\",\"loc\":[\"body\",\"overflow_float_switch\"],\"msg\":\"Field required\",\"input\":{\"customer_name\":\"Scenario 2 Test\",\"customer_email\":\"scenario2@test.com\",\"customer_phone\":\"555-0002\",\"evaporator_brand\":\"Test\",\"evaporator_model_number\":\"EVP2\",\"evaporator_serial_number\":\"EVP002\",\"evaporator_warranty_status\":\"Active\",\"condenser_brand\":\"Test\",\"condenser_model_number\":\"CON2\",\"condenser_serial_number\":\"CON002\",\"condenser_warranty_status\":\"Active\",\"refrigerant_type\":\"R-410A\",\"superheat\":8.0,\"subcooling\":10.0,\"refrigerant_status\":\"Good\",\"blower_motor_type\":\"ECM Motor\",\"condenser_capacitor_herm_rating\":35.0,\"condenser_capacitor_herm_reading\":30.0,\"condenser_capacitor_fan_rating\":5.0,\"condenser_capacitor_fan_reading\":4.9,\"return_temp\":78.0,\"supply_temp\":60.0,\"primary_drain\":\"Clear and flowing\",\"drain_pan_condition\":\"Good shape\",\"air_filters\":\"Clean\",\"evaporator_coil\":\"Clean\",\"condenser_coils\":\"Clean\",\"air_purifier\":\"Good\",\"plenums\":\"Good\",\"ductwork\":\"Good\"},\"url\":\"https://errors.pydantic.dev/2.12/v/missing\"}]}",
+      "passed": true,
+      "message": "Herm terminal critical detected - health is 'Critical', warning: Condenser dual run capacitor - Herm terminal: 14.3% off",
       "response": null
     },
     {
       "test": "Condenser Capacitor Scenario 3 (Fan Warning)",
-      "passed": false,
-      "message": "Status 422: {\"detail\":[{\"type\":\"missing\",\"loc\":[\"body\",\"overflow_float_switch\"],\"msg\":\"Field required\",\"input\":{\"customer_name\":\"Scenario 3 Test\",\"customer_email\":\"scenario3@test.com\",\"customer_phone\":\"555-0003\",\"evaporator_brand\":\"Test\",\"evaporator_model_number\":\"EVP3\",\"evaporator_serial_number\":\"EVP003\",\"evaporator_warranty_status\":\"Active\",\"condenser_brand\":\"Test\",\"condenser_model_number\":\"CON3\",\"condenser_serial_number\":\"CON003\",\"condenser_warranty_status\":\"Active\",\"refrigerant_type\":\"R-410A\",\"superheat\":8.0,\"subcooling\":10.0,\"refrigerant_status\":\"Good\",\"blower_motor_type\":\"ECM Motor\",\"condenser_capacitor_herm_rating\":35.0,\"condenser_capacitor_herm_reading\":34.5,\"condenser_capacitor_fan_rating\":5.0,\"condenser_capacitor_fan_reading\":4.5,\"return_temp\":78.0,\"supply_temp\":60.0,\"primary_drain\":\"Clear and flowing\",\"drain_pan_condition\":\"Good shape\",\"air_filters\":\"Clean\",\"evaporator_coil\":\"Clean\",\"condenser_coils\":\"Clean\",\"air_purifier\":\"Good\",\"plenums\":\"Good\",\"ductwork\":\"Good\"},\"url\":\"https://errors.pydantic.dev/2.12/v/missing\"}]}",
+      "passed": true,
+      "message": "Fan terminal warning detected - health is 'Warning', warning: Condenser dual run capacitor - Fan terminal: 10.0% off",
       "response": null
     },
     {
       "test": "Condenser Capacitor Scenario 4 (Both Critical)",
-      "passed": false,
-      "message": "Status 422: {\"detail\":[{\"type\":\"missing\",\"loc\":[\"body\",\"overflow_float_switch\"],\"msg\":\"Field required\",\"input\":{\"customer_name\":\"Scenario 4 Test\",\"customer_email\":\"scenario4@test.com\",\"customer_phone\":\"555-0004\",\"evaporator_brand\":\"Test\",\"evaporator_model_number\":\"EVP4\",\"evaporator_serial_number\":\"EVP004\",\"evaporator_warranty_status\":\"Active\",\"condenser_brand\":\"Test\",\"condenser_model_number\":\"CON4\",\"condenser_serial_number\":\"CON004\",\"condenser_warranty_status\":\"Active\",\"refrigerant_type\":\"R-410A\",\"superheat\":8.0,\"subcooling\":10.0,\"refrigerant_status\":\"Good\",\"blower_motor_type\":\"ECM Motor\",\"condenser_capacitor_herm_rating\":35.0,\"condenser_capacitor_herm_reading\":28.0,\"condenser_capacitor_fan_rating\":5.0,\"condenser_capacitor_fan_reading\":3.0,\"return_temp\":78.0,\"supply_temp\":60.0,\"primary_drain\":\"Clear and flowing\",\"drain_pan_condition\":\"Good shape\",\"air_filters\":\"Clean\",\"evaporator_coil\":\"Clean\",\"condenser_coils\":\"Clean\",\"air_purifier\":\"Good\",\"plenums\":\"Good\",\"ductwork\":\"Good\"},\"url\":\"https://errors.pydantic.dev/2.12/v/missing\"}]}",
+      "passed": true,
+      "message": "Both terminals critical detected - health is 'Critical', warning: Condenser dual run capacitor - Herm terminal: 20.0% off, Fan terminal: 40.0% off",
       "response": null
     },
     {
@@ -116,13 +116,13 @@
     {
       "test": "System Age Calculation",
       "passed": false,
-      "message": "Status 422: {\"detail\":[{\"type\":\"missing\",\"loc\":[\"body\",\"overflow_float_switch\"],\"msg\":\"Field required\",\"input\":{\"customer_name\":\"Age Test\",\"customer_email\":\"age@test.com\",\"customer_phone\":\"555-0000\",\"evaporator_brand\":\"Test\",\"evaporator_model_number\":\"EVP\",\"evaporator_serial_number\":\"2010ABC123\",\"evaporator_warranty_status\":\"Active\",\"condenser_brand\":\"Test\",\"condenser_model_number\":\"CON\",\"condenser_serial_number\":\"2010DEF456\",\"condenser_warranty_status\":\"Active\",\"refrigerant_type\":\"R-410A\",\"superheat\":8.0,\"subcooling\":10.0,\"refrigerant_status\":\"Good\",\"blower_motor_type\":\"ECM Motor\",\"condenser_capacitor_herm_rating\":35.0,\"condenser_capacitor_herm_reading\":35.0,\"condenser_capacitor_fan_rating\":5.0,\"condenser_capacitor_fan_reading\":5.0,\"return_temp\":78.0,\"supply_temp\":60.0,\"primary_drain\":\"Clear and flowing\",\"drain_pan_condition\":\"Good shape\",\"air_filters\":\"Clean\",\"evaporator_coil\":\"Clean\",\"condenser_coils\":\"Clean\",\"air_purifier\":\"Good\",\"plenums\":\"Good\",\"ductwork\":\"Good\"},\"url\":\"https://errors.pydantic.dev/2.12/v/missing\"}]}",
+      "message": "System age not calculated",
       "response": null
     },
     {
       "test": "Get Technician Reports",
       "passed": true,
-      "message": "Retrieved 0 reports",
+      "message": "Retrieved 13 reports",
       "response": null
     },
     {
