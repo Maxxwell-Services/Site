@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Button } from '@/components/ui/button';
-import { Snowflake, AlertTriangle, CheckCircle, ShoppingCart, Home, LogIn, Calendar, User, Wrench, Info } from 'lucide-react';
+import { Snowflake, AlertTriangle, CheckCircle, ShoppingCart, Home, LogIn, Calendar, User, Wrench, Info, Droplets, Thermometer, Wind, Zap, Filter, Flame, ArrowDownUp, Gauge } from 'lucide-react';
 import { toast } from 'sonner';
 import { API } from '../App';
 import PerformanceGauge from '@/components/PerformanceGauge';
