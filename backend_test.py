@@ -768,6 +768,7 @@ class ACMaintenanceAPITester:
             "condenser_capacitor_fan_reading": 4.9,
             "return_temp": 76.0,
             "supply_temp": 58.0,  # Delta T = 18°F - Good
+            "overflow_float_switch": "Working properly",
             # NO electrical fields: amp_draw, rated_amps, electrical_photos
             "primary_drain": "Clear and flowing",
             "drain_pan_condition": "Good shape",
