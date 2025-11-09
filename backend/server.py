@@ -142,6 +142,7 @@ class MaintenanceReportCreate(BaseModel):
     return_temp: float  # in Fahrenheit
     supply_temp: float  # in Fahrenheit
     temperature_photos: Optional[List[str]] = Field(default_factory=list)
+    overflow_float_switch: str
     primary_drain: str
     primary_drain_notes: Optional[str] = ""
     drain_pan_condition: str
