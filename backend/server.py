@@ -905,13 +905,47 @@ async def get_report_for_edit(report_id: str, user: dict = Depends(get_current_u
     
     return report
 
+@api_router.put("/reports/{report_id}/archive")
+async def toggle_archive_report(report_id: str, user: dict = Depends(get_current_user)):
+    if user.get("type") != "technician":
+        raise HTTPException(status_code=403, detail="Only technicians can archive reports")
+    
+    report = await db.reports.find_one({"id": report_id}, {"_id": 0})
+    if not report:
+        raise HTTPException(status_code=404, detail="Report not found")
+    
+    # Verify the technician is the creator
+    if report["technician_id"] != user["sub"]:
+        raise HTTPException(status_code=403, detail="Only the report creator can archive this report")
+    
+    # Toggle archive status
+    new_archived_status = not report.get("archived", False)
+    await db.reports.update_one(
+        {"id": report_id},
+        {"$set": {"archived": new_archived_status}}
+    )
+    
+    return {
+        "report_id": report_id,
+        "archived": new_archived_status,
+        "message": f"Report {'archived' if new_archived_status else 'unarchived'} successfully"
+    }
+
 @api_router.get("/reports")
-async def get_technician_reports(user: dict = Depends(get_current_user)):
+async def get_technician_reports(
+    user: dict = Depends(get_current_user),
+    include_archived: bool = False
+):
     if user.get("type") != "technician":
         raise HTTPException(status_code=403, detail="Access denied")
     
+    # Build query filter
+    query = {"technician_id": user["sub"]}
+    if not include_archived:
+        query["archived"] = {"$ne": True}  # Exclude archived reports by default
+    
     reports = await db.reports.find(
-        {"technician_id": user["sub"]},
+        query,
         {"_id": 0}
     ).sort("created_at", -1).to_list(1000)
     
