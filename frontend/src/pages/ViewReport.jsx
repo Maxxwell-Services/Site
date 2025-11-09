@@ -663,8 +663,6 @@ const ViewReport = () => {
             </div>
           </div>
         )}
-          </div>
-        </div>
 
         {/* CTA */}
         <div className="bg-white rounded-lg shadow-sm p-6 mt-4 text-center border" style={{borderColor: '#e5e7eb'}}>
