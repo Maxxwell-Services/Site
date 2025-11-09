@@ -160,38 +160,37 @@ const ViewReport = () => {
 
         {/* Version Selector */}
         {report.versions && report.versions.length > 0 && (
-          <div className="glass rounded-xl p-4 mb-6 border-2" style={{borderColor: '#1C325E'}}>
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-              <div>
-                <h3 className="text-lg font-semibold text-blue-900 mb-1">Report Version</h3>
-                <p className="text-sm text-gray-600">
+          <div className="bg-white rounded-lg shadow-sm p-3 mb-4 border" style={{borderColor: '#e5e7eb'}}>
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+              <div className="flex items-center gap-2">
+                <Calendar className="w-4 h-4" style={{color: '#1C325E'}} />
+                <span className="text-sm font-medium" style={{color: '#1C325E'}}>Version:</span>
+                <span className="text-xs text-gray-600">
                   {report.versions.find(v => v.version === selectedVersion)?.timestamp 
-                    ? new Date(report.versions.find(v => v.version === selectedVersion)?.timestamp).toLocaleString('en-US', { 
-                        year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' 
-                      })
-                    : new Date(report.created_at).toLocaleString('en-US', { 
-                        year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' 
-                      })
+                    ? new Date(report.versions.find(v => v.version === selectedVersion)?.timestamp).toLocaleDateString()
+                    : new Date(report.created_at).toLocaleDateString()
                   }
-                </p>
+                </span>
               </div>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-1">
                 {[...Array(Math.max(report.current_version || 1, report.versions.length))].map((_, i) => {
                   const versionNum = i + 1;
                   const versionExists = versionNum === 1 || report.versions.some(v => v.version === versionNum);
                   if (!versionExists) return null;
                   
                   return (
-                    <Button
+                    <button
                       key={versionNum}
                       onClick={() => handleVersionChange(versionNum)}
-                      variant={selectedVersion === versionNum ? "default" : "outline"}
-                      size="sm"
-                      className={selectedVersion === versionNum ? "" : "hover:bg-blue-50"}
-                      style={selectedVersion === versionNum ? {backgroundColor: '#1C325E'} : {borderColor: '#1C325E', color: '#1C325E'}}
+                      className={`px-3 py-1 text-xs font-medium rounded transition-colors ${
+                        selectedVersion === versionNum 
+                          ? 'text-white' 
+                          : 'bg-white hover:bg-gray-50'
+                      }`}
+                      style={selectedVersion === versionNum ? {backgroundColor: '#1C325E'} : {border: '1px solid #e5e7eb', color: '#1C325E'}}
                     >
                       {getVersionLabel(versionNum)}
-                    </Button>
+                    </button>
                   );
                 })}
               </div>
