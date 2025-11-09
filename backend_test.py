@@ -535,24 +535,26 @@ class ACMaintenanceAPITester:
             self.log_result("Tolerance Calculations", False, "No technician token available")
             return False
         
-        # Test case 1: Critical capacitor (>10% off)
+        # Test case 1: Critical capacitor (>10% off) with new fields
         payload = {
             "customer_name": "Test Critical",
             "customer_email": "test@example.com",
             "customer_phone": "555-0000",
-            "system_brand": "Test",
-            "serial_number": "TEST123",
-            "refrigerant_type": "R-410A",
-            "refrigerant_level": 120.0,
-            "refrigerant_status": "Good",
-            "capacitor_rating": 35.0,
-            "capacitor_reading": 30.0,  # 14.3% off - should be critical
+            "evaporator_brand": "Test", "evaporator_model_number": "EVP", "evaporator_serial_number": "TEST123", "evaporator_warranty_status": "Active",
+            "condenser_brand": "Test", "condenser_model_number": "CON", "condenser_serial_number": "TEST456", "condenser_warranty_status": "Active",
+            "refrigerant_type": "R-410A", "superheat": 8.0, "subcooling": 10.0, "refrigerant_status": "Good",
+            "blower_motor_type": "ECM Motor",
+            "condenser_capacitor_herm_rating": 35.0,
+            "condenser_capacitor_herm_reading": 30.0,  # 14.3% off - should be critical
+            "condenser_capacitor_fan_rating": 5.0,
+            "condenser_capacitor_fan_reading": 4.5,   # 10% off - should be warning
             "return_temp": 78.0,
             "supply_temp": 68.0,  # Delta T = 10°F - should be critical
             "amp_draw": 25.0,
             "rated_amps": 20.0,  # 25% off - should be critical
-            "filters_replaced": False,
-            "condenser_coils_cleaned": False
+            "primary_drain": "Clear and flowing", "drain_pan_condition": "Good shape",
+            "air_filters": "Clean", "evaporator_coil": "Clean", "condenser_coils": "Clean",
+            "air_purifier": "Good", "plenums": "Good", "ductwork": "Good"
         }
         
         try:
