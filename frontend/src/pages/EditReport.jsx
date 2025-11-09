@@ -1191,7 +1191,7 @@ const EditReport = () => {
               type="submit"
               className="w-full text-white text-base sm:text-lg py-5 sm:py-6 hover:opacity-90 min-h-[52px] sm:min-h-[60px]"
               style={{backgroundColor: '#DB7218'}}
-              disabled={loading}
+              disabled={loadingSubmit}
               data-testid="submit-report-btn"
             >
               {loading ? 'Creating Report...' : (
