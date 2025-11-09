@@ -541,8 +541,6 @@ async def create_report(data: MaintenanceReportCreate, user: dict = Depends(get_
     score_data = {
         'capacitor_tolerance': worst_capacitor_tolerance,
         'delta_t': delta_t,
-        'amp_draw': data.amp_draw,
-        'rated_amps': data.rated_amps,
         'refrigerant_status': data.refrigerant_status,
         'primary_drain': data.primary_drain,
         'drain_pan_condition': data.drain_pan_condition,
