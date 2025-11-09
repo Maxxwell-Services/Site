@@ -220,6 +220,21 @@ frontend:
         agent: "user"
         comment: "User requested to remove the 'Maintenance' square from customer reports as it's not needed"
   
+  - task: "Fix ViewReport to display Indoor Unit and Condenser details correctly"
+    implemented: true
+    working: "NA"
+    file: "/app/frontend/src/pages/ViewReport.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: "NA"
+        agent: "main"
+        comment: "Fixed ViewReport to display correct fields for both Indoor Unit/Air Handler (Evaporator) and Condenser Unit. Changed from non-existent fields (system_brand, serial_number, system_warranty_status, system_age) to actual data model fields. Indoor Unit now shows: evaporator_brand, evaporator_model_number, evaporator_serial_number, evaporator_date_of_manufacture, evaporator_age, evaporator_warranty_status, evaporator_warranty_details. Added new Condenser Unit section showing: condenser_brand, condenser_model_number, condenser_serial_number, condenser_date_of_manufacture, condenser_age, condenser_warranty_status, condenser_warranty_details. Both sections properly formatted with borders and spacing."
+      - working: "NA"
+        agent: "user"
+        comment: "User reported that Brand, Serial Number, and Warranty Status were not displaying. Requested to show Brand, Model Number, Serial Number, Date of Manufacture, Age, and Warranty Status for both indoor unit and condenser"
+  
   - task: "Report Edit Feature with Versioning"
     implemented: true
     working: "NA"
