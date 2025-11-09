@@ -21,7 +21,7 @@ const TechnicianDashboard = () => {
       return;
     }
     fetchReports();
-  }, [user, token, navigate]);
+  }, [user, token, navigate, showArchived]);
 
   const fetchReports = async () => {
     try {
