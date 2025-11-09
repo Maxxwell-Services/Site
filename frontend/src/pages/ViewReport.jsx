@@ -530,6 +530,18 @@ const ViewReport = () => {
                     currentData.delta_t_status === 'Good' ? 'bg-green-200' :
                     currentData.delta_t_status === 'Warning' ? 'bg-orange-200' : 'bg-red-200'
                   }`}>{currentData.delta_t_status}</span>
+                  {currentData.temperature_photos && currentData.temperature_photos.length > 0 && (
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        openPhotoModal(currentData.temperature_photos, 'Temperature Photos');
+                      }}
+                      className="hover:scale-110 transition-transform"
+                      title={`${currentData.temperature_photos.length} photo(s) available`}
+                    >
+                      <Camera className="w-5 h-5 text-blue-600" />
+                    </button>
+                  )}
                   <Info className="w-4 h-4 opacity-60" />
                 </div>
               </h4>
