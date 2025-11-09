@@ -131,44 +131,30 @@ const ViewReport = () => {
   const currentData = displayData || report;
 
   return (
-    <div className="min-h-screen px-2 sm:px-4 py-4 sm:py-8 bg-gradient-to-br from-slate-50 to-blue-50">
-      <div className="max-w-6xl mx-auto">
-        {/* Header */}
-        <div className="glass rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 mb-4 sm:mb-6 border-2" style={{borderColor: '#1C325E'}}>
-          <div className="flex items-center justify-between flex-wrap gap-3 sm:gap-4 mb-4 sm:mb-6">
-            <div className="flex items-center gap-3 sm:gap-4">
-              <div className="p-2 sm:p-3 md:p-4 rounded-lg sm:rounded-xl shadow-lg flex-shrink-0" style={{background: 'linear-gradient(135deg, #1C325E 0%, #2a4580 100%)'}}>
-                <Snowflake className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 text-white" />
+    <div className="min-h-screen px-2 sm:px-4 py-4 sm:py-8" style={{backgroundColor: '#f8f9fa'}}>
+      <div className="max-w-7xl mx-auto">
+        {/* Compact Header */}
+        <div className="bg-white rounded-lg shadow-sm p-4 mb-4 border" style={{borderColor: '#e5e7eb'}}>
+          <div className="flex items-center justify-between flex-wrap gap-3">
+            <div className="flex items-center gap-3">
+              <div className="p-2 rounded-lg" style={{backgroundColor: '#1C325E'}}>
+                <Snowflake className="w-6 h-6 text-white" />
               </div>
               <div>
-                <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-1" style={{color: '#1C325E'}}>HVAC System Performance Report</h1>
-                <div className="flex items-center gap-4 text-sm text-gray-600">
-                  <span className="flex items-center gap-1">
-                    <Calendar className="w-4 h-4" />
-                    {new Date(report.created_at).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
-                  </span>
-                  <span className="flex items-center gap-1">
-                    <Wrench className="w-4 h-4" />
-                    {report.technician_name}
-                  </span>
-                </div>
+                <h1 className="text-2xl font-bold" style={{color: '#1C325E'}}>AC SYSTEM STATUS</h1>
+                <p className="text-sm text-gray-600">Report Date: {new Date(report.created_at).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}</p>
               </div>
             </div>
             <Button
               onClick={() => navigate('/customer/signup')}
               variant="outline"
+              size="sm"
               className="hover:bg-orange-50"
               style={{borderColor: '#DB7218', color: '#DB7218'}}
-              data-testid="signup-btn"
             >
               <LogIn className="w-4 h-4 mr-2" />
-              Sign Up for History
+              Sign Up
             </Button>
-          </div>
-
-          {/* Performance Score Gauge - Prominent Display */}
-          <div className="bg-white rounded-xl p-6 shadow-inner border-2" style={{borderColor: 'rgba(28, 50, 94, 0.1)'}}>
-            <PerformanceGauge score={displayData?.performance_score || report.performance_score || 0} />
           </div>
         </div>
 
