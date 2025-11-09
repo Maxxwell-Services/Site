@@ -218,14 +218,113 @@ const ViewReport = () => {
         {/* Main Content */}
         <div className="space-y-4">
             {/* Performance Score Card */}
-            <div className="bg-white rounded-lg shadow-sm p-6 border" style={{borderColor: '#e5e7eb'}}>
-              <div className="flex items-center justify-between mb-4">
-                  <div className="flex items-center gap-1.5">
-                  <Gauge className="w-5 h-5" style={{color: '#1C325E'}} />
-                  <h2 className="text-lg font-bold" style={{color: '#1C325E'}}>SYSTEM PERFORMANCE</h2>
+            <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-lg shadow-lg p-6 border border-gray-700">
+              <div className="flex items-center justify-center gap-8 md:gap-12">
+                {/* Performance Circle */}
+                <div className="flex flex-col items-center">
+                  <div className="relative w-32 h-32 md:w-36 md:h-36">
+                    <svg className="transform -rotate-90 w-32 h-32 md:w-36 md:h-36">
+                      <circle
+                        cx="64"
+                        cy="64"
+                        r="56"
+                        stroke="currentColor"
+                        strokeWidth="12"
+                        fill="none"
+                        className="text-gray-700"
+                      />
+                      <circle
+                        cx="64"
+                        cy="64"
+                        r="56"
+                        stroke="currentColor"
+                        strokeWidth="12"
+                        fill="none"
+                        strokeDasharray={`${2 * Math.PI * 56}`}
+                        strokeDashoffset={`${2 * Math.PI * 56 * (1 - (displayData?.performance_score || 0) / 100)}`}
+                        className="text-green-500 transition-all duration-1000 ease-out"
+                        strokeLinecap="round"
+                      />
+                    </svg>
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <span className="text-4xl md:text-5xl font-bold text-white">
+                        {Math.round(displayData?.performance_score || 0)}
+                      </span>
+                    </div>
+                  </div>
+                  <p className="mt-3 text-sm md:text-base font-semibold text-white">Performance</p>
+                </div>
+
+                {/* HVAC System Health Circle */}
+                <div className="flex flex-col items-center">
+                  <div className="relative w-32 h-32 md:w-36 md:h-36">
+                    <svg className="transform -rotate-90 w-32 h-32 md:w-36 md:h-36">
+                      <circle
+                        cx="64"
+                        cy="64"
+                        r="56"
+                        stroke="currentColor"
+                        strokeWidth="12"
+                        fill="none"
+                        className="text-gray-700"
+                      />
+                      <circle
+                        cx="64"
+                        cy="64"
+                        r="56"
+                        stroke="currentColor"
+                        strokeWidth="12"
+                        fill="none"
+                        strokeDasharray={`${2 * Math.PI * 56}`}
+                        strokeDashoffset={`${2 * Math.PI * 56 * (1 - (displayData?.system_health_score || 90) / 100)}`}
+                        className="text-green-500 transition-all duration-1000 ease-out"
+                        strokeLinecap="round"
+                      />
+                    </svg>
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <span className="text-4xl md:text-5xl font-bold text-white">
+                        {Math.round(displayData?.system_health_score || 90)}
+                      </span>
+                    </div>
+                  </div>
+                  <p className="mt-3 text-sm md:text-base font-semibold text-white text-center">HVAC System<br/>Health</p>
+                </div>
+
+                {/* Deficiencies Circle */}
+                <div className="flex flex-col items-center">
+                  <div className="relative w-32 h-32 md:w-36 md:h-36">
+                    <svg className="transform -rotate-90 w-32 h-32 md:w-36 md:h-36">
+                      <circle
+                        cx="64"
+                        cy="64"
+                        r="56"
+                        stroke="currentColor"
+                        strokeWidth="12"
+                        fill="none"
+                        className="text-gray-700"
+                      />
+                      <circle
+                        cx="64"
+                        cy="64"
+                        r="56"
+                        stroke="currentColor"
+                        strokeWidth="12"
+                        fill="none"
+                        strokeDasharray={`${2 * Math.PI * 56}`}
+                        strokeDashoffset={`${2 * Math.PI * 56 * (1 - ((displayData?.warnings?.length || 0) * 25) / 100)}`}
+                        className="text-orange-500 transition-all duration-1000 ease-out"
+                        strokeLinecap="round"
+                      />
+                    </svg>
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <span className="text-4xl md:text-5xl font-bold text-white">
+                        {(displayData?.warnings?.length || 0) * 25}
+                      </span>
+                    </div>
+                  </div>
+                  <p className="mt-3 text-sm md:text-base font-semibold text-white">Deficiencies</p>
                 </div>
               </div>
-              <PerformanceGauge score={displayData?.performance_score || report.performance_score || 0} />
             </div>
 
             {/* Warnings Section */}
