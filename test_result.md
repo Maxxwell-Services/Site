@@ -165,6 +165,21 @@ frontend:
       - working: "NA"
         agent: "user"
         comment: "User requested to split the Condenser Dual Run Capacitor into 4 fields: two for actual readings (Herm Terminal and Fan Terminal) and two for ratings (Herm Terminal and Fan Terminal)"
+  
+  - task: "Condenser Coils - Update dropdown options"
+    implemented: true
+    working: "NA"
+    file: "/app/frontend/src/pages/CreateReport.jsx"
+    stuck_count: 0
+    priority: "medium"
+    needs_retesting: true
+    status_history:
+      - working: "NA"
+        agent: "main"
+        comment: "Updated Condenser Coils dropdown options. Changed: 1) 'Cleaned' to 'Cleaned with Fresh Water', 2) Changed second option to 'Unable to clean (Hose bib not accessible within 40ft)', 3) Changed third option to 'Coils excessively dirty (Cabinet must be disassembled to properly clean)', 4) Added fourth option 'Debris and leaves clogging coils (Cabinet must be disassembled to properly clean)'. Updated default value in formData state."
+      - working: "NA"
+        agent: "user"
+        comment: "User requested to update Condenser Coils dropdown options with more specific and detailed descriptions"
 
 metadata:
   created_by: "main_agent"
