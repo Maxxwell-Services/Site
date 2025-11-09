@@ -27,6 +27,14 @@ const ViewReport = () => {
     setMetricModalOpen(true);
   };
 
+  const openPhotoModal = (photos, title) => {
+    if (photos && photos.length > 0) {
+      setSelectedPhotos(photos);
+      setPhotoModalTitle(title);
+      setPhotoModalOpen(true);
+    }
+  };
+
   useEffect(() => {
     fetchReport();
     fetchParts();
