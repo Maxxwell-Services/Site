@@ -317,15 +317,6 @@ def calculate_performance_score(data) -> int:
     elif delta_t < 15 or delta_t > 22:
         score -= 8   # Minor issue
     
-    # Amp draw impact (max -20 points)
-    amp_tolerance = abs(data.get('amp_draw', 0) - data.get('rated_amps', 0)) / data.get('rated_amps', 1) * 100
-    if amp_tolerance > 25:
-        score -= 20  # Critical
-    elif amp_tolerance > 15:
-        score -= 12  # Warning
-    elif amp_tolerance > 10:
-        score -= 6   # Minor
-    
     # Refrigerant status impact (max -20 points)
     ref_status = data.get('refrigerant_status', 'Good')
     if ref_status == 'Critical':
