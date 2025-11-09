@@ -468,6 +468,18 @@ const ViewReport = () => {
                     currentData.condenser_capacitor_health === 'Good' ? 'bg-green-200' :
                     currentData.condenser_capacitor_health === 'Warning' ? 'bg-orange-200' : 'bg-red-200'
                   }`}>{currentData.condenser_capacitor_health}</span>
+                  {currentData.capacitor_photos && currentData.capacitor_photos.length > 0 && (
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        openPhotoModal(currentData.capacitor_photos, 'Capacitor Photos');
+                      }}
+                      className="hover:scale-110 transition-transform"
+                      title={`${currentData.capacitor_photos.length} photo(s) available`}
+                    >
+                      <Camera className="w-5 h-5 text-blue-600" />
+                    </button>
+                  )}
                   <Info className="w-4 h-4 opacity-60" />
                 </div>
               </h4>
