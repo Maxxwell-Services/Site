@@ -637,7 +637,7 @@ const ViewReport = () => {
 
         {/* Recommended Parts */}
         {recommendedParts.length > 0 && (
-          <div className="glass rounded-2xl p-6">
+          <div className="bg-white rounded-lg shadow-sm p-6 border" style={{borderColor: '#e5e7eb'}}>
             <h3 className="text-2xl font-bold text-blue-900 mb-4">Recommended Parts</h3>
             <p className="text-blue-700 mb-6">Based on the inspection, the following parts are recommended:</p>
             
