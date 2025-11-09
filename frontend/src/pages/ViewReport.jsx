@@ -585,7 +585,10 @@ const ViewReport = () => {
               data-testid="drain-metric-card"
             >
               <h4 className="font-bold mb-3 text-lg flex items-center justify-between">
-                <span>Primary Drain</span>
+                <div className="flex items-center gap-2">
+                  <Droplets className="w-5 h-5 opacity-70" />
+                  <span>Primary Drain</span>
+                </div>
                 <div className="flex items-center gap-2">
                   {currentData.drainage_photos && currentData.drainage_photos.length > 0 && (
                     <button
