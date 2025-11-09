@@ -801,9 +801,6 @@ async def edit_report(report_id: str, data: MaintenanceReportCreate, user: dict 
     
     # Store lightweight version data - only key metrics, no photos
     # This prevents MongoDB document size limit issues (16MB)
-    photo_fields = ["evaporator_photos", "condenser_photos", "refrigerant_photos", "capacitor_photos", 
-                    "temperature_photos", "drainage_photos", "indoor_air_quality_photos", "general_photos"]
-    
     # Only store essential fields for version comparison
     essential_fields = ["customer_name", "customer_email", "customer_phone",
                        "refrigerant_type", "superheat", "subcooling", "refrigerant_status",
