@@ -271,7 +271,7 @@ const ViewReport = () => {
                 <span className="text-gray-600">Serial Number:</span>
                 <span className="font-semibold" style={{color: '#1C325E'}}>{currentData.serial_number}</span>
               </div>
-              currentData.system_age && (
+              {currentData.system_age && (
                 <div className="flex justify-between py-2 border-b border-gray-200">
                   <span className="text-gray-600">System Age:</span>
                   <span className="font-semibold" style={{color: '#1C325E'}}>{currentData.system_age} years</span>
