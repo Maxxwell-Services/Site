@@ -758,6 +758,8 @@ class DataPlateOCRResponse(BaseModel):
     date_of_manufacture: Optional[str] = None
     estimated_age: Optional[str] = None
     warranty_status: Optional[str] = None
+    rla: Optional[str] = None
+    lra: Optional[str] = None
 
 class WarrantyOCRRequest(BaseModel):
     image_base64: str
