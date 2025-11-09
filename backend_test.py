@@ -553,6 +553,7 @@ class ACMaintenanceAPITester:
             "condenser_capacitor_fan_reading": 4.5,   # 10% off - should be warning
             "return_temp": 78.0,
             "supply_temp": 68.0,  # Delta T = 10°F - should be critical
+            "overflow_float_switch": "Working properly",
             "primary_drain": "Clear and flowing", "drain_pan_condition": "Good shape",
             "air_filters": "Clean", "evaporator_coil": "Clean", "condenser_coils": "Clean",
             "air_purifier": "Good", "plenums": "Good", "ductwork": "Good"
