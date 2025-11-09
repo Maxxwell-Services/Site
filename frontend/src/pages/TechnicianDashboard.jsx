@@ -11,7 +11,7 @@ const TechnicianDashboard = () => {
   const { user, token, logout } = useContext(AuthContext);
   const [reports, setReports] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [showArchived, setShowArchived] = useState(false);
+  const [viewFilter, setViewFilter] = useState('all'); // 'all', 'active', 'archived'
   const [searchQuery, setSearchQuery] = useState('');
   const [dateFilter, setDateFilter] = useState('');
 
