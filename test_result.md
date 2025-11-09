@@ -204,6 +204,36 @@ frontend:
       - working: true
         agent: "testing"
         comment: "✅ VERIFIED: Electrical section removal is working perfectly. Backend API testing completed successfully with 94.1% success rate (16/17 tests passed). Key verifications: 1) Report creation WITHOUT electrical fields (amp_draw, rated_amps, electrical_photos) works correctly ✓, 2) API response does NOT include amp_status field ✓, 3) Performance score calculation works without amp draw impact (score: 100) ✓, 4) Warnings list does NOT include any amp draw warnings ✓, 5) Delta T calculations still work correctly (18.0°F) ✓, 6) Capacitor health calculations still work correctly (Good status) ✓, 7) API properly ignores old electrical fields when submitted (not stored in response) ✓. All electrical fields have been successfully removed from both request and response models. The application now functions completely without electrical measurements."
+  
+  - task: "Remove Maintenance square from ViewReport"
+    implemented: true
+    working: "NA"
+    file: "/app/frontend/src/pages/ViewReport.jsx"
+    stuck_count: 0
+    priority: "medium"
+    needs_retesting: true
+    status_history:
+      - working: "NA"
+        agent: "main"
+        comment: "Removed the 'Maintenance' square section from ViewReport.jsx that displayed filters replaced and coils cleaned status."
+      - working: "NA"
+        agent: "user"
+        comment: "User requested to remove the 'Maintenance' square from customer reports as it's not needed"
+  
+  - task: "Report Edit Feature with Versioning"
+    implemented: true
+    working: "NA"
+    file: "/app/backend/server.py, /app/frontend/src/pages/EditReport.jsx, /app/frontend/src/pages/TechnicianDashboard.jsx, /app/frontend/src/pages/ViewReport.jsx, /app/frontend/src/App.js"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: "NA"
+        agent: "main"
+        comment: "Implemented comprehensive report editing with version history. Backend: Added versioning fields to MaintenanceReport model (current_version, edit_count, versions). Created PUT /api/reports/{report_id}/edit endpoint with technician verification and 3-edit limit. Created GET /api/reports/edit/{report_id} endpoint for loading report data. Frontend: Created EditReport.jsx page (copy of CreateReport with pre-filled data). Added Edit button to TechnicianDashboard showing edit count (X/3). Added version selector to ViewReport with toggle between versions (Before Repair, After Repair 1-3). All versions stored with timestamps. Updated routes in App.js."
+      - working: "NA"
+        agent: "user"
+        comment: "User requested: 1) Only report creator can edit, 2) Edit from dashboard, 3) Toggle between versions in customer view, 4) All fields editable, 5) Max 3 edits with timestamps"
 
 metadata:
   created_by: "main_agent"
