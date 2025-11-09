@@ -571,10 +571,10 @@ class ACMaintenanceAPITester:
                     report = report_response.json()
                     warnings = report.get('warnings', [])
                     
-                    # Should have warnings for capacitor, delta_t, and amp_draw
+                    # Should have warnings for condenser_capacitor, delta_t, and amp_draw
                     warning_types = [w['type'] for w in warnings]
                     
-                    expected_warnings = ['capacitor', 'delta_t', 'amp_draw']
+                    expected_warnings = ['condenser_capacitor', 'delta_t', 'amp_draw']
                     missing_warnings = [w for w in expected_warnings if w not in warning_types]
                     
                     if missing_warnings:
@@ -582,9 +582,9 @@ class ACMaintenanceAPITester:
                         return False
                     
                     # Check severity
-                    capacitor_warning = next((w for w in warnings if w['type'] == 'capacitor'), None)
+                    capacitor_warning = next((w for w in warnings if w['type'] == 'condenser_capacitor'), None)
                     if capacitor_warning and capacitor_warning['severity'] != 'critical':
-                        self.log_result("Tolerance Calculations", False, f"Capacitor severity should be critical, got {capacitor_warning['severity']}")
+                        self.log_result("Tolerance Calculations", False, f"Condenser capacitor severity should be critical, got {capacitor_warning['severity']}")
                         return False
                     
                     self.log_result("Tolerance Calculations", True, f"All tolerance checks working correctly ({len(warnings)} warnings)")
