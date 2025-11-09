@@ -402,15 +402,15 @@ const ViewReport = () => {
             {/* Condenser Fan Motor */}
             <div 
               className={`p-5 rounded-xl border-2 shadow-md cursor-pointer hover:shadow-lg transition-shadow ${
-                report.condenser_fan_motor === 'Inoperative' 
+                currentData.condenser_fan_motor === 'Inoperative' 
                   ? 'bg-red-100 border-red-300 text-red-800'
-                  : report.condenser_fan_motor === 'Motor Vibration' || report.condenser_fan_motor === 'Blade Vibration'
+                  : currentData.condenser_fan_motor === 'Motor Vibration' || currentData.condenser_fan_motor === 'Blade Vibration'
                   ? 'bg-orange-100 border-orange-300 text-orange-800'
                   : 'bg-green-100 border-green-300 text-green-800'
               }`}
               onClick={() => openMetricInfo('condenser_fan_motor', 
-                report.condenser_fan_motor === 'Inoperative' ? 'critical' :
-                report.condenser_fan_motor === 'Motor Vibration' || report.condenser_fan_motor === 'Blade Vibration' ? 'warning' : 'good'
+                currentData.condenser_fan_motor === 'Inoperative' ? 'critical' :
+                currentData.condenser_fan_motor === 'Motor Vibration' || currentData.condenser_fan_motor === 'Blade Vibration' ? 'warning' : 'good'
               )}
               data-testid="condenser-fan-motor-card"
             >
@@ -418,22 +418,22 @@ const ViewReport = () => {
                 <span>Condenser Fan Motor</span>
                 <Info className="w-4 h-4 opacity-60" />
               </h4>
-              <p className="text-sm font-medium">{report.condenser_fan_motor}</p>
+              <p className="text-sm font-medium">{currentData.condenser_fan_motor}</p>
               <p className="text-xs mt-3 opacity-70 italic">Click for more information</p>
             </div>
 
             {/* Condenser Dual Run Capacitor */}
             <div 
-              className={`p-5 rounded-xl border-2 shadow-md cursor-pointer hover:shadow-lg transition-shadow ${getSeverityColor(report.condenser_capacitor_health.toLowerCase())}`}
-              onClick={() => openMetricInfo('capacitor', report.condenser_capacitor_health.toLowerCase())}
+              className={`p-5 rounded-xl border-2 shadow-md cursor-pointer hover:shadow-lg transition-shadow ${getSeverityColor(currentData.condenser_capacitor_health.toLowerCase())}`}
+              onClick={() => openMetricInfo('capacitor', currentData.condenser_capacitor_health.toLowerCase())}
               data-testid="condenser-capacitor-metric-card"
             >
               <h4 className="font-bold mb-3 text-lg flex items-center justify-between">
                 <span>Condenser Dual Run Capacitor</span>
                 <div className="flex items-center gap-2">
                   <span className={`text-xs px-2 py-1 rounded-full ${
-                    report.condenser_capacitor_health === 'Good' ? 'bg-green-200' :
-                    report.condenser_capacitor_health === 'Warning' ? 'bg-orange-200' : 'bg-red-200'
+                    currentData.condenser_capacitor_health === 'Good' ? 'bg-green-200' :
+                    currentData.condenser_capacitor_health === 'Warning' ? 'bg-orange-200' : 'bg-red-200'
                   }`}>{currentData.condenser_capacitor_health}</span>
                   <Info className="w-4 h-4 opacity-60" />
                 </div>
