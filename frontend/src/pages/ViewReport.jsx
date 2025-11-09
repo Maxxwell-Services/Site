@@ -357,17 +357,12 @@ const ViewReport = () => {
               </div>
             </div>
           </div>
-        </div>
-          </div>
 
-          {/* Right Column - Quick Summary */}
-          <div className="space-y-4">
-            {/* Placeholder for right column content */}
-            <div className="bg-white rounded-lg shadow-sm p-4 border" style={{borderColor: '#e5e7eb'}}>
+            {/* Quick Summary */}
+            <div className="bg-white rounded-lg shadow-sm p-4 mt-4 border" style={{borderColor: '#e5e7eb'}}>
               <h3 className="text-sm font-bold mb-2" style={{color: '#1C325E'}}>QUICK SUMMARY</h3>
               <p className="text-xs text-gray-600">System details at a glance</p>
             </div>
-          </div>
         </div>
 
         {/* Performance Metrics */}
