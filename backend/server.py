@@ -134,8 +134,10 @@ class MaintenanceReportCreate(BaseModel):
     blower_motor_type: str = "PSC Motor"  # "PSC Motor" or "ECM Motor"
     blower_motor_capacitor_rating: Optional[float] = None  # in microfarads, required for PSC Motor only
     blower_motor_capacitor_reading: Optional[float] = None  # in microfarads, required for PSC Motor only
-    condenser_capacitor_rating: float  # in microfarads
-    condenser_capacitor_reading: float  # in microfarads
+    condenser_capacitor_herm_rating: float  # Common to Herm Terminal rating in microfarads
+    condenser_capacitor_herm_reading: float  # Common to Herm Terminal reading in microfarads
+    condenser_capacitor_fan_rating: float  # Common to Fan Terminal rating in microfarads
+    condenser_capacitor_fan_reading: float  # Common to Fan Terminal reading in microfarads
     capacitor_photos: Optional[List[str]] = Field(default_factory=list)
     return_temp: float  # in Fahrenheit
     supply_temp: float  # in Fahrenheit
