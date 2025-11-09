@@ -279,6 +279,256 @@ class ACMaintenanceAPITester:
         
         return False
 
+    def test_condenser_capacitor_scenario_1_both_good(self):
+        """Test Scenario 1: Both terminals in good condition"""
+        if not self.tech_token:
+            self.log_result("Condenser Capacitor Scenario 1 (Both Good)", False, "No technician token available")
+            return False
+        
+        payload = {
+            "customer_name": "Scenario 1 Test",
+            "customer_email": "scenario1@test.com",
+            "customer_phone": "555-0001",
+            "evaporator_brand": "Test", "evaporator_model_number": "EVP1", "evaporator_serial_number": "EVP001", "evaporator_warranty_status": "Active",
+            "condenser_brand": "Test", "condenser_model_number": "CON1", "condenser_serial_number": "CON001", "condenser_warranty_status": "Active",
+            "refrigerant_type": "R-410A", "superheat": 8.0, "subcooling": 10.0, "refrigerant_status": "Good",
+            "blower_motor_type": "ECM Motor",
+            "condenser_capacitor_herm_rating": 35.0,
+            "condenser_capacitor_herm_reading": 34.5,  # 1.4% off - Good
+            "condenser_capacitor_fan_rating": 5.0,
+            "condenser_capacitor_fan_reading": 4.9,    # 2% off - Good
+            "return_temp": 78.0, "supply_temp": 60.0, "amp_draw": 18.5, "rated_amps": 20.0,
+            "primary_drain": "Clear and flowing", "drain_pan_condition": "Good shape",
+            "air_filters": "Clean", "evaporator_coil": "Clean", "condenser_coils": "Clean",
+            "air_purifier": "Good", "plenums": "Good", "ductwork": "Good"
+        }
+        
+        try:
+            headers = {'Authorization': f'Bearer {self.tech_token}'}
+            response = requests.post(f"{self.base_url}/reports/create", json=payload, headers=headers)
+            
+            if response.status_code == 200:
+                data = response.json()
+                unique_link = data.get('unique_link')
+                
+                # Fetch the report to check capacitor health
+                report_response = requests.get(f"{self.base_url}/reports/{unique_link}")
+                if report_response.status_code == 200:
+                    report = report_response.json()
+                    capacitor_health = report.get('condenser_capacitor_health')
+                    
+                    if capacitor_health == "Good":
+                        self.log_result("Condenser Capacitor Scenario 1 (Both Good)", True, "Both terminals in good condition - health is 'Good'")
+                        return True
+                    else:
+                        self.log_result("Condenser Capacitor Scenario 1 (Both Good)", False, f"Expected 'Good', got '{capacitor_health}'")
+                else:
+                    self.log_result("Condenser Capacitor Scenario 1 (Both Good)", False, "Failed to fetch created report")
+            else:
+                self.log_result("Condenser Capacitor Scenario 1 (Both Good)", False, f"Status {response.status_code}: {response.text}")
+        except Exception as e:
+            self.log_result("Condenser Capacitor Scenario 1 (Both Good)", False, f"Error: {str(e)}")
+        
+        return False
+
+    def test_condenser_capacitor_scenario_2_herm_critical(self):
+        """Test Scenario 2: Herm terminal needs replacement (>10% off)"""
+        if not self.tech_token:
+            self.log_result("Condenser Capacitor Scenario 2 (Herm Critical)", False, "No technician token available")
+            return False
+        
+        payload = {
+            "customer_name": "Scenario 2 Test",
+            "customer_email": "scenario2@test.com",
+            "customer_phone": "555-0002",
+            "evaporator_brand": "Test", "evaporator_model_number": "EVP2", "evaporator_serial_number": "EVP002", "evaporator_warranty_status": "Active",
+            "condenser_brand": "Test", "condenser_model_number": "CON2", "condenser_serial_number": "CON002", "condenser_warranty_status": "Active",
+            "refrigerant_type": "R-410A", "superheat": 8.0, "subcooling": 10.0, "refrigerant_status": "Good",
+            "blower_motor_type": "ECM Motor",
+            "condenser_capacitor_herm_rating": 35.0,
+            "condenser_capacitor_herm_reading": 30.0,  # 14.3% off - Critical
+            "condenser_capacitor_fan_rating": 5.0,
+            "condenser_capacitor_fan_reading": 4.9,    # 2% off - Good
+            "return_temp": 78.0, "supply_temp": 60.0, "amp_draw": 18.5, "rated_amps": 20.0,
+            "primary_drain": "Clear and flowing", "drain_pan_condition": "Good shape",
+            "air_filters": "Clean", "evaporator_coil": "Clean", "condenser_coils": "Clean",
+            "air_purifier": "Good", "plenums": "Good", "ductwork": "Good"
+        }
+        
+        try:
+            headers = {'Authorization': f'Bearer {self.tech_token}'}
+            response = requests.post(f"{self.base_url}/reports/create", json=payload, headers=headers)
+            
+            if response.status_code == 200:
+                data = response.json()
+                unique_link = data.get('unique_link')
+                
+                # Fetch the report to check capacitor health and warnings
+                report_response = requests.get(f"{self.base_url}/reports/{unique_link}")
+                if report_response.status_code == 200:
+                    report = report_response.json()
+                    capacitor_health = report.get('condenser_capacitor_health')
+                    warnings = report.get('warnings', [])
+                    
+                    # Should be Critical due to herm terminal
+                    if capacitor_health != "Critical":
+                        self.log_result("Condenser Capacitor Scenario 2 (Herm Critical)", False, f"Expected 'Critical', got '{capacitor_health}'")
+                        return False
+                    
+                    # Should have condenser_capacitor warning with herm terminal details
+                    capacitor_warnings = [w for w in warnings if w['type'] == 'condenser_capacitor']
+                    if not capacitor_warnings:
+                        self.log_result("Condenser Capacitor Scenario 2 (Herm Critical)", False, "No condenser_capacitor warning found")
+                        return False
+                    
+                    warning_message = capacitor_warnings[0]['message']
+                    if "Herm terminal" not in warning_message:
+                        self.log_result("Condenser Capacitor Scenario 2 (Herm Critical)", False, f"Warning message should mention Herm terminal: {warning_message}")
+                        return False
+                    
+                    self.log_result("Condenser Capacitor Scenario 2 (Herm Critical)", True, f"Herm terminal critical detected - health is 'Critical', warning: {warning_message}")
+                    return True
+                else:
+                    self.log_result("Condenser Capacitor Scenario 2 (Herm Critical)", False, "Failed to fetch created report")
+            else:
+                self.log_result("Condenser Capacitor Scenario 2 (Herm Critical)", False, f"Status {response.status_code}: {response.text}")
+        except Exception as e:
+            self.log_result("Condenser Capacitor Scenario 2 (Herm Critical)", False, f"Error: {str(e)}")
+        
+        return False
+
+    def test_condenser_capacitor_scenario_3_fan_warning(self):
+        """Test Scenario 3: Fan terminal in warning range (6-10% off)"""
+        if not self.tech_token:
+            self.log_result("Condenser Capacitor Scenario 3 (Fan Warning)", False, "No technician token available")
+            return False
+        
+        payload = {
+            "customer_name": "Scenario 3 Test",
+            "customer_email": "scenario3@test.com",
+            "customer_phone": "555-0003",
+            "evaporator_brand": "Test", "evaporator_model_number": "EVP3", "evaporator_serial_number": "EVP003", "evaporator_warranty_status": "Active",
+            "condenser_brand": "Test", "condenser_model_number": "CON3", "condenser_serial_number": "CON003", "condenser_warranty_status": "Active",
+            "refrigerant_type": "R-410A", "superheat": 8.0, "subcooling": 10.0, "refrigerant_status": "Good",
+            "blower_motor_type": "ECM Motor",
+            "condenser_capacitor_herm_rating": 35.0,
+            "condenser_capacitor_herm_reading": 34.5,  # 1.4% off - Good
+            "condenser_capacitor_fan_rating": 5.0,
+            "condenser_capacitor_fan_reading": 4.5,    # 10% off - Warning
+            "return_temp": 78.0, "supply_temp": 60.0, "amp_draw": 18.5, "rated_amps": 20.0,
+            "primary_drain": "Clear and flowing", "drain_pan_condition": "Good shape",
+            "air_filters": "Clean", "evaporator_coil": "Clean", "condenser_coils": "Clean",
+            "air_purifier": "Good", "plenums": "Good", "ductwork": "Good"
+        }
+        
+        try:
+            headers = {'Authorization': f'Bearer {self.tech_token}'}
+            response = requests.post(f"{self.base_url}/reports/create", json=payload, headers=headers)
+            
+            if response.status_code == 200:
+                data = response.json()
+                unique_link = data.get('unique_link')
+                
+                # Fetch the report to check capacitor health
+                report_response = requests.get(f"{self.base_url}/reports/{unique_link}")
+                if report_response.status_code == 200:
+                    report = report_response.json()
+                    capacitor_health = report.get('condenser_capacitor_health')
+                    warnings = report.get('warnings', [])
+                    
+                    # Should be Warning due to fan terminal
+                    if capacitor_health != "Warning":
+                        self.log_result("Condenser Capacitor Scenario 3 (Fan Warning)", False, f"Expected 'Warning', got '{capacitor_health}'")
+                        return False
+                    
+                    # Should have condenser_capacitor warning with fan terminal details
+                    capacitor_warnings = [w for w in warnings if w['type'] == 'condenser_capacitor']
+                    if not capacitor_warnings:
+                        self.log_result("Condenser Capacitor Scenario 3 (Fan Warning)", False, "No condenser_capacitor warning found")
+                        return False
+                    
+                    warning_message = capacitor_warnings[0]['message']
+                    if "Fan terminal" not in warning_message:
+                        self.log_result("Condenser Capacitor Scenario 3 (Fan Warning)", False, f"Warning message should mention Fan terminal: {warning_message}")
+                        return False
+                    
+                    self.log_result("Condenser Capacitor Scenario 3 (Fan Warning)", True, f"Fan terminal warning detected - health is 'Warning', warning: {warning_message}")
+                    return True
+                else:
+                    self.log_result("Condenser Capacitor Scenario 3 (Fan Warning)", False, "Failed to fetch created report")
+            else:
+                self.log_result("Condenser Capacitor Scenario 3 (Fan Warning)", False, f"Status {response.status_code}: {response.text}")
+        except Exception as e:
+            self.log_result("Condenser Capacitor Scenario 3 (Fan Warning)", False, f"Error: {str(e)}")
+        
+        return False
+
+    def test_condenser_capacitor_scenario_4_both_critical(self):
+        """Test Scenario 4: Both terminals need replacement (>10% off)"""
+        if not self.tech_token:
+            self.log_result("Condenser Capacitor Scenario 4 (Both Critical)", False, "No technician token available")
+            return False
+        
+        payload = {
+            "customer_name": "Scenario 4 Test",
+            "customer_email": "scenario4@test.com",
+            "customer_phone": "555-0004",
+            "evaporator_brand": "Test", "evaporator_model_number": "EVP4", "evaporator_serial_number": "EVP004", "evaporator_warranty_status": "Active",
+            "condenser_brand": "Test", "condenser_model_number": "CON4", "condenser_serial_number": "CON004", "condenser_warranty_status": "Active",
+            "refrigerant_type": "R-410A", "superheat": 8.0, "subcooling": 10.0, "refrigerant_status": "Good",
+            "blower_motor_type": "ECM Motor",
+            "condenser_capacitor_herm_rating": 35.0,
+            "condenser_capacitor_herm_reading": 28.0,  # 20% off - Critical
+            "condenser_capacitor_fan_rating": 5.0,
+            "condenser_capacitor_fan_reading": 3.0,    # 40% off - Critical
+            "return_temp": 78.0, "supply_temp": 60.0, "amp_draw": 18.5, "rated_amps": 20.0,
+            "primary_drain": "Clear and flowing", "drain_pan_condition": "Good shape",
+            "air_filters": "Clean", "evaporator_coil": "Clean", "condenser_coils": "Clean",
+            "air_purifier": "Good", "plenums": "Good", "ductwork": "Good"
+        }
+        
+        try:
+            headers = {'Authorization': f'Bearer {self.tech_token}'}
+            response = requests.post(f"{self.base_url}/reports/create", json=payload, headers=headers)
+            
+            if response.status_code == 200:
+                data = response.json()
+                unique_link = data.get('unique_link')
+                
+                # Fetch the report to check capacitor health and warnings
+                report_response = requests.get(f"{self.base_url}/reports/{unique_link}")
+                if report_response.status_code == 200:
+                    report = report_response.json()
+                    capacitor_health = report.get('condenser_capacitor_health')
+                    warnings = report.get('warnings', [])
+                    
+                    # Should be Critical due to both terminals
+                    if capacitor_health != "Critical":
+                        self.log_result("Condenser Capacitor Scenario 4 (Both Critical)", False, f"Expected 'Critical', got '{capacitor_health}'")
+                        return False
+                    
+                    # Should have condenser_capacitor warning mentioning both terminals
+                    capacitor_warnings = [w for w in warnings if w['type'] == 'condenser_capacitor']
+                    if not capacitor_warnings:
+                        self.log_result("Condenser Capacitor Scenario 4 (Both Critical)", False, "No condenser_capacitor warning found")
+                        return False
+                    
+                    warning_message = capacitor_warnings[0]['message']
+                    if "Herm terminal" not in warning_message or "Fan terminal" not in warning_message:
+                        self.log_result("Condenser Capacitor Scenario 4 (Both Critical)", False, f"Warning message should mention both terminals: {warning_message}")
+                        return False
+                    
+                    self.log_result("Condenser Capacitor Scenario 4 (Both Critical)", True, f"Both terminals critical detected - health is 'Critical', warning: {warning_message}")
+                    return True
+                else:
+                    self.log_result("Condenser Capacitor Scenario 4 (Both Critical)", False, "Failed to fetch created report")
+            else:
+                self.log_result("Condenser Capacitor Scenario 4 (Both Critical)", False, f"Status {response.status_code}: {response.text}")
+        except Exception as e:
+            self.log_result("Condenser Capacitor Scenario 4 (Both Critical)", False, f"Error: {str(e)}")
+        
+        return False
+
     def test_tolerance_calculations(self):
         """Test tolerance calculations with specific values"""
         if not self.tech_token:
