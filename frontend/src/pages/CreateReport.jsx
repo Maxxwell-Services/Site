@@ -612,7 +612,9 @@ const CreateReport = () => {
                         condenser_serial_number: data.serial_number || formData.condenser_serial_number,
                         condenser_date_of_manufacture: data.date_of_manufacture || formData.condenser_date_of_manufacture,
                         condenser_age: data.age || formData.condenser_age,
-                        condenser_warranty_status: data.warranty_status || formData.condenser_warranty_status
+                        condenser_warranty_status: data.warranty_status || formData.condenser_warranty_status,
+                        rated_rla: data.rla || formData.rated_rla,
+                        rated_lra: data.lra || formData.rated_lra
                       });
                     }}
                   />
