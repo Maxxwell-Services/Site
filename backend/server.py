@@ -910,10 +910,10 @@ Be thorough and extract ALL details visible.""",
                     data = json.loads(json_match.group())
                 except json.JSONDecodeError:
                     logging.error(f"Regex extraction also failed. Full response: {response}")
-                    raise HTTPException(status_code=500, detail=f"Failed to parse warranty OCR response")
+                    raise HTTPException(status_code=500, detail="Failed to parse warranty OCR response")
             else:
                 logging.error(f"No JSON found in response: {response}")
-                raise HTTPException(status_code=500, detail=f"No valid JSON in warranty OCR response")
+                raise HTTPException(status_code=500, detail="No valid JSON in warranty OCR response")
         
         return WarrantyOCRResponse(
             age=data.get("age"),
