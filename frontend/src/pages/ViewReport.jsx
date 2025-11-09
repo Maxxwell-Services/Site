@@ -469,8 +469,8 @@ const ViewReport = () => {
               data-testid="condenser-capacitor-metric-card"
             >
               <h4 className="font-semibold mb-2 text-sm flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <Zap className="w-5 h-5 opacity-70" />
+                  <div className="flex items-center gap-1.5">
+                    <Zap className="w-4 h-4 opacity-70" />
                   <span>Condenser Dual Run Capacitor</span>
                 </div>
                 <div className="flex items-center gap-2">
