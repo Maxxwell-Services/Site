@@ -438,7 +438,7 @@ const CreateReport = () => {
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="Normal Operation">Normal Operation</SelectItem>
-                    <SelectItem value="Inoperative (see note below)">Inoperative (see note below)</SelectItem>
+                    <SelectItem value="Inoperative or Malfunctioning (Replace)">Inoperative or Malfunctioning (Replace)</SelectItem>
                     <SelectItem value="Overflow / Float Switch Missing">Overflow / Float Switch Missing</SelectItem>
                   </SelectContent>
                 </Select>
