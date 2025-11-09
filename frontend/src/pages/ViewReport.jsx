@@ -846,26 +846,34 @@ const ViewReport = () => {
           onClick={() => setPhotoModalOpen(false)}
         >
           <div 
-            className="relative bg-white rounded-lg max-w-4xl max-h-[90vh] overflow-auto"
+            className="relative bg-white rounded-lg max-w-6xl w-full max-h-[90vh] overflow-auto"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="sticky top-0 bg-white border-b px-6 py-4 flex items-center justify-between z-10">
-              <h3 className="text-xl font-bold" style={{color: '#1C325E'}}>{photoModalTitle}</h3>
+              <h3 className="text-xl font-bold" style={{color: '#1C325E'}}>
+                {photoModalTitle} ({selectedPhotos.length} photo{selectedPhotos.length !== 1 ? 's' : ''})
+              </h3>
               <button
                 onClick={() => setPhotoModalOpen(false)}
                 className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+                title="Close"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
-            <div className="p-6 grid gap-4">
+            <div className="p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {selectedPhotos.map((photo, index) => (
-                <div key={index} className="border rounded-lg overflow-hidden">
+                <div key={index} className="border-2 border-gray-200 rounded-lg overflow-hidden hover:border-blue-400 transition-colors">
                   <img 
                     src={photo} 
                     alt={`${photoModalTitle} ${index + 1}`}
-                    className="w-full h-auto"
+                    className="w-full h-64 object-cover cursor-pointer hover:scale-105 transition-transform"
+                    onClick={() => window.open(photo, '_blank')}
+                    title="Click to view full size"
                   />
+                  <div className="p-2 bg-gray-50 text-center text-xs text-gray-600">
+                    Photo {index + 1} of {selectedPhotos.length}
+                  </div>
                 </div>
               ))}
             </div>
