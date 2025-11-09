@@ -214,7 +214,7 @@ frontend:
     file: "/app/frontend/src/pages/ViewReport.jsx"
     stuck_count: 0
     priority: "medium"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: "NA"
         agent: "main"
@@ -222,6 +222,9 @@ frontend:
       - working: "NA"
         agent: "user"
         comment: "User requested to remove the 'Maintenance' square from customer reports as it's not needed"
+      - working: "NA"
+        agent: "testing"
+        comment: "Backend testing complete - this is a frontend-only task. Backend APIs do not include maintenance square data and are working correctly. Frontend testing not performed as per testing protocol."
   
   - task: "Fix ViewReport to display Indoor Unit and Condenser details correctly"
     implemented: true
