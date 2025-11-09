@@ -135,6 +135,21 @@ frontend:
       - working: true
         agent: "testing"
         comment: "✅ VERIFIED: Air Filters conditional logic is working correctly. Successfully tested the Create Report page at /technician/create-report. Visual confirmation shows: 1) Air Filters dropdown contains all 5 options as expected, 2) When first option 'Filters Replaced (Provided by the technician)' is selected, the Filter Details box appears with light blue background containing Filter Size field (placeholder: 16x25x1), Quantity field (placeholder: 2), and '+ Add Filter' button. The conditional logic on line 512 (formData.air_filters === 'Filters Replaced (Provided by the technician)' || formData.air_filters === 'Tech will return to replace filters') is functioning as intended. Screenshots captured confirm proper UI behavior."
+  
+  - task: "Condenser Dual Run Capacitor - Split into 4 separate fields"
+    implemented: true
+    working: "NA"
+    file: "/app/frontend/src/pages/CreateReport.jsx, /app/frontend/src/pages/ViewReport.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: "NA"
+        agent: "main"
+        comment: "Split Condenser Dual Run Capacitor section from 2 fields into 4 separate fields: Common to Herm Terminal Reading/Rating and Common to Fan Terminal Reading/Rating. Updated UI layout with left column (Actual Readings) and right column (Capacitor Rating). Updated formData state to include condenser_capacitor_herm_rating, condenser_capacitor_herm_reading, condenser_capacitor_fan_rating, condenser_capacitor_fan_reading. Updated handleSubmit to pass new fields."
+      - working: "NA"
+        agent: "user"
+        comment: "User requested to split the Condenser Dual Run Capacitor into 4 fields: two for actual readings (Herm Terminal and Fan Terminal) and two for ratings (Herm Terminal and Fan Terminal)"
 
 metadata:
   created_by: "main_agent"
