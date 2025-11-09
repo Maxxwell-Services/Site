@@ -576,16 +576,16 @@ const ViewReport = () => {
 
             {/* Refrigerant */}
             <div 
-              className={`p-5 rounded-xl border-2 shadow-md cursor-pointer hover:shadow-lg transition-shadow ${getSeverityColor(report.refrigerant_status.toLowerCase())}`}
-              onClick={() => openMetricInfo('refrigerant', report.refrigerant_status.toLowerCase())}
+              className={`p-5 rounded-xl border-2 shadow-md cursor-pointer hover:shadow-lg transition-shadow ${getSeverityColor(currentData.refrigerant_status.toLowerCase())}`}
+              onClick={() => openMetricInfo('refrigerant', currentData.refrigerant_status.toLowerCase())}
               data-testid="refrigerant-metric-card"
             >
               <h4 className="font-bold mb-3 text-lg flex items-center justify-between">
                 <span>Refrigerant</span>
                 <div className="flex items-center gap-2">
                   <span className={`text-xs px-2 py-1 rounded-full ${
-                    report.refrigerant_status === 'Good' ? 'bg-green-200' :
-                    report.refrigerant_status === 'Low' ? 'bg-orange-200' : 'bg-red-200'
+                    currentData.refrigerant_status === 'Good' ? 'bg-green-200' :
+                    currentData.refrigerant_status === 'Low' ? 'bg-orange-200' : 'bg-red-200'
                   }`}>{currentData.refrigerant_status}</span>
                   <Info className="w-4 h-4 opacity-60" />
                 </div>
@@ -593,11 +593,15 @@ const ViewReport = () => {
               <div className="space-y-2">
                 <div className="flex justify-between text-sm">
                   <span className="opacity-80">Type:</span>
-                  <span className="font-semibold">{report.refrigerant_type}</span>
+                  <span className="font-semibold">{currentData.refrigerant_type}</span>
                 </div>
                 <div className="flex justify-between text-sm">
-                  <span className="opacity-80">Pressure:</span>
-                  <span className="font-semibold">{report.refrigerant_level} PSI</span>
+                  <span className="opacity-80">Superheat:</span>
+                  <span className="font-semibold">{currentData.superheat}°F</span>
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span className="opacity-80">Subcooling:</span>
+                  <span className="font-semibold">{currentData.subcooling}°F</span>
                 </div>
               </div>
               <p className="text-xs mt-3 opacity-70 italic">Click for more information</p>
