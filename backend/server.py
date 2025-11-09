@@ -481,9 +481,25 @@ async def create_report(data: MaintenanceReportCreate, user: dict = Depends(get_
         blower_capacitor_tolerance = 0.0
         blower_capacitor_needs_replacement = False
     
-    condenser_capacitor_status, condenser_capacitor_tolerance, condenser_capacitor_needs_replacement = check_capacitor_tolerance(
-        data.condenser_capacitor_rating, data.condenser_capacitor_reading
+    # Check both Herm and Fan capacitor readings
+    herm_capacitor_status, herm_capacitor_tolerance, herm_capacitor_needs_replacement = check_capacitor_tolerance(
+        data.condenser_capacitor_herm_rating, data.condenser_capacitor_herm_reading
     )
+    fan_capacitor_status, fan_capacitor_tolerance, fan_capacitor_needs_replacement = check_capacitor_tolerance(
+        data.condenser_capacitor_fan_rating, data.condenser_capacitor_fan_reading
+    )
+    
+    # Use the worst status for overall condenser capacitor health
+    condenser_capacitor_needs_replacement = herm_capacitor_needs_replacement or fan_capacitor_needs_replacement
+    condenser_capacitor_tolerance = max(herm_capacitor_tolerance, fan_capacitor_tolerance)
+    
+    # Determine overall condenser capacitor status (worst of both)
+    status_priority = {"Critical": 3, "Warning": 2, "Good": 1}
+    if status_priority.get(herm_capacitor_status, 0) >= status_priority.get(fan_capacitor_status, 0):
+        condenser_capacitor_status = herm_capacitor_status
+    else:
+        condenser_capacitor_status = fan_capacitor_status
+    
     delta_t_status = check_delta_t(delta_t)
     amp_status = check_amp_draw(data.amp_draw, data.rated_amps)
     
@@ -498,10 +514,17 @@ async def create_report(data: MaintenanceReportCreate, user: dict = Depends(get_
         })
     
     if condenser_capacitor_needs_replacement:
+        # Build detailed message for condenser capacitor
+        cap_message_parts = []
+        if herm_capacitor_needs_replacement:
+            cap_message_parts.append(f"Herm terminal: {herm_capacitor_tolerance:.1f}% off")
+        if fan_capacitor_needs_replacement:
+            cap_message_parts.append(f"Fan terminal: {fan_capacitor_tolerance:.1f}% off")
+        
         warnings.append({
             "type": "condenser_capacitor",
             "severity": condenser_capacitor_status.lower(),
-            "message": f"Condenser capacitor reading is {condenser_capacitor_tolerance:.1f}% off from rated value",
+            "message": f"Condenser dual run capacitor - {', '.join(cap_message_parts)}",
             "part_needed": "capacitor"
         })
     
