@@ -1056,6 +1056,66 @@ const ViewReport = () => {
           </div>
         </div>
       )}
+
+      {/* Enlarged Photo Viewer */}
+      {enlargedPhotoIndex !== null && (
+        <div 
+          className="fixed inset-0 z-[60] flex items-center justify-center bg-black bg-opacity-95"
+          onClick={() => setEnlargedPhotoIndex(null)}
+        >
+          <button
+            onClick={() => setEnlargedPhotoIndex(null)}
+            className="absolute top-4 right-4 p-2 bg-white rounded-full hover:bg-gray-200 transition-colors z-10"
+            title="Close"
+          >
+            <X className="w-6 h-6" />
+          </button>
+          
+          {/* Previous Button */}
+          {enlargedPhotoIndex > 0 && (
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                setEnlargedPhotoIndex(enlargedPhotoIndex - 1);
+              }}
+              className="absolute left-4 p-3 bg-white rounded-full hover:bg-gray-200 transition-colors"
+              title="Previous"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+          )}
+          
+          {/* Image */}
+          <div className="max-w-[90vw] max-h-[90vh] flex flex-col items-center" onClick={(e) => e.stopPropagation()}>
+            <img 
+              src={selectedPhotos[enlargedPhotoIndex]} 
+              alt={`${photoModalTitle} ${enlargedPhotoIndex + 1}`}
+              className="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl"
+            />
+            <div className="mt-4 px-4 py-2 bg-white rounded-full text-sm font-medium">
+              {enlargedPhotoIndex + 1} of {selectedPhotos.length}
+            </div>
+          </div>
+          
+          {/* Next Button */}
+          {enlargedPhotoIndex < selectedPhotos.length - 1 && (
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                setEnlargedPhotoIndex(enlargedPhotoIndex + 1);
+              }}
+              className="absolute right-4 p-3 bg-white rounded-full hover:bg-gray-200 transition-colors"
+              title="Next"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          )}
+        </div>
+      )}
     </div>
   );
 };
