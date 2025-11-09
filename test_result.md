@@ -281,7 +281,7 @@ frontend:
         comment: "Implemented PhotoModal component with responsive grid layout. Features: 1) Grid displays 1 column on mobile, 2 columns on tablet, 3 columns on desktop, 2) Each photo has hover effects and border transitions, 3) Photos are clickable to open in new tab for full-size view, 4) Modal header shows photo count, 5) Each photo thumbnail shows position (Photo X of Y), 6) Proper spacing and padding for clean presentation."
   
   - task: "Photo Indicators on Metric Cards"
-    implemented: false
+    implemented: true
     working: "NA"
     file: "/app/frontend/src/pages/ViewReport.jsx"
     stuck_count: 0
@@ -290,7 +290,7 @@ frontend:
     status_history:
       - working: "NA"
         agent: "main"
-        comment: "Will add camera icon indicators to all metric cards that have associated photos. Indicators should only appear when photos exist for that metric. Affected metrics: Evaporator Coil (evaporator_photos), Condenser Coils (condenser_photos), Refrigerant (refrigerant_photos), Capacitors (capacitor_photos - for both blower motor and condenser capacitors), Temperature/Delta T (temperature_photos), Drainage (drainage_photos - for primary drain and drain pan), Indoor Air Quality (indoor_air_quality_photos - for air purifier, plenums, ductwork)."
+        comment: "Implemented camera icon indicators on all relevant metric cards. Features: 1) Blue camera icon appears only when photos exist for that metric, 2) Shows photo count on hover (X photo(s) available), 3) Click handler stops event propagation to avoid triggering metric info modal, 4) Opens PhotoModal with appropriate photos when clicked, 5) Hover scale animation for better UX. Implemented on: Blower Motor Capacitor, Condenser Dual Run Capacitor, Temperature, Refrigerant, Primary Drain, Drain Pan, Evaporator Coil, Condenser Coils, Air Purifier, Plenums, Ductwork."
   
   - task: "Metric Card Icons"
     implemented: false
