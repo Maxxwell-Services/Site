@@ -153,11 +153,11 @@ frontend:
   
   - task: "Condenser Dual Run Capacitor - Split into 4 separate fields"
     implemented: true
-    working: "NA"
+    working: true
     file: "/app/frontend/src/pages/CreateReport.jsx, /app/frontend/src/pages/ViewReport.jsx"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: "NA"
         agent: "main"
@@ -165,14 +165,17 @@ frontend:
       - working: "NA"
         agent: "user"
         comment: "User requested to split the Condenser Dual Run Capacitor into 4 fields: two for actual readings (Herm Terminal and Fan Terminal) and two for ratings (Herm Terminal and Fan Terminal)"
+      - working: true
+        agent: "testing"
+        comment: "✅ VERIFIED: Condenser Dual Run Capacitor 4-field layout is working perfectly. Successfully tested at /technician/create-report after login with test@example.com. Layout verification: Left column heading 'Actual Readings (µF)' ✓, Right column heading 'Capacitor Rating (µF)' ✓. All 4 fields present with correct data-testids: condenser-capacitor-herm-reading-input (placeholder: e.g., 35), condenser-capacitor-fan-reading-input (placeholder: e.g., 5), condenser-capacitor-herm-rating-input (placeholder: e.g., 35), condenser-capacitor-fan-rating-input (placeholder: e.g., 5). All fields are properly marked as required (*) and accept numeric input correctly. Field functionality tested with values 35.5, 5.2, 35.0, 5.0 - all inputs accepted and displayed correctly. UI layout matches requirements with proper two-column structure."
   
   - task: "Condenser Coils - Update dropdown options"
     implemented: true
-    working: "NA"
+    working: true
     file: "/app/frontend/src/pages/CreateReport.jsx"
     stuck_count: 0
     priority: "medium"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: "NA"
         agent: "main"
@@ -180,6 +183,9 @@ frontend:
       - working: "NA"
         agent: "user"
         comment: "User requested to update Condenser Coils dropdown options with more specific and detailed descriptions"
+      - working: true
+        agent: "testing"
+        comment: "✅ VERIFIED: Condenser Coils dropdown is working correctly with all 4 required options. Successfully tested at /technician/create-report. Default value verification: 'Cleaned with Fresh Water' is correctly set as default ✓. All 4 options present in correct order: 1) 'Cleaned with Fresh Water' ✓, 2) 'Unable to clean (Hose bib not accessible within 40ft)' ✓, 3) 'Coils excessively dirty (Cabinet must be disassembled to properly clean)' ✓, 4) 'Debris and leaves clogging coils (Cabinet must be disassembled to properly clean)' ✓. Option selection functionality tested - successfully selected 'Unable to clean (Hose bib not accessible within 40ft)' and dropdown updated correctly. All option text matches requirements exactly."
 
 metadata:
   created_by: "main_agent"
