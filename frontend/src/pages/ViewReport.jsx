@@ -612,6 +612,133 @@ const ViewReport = () => {
               <p className="text-xs mt-3 opacity-70 italic">Click for more information</p>
             </div>
 
+            {/* Overflow / Float Switch */}
+            <div 
+              className={`p-5 rounded-xl border-2 shadow-md cursor-pointer hover:shadow-lg transition-shadow ${
+                currentData.overflow_float_switch === 'Inoperative or Malfunctioning (Replace)' || currentData.overflow_float_switch === 'Overflow / Float Switch Missing'
+                  ? 'bg-red-100 border-red-300 text-red-800'
+                  : 'bg-green-100 border-green-300 text-green-800'
+              }`}
+              onClick={() => openMetricInfo('overflow_switch', 
+                currentData.overflow_float_switch === 'Inoperative or Malfunctioning (Replace)' || currentData.overflow_float_switch === 'Overflow / Float Switch Missing' ? 'critical' : 'good'
+              )}
+              data-testid="overflow-switch-metric-card"
+            >
+              <h4 className="font-bold mb-3 text-lg flex items-center justify-between">
+                <span>Overflow / Float Switch</span>
+                <Info className="w-4 h-4 opacity-60" />
+              </h4>
+              <p className="text-sm font-medium">{currentData.overflow_float_switch}</p>
+              <p className="text-xs mt-3 opacity-70 italic">Click for more information</p>
+            </div>
+
+            {/* Air Filters */}
+            <div 
+              className="p-5 rounded-xl border-2 shadow-md bg-blue-100 border-blue-300 text-blue-800"
+              data-testid="air-filters-metric-card"
+            >
+              <h4 className="font-bold mb-3 text-lg flex items-center justify-between">
+                <span>Air Filters</span>
+                <Filter className="w-5 h-5 opacity-60" />
+              </h4>
+              <p className="text-sm font-medium">{currentData.air_filters}</p>
+              {currentData.filters_list && currentData.filters_list.length > 0 && (
+                <div className="mt-2 space-y-1">
+                  {currentData.filters_list.map((filter, index) => (
+                    <p key={index} className="text-xs">• {filter.size} (Qty: {filter.quantity})</p>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Evaporator Coil */}
+            <div 
+              className={`p-5 rounded-xl border-2 shadow-md cursor-pointer hover:shadow-lg transition-shadow ${
+                currentData.evaporator_coil === 'Needs deep cleaning'
+                  ? 'bg-orange-100 border-orange-300 text-orange-800'
+                  : 'bg-green-100 border-green-300 text-green-800'
+              }`}
+              onClick={() => openMetricInfo('evaporator_coil', 
+                currentData.evaporator_coil === 'Needs deep cleaning' ? 'warning' : 'good'
+              )}
+              data-testid="evaporator-coil-metric-card"
+            >
+              <h4 className="font-bold mb-3 text-lg flex items-center justify-between">
+                <span>Evaporator Coil</span>
+                <Info className="w-4 h-4 opacity-60" />
+              </h4>
+              <p className="text-sm font-medium">{currentData.evaporator_coil}</p>
+              <p className="text-xs mt-3 opacity-70 italic">Click for more information</p>
+            </div>
+
+            {/* Condenser Coils */}
+            <div 
+              className={`p-5 rounded-xl border-2 shadow-md cursor-pointer hover:shadow-lg transition-shadow ${
+                currentData.condenser_coils === 'Unable to clean (Hose bib not accessible within 40ft)' ||
+                currentData.condenser_coils === 'Coils excessively dirty (Cabinet must be disassembled to properly clean)' ||
+                currentData.condenser_coils === 'Debris and leaves clogging coils (Cabinet must be disassembled to properly clean)'
+                  ? 'bg-orange-100 border-orange-300 text-orange-800'
+                  : 'bg-green-100 border-green-300 text-green-800'
+              }`}
+              onClick={() => openMetricInfo('condenser_coils', 
+                currentData.condenser_coils === 'Unable to clean (Hose bib not accessible within 40ft)' ||
+                currentData.condenser_coils === 'Coils excessively dirty (Cabinet must be disassembled to properly clean)' ||
+                currentData.condenser_coils === 'Debris and leaves clogging coils (Cabinet must be disassembled to properly clean)'
+                  ? 'warning' : 'good'
+              )}
+              data-testid="condenser-coils-metric-card"
+            >
+              <h4 className="font-bold mb-3 text-lg flex items-center justify-between">
+                <span>Condenser Coils</span>
+                <Info className="w-4 h-4 opacity-60" />
+              </h4>
+              <p className="text-sm font-medium">{currentData.condenser_coils}</p>
+              <p className="text-xs mt-3 opacity-70 italic">Click for more information</p>
+            </div>
+
+            {/* Plenums */}
+            <div 
+              className={`p-5 rounded-xl border-2 shadow-md cursor-pointer hover:shadow-lg transition-shadow ${
+                currentData.plenums === 'Supply or Return Leaking'
+                  ? 'bg-red-100 border-red-300 text-red-800'
+                  : 'bg-green-100 border-green-300 text-green-800'
+              }`}
+              onClick={() => openMetricInfo('plenums', 
+                currentData.plenums === 'Supply or Return Leaking' ? 'critical' : 'good'
+              )}
+              data-testid="plenums-metric-card"
+            >
+              <h4 className="font-bold mb-3 text-lg flex items-center justify-between">
+                <span>Plenums</span>
+                <Info className="w-4 h-4 opacity-60" />
+              </h4>
+              <p className="text-sm font-medium">{currentData.plenums}</p>
+              <p className="text-xs mt-3 opacity-70 italic">Click for more information</p>
+            </div>
+
+            {/* Ductwork */}
+            <div 
+              className={`p-5 rounded-xl border-2 shadow-md cursor-pointer hover:shadow-lg transition-shadow ${
+                currentData.ductwork === 'Significant Leaks'
+                  ? 'bg-red-100 border-red-300 text-red-800'
+                  : currentData.ductwork === 'Minor Leaks'
+                  ? 'bg-orange-100 border-orange-300 text-orange-800'
+                  : 'bg-green-100 border-green-300 text-green-800'
+              }`}
+              onClick={() => openMetricInfo('ductwork', 
+                currentData.ductwork === 'Significant Leaks' ? 'critical' :
+                currentData.ductwork === 'Minor Leaks' ? 'warning' : 'good'
+              )}
+              data-testid="ductwork-metric-card"
+            >
+              <h4 className="font-bold mb-3 text-lg flex items-center justify-between">
+                <span>Ductwork</span>
+                <Info className="w-4 h-4 opacity-60" />
+              </h4>
+              <p className="text-sm font-medium">{currentData.ductwork}</p>
+              <p className="text-xs mt-3 opacity-70 italic">Click for more information</p>
+            </div>
+
             {/* Electrical section removed */}
           </div>
 
