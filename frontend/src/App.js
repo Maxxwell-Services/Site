@@ -6,6 +6,7 @@ import Landing from "./pages/Landing";
 import TechnicianLogin from "./pages/TechnicianLogin";
 import TechnicianDashboard from "./pages/TechnicianDashboard";
 import CreateReport from "./pages/CreateReport";
+import EditReport from "./pages/EditReport";
 import ViewReport from "./pages/ViewReport";
 import CustomerSignup from "./pages/CustomerSignup";
 import CustomerLogin from "./pages/CustomerLogin";
