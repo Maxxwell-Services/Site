@@ -220,7 +220,7 @@ const ViewReport = () => {
             {/* Performance Score Card */}
             <div className="bg-white rounded-lg shadow-sm p-6 border" style={{borderColor: '#e5e7eb'}}>
               <div className="flex items-center justify-between mb-4">
-                <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-1.5">
                   <Gauge className="w-5 h-5" style={{color: '#1C325E'}} />
                   <h2 className="text-lg font-bold" style={{color: '#1C325E'}}>SYSTEM PERFORMANCE</h2>
                 </div>
@@ -473,7 +473,7 @@ const ViewReport = () => {
                     <Zap className="w-4 h-4 opacity-70" />
                   <span>Condenser Dual Run Capacitor</span>
                 </div>
-                <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-1.5">
                   <span className={`text-[10px] px-1.5 py-0.5 rounded-full ${
                     currentData.condenser_capacitor_health === 'Good' ? 'bg-green-200' :
                     currentData.condenser_capacitor_health === 'Warning' ? 'bg-orange-200' : 'bg-red-200'
@@ -534,11 +534,11 @@ const ViewReport = () => {
               data-testid="temperature-metric-card"
             >
               <h4 className="font-medium mb-2 text-sm flex items-center justify-between">
-                <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-1.5">
                   <Thermometer className="w-4 h-4 opacity-70" />
                   <span>Temperature</span>
                 </div>
-                <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-1.5">
                   <span className={`text-[10px] px-1.5 py-0.5 rounded-full ${
                     currentData.delta_t_status === 'Good' ? 'bg-green-200' :
                     currentData.delta_t_status === 'Warning' ? 'bg-orange-200' : 'bg-red-200'
@@ -586,11 +586,11 @@ const ViewReport = () => {
               data-testid="drain-metric-card"
             >
               <h4 className="font-medium mb-2 text-sm flex items-center justify-between">
-                <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-1.5">
                   <Droplets className="w-4 h-4 opacity-70" />
                   <span>Primary Drain</span>
                 </div>
-                <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-1.5">
                   {currentData.drainage_photos && currentData.drainage_photos.length > 0 && (
                     <button
                       onClick={(e) => {
@@ -626,11 +626,11 @@ const ViewReport = () => {
               data-testid="drain-pan-metric-card"
             >
               <h4 className="font-medium mb-2 text-sm flex items-center justify-between">
-                <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-1.5">
                   <Container className="w-4 h-4 opacity-70" />
                   <span>Drain Pan</span>
                 </div>
-                <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-1.5">
                   {currentData.drainage_photos && currentData.drainage_photos.length > 0 && (
                     <button
                       onClick={(e) => {
@@ -671,11 +671,11 @@ const ViewReport = () => {
               data-testid="air-purifier-metric-card"
             >
               <h4 className="font-medium mb-2 text-sm flex items-center justify-between">
-                <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-1.5">
                   <AirFlow className="w-4 h-4 opacity-70" />
                   <span>Air Purifier</span>
                 </div>
-                <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-1.5">
                   {currentData.indoor_air_quality_photos && currentData.indoor_air_quality_photos.length > 0 && (
                     <button
                       onClick={(e) => {
@@ -702,11 +702,11 @@ const ViewReport = () => {
               data-testid="refrigerant-metric-card"
             >
               <h4 className="font-medium mb-2 text-sm flex items-center justify-between">
-                <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-1.5">
                   <Refrigerator className="w-4 h-4 opacity-70" />
                   <span>Refrigerant</span>
                 </div>
-                <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-1.5">
                   <span className={`text-[10px] px-1.5 py-0.5 rounded-full ${
                     currentData.refrigerant_status === 'Good' ? 'bg-green-200' :
                     currentData.refrigerant_status === 'Low' ? 'bg-orange-200' : 'bg-red-200'
@@ -756,7 +756,7 @@ const ViewReport = () => {
               data-testid="overflow-switch-metric-card"
             >
               <h4 className="font-medium mb-2 text-sm flex items-center justify-between">
-                <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-1.5">
                   <Wind className="w-4 h-4 opacity-70" />
                   <span>Overflow / Float Switch</span>
                 </div>
@@ -798,11 +798,11 @@ const ViewReport = () => {
               data-testid="evaporator-coil-metric-card"
             >
               <h4 className="font-medium mb-2 text-sm flex items-center justify-between">
-                <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-1.5">
                   <Triangle className="w-4 h-4 opacity-70" />
                   <span>Evaporator Coil</span>
                 </div>
-                <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-1.5">
                   {currentData.evaporator_photos && currentData.evaporator_photos.length > 0 && (
                     <button
                       onClick={(e) => {
@@ -840,11 +840,11 @@ const ViewReport = () => {
               data-testid="condenser-coils-metric-card"
             >
               <h4 className="font-medium mb-2 text-sm flex items-center justify-between">
-                <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-1.5">
                   <Layers className="w-4 h-4 opacity-70" />
                   <span>Condenser Coils</span>
                 </div>
-                <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-1.5">
                   {currentData.condenser_photos && currentData.condenser_photos.length > 0 && (
                     <button
                       onClick={(e) => {
@@ -877,11 +877,11 @@ const ViewReport = () => {
               data-testid="plenums-metric-card"
             >
               <h4 className="font-medium mb-2 text-sm flex items-center justify-between">
-                <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-1.5">
                   <Square className="w-4 h-4 opacity-70" />
                   <span>Plenums</span>
                 </div>
-                <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-1.5">
                   {currentData.indoor_air_quality_photos && currentData.indoor_air_quality_photos.length > 0 && (
                     <button
                       onClick={(e) => {
@@ -917,11 +917,11 @@ const ViewReport = () => {
               data-testid="ductwork-metric-card"
             >
               <h4 className="font-medium mb-2 text-sm flex items-center justify-between">
-                <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-1.5">
                   <Network className="w-4 h-4 opacity-70" />
                   <span>Ductwork</span>
                 </div>
-                <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-1.5">
                   {currentData.indoor_air_quality_photos && currentData.indoor_air_quality_photos.length > 0 && (
                     <button
                       onClick={(e) => {
