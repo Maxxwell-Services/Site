@@ -1,5 +1,5 @@
-import React, { useState, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useContext, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -14,10 +14,13 @@ import PhotoUpload from '@/components/PhotoUpload';
 import DataPlateScanner from '@/components/DataPlateScanner';
 import WarrantyScanner from '@/components/WarrantyScanner';
 
-const CreateReport = () => {
+const EditReport = () => {
   const navigate = useNavigate();
+  const { reportId } = useParams();
   const { user, token } = useContext(AuthContext);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [loadingSubmit, setLoadingSubmit] = useState(false);
+  const [editInfo, setEditInfo] = useState(null);
   const [formData, setFormData] = useState({
     customer_name: '',
     customer_email: '',
