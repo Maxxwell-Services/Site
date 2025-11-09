@@ -148,6 +148,7 @@ class MaintenanceReportCreate(BaseModel):
     drain_pan_condition: str
     drainage_photos: Optional[List[str]] = Field(default_factory=list)
     air_filters: str
+    filters_list: Optional[List[dict]] = Field(default_factory=list)  # List of {size, quantity}
     evaporator_coil: str
     condenser_coils: str
     # Indoor Air Quality
