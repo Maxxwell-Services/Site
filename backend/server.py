@@ -204,10 +204,12 @@ class MaintenanceReport(BaseModel):
     blower_motor_capacitor_reading: Optional[float] = None
     blower_motor_capacitor_health: Optional[str] = None  # "Good", "Warning", "Critical" (only for PSC Motor)
     blower_motor_capacitor_tolerance: Optional[float] = None  # percentage difference (only for PSC Motor)
-    condenser_capacitor_rating: float
-    condenser_capacitor_reading: float
-    condenser_capacitor_health: str  # "Good", "Warning", "Critical"
-    condenser_capacitor_tolerance: float  # percentage difference
+    condenser_capacitor_herm_rating: float
+    condenser_capacitor_herm_reading: float
+    condenser_capacitor_fan_rating: float
+    condenser_capacitor_fan_reading: float
+    condenser_capacitor_health: str  # "Good", "Warning", "Critical" (overall worst of herm and fan)
+    condenser_capacitor_tolerance: float  # percentage difference (worst of herm and fan)
     capacitor_photos: Optional[List[str]] = Field(default_factory=list)
     return_temp: float
     supply_temp: float
