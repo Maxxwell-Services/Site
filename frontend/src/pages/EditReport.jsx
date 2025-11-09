@@ -200,9 +200,9 @@ const EditReport = () => {
       toast.success(`Report updated successfully! (Version ${response.data.current_version})`);
       navigate('/technician/dashboard');
     } catch (error) {
-      toast.error(error.response?.data?.detail || 'Failed to create report');
+      toast.error(error.response?.data?.detail || 'Failed to update report');
     } finally {
-      setLoading(false);
+      setLoadingSubmit(false);
     }
   };
 
