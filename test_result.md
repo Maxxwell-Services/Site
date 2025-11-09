@@ -269,7 +269,7 @@ frontend:
         comment: "User reported 'Failed to update report' error when trying to add pictures during report editing on desktop."
   
   - task: "Photo Modal with Grid View"
-    implemented: false
+    implemented: true
     working: "NA"
     file: "/app/frontend/src/pages/ViewReport.jsx"
     stuck_count: 0
@@ -278,7 +278,7 @@ frontend:
     status_history:
       - working: "NA"
         agent: "main"
-        comment: "Will implement PhotoModal component with grid layout (2-3 columns) for displaying multiple metric photos. Modal should be responsive, show photos in a clean grid format, and include close functionality. Photos should be clickable for larger view if needed."
+        comment: "Implemented PhotoModal component with responsive grid layout. Features: 1) Grid displays 1 column on mobile, 2 columns on tablet, 3 columns on desktop, 2) Each photo has hover effects and border transitions, 3) Photos are clickable to open in new tab for full-size view, 4) Modal header shows photo count, 5) Each photo thumbnail shows position (Photo X of Y), 6) Proper spacing and padding for clean presentation."
   
   - task: "Photo Indicators on Metric Cards"
     implemented: false
