@@ -235,7 +235,7 @@ const TechnicianDashboard = () => {
                         <Copy className="w-4 h-4 mr-2" />
                         Copy Link
                       </Button>
-                      {(report.edit_count || 0) < 3 && (
+                      {(report.edit_count || 0) < 3 && !report.archived && (
                         <Button
                           variant="outline"
                           size="sm"
@@ -248,6 +248,26 @@ const TechnicianDashboard = () => {
                           Edit {report.edit_count > 0 && `(${report.edit_count}/3)`}
                         </Button>
                       )}
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => toggleArchive(report.id, report.archived)}
+                        className="hover:bg-gray-50"
+                        style={{borderColor: report.archived ? '#16a34a' : '#f59e0b', color: report.archived ? '#16a34a' : '#f59e0b'}}
+                        data-testid={`archive-btn-${report.id}`}
+                      >
+                        {report.archived ? (
+                          <>
+                            <ArchiveRestore className="w-4 h-4 mr-2" />
+                            Unarchive
+                          </>
+                        ) : (
+                          <>
+                            <Archive className="w-4 h-4 mr-2" />
+                            Archive
+                          </>
+                        )}
+                      </Button>
                       <Button
                         size="sm"
                         onClick={() => window.open(`/report/${report.unique_link}`, '_blank')}
