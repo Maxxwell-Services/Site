@@ -1,14 +1,14 @@
 {
-  "timestamp": "2025-11-09T19:09:11.594916",
+  "timestamp": "2025-11-09T19:10:00.790516",
   "total_tests": 22,
-  "passed": 19,
-  "failed": 3,
-  "success_rate": "86.4%",
+  "passed": 21,
+  "failed": 1,
+  "success_rate": "95.5%",
   "results": [
     {
       "test": "Technician Registration",
       "passed": true,
-      "message": "Registered as tech_190908",
+      "message": "Registered as tech_190957",
       "response": null
     },
     {
@@ -20,7 +20,7 @@
     {
       "test": "Customer Registration",
       "passed": true,
-      "message": "Registered as Customer 190909",
+      "message": "Registered as Customer 190958",
       "response": null
     },
     {
@@ -44,7 +44,7 @@
     {
       "test": "Create Report",
       "passed": true,
-      "message": "Report created with link: 9560a610-02b9-43c8-b87a-f47eff9f3b89",
+      "message": "Report created with link: 381dbeb0-99f8-4116-9424-1b7c15d1d1e5",
       "response": null
     },
     {
@@ -109,20 +109,20 @@
     },
     {
       "test": "Tolerance Calculations",
-      "passed": false,
-      "message": "Status 422: {\"detail\":[{\"type\":\"missing\",\"loc\":[\"body\",\"overflow_float_switch\"],\"msg\":\"Field required\",\"input\":{\"customer_name\":\"Test Critical\",\"customer_email\":\"test@example.com\",\"customer_phone\":\"555-0000\",\"evaporator_brand\":\"Test\",\"evaporator_model_number\":\"EVP\",\"evaporator_serial_number\":\"TEST123\",\"evaporator_warranty_status\":\"Active\",\"condenser_brand\":\"Test\",\"condenser_model_number\":\"CON\",\"condenser_serial_number\":\"TEST456\",\"condenser_warranty_status\":\"Active\",\"refrigerant_type\":\"R-410A\",\"superheat\":8.0,\"subcooling\":10.0,\"refrigerant_status\":\"Good\",\"blower_motor_type\":\"ECM Motor\",\"condenser_capacitor_herm_rating\":35.0,\"condenser_capacitor_herm_reading\":30.0,\"condenser_capacitor_fan_rating\":5.0,\"condenser_capacitor_fan_reading\":4.5,\"return_temp\":78.0,\"supply_temp\":68.0,\"primary_drain\":\"Clear and flowing\",\"drain_pan_condition\":\"Good shape\",\"air_filters\":\"Clean\",\"evaporator_coil\":\"Clean\",\"condenser_coils\":\"Clean\",\"air_purifier\":\"Good\",\"plenums\":\"Good\",\"ductwork\":\"Good\"},\"url\":\"https://errors.pydantic.dev/2.12/v/missing\"}]}",
+      "passed": true,
+      "message": "All tolerance checks working correctly (2 warnings)",
       "response": null
     },
     {
       "test": "System Age Calculation",
-      "passed": false,
-      "message": "System age not calculated",
+      "passed": true,
+      "message": "Age fields present - Evaporator: '14 years', Condenser: '14 years'",
       "response": null
     },
     {
       "test": "Get Technician Reports",
       "passed": true,
-      "message": "Retrieved 13 reports",
+      "message": "Retrieved 14 reports",
       "response": null
     },
     {
