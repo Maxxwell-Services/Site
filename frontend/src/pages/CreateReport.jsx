@@ -100,8 +100,6 @@ const CreateReport = () => {
         condenser_capacitor_fan_reading: parseFloat(formData.condenser_capacitor_fan_reading),
         return_temp: parseFloat(formData.return_temp),
         supply_temp: parseFloat(formData.supply_temp),
-        amp_draw: parseFloat(formData.amp_draw),
-        rated_amps: parseFloat(formData.rated_amps),
         evaporator_age: formData.evaporator_age || "",
         condenser_age: formData.condenser_age || ""
       };
