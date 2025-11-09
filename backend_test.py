@@ -310,7 +310,7 @@ class ACMaintenanceAPITester:
                 unique_link = data.get('unique_link')
                 
                 # Fetch the report to check capacitor health
-                report_response = requests.get(f"{self.base_url}/reports/{unique_link}")
+                report_response = requests.get(f"{self.base_url}/reports/view/{unique_link}")
                 if report_response.status_code == 200:
                     report = report_response.json()
                     capacitor_health = report.get('condenser_capacitor_health')
@@ -362,7 +362,7 @@ class ACMaintenanceAPITester:
                 unique_link = data.get('unique_link')
                 
                 # Fetch the report to check capacitor health and warnings
-                report_response = requests.get(f"{self.base_url}/reports/{unique_link}")
+                report_response = requests.get(f"{self.base_url}/reports/view/{unique_link}")
                 if report_response.status_code == 200:
                     report = report_response.json()
                     capacitor_health = report.get('condenser_capacitor_health')
@@ -428,7 +428,7 @@ class ACMaintenanceAPITester:
                 unique_link = data.get('unique_link')
                 
                 # Fetch the report to check capacitor health
-                report_response = requests.get(f"{self.base_url}/reports/{unique_link}")
+                report_response = requests.get(f"{self.base_url}/reports/view/{unique_link}")
                 if report_response.status_code == 200:
                     report = report_response.json()
                     capacitor_health = report.get('condenser_capacitor_health')
@@ -494,7 +494,7 @@ class ACMaintenanceAPITester:
                 unique_link = data.get('unique_link')
                 
                 # Fetch the report to check capacitor health and warnings
-                report_response = requests.get(f"{self.base_url}/reports/{unique_link}")
+                report_response = requests.get(f"{self.base_url}/reports/view/{unique_link}")
                 if report_response.status_code == 200:
                     report = report_response.json()
                     capacitor_health = report.get('condenser_capacitor_health')
@@ -562,7 +562,7 @@ class ACMaintenanceAPITester:
                 unique_link = data.get('unique_link')
                 
                 # Fetch the report to check warnings
-                report_response = requests.get(f"{self.base_url}/reports/{unique_link}")
+                report_response = requests.get(f"{self.base_url}/reports/view/{unique_link}")
                 if report_response.status_code == 200:
                     report = report_response.json()
                     warnings = report.get('warnings', [])
@@ -704,7 +704,7 @@ class ACMaintenanceAPITester:
                 unique_link = data.get('unique_link')
                 
                 # Fetch the report to check system age
-                report_response = requests.get(f"{self.base_url}/reports/{unique_link}")
+                report_response = requests.get(f"{self.base_url}/reports/view/{unique_link}")
                 if report_response.status_code == 200:
                     report = report_response.json()
                     system_age = report.get('system_age')
@@ -784,7 +784,7 @@ class ACMaintenanceAPITester:
                 unique_link = data.get('unique_link')
                 
                 # Fetch the report to verify electrical fields are not present
-                report_response = requests.get(f"{self.base_url}/reports/{unique_link}")
+                report_response = requests.get(f"{self.base_url}/reports/view/{unique_link}")
                 if report_response.status_code == 200:
                     report = report_response.json()
                     
