@@ -487,7 +487,7 @@ const ViewReport = () => {
                       className="hover:scale-110 transition-transform"
                       title={`${currentData.capacitor_photos.length} photo(s) available`}
                     >
-                      <Camera className="w-5 h-5 text-blue-600" />
+                      <Camera className="w-3.5 h-3.5 text-blue-600" />
                     </button>
                   )}
                   <Info className="w-3 h-3 opacity-60" />
@@ -552,7 +552,7 @@ const ViewReport = () => {
                       className="hover:scale-110 transition-transform"
                       title={`${currentData.temperature_photos.length} photo(s) available`}
                     >
-                      <Camera className="w-5 h-5 text-blue-600" />
+                      <Camera className="w-3.5 h-3.5 text-blue-600" />
                     </button>
                   )}
                   <Info className="w-3 h-3 opacity-60" />
@@ -600,7 +600,7 @@ const ViewReport = () => {
                       className="hover:scale-110 transition-transform"
                       title={`${currentData.drainage_photos.length} photo(s) available`}
                     >
-                      <Camera className="w-5 h-5 text-blue-600" />
+                      <Camera className="w-3.5 h-3.5 text-blue-600" />
                     </button>
                   )}
                   <Info className="w-3 h-3 opacity-60" />
@@ -640,7 +640,7 @@ const ViewReport = () => {
                       className="hover:scale-110 transition-transform"
                       title={`${currentData.drainage_photos.length} photo(s) available`}
                     >
-                      <Camera className="w-5 h-5 text-blue-600" />
+                      <Camera className="w-3.5 h-3.5 text-blue-600" />
                     </button>
                   )}
                   <Info className="w-3 h-3 opacity-60" />
@@ -685,7 +685,7 @@ const ViewReport = () => {
                       className="hover:scale-110 transition-transform"
                       title={`${currentData.indoor_air_quality_photos.length} photo(s) available`}
                     >
-                      <Camera className="w-5 h-5 text-blue-600" />
+                      <Camera className="w-3.5 h-3.5 text-blue-600" />
                     </button>
                   )}
                   <Info className="w-3 h-3 opacity-60" />
@@ -720,7 +720,7 @@ const ViewReport = () => {
                       className="hover:scale-110 transition-transform"
                       title={`${currentData.refrigerant_photos.length} photo(s) available`}
                     >
-                      <Camera className="w-5 h-5 text-blue-600" />
+                      <Camera className="w-3.5 h-3.5 text-blue-600" />
                     </button>
                   )}
                   <Info className="w-3 h-3 opacity-60" />
@@ -812,7 +812,7 @@ const ViewReport = () => {
                       className="hover:scale-110 transition-transform"
                       title={`${currentData.evaporator_photos.length} photo(s) available`}
                     >
-                      <Camera className="w-5 h-5 text-blue-600" />
+                      <Camera className="w-3.5 h-3.5 text-blue-600" />
                     </button>
                   )}
                   <Info className="w-3 h-3 opacity-60" />
@@ -854,7 +854,7 @@ const ViewReport = () => {
                       className="hover:scale-110 transition-transform"
                       title={`${currentData.condenser_photos.length} photo(s) available`}
                     >
-                      <Camera className="w-5 h-5 text-blue-600" />
+                      <Camera className="w-3.5 h-3.5 text-blue-600" />
                     </button>
                   )}
                   <Info className="w-3 h-3 opacity-60" />
@@ -891,7 +891,7 @@ const ViewReport = () => {
                       className="hover:scale-110 transition-transform"
                       title={`${currentData.indoor_air_quality_photos.length} photo(s) available`}
                     >
-                      <Camera className="w-5 h-5 text-blue-600" />
+                      <Camera className="w-3.5 h-3.5 text-blue-600" />
                     </button>
                   )}
                   <Info className="w-3 h-3 opacity-60" />
@@ -931,7 +931,7 @@ const ViewReport = () => {
                       className="hover:scale-110 transition-transform"
                       title={`${currentData.indoor_air_quality_photos.length} photo(s) available`}
                     >
-                      <Camera className="w-5 h-5 text-blue-600" />
+                      <Camera className="w-3.5 h-3.5 text-blue-600" />
                     </button>
                   )}
                   <Info className="w-3 h-3 opacity-60" />
