@@ -799,25 +799,35 @@ async def edit_report(report_id: str, data: MaintenanceReportCreate, user: dict 
         "timestamp": datetime.now(timezone.utc).isoformat()
     }
     
-    # Store current version in versions list if it's the first edit
-    # Exclude photo arrays to prevent document size issues
+    # Store lightweight version data - only key metrics, no photos
+    # This prevents MongoDB document size limit issues (16MB)
     photo_fields = ["evaporator_photos", "condenser_photos", "refrigerant_photos", "capacitor_photos", 
                     "temperature_photos", "drainage_photos", "indoor_air_quality_photos", "general_photos"]
     
+    # Only store essential fields for version comparison
+    essential_fields = ["customer_name", "customer_email", "customer_phone",
+                       "refrigerant_type", "superheat", "subcooling", "refrigerant_status",
+                       "blower_motor_capacitor_health", "blower_motor_capacitor_tolerance",
+                       "condenser_capacitor_health", "condenser_capacitor_tolerance",
+                       "delta_t", "delta_t_status", "overflow_float_switch",
+                       "primary_drain", "drain_pan_condition", "air_filters",
+                       "evaporator_coil", "condenser_coils", "air_purifier", "plenums", "ductwork",
+                       "performance_score", "warnings"]
+    
     versions = existing_report.get("versions", [])
     if len(versions) == 0:
-        # This is the first edit, so store the original report as version 1 (without photos)
+        # This is the first edit, so store the original report as version 1 (only essential fields)
         original_version = {
             "version": 1,
             "label": "Before Repair",
             "timestamp": existing_report.get("created_at"),
-            "data": {k: v for k, v in existing_report.items() if k not in ["_id", "versions", "current_version", "edit_count"] + photo_fields}
+            "data": {k: v for k, v in existing_report.items() if k in essential_fields}
         }
         versions.append(original_version)
     
-    # Add new version (without photos to keep document size manageable)
+    # Add new version (only essential fields)
     new_version_number = existing_report.get("edit_count", 0) + 2  # +2 because version 1 is original
-    version_data = {k: v for k, v in updated_report_data.items() if k not in photo_fields}
+    version_data = {k: v for k, v in updated_report_data.items() if k in essential_fields}
     new_version = {
         "version": new_version_number,
         "label": f"After Repair {new_version_number - 1}",
