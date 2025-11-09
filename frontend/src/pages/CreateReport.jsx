@@ -59,6 +59,7 @@ const CreateReport = () => {
     return_temp: '',
     supply_temp: '',
     temperature_photos: [],
+    overflow_float_switch: 'Normal Operation',
     primary_drain: 'Flushed and draining normally',
     primary_drain_notes: '',
     drain_pan_condition: 'Good shape',
