@@ -297,16 +297,16 @@ const ViewReport = () => {
             {/* Blower Motor Capacitor - Only show if PSC Motor */}
             {currentData.blower_motor_type === "PSC Motor" && currentData.blower_motor_capacitor_health && (
               <div 
-                className={`p-5 rounded-xl border-2 shadow-md cursor-pointer hover:shadow-lg transition-shadow ${getSeverityColor(report.blower_motor_capacitor_health.toLowerCase())}`}
-                onClick={() => openMetricInfo('capacitor', report.blower_motor_capacitor_health.toLowerCase())}
+                className={`p-5 rounded-xl border-2 shadow-md cursor-pointer hover:shadow-lg transition-shadow ${getSeverityColor(currentData.blower_motor_capacitor_health.toLowerCase())}`}
+                onClick={() => openMetricInfo('capacitor', currentData.blower_motor_capacitor_health.toLowerCase())}
                 data-testid="blower-capacitor-metric-card"
               >
                 <h4 className="font-bold mb-3 text-lg flex items-center justify-between">
                   <span>Blower Motor Capacitor</span>
                   <div className="flex items-center gap-2">
                     <span className={`text-xs px-2 py-1 rounded-full ${
-                      report.blower_motor_capacitor_health === 'Good' ? 'bg-green-200' :
-                      report.blower_motor_capacitor_health === 'Warning' ? 'bg-orange-200' : 'bg-red-200'
+                      currentData.blower_motor_capacitor_health === 'Good' ? 'bg-green-200' :
+                      currentData.blower_motor_capacitor_health === 'Warning' ? 'bg-orange-200' : 'bg-red-200'
                     }`}>{currentData.blower_motor_capacitor_health}</span>
                     <Info className="w-4 h-4 opacity-60" />
                   </div>
