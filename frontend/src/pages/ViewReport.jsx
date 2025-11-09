@@ -1037,11 +1037,15 @@ const ViewReport = () => {
             </div>
             <div className="p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {selectedPhotos.map((photo, index) => (
-                <div key={index} className="border-2 border-gray-200 rounded-lg overflow-hidden hover:border-blue-400 transition-colors">
+                <div 
+                  key={index} 
+                  className="border-2 border-gray-200 rounded-lg overflow-hidden hover:border-blue-400 transition-colors cursor-pointer"
+                  onClick={() => setEnlargedPhotoIndex(index)}
+                >
                   <img 
                     src={photo} 
                     alt={`${photoModalTitle} ${index + 1}`}
-                    className="w-full h-64 object-cover"
+                    className="w-full h-64 object-cover hover:opacity-90 transition-opacity"
                   />
                   <div className="p-2 bg-gray-50 text-center text-xs text-gray-600">
                     Photo {index + 1} of {selectedPhotos.length}
