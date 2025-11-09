@@ -141,6 +141,7 @@ const EditReport = () => {
         return_temp: report.return_temp || '',
         supply_temp: report.supply_temp || '',
         temperature_photos: report.temperature_photos || [],
+        overflow_float_switch: report.overflow_float_switch || 'Normal Operation',
         primary_drain: report.primary_drain || 'Good',
         primary_drain_notes: report.primary_drain_notes || '',
         drain_pan_condition: report.drain_pan_condition || 'Good shape',
