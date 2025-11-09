@@ -451,7 +451,10 @@ const ViewReport = () => {
               data-testid="condenser-fan-motor-card"
             >
               <h4 className="font-bold mb-3 text-lg flex items-center justify-between">
-                <span>Condenser Fan Motor</span>
+                <div className="flex items-center gap-2">
+                  <Fan className="w-5 h-5 opacity-70" />
+                  <span>Condenser Fan Motor</span>
+                </div>
                 <Info className="w-4 h-4 opacity-60" />
               </h4>
               <p className="text-sm font-medium">{currentData.condenser_fan_motor}</p>
