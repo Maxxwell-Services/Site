@@ -689,7 +689,7 @@ class ACMaintenanceAPITester:
             "condenser_capacitor_herm_reading": 35.0,
             "condenser_capacitor_fan_rating": 5.0,
             "condenser_capacitor_fan_reading": 5.0,
-            "return_temp": 78.0, "supply_temp": 60.0, "amp_draw": 20.0, "rated_amps": 20.0,
+            "return_temp": 78.0, "supply_temp": 60.0,
             "primary_drain": "Clear and flowing", "drain_pan_condition": "Good shape",
             "air_filters": "Clean", "evaporator_coil": "Clean", "condenser_coils": "Clean",
             "air_purifier": "Good", "plenums": "Good", "ductwork": "Good"
