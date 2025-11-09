@@ -51,8 +51,11 @@ const TechnicianDashboard = () => {
     }
   };
 
-  // Filter reports based on search and date
+  // Filter reports based on search, date, and archive status
   const filteredReports = reports.filter(report => {
+    // Filter by archive status
+    const matchesArchiveFilter = showArchived ? report.archived === true : report.archived !== true;
+    
     const matchesSearch = !searchQuery || 
       report.customer_name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       report.customer_email.toLowerCase().includes(searchQuery.toLowerCase());
@@ -60,7 +63,7 @@ const TechnicianDashboard = () => {
     const matchesDate = !dateFilter || 
       new Date(report.created_at).toLocaleDateString() === new Date(dateFilter).toLocaleDateString();
     
-    return matchesSearch && matchesDate;
+    return matchesArchiveFilter && matchesSearch && matchesDate;
   });
 
   const copyLink = async (uniqueLink) => {
