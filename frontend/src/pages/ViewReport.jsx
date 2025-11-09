@@ -358,7 +358,7 @@ const ViewReport = () => {
             </div>
           </div>
         </div>
-      </div>
+          </div>
 
           {/* Right Column - Quick Summary */}
           <div className="space-y-4">
