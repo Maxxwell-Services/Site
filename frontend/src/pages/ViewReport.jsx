@@ -459,7 +459,7 @@ const ViewReport = () => {
                 <Info className="w-4 h-4 opacity-60" />
               </h4>
               <p className="text-sm font-medium">{currentData.condenser_fan_motor}</p>
-              <p className="text-xs mt-3 opacity-70 italic">Click for more information</p>
+              <p className="text-[10px] mt-2 opacity-70 italic">Click for info</p>
             </div>
 
             {/* Condenser Dual Run Capacitor */}
@@ -524,7 +524,7 @@ const ViewReport = () => {
                   <span className="font-semibold">{currentData.condenser_capacitor_tolerance.toFixed(1)}%</span>
                 </div>
               </div>
-              <p className="text-xs mt-3 opacity-70 italic">Click for more information</p>
+              <p className="text-[10px] mt-2 opacity-70 italic">Click for info</p>
             </div>
 
             {/* Delta T */}
@@ -572,7 +572,7 @@ const ViewReport = () => {
                   <span className="font-semibold">{currentData.delta_t.toFixed(1)}°F</span>
                 </div>
               </div>
-              <p className="text-xs mt-3 opacity-70 italic">Click for more information</p>
+              <p className="text-[10px] mt-2 opacity-70 italic">Click for info</p>
             </div>
 
             {/* Primary Drain */}
@@ -607,7 +607,7 @@ const ViewReport = () => {
                 </div>
               </h4>
               <p className="text-sm font-medium">{currentData.primary_drain}</p>
-              <p className="text-xs mt-3 opacity-70 italic">Click for more information</p>
+              <p className="text-[10px] mt-2 opacity-70 italic">Click for info</p>
             </div>
 
             {/* Drain Pan Condition */}
@@ -647,7 +647,7 @@ const ViewReport = () => {
                 </div>
               </h4>
               <p className="text-sm font-medium">{currentData.drain_pan_condition}</p>
-              <p className="text-xs mt-3 opacity-70 italic">Click for more information</p>
+              <p className="text-[10px] mt-2 opacity-70 italic">Click for info</p>
             </div>
 
             {/* Maintenance section removed */}
@@ -692,7 +692,7 @@ const ViewReport = () => {
                 </div>
               </h4>
               <p className="text-sm font-medium">{currentData.air_purifier}</p>
-              <p className="text-xs mt-3 opacity-70 italic">Click for more information</p>
+              <p className="text-[10px] mt-2 opacity-70 italic">Click for info</p>
             </div>
 
             {/* Refrigerant */}
@@ -740,7 +740,7 @@ const ViewReport = () => {
                   <span className="font-semibold">{currentData.subcooling}°F</span>
                 </div>
               </div>
-              <p className="text-xs mt-3 opacity-70 italic">Click for more information</p>
+              <p className="text-[10px] mt-2 opacity-70 italic">Click for info</p>
             </div>
 
             {/* Overflow / Float Switch */}
@@ -763,7 +763,7 @@ const ViewReport = () => {
                 <Info className="w-4 h-4 opacity-60" />
               </h4>
               <p className="text-sm font-medium">{currentData.overflow_float_switch}</p>
-              <p className="text-xs mt-3 opacity-70 italic">Click for more information</p>
+              <p className="text-[10px] mt-2 opacity-70 italic">Click for info</p>
             </div>
 
             {/* Air Filters */}
@@ -819,7 +819,7 @@ const ViewReport = () => {
                 </div>
               </h4>
               <p className="text-sm font-medium">{currentData.evaporator_coil}</p>
-              <p className="text-xs mt-3 opacity-70 italic">Click for more information</p>
+              <p className="text-[10px] mt-2 opacity-70 italic">Click for info</p>
             </div>
 
             {/* Condenser Coils */}
@@ -861,7 +861,7 @@ const ViewReport = () => {
                 </div>
               </h4>
               <p className="text-sm font-medium">{currentData.condenser_coils}</p>
-              <p className="text-xs mt-3 opacity-70 italic">Click for more information</p>
+              <p className="text-[10px] mt-2 opacity-70 italic">Click for info</p>
             </div>
 
             {/* Plenums */}
@@ -898,7 +898,7 @@ const ViewReport = () => {
                 </div>
               </h4>
               <p className="text-sm font-medium">{currentData.plenums}</p>
-              <p className="text-xs mt-3 opacity-70 italic">Click for more information</p>
+              <p className="text-[10px] mt-2 opacity-70 italic">Click for info</p>
             </div>
 
             {/* Ductwork */}
@@ -938,7 +938,7 @@ const ViewReport = () => {
                 </div>
               </h4>
               <p className="text-sm font-medium">{currentData.ductwork}</p>
-              <p className="text-xs mt-3 opacity-70 italic">Click for more information</p>
+              <p className="text-[10px] mt-2 opacity-70 italic">Click for info</p>
             </div>
 
             {/* Electrical section removed */}
