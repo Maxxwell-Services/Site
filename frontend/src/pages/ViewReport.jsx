@@ -198,15 +198,30 @@ const ViewReport = () => {
           </div>
         )}
 
-        {/* Warnings Section */}
-        {displayData?.warnings && displayData.warnings.length > 0 && (
-          <div className="glass rounded-2xl p-6 mb-6 border-2 border-red-300" data-testid="warnings-section">
-            <div className="flex items-center gap-3 mb-4">
-              <AlertTriangle className="w-6 h-6 text-red-600" />
-              <h2 className="text-2xl font-bold text-red-900">Attention Required</h2>
+        {/* Main Content Grid */}
+        <div className="grid lg:grid-cols-3 gap-4">
+          {/* Left Column - Performance & System Info */}
+          <div className="lg:col-span-2 space-y-4">
+            {/* Performance Score Card */}
+            <div className="bg-white rounded-lg shadow-sm p-6 border" style={{borderColor: '#e5e7eb'}}>
+              <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center gap-2">
+                  <Gauge className="w-5 h-5" style={{color: '#1C325E'}} />
+                  <h2 className="text-lg font-bold" style={{color: '#1C325E'}}>SYSTEM PERFORMANCE</h2>
+                </div>
+              </div>
+              <PerformanceGauge score={displayData?.performance_score || report.performance_score || 0} />
             </div>
-            <div className="space-y-3">
-              {displayData.warnings.map((warning, index) => (
+
+            {/* Warnings Section */}
+            {displayData?.warnings && displayData.warnings.length > 0 && (
+              <div className="bg-white rounded-lg shadow-sm p-4 border-l-4" style={{borderColor: '#DB7218'}} data-testid="warnings-section">
+                <div className="flex items-center gap-2 mb-3">
+                  <AlertTriangle className="w-5 h-5" style={{color: '#DB7218'}} />
+                  <h2 className="text-lg font-bold" style={{color: '#1C325E'}}>ATTENTION REQUIRED</h2>
+                </div>
+                <div className="space-y-2">
+                  {displayData.warnings.map((warning, index) => (
                 <div 
                   key={index} 
                   className={`p-4 rounded-lg border-2 ${getSeverityColor(warning.severity)}`}
