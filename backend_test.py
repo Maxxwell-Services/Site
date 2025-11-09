@@ -200,8 +200,6 @@ class ACMaintenanceAPITester:
             "condenser_capacitor_fan_reading": 4.9,   # Good - within 6%
             "return_temp": 78.0,
             "supply_temp": 60.0,  # Delta T = 18°F - should be good
-            "amp_draw": 18.5,
-            "rated_amps": 20.0,
             "primary_drain": "Clear and flowing",
             "drain_pan_condition": "Good shape",
             "air_filters": "Filters Replaced (Provided by the technician)",
