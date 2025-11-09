@@ -917,7 +917,7 @@ const ViewReport = () => {
             >
               <h4 className="font-bold mb-3 text-lg flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <PipeCross className="w-5 h-5 opacity-70" />
+                  <Network className="w-5 h-5 opacity-70" />
                   <span>Ductwork</span>
                 </div>
                 <div className="flex items-center gap-2">
