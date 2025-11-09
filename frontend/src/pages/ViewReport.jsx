@@ -551,18 +551,18 @@ const ViewReport = () => {
             {/* Air Purifier */}
             <div 
               className={`p-5 rounded-xl border-2 shadow-md cursor-pointer hover:shadow-lg transition-shadow ${
-                report.air_purifier === 'Air purifier needs replacement'
+                currentData.air_purifier === 'Air purifier needs replacement'
                   ? 'bg-red-100 border-red-300 text-red-800'
-                  : report.air_purifier === 'UV light needs replacement'
+                  : currentData.air_purifier === 'UV light needs replacement'
                   ? 'bg-orange-100 border-orange-300 text-orange-800'
-                  : report.air_purifier === 'None present'
+                  : currentData.air_purifier === 'None present'
                   ? 'bg-gray-100 border-gray-300 text-gray-800'
                   : 'bg-green-100 border-green-300 text-green-800'
               }`}
               onClick={() => openMetricInfo('air_purifier',
-                report.air_purifier === 'Air purifier needs replacement' ? 'critical' :
-                report.air_purifier === 'UV light needs replacement' ? 'warning' :
-                report.air_purifier === 'None present' ? 'none' : 'good'
+                currentData.air_purifier === 'Air purifier needs replacement' ? 'critical' :
+                currentData.air_purifier === 'UV light needs replacement' ? 'warning' :
+                currentData.air_purifier === 'None present' ? 'none' : 'good'
               )}
               data-testid="air-purifier-metric-card"
             >
