@@ -526,15 +526,15 @@ const ViewReport = () => {
             {/* Drain Pan Condition */}
             <div 
               className={`p-5 rounded-xl border-2 shadow-md cursor-pointer hover:shadow-lg transition-shadow ${
-                report.drain_pan_condition === 'Rusted and should be replaced' || report.drain_pan_condition === 'Poor condition'
+                currentData.drain_pan_condition === 'Rusted and should be replaced' || currentData.drain_pan_condition === 'Poor condition (Replace Soon)'
                   ? 'bg-red-100 border-red-300 text-red-800'
-                  : report.drain_pan_condition === 'Fair condition'
+                  : currentData.drain_pan_condition === 'Fair condition'
                   ? 'bg-orange-100 border-orange-300 text-orange-800'
                   : 'bg-green-100 border-green-300 text-green-800'
               }`}
               onClick={() => openMetricInfo('drain_pan', 
-                report.drain_pan_condition === 'Rusted and should be replaced' || report.drain_pan_condition === 'Poor condition' ? 'critical' :
-                report.drain_pan_condition === 'Fair condition' ? 'warning' : 'good'
+                currentData.drain_pan_condition === 'Rusted and should be replaced' || currentData.drain_pan_condition === 'Poor condition (Replace Soon)' ? 'critical' :
+                currentData.drain_pan_condition === 'Fair condition' ? 'warning' : 'good'
               )}
               data-testid="drain-pan-metric-card"
             >
