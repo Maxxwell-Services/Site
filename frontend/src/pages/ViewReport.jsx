@@ -211,14 +211,14 @@ const ViewReport = () => {
         )}
 
         {/* Warnings Section */}
-        {report.warnings && report.warnings.length > 0 && (
+        {displayData?.warnings && displayData.warnings.length > 0 && (
           <div className="glass rounded-2xl p-6 mb-6 border-2 border-red-300" data-testid="warnings-section">
             <div className="flex items-center gap-3 mb-4">
               <AlertTriangle className="w-6 h-6 text-red-600" />
               <h2 className="text-2xl font-bold text-red-900">Attention Required</h2>
             </div>
             <div className="space-y-3">
-              {report.warnings.map((warning, index) => (
+              {displayData.warnings.map((warning, index) => (
                 <div 
                   key={index} 
                   className={`p-4 rounded-lg border-2 ${getSeverityColor(warning.severity)}`}
