@@ -126,6 +126,9 @@ const ViewReport = () => {
   }
 
   const recommendedParts = getRecommendedParts();
+  
+  // Use displayData if available, otherwise fallback to report
+  const currentData = displayData || report;
 
   return (
     <div className="min-h-screen px-2 sm:px-4 py-4 sm:py-8 bg-gradient-to-br from-slate-50 to-blue-50">
