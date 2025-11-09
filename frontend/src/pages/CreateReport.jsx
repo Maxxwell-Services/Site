@@ -821,34 +821,71 @@ const CreateReport = () => {
               {/* Condenser Dual Run Capacitor */}
               <div className="border-t-2 border-blue-200 pt-4">
                 <h3 className="text-lg font-semibold mb-3" style={{color: '#1C325E'}}>Condenser Dual Run Capacitor</h3>
-                <div className="grid md:grid-cols-2 gap-4 mb-4">
-                  <div>
-                    <Label htmlFor="condenser_capacitor_rating" className="text-blue-900">Rating (µF) *</Label>
-                    <Input
-                      id="condenser_capacitor_rating"
-                      type="number"
-                      step="0.1"
-                      value={formData.condenser_capacitor_rating}
-                      onChange={(e) => setFormData({...formData, condenser_capacitor_rating: e.target.value})}
-                      required
-                      className="mt-1"
-                      placeholder="e.g., 35"
-                      data-testid="condenser-capacitor-rating-input"
-                    />
+                <div className="grid md:grid-cols-2 gap-6 mb-4">
+                  {/* Left Column - Actual Readings */}
+                  <div className="space-y-3">
+                    <h4 className="text-sm font-semibold text-blue-800 mb-2">Actual Readings (µF)</h4>
+                    <div>
+                      <Label htmlFor="condenser_capacitor_herm_reading" className="text-blue-900">Common to Herm Terminal *</Label>
+                      <Input
+                        id="condenser_capacitor_herm_reading"
+                        type="number"
+                        step="0.1"
+                        value={formData.condenser_capacitor_herm_reading}
+                        onChange={(e) => setFormData({...formData, condenser_capacitor_herm_reading: e.target.value})}
+                        required
+                        className="mt-1"
+                        placeholder="e.g., 35"
+                        data-testid="condenser-capacitor-herm-reading-input"
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="condenser_capacitor_fan_reading" className="text-blue-900">Common to Fan Terminal *</Label>
+                      <Input
+                        id="condenser_capacitor_fan_reading"
+                        type="number"
+                        step="0.1"
+                        value={formData.condenser_capacitor_fan_reading}
+                        onChange={(e) => setFormData({...formData, condenser_capacitor_fan_reading: e.target.value})}
+                        required
+                        className="mt-1"
+                        placeholder="e.g., 5"
+                        data-testid="condenser-capacitor-fan-reading-input"
+                      />
+                    </div>
                   </div>
-                  <div>
-                    <Label htmlFor="condenser_capacitor_reading" className="text-blue-900">Reading (µF) *</Label>
-                    <Input
-                      id="condenser_capacitor_reading"
-                      type="number"
-                      step="0.1"
-                      value={formData.condenser_capacitor_reading}
-                      onChange={(e) => setFormData({...formData, condenser_capacitor_reading: e.target.value})}
-                      required
-                      className="mt-1"
-                      placeholder="e.g., 32.5"
-                      data-testid="condenser-capacitor-reading-input"
-                    />
+
+                  {/* Right Column - Capacitor Rating */}
+                  <div className="space-y-3">
+                    <h4 className="text-sm font-semibold text-blue-800 mb-2">Capacitor Rating (µF)</h4>
+                    <div>
+                      <Label htmlFor="condenser_capacitor_herm_rating" className="text-blue-900">Common to Herm Terminal *</Label>
+                      <Input
+                        id="condenser_capacitor_herm_rating"
+                        type="number"
+                        step="0.1"
+                        value={formData.condenser_capacitor_herm_rating}
+                        onChange={(e) => setFormData({...formData, condenser_capacitor_herm_rating: e.target.value})}
+                        required
+                        className="mt-1"
+                        placeholder="e.g., 35"
+                        data-testid="condenser-capacitor-herm-rating-input"
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="condenser_capacitor_fan_rating" className="text-blue-900">Common to Fan Terminal *</Label>
+                      <Input
+                        id="condenser_capacitor_fan_rating"
+                        type="number"
+                        step="0.1"
+                        value={formData.condenser_capacitor_fan_rating}
+                        onChange={(e) => setFormData({...formData, condenser_capacitor_fan_rating: e.target.value})}
+                        required
+                        className="mt-1"
+                        placeholder="e.g., 5"
+                        data-testid="condenser-capacitor-fan-rating-input"
+                      />
+                    </div>
                   </div>
                 </div>
                 <PhotoUpload
