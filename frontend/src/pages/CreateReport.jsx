@@ -508,8 +508,8 @@ const CreateReport = () => {
                 </div>
               </div>
               
-              {/* Filter Details - Show when technician provided filters */}
-              {formData.air_filters === "Filters Replaced (Provided by the technician)" && (
+              {/* Filter Details - Show when technician provided filters or tech will return */}
+              {(formData.air_filters === "Filters Replaced (Provided by the technician)" || formData.air_filters === "Tech will return to replace filters") && (
                 <div className="mt-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
                   <div className="flex justify-between items-center mb-3">
                     <h3 className="text-sm font-semibold text-blue-900">Filter Details</h3>
