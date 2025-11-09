@@ -244,15 +244,15 @@ const ViewReport = () => {
             <div className="space-y-3">
               <div className="flex justify-between py-2 border-b border-gray-200">
                 <span className="text-gray-600">Name:</span>
-                <span className="font-semibold" style={{color: '#1C325E'}}>{report.customer_name}</span>
+                <span className="font-semibold" style={{color: '#1C325E'}}>currentData.customer_name}</span>
               </div>
               <div className="flex justify-between py-2 border-b border-gray-200">
                 <span className="text-gray-600">Email:</span>
-                <span className="font-semibold" style={{color: '#1C325E'}}>{report.customer_email}</span>
+                <span className="font-semibold" style={{color: '#1C325E'}}>currentData.customer_email}</span>
               </div>
               <div className="flex justify-between py-2">
                 <span className="text-gray-600">Phone:</span>
-                <span className="font-semibold" style={{color: '#1C325E'}}>{report.customer_phone}</span>
+                <span className="font-semibold" style={{color: '#1C325E'}}>currentData.customer_phone}</span>
               </div>
             </div>
           </div>
@@ -265,16 +265,16 @@ const ViewReport = () => {
             <div className="space-y-3">
               <div className="flex justify-between py-2">
                 <span className="text-gray-600">Brand:</span>
-                <span className="font-semibold" style={{color: '#1C325E'}}>{report.system_brand}</span>
+                <span className="font-semibold" style={{color: '#1C325E'}}>currentData.system_brand}</span>
               </div>
               <div className="flex justify-between py-2 border-b border-gray-200">
                 <span className="text-gray-600">Serial Number:</span>
-                <span className="font-semibold" style={{color: '#1C325E'}}>{report.serial_number}</span>
+                <span className="font-semibold" style={{color: '#1C325E'}}>currentData.serial_number}</span>
               </div>
-              {report.system_age && (
+              currentData.system_age && (
                 <div className="flex justify-between py-2 border-b border-gray-200">
                   <span className="text-gray-600">System Age:</span>
-                  <span className="font-semibold" style={{color: '#1C325E'}}>{report.system_age} years</span>
+                  <span className="font-semibold" style={{color: '#1C325E'}}>currentData.system_age} years</span>
                 </div>
               )}
               <div className="flex justify-between py-2">
@@ -283,7 +283,7 @@ const ViewReport = () => {
                   report.system_warranty_status === 'Active' 
                     ? 'bg-green-100 text-green-800' 
                     : 'bg-gray-100 text-gray-800'
-                }`}>{report.system_warranty_status}</span>
+                }`}>currentData.system_warranty_status}</span>
               </div>
             </div>
           </div>
@@ -295,7 +295,7 @@ const ViewReport = () => {
           
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {/* Blower Motor Capacitor - Only show if PSC Motor */}
-            {report.blower_motor_type === "PSC Motor" && report.blower_motor_capacitor_health && (
+            currentData.blower_motor_type === "PSC Motor" && report.blower_motor_capacitor_health && (
               <div 
                 className={`p-5 rounded-xl border-2 shadow-md cursor-pointer hover:shadow-lg transition-shadow ${getSeverityColor(report.blower_motor_capacitor_health.toLowerCase())}`}
                 onClick={() => openMetricInfo('capacitor', report.blower_motor_capacitor_health.toLowerCase())}
@@ -307,22 +307,22 @@ const ViewReport = () => {
                     <span className={`text-xs px-2 py-1 rounded-full ${
                       report.blower_motor_capacitor_health === 'Good' ? 'bg-green-200' :
                       report.blower_motor_capacitor_health === 'Warning' ? 'bg-orange-200' : 'bg-red-200'
-                    }`}>{report.blower_motor_capacitor_health}</span>
+                    }`}>currentData.blower_motor_capacitor_health}</span>
                     <Info className="w-4 h-4 opacity-60" />
                   </div>
                 </h4>
                 <div className="space-y-2">
                   <div className="flex justify-between text-sm">
                     <span className="opacity-80">Rating:</span>
-                    <span className="font-semibold">{report.blower_motor_capacitor_rating}µF</span>
+                    <span className="font-semibold">currentData.blower_motor_capacitor_rating}µF</span>
                   </div>
                   <div className="flex justify-between text-sm">
                     <span className="opacity-80">Reading:</span>
-                    <span className="font-semibold">{report.blower_motor_capacitor_reading}µF</span>
+                    <span className="font-semibold">currentData.blower_motor_capacitor_reading}µF</span>
                   </div>
                   <div className="flex justify-between text-sm">
                     <span className="opacity-80">Variance:</span>
-                    <span className="font-semibold">{report.blower_motor_capacitor_tolerance?.toFixed(1)}%</span>
+                    <span className="font-semibold">currentData.blower_motor_capacitor_tolerance?.toFixed(1)}%</span>
                   </div>
                 </div>
                 <p className="text-xs mt-3 opacity-70 italic">Click for more information</p>
@@ -364,7 +364,7 @@ const ViewReport = () => {
                   <span className={`text-xs px-2 py-1 rounded-full ${
                     report.condenser_capacitor_health === 'Good' ? 'bg-green-200' :
                     report.condenser_capacitor_health === 'Warning' ? 'bg-orange-200' : 'bg-red-200'
-                  }`}>{report.condenser_capacitor_health}</span>
+                  }`}>currentData.condenser_capacitor_health}</span>
                   <Info className="w-4 h-4 opacity-60" />
                 </div>
               </h4>
@@ -374,11 +374,11 @@ const ViewReport = () => {
                   <div className="text-xs font-semibold text-gray-600 mb-1">Common to Herm Terminal</div>
                   <div className="flex justify-between text-sm">
                     <span className="opacity-80">Rating:</span>
-                    <span className="font-semibold">{report.condenser_capacitor_herm_rating}µF</span>
+                    <span className="font-semibold">currentData.condenser_capacitor_herm_rating}µF</span>
                   </div>
                   <div className="flex justify-between text-sm">
                     <span className="opacity-80">Reading:</span>
-                    <span className="font-semibold">{report.condenser_capacitor_herm_reading}µF</span>
+                    <span className="font-semibold">currentData.condenser_capacitor_herm_reading}µF</span>
                   </div>
                 </div>
                 {/* Fan Terminal */}
@@ -386,17 +386,17 @@ const ViewReport = () => {
                   <div className="text-xs font-semibold text-gray-600 mb-1">Common to Fan Terminal</div>
                   <div className="flex justify-between text-sm">
                     <span className="opacity-80">Rating:</span>
-                    <span className="font-semibold">{report.condenser_capacitor_fan_rating}µF</span>
+                    <span className="font-semibold">currentData.condenser_capacitor_fan_rating}µF</span>
                   </div>
                   <div className="flex justify-between text-sm">
                     <span className="opacity-80">Reading:</span>
-                    <span className="font-semibold">{report.condenser_capacitor_fan_reading}µF</span>
+                    <span className="font-semibold">currentData.condenser_capacitor_fan_reading}µF</span>
                   </div>
                 </div>
                 {/* Overall Variance */}
                 <div className="flex justify-between text-sm">
                   <span className="opacity-80">Max Variance:</span>
-                  <span className="font-semibold">{report.condenser_capacitor_tolerance.toFixed(1)}%</span>
+                  <span className="font-semibold">currentData.condenser_capacitor_tolerance.toFixed(1)}%</span>
                 </div>
               </div>
               <p className="text-xs mt-3 opacity-70 italic">Click for more information</p>
@@ -414,22 +414,22 @@ const ViewReport = () => {
                   <span className={`text-xs px-2 py-1 rounded-full ${
                     report.delta_t_status === 'Good' ? 'bg-green-200' :
                     report.delta_t_status === 'Warning' ? 'bg-orange-200' : 'bg-red-200'
-                  }`}>{report.delta_t_status}</span>
+                  }`}>currentData.delta_t_status}</span>
                   <Info className="w-4 h-4 opacity-60" />
                 </div>
               </h4>
               <div className="space-y-2">
                 <div className="flex justify-between text-sm">
                   <span className="opacity-80">Return Air:</span>
-                  <span className="font-semibold">{report.return_temp}°F</span>
+                  <span className="font-semibold">currentData.return_temp}°F</span>
                 </div>
                 <div className="flex justify-between text-sm">
                   <span className="opacity-80">Supply Air:</span>
-                  <span className="font-semibold">{report.supply_temp}°F</span>
+                  <span className="font-semibold">currentData.supply_temp}°F</span>
                 </div>
                 <div className="flex justify-between text-sm">
                   <span className="opacity-80">Delta T:</span>
-                  <span className="font-semibold">{report.delta_t.toFixed(1)}°F</span>
+                  <span className="font-semibold">currentData.delta_t.toFixed(1)}°F</span>
                 </div>
               </div>
               <p className="text-xs mt-3 opacity-70 italic">Click for more information</p>
@@ -449,7 +449,7 @@ const ViewReport = () => {
                 <span>Primary Drain</span>
                 <Info className="w-4 h-4 opacity-60" />
               </h4>
-              <p className="text-sm font-medium">{report.primary_drain}</p>
+              <p className="text-sm font-medium">currentData.primary_drain}</p>
               <p className="text-xs mt-3 opacity-70 italic">Click for more information</p>
             </div>
 
@@ -472,7 +472,7 @@ const ViewReport = () => {
                 <span>Drain Pan</span>
                 <Info className="w-4 h-4 opacity-60" />
               </h4>
-              <p className="text-sm font-medium">{report.drain_pan_condition}</p>
+              <p className="text-sm font-medium">currentData.drain_pan_condition}</p>
               <p className="text-xs mt-3 opacity-70 italic">Click for more information</p>
             </div>
 
@@ -500,7 +500,7 @@ const ViewReport = () => {
                 <span>Air Purifier</span>
                 <Info className="w-4 h-4 opacity-60" />
               </h4>
-              <p className="text-sm font-medium">{report.air_purifier}</p>
+              <p className="text-sm font-medium">currentData.air_purifier}</p>
               <p className="text-xs mt-3 opacity-70 italic">Click for more information</p>
             </div>
 
@@ -516,7 +516,7 @@ const ViewReport = () => {
                   <span className={`text-xs px-2 py-1 rounded-full ${
                     report.refrigerant_status === 'Good' ? 'bg-green-200' :
                     report.refrigerant_status === 'Low' ? 'bg-orange-200' : 'bg-red-200'
-                  }`}>{report.refrigerant_status}</span>
+                  }`}>currentData.refrigerant_status}</span>
                   <Info className="w-4 h-4 opacity-60" />
                 </div>
               </h4>
@@ -536,17 +536,17 @@ const ViewReport = () => {
             {/* Electrical section removed */}
           </div>
 
-          {report.notes && (
+          currentData.notes && (
             <div className="mt-6 p-4 rounded-lg bg-blue-50 border border-blue-200">
               <h4 className="font-semibold text-blue-900 mb-2">Technician Notes</h4>
-              <p className="text-blue-800 whitespace-pre-wrap">{report.notes}</p>
+              <p className="text-blue-800 whitespace-pre-wrap">currentData.notes}</p>
             </div>
           )}
 
-          {report.other_repair_recommendations && (
+          currentData.other_repair_recommendations && (
             <div className="mt-4 p-4 rounded-lg bg-orange-50 border border-orange-200">
               <h4 className="font-semibold text-orange-900 mb-2">Other Repair Recommendations</h4>
-              <p className="text-orange-800 whitespace-pre-wrap">{report.other_repair_recommendations}</p>
+              <p className="text-orange-800 whitespace-pre-wrap">currentData.other_repair_recommendations}</p>
             </div>
           )}
         </div>
