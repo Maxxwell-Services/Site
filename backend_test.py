@@ -166,31 +166,51 @@ class ACMaintenanceAPITester:
         return False
 
     def test_create_report(self):
-        """Test report creation with tolerance checks"""
+        """Test report creation with new dual run capacitor fields"""
         if not self.tech_token:
             self.log_result("Create Report", False, "No technician token available")
             return False
         
-        # Test with readings that should trigger warnings
+        # Test with new 4-field capacitor structure
         payload = {
             "customer_name": "John Doe",
             "customer_email": "john.doe@example.com",
             "customer_phone": "555-1234",
-            "system_brand": "Carrier",
-            "serial_number": "2015ABC123",
-            "installation_year": 2015,
+            # Evaporator Details
+            "evaporator_brand": "Carrier",
+            "evaporator_model_number": "EVP123",
+            "evaporator_serial_number": "2015ABC123",
+            "evaporator_warranty_status": "Active",
+            # Condenser Details
+            "condenser_brand": "Carrier",
+            "condenser_model_number": "CON456",
+            "condenser_serial_number": "2015DEF456",
+            "condenser_warranty_status": "Active",
             "refrigerant_type": "R-410A",
-            "refrigerant_level": 120.5,
+            "superheat": 8.0,
+            "subcooling": 10.0,
             "refrigerant_status": "Good",
-            "capacitor_rating": 35.0,
-            "capacitor_reading": 32.0,  # 8.6% off - should trigger warning
+            "blower_motor_type": "PSC Motor",
+            "blower_motor_capacitor_rating": 7.5,
+            "blower_motor_capacitor_reading": 7.3,
+            # New 4 separate condenser capacitor fields
+            "condenser_capacitor_herm_rating": 35.0,
+            "condenser_capacitor_herm_reading": 34.5,  # Good - within 6%
+            "condenser_capacitor_fan_rating": 5.0,
+            "condenser_capacitor_fan_reading": 4.9,   # Good - within 6%
             "return_temp": 78.0,
             "supply_temp": 60.0,  # Delta T = 18°F - should be good
             "amp_draw": 18.5,
             "rated_amps": 20.0,
-            "filters_replaced": True,
-            "condenser_coils_cleaned": True,
-            "notes": "Test report with capacitor warning"
+            "primary_drain": "Clear and flowing",
+            "drain_pan_condition": "Good shape",
+            "air_filters": "Filters Replaced (Provided by the technician)",
+            "evaporator_coil": "Clean",
+            "condenser_coils": "Clean",
+            "air_purifier": "Good",
+            "plenums": "Good",
+            "ductwork": "Good",
+            "notes": "Test report with new dual run capacitor fields"
         }
         
         try:
