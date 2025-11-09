@@ -16,6 +16,8 @@ const ViewReport = () => {
   const [loading, setLoading] = useState(true);
   const [selectedMetric, setSelectedMetric] = useState(null);
   const [metricModalOpen, setMetricModalOpen] = useState(false);
+  const [selectedVersion, setSelectedVersion] = useState(null);
+  const [displayData, setDisplayData] = useState(null);
 
   const openMetricInfo = (metric, status) => {
     setSelectedMetric({ metric, status });
