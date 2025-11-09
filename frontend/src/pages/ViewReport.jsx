@@ -812,7 +812,10 @@ const ViewReport = () => {
               data-testid="condenser-coils-metric-card"
             >
               <h4 className="font-bold mb-3 text-lg flex items-center justify-between">
-                <span>Condenser Coils</span>
+                <div className="flex items-center gap-2">
+                  <Layers className="w-5 h-5 opacity-70" />
+                  <span>Condenser Coils</span>
+                </div>
                 <div className="flex items-center gap-2">
                   {currentData.condenser_photos && currentData.condenser_photos.length > 0 && (
                     <button
