@@ -497,11 +497,11 @@ const ViewReport = () => {
                 {/* Herm Terminal */}
                 <div className="border-b border-gray-200 pb-2">
                   <div className="text-xs font-semibold text-gray-600 mb-1">Common to Herm Terminal</div>
-                  <div className="flex justify-between text-sm">
+                  <div className="flex justify-between text-xs">
                     <span className="opacity-80">Rating:</span>
                     <span className="font-semibold">{currentData.condenser_capacitor_herm_rating}µF</span>
                   </div>
-                  <div className="flex justify-between text-sm">
+                  <div className="flex justify-between text-xs">
                     <span className="opacity-80">Reading:</span>
                     <span className="font-semibold">{currentData.condenser_capacitor_herm_reading}µF</span>
                   </div>
@@ -509,17 +509,17 @@ const ViewReport = () => {
                 {/* Fan Terminal */}
                 <div className="border-b border-gray-200 pb-2">
                   <div className="text-xs font-semibold text-gray-600 mb-1">Common to Fan Terminal</div>
-                  <div className="flex justify-between text-sm">
+                  <div className="flex justify-between text-xs">
                     <span className="opacity-80">Rating:</span>
                     <span className="font-semibold">{currentData.condenser_capacitor_fan_rating}µF</span>
                   </div>
-                  <div className="flex justify-between text-sm">
+                  <div className="flex justify-between text-xs">
                     <span className="opacity-80">Reading:</span>
                     <span className="font-semibold">{currentData.condenser_capacitor_fan_reading}µF</span>
                   </div>
                 </div>
                 {/* Overall Variance */}
-                <div className="flex justify-between text-sm">
+                <div className="flex justify-between text-xs">
                   <span className="opacity-80">Max Variance:</span>
                   <span className="font-semibold">{currentData.condenser_capacitor_tolerance.toFixed(1)}%</span>
                 </div>
@@ -559,15 +559,15 @@ const ViewReport = () => {
                 </div>
               </h4>
               <div className="space-y-1">
-                <div className="flex justify-between text-sm">
+                <div className="flex justify-between text-xs">
                   <span className="opacity-80">Return Air:</span>
                   <span className="font-semibold">{currentData.return_temp}°F</span>
                 </div>
-                <div className="flex justify-between text-sm">
+                <div className="flex justify-between text-xs">
                   <span className="opacity-80">Supply Air:</span>
                   <span className="font-semibold">{currentData.supply_temp}°F</span>
                 </div>
-                <div className="flex justify-between text-sm">
+                <div className="flex justify-between text-xs">
                   <span className="opacity-80">Delta T:</span>
                   <span className="font-semibold">{currentData.delta_t.toFixed(1)}°F</span>
                 </div>
@@ -727,15 +727,15 @@ const ViewReport = () => {
                 </div>
               </h4>
               <div className="space-y-1">
-                <div className="flex justify-between text-sm">
+                <div className="flex justify-between text-xs">
                   <span className="opacity-80">Type:</span>
                   <span className="font-semibold">{currentData.refrigerant_type}</span>
                 </div>
-                <div className="flex justify-between text-sm">
+                <div className="flex justify-between text-xs">
                   <span className="opacity-80">Superheat:</span>
                   <span className="font-semibold">{currentData.superheat}°F</span>
                 </div>
-                <div className="flex justify-between text-sm">
+                <div className="flex justify-between text-xs">
                   <span className="opacity-80">Subcooling:</span>
                   <span className="font-semibold">{currentData.subcooling}°F</span>
                 </div>
