@@ -838,6 +838,40 @@ const ViewReport = () => {
           status={selectedMetric.status}
         />
       )}
+
+      {/* Photo Viewer Modal */}
+      {photoModalOpen && (
+        <div 
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-75"
+          onClick={() => setPhotoModalOpen(false)}
+        >
+          <div 
+            className="relative bg-white rounded-lg max-w-4xl max-h-[90vh] overflow-auto"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="sticky top-0 bg-white border-b px-6 py-4 flex items-center justify-between z-10">
+              <h3 className="text-xl font-bold" style={{color: '#1C325E'}}>{photoModalTitle}</h3>
+              <button
+                onClick={() => setPhotoModalOpen(false)}
+                className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            <div className="p-6 grid gap-4">
+              {selectedPhotos.map((photo, index) => (
+                <div key={index} className="border rounded-lg overflow-hidden">
+                  <img 
+                    src={photo} 
+                    alt={`${photoModalTitle} ${index + 1}`}
+                    className="w-full h-auto"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
