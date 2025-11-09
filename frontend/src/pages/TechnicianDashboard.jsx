@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Button } from '@/components/ui/button';
-import { Snowflake, Plus, LogOut, FileText, Copy, ExternalLink } from 'lucide-react';
+import { Snowflake, Plus, LogOut, FileText, Copy, ExternalLink, Edit } from 'lucide-react';
 import { toast } from 'sonner';
 import { API, AuthContext } from '../App';
 
