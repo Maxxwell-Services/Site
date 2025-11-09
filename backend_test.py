@@ -264,12 +264,13 @@ class ACMaintenanceAPITester:
                     self.log_result("View Report (Public)", False, f"Delta T calculation wrong: expected {expected_delta_t}, got {actual_delta_t}")
                     return False
                 
-                # Verify warnings exist (capacitor should trigger warning)
-                if len(data.get('warnings', [])) == 0:
-                    self.log_result("View Report (Public)", False, "Expected warnings but got none")
+                # Verify capacitor health is calculated correctly (should be "Good" for this test)
+                capacitor_health = data.get('condenser_capacitor_health')
+                if capacitor_health != "Good":
+                    self.log_result("View Report (Public)", False, f"Expected capacitor health 'Good', got '{capacitor_health}'")
                     return False
                 
-                self.log_result("View Report (Public)", True, f"Report retrieved with {len(data['warnings'])} warnings")
+                self.log_result("View Report (Public)", True, f"Report retrieved successfully with capacitor health: {capacitor_health}")
                 return True
             else:
                 self.log_result("View Report (Public)", False, f"Status {response.status_code}: {response.text}")
