@@ -181,7 +181,7 @@ const ViewReport = () => {
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
               <div className="flex items-center gap-2">
                 <Calendar className="w-4 h-4" style={{color: '#1C325E'}} />
-                <span className="text-sm font-medium" style={{color: '#1C325E'}}>Version:</span>
+                <span className="text-xs font-medium" style={{color: '#1C325E'}}>Version:</span>
                 <span className="text-xs text-gray-600">
                   {report.versions.find(v => v.version === selectedVersion)?.timestamp 
                     ? new Date(report.versions.find(v => v.version === selectedVersion)?.timestamp).toLocaleDateString()
@@ -458,7 +458,7 @@ const ViewReport = () => {
                 </div>
                 <Info className="w-3 h-3 opacity-60" />
               </h4>
-              <p className="text-sm font-medium">{currentData.condenser_fan_motor}</p>
+              <p className="text-xs font-medium">{currentData.condenser_fan_motor}</p>
               <p className="text-[10px] mt-2 opacity-70 italic">Click for info</p>
             </div>
 
@@ -606,7 +606,7 @@ const ViewReport = () => {
                   <Info className="w-3 h-3 opacity-60" />
                 </div>
               </h4>
-              <p className="text-sm font-medium">{currentData.primary_drain}</p>
+              <p className="text-xs font-medium">{currentData.primary_drain}</p>
               <p className="text-[10px] mt-2 opacity-70 italic">Click for info</p>
             </div>
 
@@ -646,7 +646,7 @@ const ViewReport = () => {
                   <Info className="w-3 h-3 opacity-60" />
                 </div>
               </h4>
-              <p className="text-sm font-medium">{currentData.drain_pan_condition}</p>
+              <p className="text-xs font-medium">{currentData.drain_pan_condition}</p>
               <p className="text-[10px] mt-2 opacity-70 italic">Click for info</p>
             </div>
 
@@ -691,7 +691,7 @@ const ViewReport = () => {
                   <Info className="w-3 h-3 opacity-60" />
                 </div>
               </h4>
-              <p className="text-sm font-medium">{currentData.air_purifier}</p>
+              <p className="text-xs font-medium">{currentData.air_purifier}</p>
               <p className="text-[10px] mt-2 opacity-70 italic">Click for info</p>
             </div>
 
@@ -762,7 +762,7 @@ const ViewReport = () => {
                 </div>
                 <Info className="w-3 h-3 opacity-60" />
               </h4>
-              <p className="text-sm font-medium">{currentData.overflow_float_switch}</p>
+              <p className="text-xs font-medium">{currentData.overflow_float_switch}</p>
               <p className="text-[10px] mt-2 opacity-70 italic">Click for info</p>
             </div>
 
@@ -775,7 +775,7 @@ const ViewReport = () => {
                 <span>Air Filters</span>
                 <Filter className="w-5 h-5 opacity-60" />
               </h4>
-              <p className="text-sm font-medium">{currentData.air_filters}</p>
+              <p className="text-xs font-medium">{currentData.air_filters}</p>
               {currentData.filters_list && currentData.filters_list.length > 0 && (
                 <div className="mt-2 space-y-1">
                   {currentData.filters_list.map((filter, index) => (
@@ -818,7 +818,7 @@ const ViewReport = () => {
                   <Info className="w-3 h-3 opacity-60" />
                 </div>
               </h4>
-              <p className="text-sm font-medium">{currentData.evaporator_coil}</p>
+              <p className="text-xs font-medium">{currentData.evaporator_coil}</p>
               <p className="text-[10px] mt-2 opacity-70 italic">Click for info</p>
             </div>
 
@@ -860,7 +860,7 @@ const ViewReport = () => {
                   <Info className="w-3 h-3 opacity-60" />
                 </div>
               </h4>
-              <p className="text-sm font-medium">{currentData.condenser_coils}</p>
+              <p className="text-xs font-medium">{currentData.condenser_coils}</p>
               <p className="text-[10px] mt-2 opacity-70 italic">Click for info</p>
             </div>
 
@@ -897,7 +897,7 @@ const ViewReport = () => {
                   <Info className="w-3 h-3 opacity-60" />
                 </div>
               </h4>
-              <p className="text-sm font-medium">{currentData.plenums}</p>
+              <p className="text-xs font-medium">{currentData.plenums}</p>
               <p className="text-[10px] mt-2 opacity-70 italic">Click for info</p>
             </div>
 
@@ -937,7 +937,7 @@ const ViewReport = () => {
                   <Info className="w-3 h-3 opacity-60" />
                 </div>
               </h4>
-              <p className="text-sm font-medium">{currentData.ductwork}</p>
+              <p className="text-xs font-medium">{currentData.ductwork}</p>
               <p className="text-[10px] mt-2 opacity-70 italic">Click for info</p>
             </div>
 
@@ -1094,7 +1094,7 @@ const ViewReport = () => {
               alt={`${photoModalTitle} ${enlargedPhotoIndex + 1}`}
               className="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl"
             />
-            <div className="mt-4 px-4 py-2 bg-white rounded-full text-sm font-medium">
+            <div className="mt-4 px-4 py-2 bg-white rounded-full text-xs font-medium">
               {enlargedPhotoIndex + 1} of {selectedPhotos.length}
             </div>
           </div>
