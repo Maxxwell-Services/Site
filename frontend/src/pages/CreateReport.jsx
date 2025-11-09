@@ -69,7 +69,7 @@ const CreateReport = () => {
     air_filters: 'Filters Replaced (Provided by the technician)',
     filters_list: [{ size: '', quantity: '' }],
     evaporator_coil: 'Clean',
-    condenser_coils: 'Cleaned',
+    condenser_coils: 'Cleaned with Fresh Water',
     air_purifier: 'Good',
     plenums: 'Good condition',
     ductwork: 'Good condition',
