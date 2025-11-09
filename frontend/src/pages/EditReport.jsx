@@ -225,7 +225,12 @@ const EditReport = () => {
               <Snowflake className="w-6 h-6 sm:w-8 sm:h-8 text-blue-600" />
             </div>
             <div>
-              <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-blue-900">Create Maintenance Report</h1>
+              <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-blue-900">Edit Maintenance Report</h1>
+              {editInfo && (
+                <p className="text-sm text-gray-600 mt-1">
+                  Version {editInfo.current_version} | Edits: {editInfo.edit_count}/3
+                </p>
+              )}
               <p className="text-sm sm:text-base text-blue-700">Enter all system readings and maintenance details</p>
             </div>
           </div>
