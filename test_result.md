@@ -102,7 +102,7 @@
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
 #====================================================================================================
 
-user_problem_statement: "AC System Maintenance Report Application - Fix Air Filters section conditional logic. The filter details box should only appear when technician selects either the FIRST option ('Filters Replaced (Provided by the technician)') OR the LAST option ('Tech will return to replace filters') from the Air Filters dropdown."
+user_problem_statement: "AC System Maintenance Report Application - Multiple updates: 1) Remove 'Maintenance' square from customer reports, 2) Add report editing feature allowing technicians to edit their own reports up to 3 times with before/after repair tracking and version toggle display."
 
 backend:
   - task: "Backend API for report creation"
