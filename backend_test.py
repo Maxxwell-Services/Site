@@ -297,6 +297,7 @@ class ACMaintenanceAPITester:
             "condenser_capacitor_fan_rating": 5.0,
             "condenser_capacitor_fan_reading": 4.9,    # 2% off - Good
             "return_temp": 78.0, "supply_temp": 60.0,
+            "overflow_float_switch": "Working properly",
             "primary_drain": "Clear and flowing", "drain_pan_condition": "Good shape",
             "air_filters": "Clean", "evaporator_coil": "Clean", "condenser_coils": "Clean",
             "air_purifier": "Good", "plenums": "Good", "ductwork": "Good"
@@ -349,6 +350,7 @@ class ACMaintenanceAPITester:
             "condenser_capacitor_fan_rating": 5.0,
             "condenser_capacitor_fan_reading": 4.9,    # 2% off - Good
             "return_temp": 78.0, "supply_temp": 60.0,
+            "overflow_float_switch": "Working properly",
             "primary_drain": "Clear and flowing", "drain_pan_condition": "Good shape",
             "air_filters": "Clean", "evaporator_coil": "Clean", "condenser_coils": "Clean",
             "air_purifier": "Good", "plenums": "Good", "ductwork": "Good"
@@ -415,6 +417,7 @@ class ACMaintenanceAPITester:
             "condenser_capacitor_fan_rating": 5.0,
             "condenser_capacitor_fan_reading": 4.5,    # 10% off - Warning
             "return_temp": 78.0, "supply_temp": 60.0,
+            "overflow_float_switch": "Working properly",
             "primary_drain": "Clear and flowing", "drain_pan_condition": "Good shape",
             "air_filters": "Clean", "evaporator_coil": "Clean", "condenser_coils": "Clean",
             "air_purifier": "Good", "plenums": "Good", "ductwork": "Good"
@@ -481,6 +484,7 @@ class ACMaintenanceAPITester:
             "condenser_capacitor_fan_rating": 5.0,
             "condenser_capacitor_fan_reading": 3.0,    # 40% off - Critical
             "return_temp": 78.0, "supply_temp": 60.0,
+            "overflow_float_switch": "Working properly",
             "primary_drain": "Clear and flowing", "drain_pan_condition": "Good shape",
             "air_filters": "Clean", "evaporator_coil": "Clean", "condenser_coils": "Clean",
             "air_purifier": "Good", "plenums": "Good", "ductwork": "Good"
@@ -691,6 +695,7 @@ class ACMaintenanceAPITester:
             "condenser_capacitor_fan_rating": 5.0,
             "condenser_capacitor_fan_reading": 5.0,
             "return_temp": 78.0, "supply_temp": 60.0,
+            "overflow_float_switch": "Working properly",
             "primary_drain": "Clear and flowing", "drain_pan_condition": "Good shape",
             "air_filters": "Clean", "evaporator_coil": "Clean", "condenser_coils": "Clean",
             "air_purifier": "Good", "plenums": "Good", "ductwork": "Good"
@@ -857,6 +862,7 @@ class ACMaintenanceAPITester:
             "condenser_capacitor_herm_rating": 35.0, "condenser_capacitor_herm_reading": 35.0,
             "condenser_capacitor_fan_rating": 5.0, "condenser_capacitor_fan_reading": 5.0,
             "return_temp": 78.0, "supply_temp": 60.0,
+            "overflow_float_switch": "Working properly",
             # Include old electrical fields that should be rejected
             "amp_draw": 18.5,
             "rated_amps": 20.0,
@@ -921,6 +927,7 @@ class ACMaintenanceAPITester:
             "condenser_capacitor_herm_rating": 35.0, "condenser_capacitor_herm_reading": 34.5,
             "condenser_capacitor_fan_rating": 5.0, "condenser_capacitor_fan_reading": 4.9,
             "return_temp": 78.0, "supply_temp": 60.0,
+            "overflow_float_switch": "Working properly",
             "primary_drain": "Clear and flowing", "drain_pan_condition": "Good shape",
             "air_filters": "Clean", "evaporator_coil": "Clean", "condenser_coils": "Clean",
             "air_purifier": "Good", "plenums": "Good", "ductwork": "Good",
@@ -1010,6 +1017,7 @@ class ACMaintenanceAPITester:
             "condenser_capacitor_herm_rating": 35.0, "condenser_capacitor_herm_reading": 34.5,
             "condenser_capacitor_fan_rating": 5.0, "condenser_capacitor_fan_reading": 4.9,
             "return_temp": 78.0, "supply_temp": 60.0,
+            "overflow_float_switch": "Working properly",
             "primary_drain": "Clear and flowing", "drain_pan_condition": "Good shape",
             "air_filters": "Clean", "evaporator_coil": "Clean", "condenser_coils": "Clean",
             "air_purifier": "Good", "plenums": "Good", "ductwork": "Good",
@@ -1136,6 +1144,7 @@ class ACMaintenanceAPITester:
                 "condenser_capacitor_herm_rating": 35.0, "condenser_capacitor_herm_reading": 35.0,
                 "condenser_capacitor_fan_rating": 5.0, "condenser_capacitor_fan_reading": 5.0,
                 "return_temp": 78.0, "supply_temp": 60.0,
+            "overflow_float_switch": "Working properly",
                 "primary_drain": "Clear and flowing", "drain_pan_condition": "Good shape",
                 "air_filters": "Clean", "evaporator_coil": "Clean", "condenser_coils": "Clean",
                 "air_purifier": "Good", "plenums": "Good", "ductwork": "Good"
@@ -1183,6 +1192,7 @@ class ACMaintenanceAPITester:
             "condenser_capacitor_herm_rating": 35.0, "condenser_capacitor_herm_reading": 35.0,
             "condenser_capacitor_fan_rating": 5.0, "condenser_capacitor_fan_reading": 5.0,
             "return_temp": 78.0, "supply_temp": 60.0,
+            "overflow_float_switch": "Working properly",
             "primary_drain": "Clear and flowing", "drain_pan_condition": "Good shape",
             "air_filters": "Clean", "evaporator_coil": "Clean", "condenser_coils": "Clean",
             "air_purifier": "Good", "plenums": "Good", "ductwork": "Good"
@@ -1245,6 +1255,7 @@ class ACMaintenanceAPITester:
             "condenser_capacitor_herm_rating": 35.0, "condenser_capacitor_herm_reading": 35.0,
             "condenser_capacitor_fan_rating": 5.0, "condenser_capacitor_fan_reading": 5.0,
             "return_temp": 78.0, "supply_temp": 60.0,
+            "overflow_float_switch": "Working properly",
             "primary_drain": "Clear and flowing", "drain_pan_condition": "Good shape",
             "air_filters": "Clean", "evaporator_coil": "Clean", "condenser_coils": "Clean",
             "air_purifier": "Good", "plenums": "Good", "ductwork": "Good"
