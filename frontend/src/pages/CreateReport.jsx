@@ -1027,46 +1027,7 @@ const CreateReport = () => {
                 />
               </div>
 
-              {/* Electrical */}
-              <div className="border-t-2 border-blue-200 pt-4">
-                <h3 className="text-lg font-semibold mb-3" style={{color: '#1C325E'}}>Electrical</h3>
-                <div className="grid md:grid-cols-2 gap-4 mb-4">
-                  <div>
-                    <Label htmlFor="amp_draw" className="text-blue-900">Actual Amp Draw *</Label>
-                    <Input
-                      id="amp_draw"
-                      type="number"
-                      step="0.1"
-                      value={formData.amp_draw}
-                      onChange={(e) => setFormData({...formData, amp_draw: e.target.value})}
-                      required
-                      className="mt-1"
-                      placeholder="e.g., 18.5"
-                      data-testid="amp-draw-input"
-                    />
-                  </div>
-                  <div>
-                    <Label htmlFor="rated_amps" className="text-blue-900">Compressor Rated Amps *</Label>
-                    <Input
-                      id="rated_amps"
-                      type="number"
-                      step="0.1"
-                      value={formData.rated_amps}
-                      onChange={(e) => setFormData({...formData, rated_amps: e.target.value})}
-                      required
-                      className="mt-1"
-                      placeholder="e.g., 20"
-                      data-testid="rated-amps-input"
-                    />
-                  </div>
-                </div>
-                <PhotoUpload
-                  photos={formData.electrical_photos}
-                  onChange={(photos) => setFormData({...formData, electrical_photos: photos})}
-                  label="Electrical Photos"
-                  maxPhotos={3}
-                />
-              </div>
+              {/* Electrical section removed */}
 
               {/* Condenser Coils */}
               <div className="border-t-2 border-blue-200 pt-4">
