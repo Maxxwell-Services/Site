@@ -206,6 +206,17 @@ const EditReport = () => {
     }
   };
 
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="glass rounded-xl p-8 text-center">
+          <Snowflake className="w-12 h-12 text-blue-600 mx-auto mb-4 animate-spin" />
+          <p className="text-blue-700">Loading report...</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen px-2 sm:px-4 py-4 sm:py-8">
       <div className="max-w-4xl mx-auto">
