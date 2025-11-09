@@ -230,12 +230,12 @@ const ViewReport = () => {
                   <p className="font-semibold">{warning.message}</p>
                 </div>
               ))}
-            </div>
-          </div>
-        )}
+                </div>
+              </div>
+            )}
 
-        {/* Customer & System Info - Unified Layout */}
-        <div className="glass rounded-2xl p-6 sm:p-8 mb-6 border-2" style={{borderColor: '#1C325E'}}>
+            {/* Customer & System Info - Unified Layout */}
+            <div className="bg-white rounded-lg shadow-sm p-6 border" style={{borderColor: '#e5e7eb'}}>
           <h2 className="text-2xl font-bold mb-6 pb-3 border-b-2" style={{color: '#1C325E', borderColor: '#DB7218'}}>
             Service Information
           </h2>
