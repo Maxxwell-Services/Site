@@ -295,7 +295,7 @@ const ViewReport = () => {
           
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {/* Blower Motor Capacitor - Only show if PSC Motor */}
-            currentData.blower_motor_type === "PSC Motor" && report.blower_motor_capacitor_health && (
+            {currentData.blower_motor_type === "PSC Motor" && currentData.blower_motor_capacitor_health && (
               <div 
                 className={`p-5 rounded-xl border-2 shadow-md cursor-pointer hover:shadow-lg transition-shadow ${getSeverityColor(report.blower_motor_capacitor_health.toLowerCase())}`}
                 onClick={() => openMetricInfo('capacitor', report.blower_motor_capacitor_health.toLowerCase())}
