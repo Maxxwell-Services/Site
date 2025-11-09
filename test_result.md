@@ -194,9 +194,7 @@ metadata:
   run_ui: true
 
 test_plan:
-  current_focus:
-    - "Condenser Dual Run Capacitor - Split into 4 separate fields"
-    - "Condenser Coils - Update dropdown options"
+  current_focus: []
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
