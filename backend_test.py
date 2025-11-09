@@ -567,10 +567,10 @@ class ACMaintenanceAPITester:
                     report = report_response.json()
                     warnings = report.get('warnings', [])
                     
-                    # Should have warnings for condenser_capacitor, delta_t, and amp_draw
+                    # Should have warnings for condenser_capacitor and delta_t (no amp_draw anymore)
                     warning_types = [w['type'] for w in warnings]
                     
-                    expected_warnings = ['condenser_capacitor', 'delta_t', 'amp_draw']
+                    expected_warnings = ['condenser_capacitor', 'delta_t']
                     missing_warnings = [w for w in expected_warnings if w not in warning_types]
                     
                     if missing_warnings:
