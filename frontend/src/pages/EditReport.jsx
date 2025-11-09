@@ -1186,8 +1186,8 @@ const EditReport = () => {
               {loading ? 'Creating Report...' : (
                 <>
                   <Send className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
-                  <span className="hidden sm:inline">Create Report & Generate Link</span>
-                  <span className="sm:hidden">Create Report</span>
+                  <span className="hidden sm:inline">Save Changes</span>
+                  <span className="sm:hidden">Save</span>
                 </>
               )}
             </Button>
