@@ -25,7 +25,7 @@ const TechnicianDashboard = () => {
 
   const fetchReports = async () => {
     try {
-      const response = await axios.get(`${API}/reports`, {
+      const response = await axios.get(`${API}/reports?include_archived=${showArchived}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setReports(response.data);
@@ -35,6 +35,32 @@ const TechnicianDashboard = () => {
       setLoading(false);
     }
   };
+
+  const toggleArchive = async (reportId, currentArchiveStatus) => {
+    try {
+      const response = await axios.put(
+        `${API}/reports/${reportId}/archive`,
+        {},
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      toast.success(response.data.message);
+      fetchReports(); // Refresh the list
+    } catch (error) {
+      toast.error('Failed to archive report');
+    }
+  };
+
+  // Filter reports based on search and date
+  const filteredReports = reports.filter(report => {
+    const matchesSearch = !searchQuery || 
+      report.customer_name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      report.customer_email.toLowerCase().includes(searchQuery.toLowerCase());
+    
+    const matchesDate = !dateFilter || 
+      new Date(report.created_at).toLocaleDateString() === new Date(dateFilter).toLocaleDateString();
+    
+    return matchesSearch && matchesDate;
+  });
 
   const copyLink = async (uniqueLink) => {
     const link = `${window.location.origin}/report/${uniqueLink}`;
