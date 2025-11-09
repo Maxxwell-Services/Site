@@ -389,14 +389,14 @@ const ViewReport = () => {
                         strokeWidth="12"
                         fill="none"
                         strokeDasharray={`${2 * Math.PI * 56}`}
-                        strokeDashoffset={`${2 * Math.PI * 56 * (1 - ((displayData?.warnings?.length || 0) * 25) / 100)}`}
+                        strokeDashoffset={`${2 * Math.PI * 56 * (1 - deficienciesPercentage / 100)}`}
                         className="text-orange-500 transition-all duration-1000 ease-out"
                         strokeLinecap="round"
                       />
                     </svg>
                     <div className="absolute inset-0 flex items-center justify-center">
                       <span className="text-4xl md:text-5xl font-bold text-white">
-                        {(displayData?.warnings?.length || 0) * 25}
+                        {deficienciesPercentage}
                       </span>
                     </div>
                   </div>
