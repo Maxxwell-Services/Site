@@ -184,21 +184,27 @@ const TechnicianDashboard = () => {
             <div className="glass rounded-xl p-8 text-center">
               <p className="text-blue-700">Loading reports...</p>
             </div>
-          ) : reports.length === 0 ? (
+          ) : filteredReports.length === 0 ? (
             <div className="glass rounded-xl p-8 text-center">
               <FileText className="w-16 h-16 text-blue-300 mx-auto mb-4" />
-              <p className="text-blue-700 mb-4">No reports yet. Create your first report to get started!</p>
-              <Button
-                onClick={() => navigate('/technician/create-report')}
-                className="bg-blue-600 hover:bg-blue-700 text-white"
-              >
-                <Plus className="w-4 h-4 mr-2" />
-                Create First Report
-              </Button>
+              <p className="text-blue-700 mb-4">
+                {reports.length === 0 
+                  ? "No reports yet. Create your first report to get started!" 
+                  : "No reports match your search criteria."}
+              </p>
+              {reports.length === 0 && (
+                <Button
+                  onClick={() => navigate('/technician/create-report')}
+                  className="bg-blue-600 hover:bg-blue-700 text-white"
+                >
+                  <Plus className="w-4 h-4 mr-2" />
+                  Create First Report
+                </Button>
+              )}
             </div>
           ) : (
             <div className="grid gap-4">
-              {reports.map((report) => (
+              {filteredReports.map((report) => (
                 <div key={report.id} className="glass rounded-xl p-6 card-hover" data-testid={`report-${report.id}`}>
                   <div className="flex items-start justify-between flex-wrap gap-4">
                     <div className="flex-1">
