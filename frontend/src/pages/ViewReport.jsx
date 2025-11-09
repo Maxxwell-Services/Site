@@ -757,7 +757,21 @@ const ViewReport = () => {
             >
               <h4 className="font-bold mb-3 text-lg flex items-center justify-between">
                 <span>Evaporator Coil</span>
-                <Info className="w-4 h-4 opacity-60" />
+                <div className="flex items-center gap-2">
+                  {currentData.evaporator_photos && currentData.evaporator_photos.length > 0 && (
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        openPhotoModal(currentData.evaporator_photos, 'Evaporator Photos');
+                      }}
+                      className="hover:scale-110 transition-transform"
+                      title={`${currentData.evaporator_photos.length} photo(s) available`}
+                    >
+                      <Camera className="w-5 h-5 text-blue-600" />
+                    </button>
+                  )}
+                  <Info className="w-4 h-4 opacity-60" />
+                </div>
               </h4>
               <p className="text-sm font-medium">{currentData.evaporator_coil}</p>
               <p className="text-xs mt-3 opacity-70 italic">Click for more information</p>
