@@ -322,7 +322,7 @@ const ViewReport = () => {
                   </div>
                   <div className="flex justify-between text-sm">
                     <span className="opacity-80">Variance:</span>
-                    <span className="font-semibold">currentData.blower_motor_capacitor_tolerance?.toFixed(1)}%</span>
+                    <span className="font-semibold">{currentData.blower_motor_capacitor_tolerance?.toFixed(1)}%</span>
                   </div>
                 </div>
                 <p className="text-xs mt-3 opacity-70 italic">Click for more information</p>
