@@ -508,11 +508,11 @@ const ViewReport = () => {
             {/* Primary Drain */}
             <div 
               className={`p-5 rounded-xl border-2 shadow-md cursor-pointer hover:shadow-lg transition-shadow ${
-                report.primary_drain === 'Clogged, needs immediate service' 
+                currentData.primary_drain === 'Clogged, needs immediate service' 
                   ? 'bg-red-100 border-red-300 text-red-800' 
                   : 'bg-green-100 border-green-300 text-green-800'
               }`}
-              onClick={() => openMetricInfo('drain', report.primary_drain === 'Clogged, needs immediate service' ? 'critical' : 'good')}
+              onClick={() => openMetricInfo('drain', currentData.primary_drain === 'Clogged, needs immediate service' ? 'critical' : 'good')}
               data-testid="drain-metric-card"
             >
               <h4 className="font-bold mb-3 text-lg flex items-center justify-between">
