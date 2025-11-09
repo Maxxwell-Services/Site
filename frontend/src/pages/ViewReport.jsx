@@ -916,7 +916,10 @@ const ViewReport = () => {
               data-testid="ductwork-metric-card"
             >
               <h4 className="font-bold mb-3 text-lg flex items-center justify-between">
-                <span>Ductwork</span>
+                <div className="flex items-center gap-2">
+                  <PipeCross className="w-5 h-5 opacity-70" />
+                  <span>Ductwork</span>
+                </div>
                 <div className="flex items-center gap-2">
                   {currentData.indoor_air_quality_photos && currentData.indoor_air_quality_photos.length > 0 && (
                     <button
