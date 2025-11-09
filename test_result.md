@@ -293,7 +293,7 @@ frontend:
         comment: "Implemented camera icon indicators on all relevant metric cards. Features: 1) Blue camera icon appears only when photos exist for that metric, 2) Shows photo count on hover (X photo(s) available), 3) Click handler stops event propagation to avoid triggering metric info modal, 4) Opens PhotoModal with appropriate photos when clicked, 5) Hover scale animation for better UX. Implemented on: Blower Motor Capacitor, Condenser Dual Run Capacitor, Temperature, Refrigerant, Primary Drain, Drain Pan, Evaporator Coil, Condenser Coils, Air Purifier, Plenums, Ductwork."
   
   - task: "Metric Card Icons"
-    implemented: false
+    implemented: true
     working: "NA"
     file: "/app/frontend/src/pages/ViewReport.jsx"
     stuck_count: 0
@@ -302,7 +302,7 @@ frontend:
     status_history:
       - working: "NA"
         agent: "main"
-        comment: "Will add specific icons to each metric card based on user-provided reference image. Icons needed for: Evaporator Coil (pyramid/triangle), Condenser Coil (horizontal lines), Blower Motor Capacitor (plug), Condenser Fan Motor (fan), Primary Drain (pipe), Drain Pan (pan), Overflow Switch (switch), Air Purifier (purifier), Temperature (thermometer), Cooling (snowflake), Refrigerant (tank/bottle), and others as specified in reference image."
+        comment: "Implemented specific icons for each metric card based on user reference image using lucide-react icons. Icon mapping: Evaporator Coil (Triangle), Condenser Coils (Layers), Blower Motor Capacitor (Plug2), Condenser Fan Motor (Fan), Condenser Dual Run Capacitor (Zap), Temperature (Thermometer), Refrigerant (Refrigerator), Primary Drain (Droplets), Drain Pan (Container), Overflow/Float Switch (Wind), Air Purifier (AirFlow/Wind), Plenums (Square), Ductwork (PipeCross). All icons are positioned on the left side of metric titles with 70% opacity for subtle visual distinction."
   
   - task: "Automatic Image Compression"
     implemented: true
