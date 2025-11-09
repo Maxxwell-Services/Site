@@ -25,7 +25,8 @@ const TechnicianDashboard = () => {
 
   const fetchReports = async () => {
     try {
-      const response = await axios.get(`${API}/reports?include_archived=${showArchived}`, {
+      // Always fetch all reports (both active and archived)
+      const response = await axios.get(`${API}/reports?include_archived=true`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setReports(response.data);
