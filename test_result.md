@@ -101,3 +101,51 @@
 #====================================================================================================
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
 #====================================================================================================
+
+user_problem_statement: "AC System Maintenance Report Application - Fix Air Filters section conditional logic. The filter details box should only appear when technician selects either the FIRST option ('Filters Replaced (Provided by the technician)') OR the LAST option ('Tech will return to replace filters') from the Air Filters dropdown."
+
+backend:
+  - task: "Backend API for report creation"
+    implemented: true
+    working: true
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "Backend API is stable and working correctly"
+
+frontend:
+  - task: "Air Filters Section - Conditional Filter Details Display"
+    implemented: true
+    working: "NA"
+    file: "/app/frontend/src/pages/CreateReport.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: "NA"
+        agent: "main"
+        comment: "Updated conditional logic to show filter details box when either first option ('Filters Replaced (Provided by the technician)') OR last option ('Tech will return to replace filters') is selected. Changed line 512 from single condition to OR condition: (formData.air_filters === 'Filters Replaced (Provided by the technician)' || formData.air_filters === 'Tech will return to replace filters')"
+      - working: "NA"
+        agent: "user"
+        comment: "User reported that filter details box should only appear for first or last option in dropdown"
+
+metadata:
+  created_by: "main_agent"
+  version: "1.0"
+  test_sequence: 1
+  run_ui: true
+
+test_plan:
+  current_focus:
+    - "Air Filters Section - Conditional Filter Details Display"
+  stuck_tasks: []
+  test_all: false
+  test_priority: "high_first"
+
+agent_communication:
+  - agent: "main"
+    message: "Updated CreateReport.jsx to show filter details box for both first option ('Filters Replaced (Provided by the technician)') and last option ('Tech will return to replace filters'). Need to verify this works correctly in the UI. The dropdown has 5 options total: 1) Filters Replaced (Provided by the technician), 2) Filters Replaced (Provided by the Customer), 3) Customer recently replaced the filters, 4) Customer will replace the filters soon, 5) Tech will return to replace filters. Filter details should show ONLY for options 1 and 5."
