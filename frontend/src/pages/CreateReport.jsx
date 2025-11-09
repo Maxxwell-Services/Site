@@ -377,7 +377,7 @@ const CreateReport = () => {
                       </SelectTrigger>
                       <SelectContent>
                         <SelectItem value="PSC Motor">PSC Motor</SelectItem>
-                        <SelectItem value="ECM Motor">ECM Motor</SelectItem>
+                        <SelectItem value="ECM Motor">ECM Motor (No capacitor)</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
