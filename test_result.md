@@ -294,8 +294,9 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Remove Maintenance square from ViewReport"
-    - "Report Edit Feature with Versioning"
+    - "Photo Modal with Grid View"
+    - "Photo Indicators on Metric Cards"
+    - "Metric Card Icons"
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
