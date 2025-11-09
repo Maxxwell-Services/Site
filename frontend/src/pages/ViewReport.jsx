@@ -74,6 +74,30 @@ const ViewReport = () => {
     }
   };
 
+  const handleVersionChange = (version) => {
+    setSelectedVersion(version);
+    
+    if (!report) return;
+    
+    // If selecting current version, use the main report data
+    if (version === report.current_version || !report.versions || report.versions.length === 0) {
+      setDisplayData(report);
+    } else {
+      // Find the version data from versions array
+      const versionData = report.versions.find(v => v.version === version);
+      if (versionData && versionData.data) {
+        setDisplayData(versionData.data);
+      }
+    }
+  };
+
+  const getVersionLabel = (versionNum) => {
+    if (!report || !report.versions) return `Version ${versionNum}`;
+    
+    const versionData = report.versions.find(v => v.version === versionNum);
+    return versionData ? versionData.label : `Version ${versionNum}`;
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
