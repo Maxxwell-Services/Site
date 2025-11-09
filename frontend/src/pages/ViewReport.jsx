@@ -474,16 +474,16 @@ const ViewReport = () => {
 
             {/* Delta T */}
             <div 
-              className={`p-5 rounded-xl border-2 shadow-md cursor-pointer hover:shadow-lg transition-shadow ${getSeverityColor(report.delta_t_status.toLowerCase())}`}
-              onClick={() => openMetricInfo('temperature', report.delta_t_status.toLowerCase())}
+              className={`p-5 rounded-xl border-2 shadow-md cursor-pointer hover:shadow-lg transition-shadow ${getSeverityColor(currentData.delta_t_status.toLowerCase())}`}
+              onClick={() => openMetricInfo('temperature', currentData.delta_t_status.toLowerCase())}
               data-testid="temperature-metric-card"
             >
               <h4 className="font-bold mb-3 text-lg flex items-center justify-between">
                 <span>Temperature</span>
                 <div className="flex items-center gap-2">
                   <span className={`text-xs px-2 py-1 rounded-full ${
-                    report.delta_t_status === 'Good' ? 'bg-green-200' :
-                    report.delta_t_status === 'Warning' ? 'bg-orange-200' : 'bg-red-200'
+                    currentData.delta_t_status === 'Good' ? 'bg-green-200' :
+                    currentData.delta_t_status === 'Warning' ? 'bg-orange-200' : 'bg-red-200'
                   }`}>{currentData.delta_t_status}</span>
                   <Info className="w-4 h-4 opacity-60" />
                 </div>
