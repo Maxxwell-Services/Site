@@ -770,7 +770,10 @@ const ViewReport = () => {
               data-testid="evaporator-coil-metric-card"
             >
               <h4 className="font-bold mb-3 text-lg flex items-center justify-between">
-                <span>Evaporator Coil</span>
+                <div className="flex items-center gap-2">
+                  <Triangle className="w-5 h-5 opacity-70" />
+                  <span>Evaporator Coil</span>
+                </div>
                 <div className="flex items-center gap-2">
                   {currentData.evaporator_photos && currentData.evaporator_photos.length > 0 && (
                     <button
