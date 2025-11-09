@@ -597,6 +597,7 @@ async def create_report(data: MaintenanceReportCreate, user: dict = Depends(get_
         drain_pan_condition=data.drain_pan_condition,
         drainage_photos=data.drainage_photos or [],
         air_filters=data.air_filters,
+        filters_list=data.filters_list or [],
         evaporator_coil=data.evaporator_coil,
         condenser_coils=data.condenser_coils,
         air_purifier=data.air_purifier,
