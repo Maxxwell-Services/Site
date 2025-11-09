@@ -464,7 +464,7 @@ const ViewReport = () => {
 
             {/* Condenser Dual Run Capacitor */}
             <div 
-              className={`p-5 rounded-xl border-2 shadow-md cursor-pointer hover:shadow-lg transition-shadow ${getSeverityColor(currentData.condenser_capacitor_health.toLowerCase())}`}
+              className={`p-3 rounded-lg border-2 shadow-sm cursor-pointer hover:shadow-md transition-shadow ${getSeverityColor(currentData.condenser_capacitor_health.toLowerCase())}`}
               onClick={() => openMetricInfo('capacitor', currentData.condenser_capacitor_health.toLowerCase())}
               data-testid="condenser-capacitor-metric-card"
             >
@@ -529,7 +529,7 @@ const ViewReport = () => {
 
             {/* Delta T */}
             <div 
-              className={`p-5 rounded-xl border-2 shadow-md cursor-pointer hover:shadow-lg transition-shadow ${getSeverityColor(currentData.delta_t_status.toLowerCase())}`}
+              className={`p-3 rounded-lg border-2 shadow-sm cursor-pointer hover:shadow-md transition-shadow ${getSeverityColor(currentData.delta_t_status.toLowerCase())}`}
               onClick={() => openMetricInfo('temperature', currentData.delta_t_status.toLowerCase())}
               data-testid="temperature-metric-card"
             >
@@ -697,7 +697,7 @@ const ViewReport = () => {
 
             {/* Refrigerant */}
             <div 
-              className={`p-5 rounded-xl border-2 shadow-md cursor-pointer hover:shadow-lg transition-shadow ${getSeverityColor(currentData.refrigerant_status.toLowerCase())}`}
+              className={`p-3 rounded-lg border-2 shadow-sm cursor-pointer hover:shadow-md transition-shadow ${getSeverityColor(currentData.refrigerant_status.toLowerCase())}`}
               onClick={() => openMetricInfo('refrigerant', currentData.refrigerant_status.toLowerCase())}
               data-testid="refrigerant-metric-card"
             >
