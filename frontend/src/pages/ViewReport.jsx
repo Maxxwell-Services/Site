@@ -21,6 +21,7 @@ const ViewReport = () => {
   const [photoModalOpen, setPhotoModalOpen] = useState(false);
   const [selectedPhotos, setSelectedPhotos] = useState([]);
   const [photoModalTitle, setPhotoModalTitle] = useState('');
+  const [enlargedPhotoIndex, setEnlargedPhotoIndex] = useState(null);
 
   const openMetricInfo = (metric, status) => {
     setSelectedMetric({ metric, status });
