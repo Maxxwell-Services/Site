@@ -778,6 +778,68 @@ const CreateReport = () => {
                   label="Capacitor Photos"
                   maxPhotos={3}
                 />
+                
+                {/* RLA/LRA Section */}
+                <div className="grid md:grid-cols-2 gap-4 mt-4">
+                  <div className="space-y-4">
+                    <h4 className="text-sm font-semibold text-blue-800">Actual Readings</h4>
+                    <div>
+                      <Label htmlFor="actual_rla" className="text-blue-900">Actual RLA (Amps)</Label>
+                      <Input
+                        id="actual_rla"
+                        type="number"
+                        step="0.1"
+                        value={formData.actual_rla}
+                        onChange={(e) => setFormData({...formData, actual_rla: e.target.value})}
+                        className="mt-1"
+                        placeholder="e.g., 18.5"
+                        data-testid="actual-rla-input"
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="actual_lra" className="text-blue-900">Actual LRA (Amps)</Label>
+                      <Input
+                        id="actual_lra"
+                        type="number"
+                        step="0.1"
+                        value={formData.actual_lra}
+                        onChange={(e) => setFormData({...formData, actual_lra: e.target.value})}
+                        className="mt-1"
+                        placeholder="e.g., 95"
+                        data-testid="actual-lra-input"
+                      />
+                    </div>
+                  </div>
+                  <div className="space-y-4">
+                    <h4 className="text-sm font-semibold text-blue-800">Rated Values (from Data Plate)</h4>
+                    <div>
+                      <Label htmlFor="rated_rla" className="text-blue-900">Rated RLA (Amps)</Label>
+                      <Input
+                        id="rated_rla"
+                        type="number"
+                        step="0.1"
+                        value={formData.rated_rla}
+                        onChange={(e) => setFormData({...formData, rated_rla: e.target.value})}
+                        className="mt-1"
+                        placeholder="e.g., 18.5"
+                        data-testid="rated-rla-input"
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="rated_lra" className="text-blue-900">Rated LRA (Amps)</Label>
+                      <Input
+                        id="rated_lra"
+                        type="number"
+                        step="0.1"
+                        value={formData.rated_lra}
+                        onChange={(e) => setFormData({...formData, rated_lra: e.target.value})}
+                        className="mt-1"
+                        placeholder="e.g., 95"
+                        data-testid="rated-lra-input"
+                      />
+                    </div>
+                  </div>
+                </div>
               </div>
 
               {/* Refrigerant */}
