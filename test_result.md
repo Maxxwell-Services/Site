@@ -116,6 +116,18 @@ backend:
       - working: true
         agent: "main"
         comment: "Backend API is stable and working correctly"
+  
+  - task: "Condenser Dual Run Capacitor - Backend logic for 4 separate fields"
+    implemented: true
+    working: "NA"
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: "NA"
+        agent: "main"
+        comment: "Updated Pydantic models (Report and ReportResponse) to replace condenser_capacitor_rating/reading with 4 new fields: condenser_capacitor_herm_rating, condenser_capacitor_herm_reading, condenser_capacitor_fan_rating, condenser_capacitor_fan_reading. Updated create_report endpoint logic to check both Herm and Fan capacitor tolerances separately using check_capacitor_tolerance() and calculate overall health based on worst status. Updated warning message generation to include details for both terminals when needed. Updated response construction to pass all 4 new fields."
 
 frontend:
   - task: "Air Filters Section - Conditional Filter Details Display"
