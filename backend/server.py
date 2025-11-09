@@ -187,6 +187,10 @@ class MaintenanceReport(BaseModel):
     condenser_warranty_details: Optional[str] = ""
     condenser_photos: Optional[List[str]] = Field(default_factory=list)
     condenser_fan_motor: str
+    rated_rla: Optional[float] = None
+    rated_lra: Optional[float] = None
+    actual_rla: Optional[float] = None
+    actual_lra: Optional[float] = None
     refrigerant_type: str
     superheat: float
     subcooling: float
