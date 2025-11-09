@@ -355,6 +355,7 @@ const ViewReport = () => {
               </div>
             </div>
           </div>
+        </div>
 
           {/* Quick Summary */}
           <div className="bg-white rounded-lg shadow-sm p-4 mt-4 border" style={{borderColor: '#e5e7eb'}}>
