@@ -834,8 +834,8 @@ async def edit_report(report_id: str, data: MaintenanceReportCreate, user: dict 
     versions.append(new_version)
     
     # Update the report
-    # Prepare update data - exclude photos from the update to avoid MongoDB document size limit
-    # Photos are already stored in the main report document from creation/previous edits
+    # Split updates to handle large photo arrays and avoid MongoDB document size limit
+    # First, update all non-photo fields
     update_data_without_photos = {k: v for k, v in updated_report_data.items() 
                                    if not k.endswith('_photos')}
     
@@ -850,6 +850,27 @@ async def edit_report(report_id: str, data: MaintenanceReportCreate, user: dict 
             }
         }
     )
+    
+    # Then, update photo fields separately if they exist
+    # This prevents the update command from being too large
+    photo_fields = {
+        "evaporator_photos": data.evaporator_photos or [],
+        "condenser_photos": data.condenser_photos or [],
+        "refrigerant_photos": data.refrigerant_photos or [],
+        "capacitor_photos": data.capacitor_photos or [],
+        "temperature_photos": data.temperature_photos or [],
+        "drainage_photos": data.drainage_photos or [],
+        "indoor_air_quality_photos": data.indoor_air_quality_photos or [],
+        "general_photos": data.general_photos or []
+    }
+    
+    # Only update photo fields that have data to avoid unnecessary operations
+    for field_name, photos in photo_fields.items():
+        if photos and len(photos) > 0:
+            await db.reports.update_one(
+                {"id": report_id},
+                {"$set": {field_name: photos}}
+            )
     
     if update_result.modified_count == 0:
         raise HTTPException(status_code=500, detail="Failed to update report")
