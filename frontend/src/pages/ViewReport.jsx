@@ -535,7 +535,7 @@ const ViewReport = () => {
             >
               <h4 className="font-semibold mb-2 text-sm flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <Thermometer className="w-5 h-5 opacity-70" />
+                  <Thermometer className="w-4 h-4 opacity-70" />
                   <span>Temperature</span>
                 </div>
                 <div className="flex items-center gap-2">
@@ -587,7 +587,7 @@ const ViewReport = () => {
             >
               <h4 className="font-semibold mb-2 text-sm flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <Droplets className="w-5 h-5 opacity-70" />
+                  <Droplets className="w-4 h-4 opacity-70" />
                   <span>Primary Drain</span>
                 </div>
                 <div className="flex items-center gap-2">
@@ -627,7 +627,7 @@ const ViewReport = () => {
             >
               <h4 className="font-semibold mb-2 text-sm flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <Container className="w-5 h-5 opacity-70" />
+                  <Container className="w-4 h-4 opacity-70" />
                   <span>Drain Pan</span>
                 </div>
                 <div className="flex items-center gap-2">
@@ -672,7 +672,7 @@ const ViewReport = () => {
             >
               <h4 className="font-semibold mb-2 text-sm flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <AirFlow className="w-5 h-5 opacity-70" />
+                  <AirFlow className="w-4 h-4 opacity-70" />
                   <span>Air Purifier</span>
                 </div>
                 <div className="flex items-center gap-2">
@@ -703,7 +703,7 @@ const ViewReport = () => {
             >
               <h4 className="font-semibold mb-2 text-sm flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <Refrigerator className="w-5 h-5 opacity-70" />
+                  <Refrigerator className="w-4 h-4 opacity-70" />
                   <span>Refrigerant</span>
                 </div>
                 <div className="flex items-center gap-2">
@@ -757,7 +757,7 @@ const ViewReport = () => {
             >
               <h4 className="font-semibold mb-2 text-sm flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <Wind className="w-5 h-5 opacity-70" />
+                  <Wind className="w-4 h-4 opacity-70" />
                   <span>Overflow / Float Switch</span>
                 </div>
                 <Info className="w-4 h-4 opacity-60" />
@@ -799,7 +799,7 @@ const ViewReport = () => {
             >
               <h4 className="font-semibold mb-2 text-sm flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <Triangle className="w-5 h-5 opacity-70" />
+                  <Triangle className="w-4 h-4 opacity-70" />
                   <span>Evaporator Coil</span>
                 </div>
                 <div className="flex items-center gap-2">
@@ -841,7 +841,7 @@ const ViewReport = () => {
             >
               <h4 className="font-semibold mb-2 text-sm flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <Layers className="w-5 h-5 opacity-70" />
+                  <Layers className="w-4 h-4 opacity-70" />
                   <span>Condenser Coils</span>
                 </div>
                 <div className="flex items-center gap-2">
@@ -878,7 +878,7 @@ const ViewReport = () => {
             >
               <h4 className="font-semibold mb-2 text-sm flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <Square className="w-5 h-5 opacity-70" />
+                  <Square className="w-4 h-4 opacity-70" />
                   <span>Plenums</span>
                 </div>
                 <div className="flex items-center gap-2">
@@ -918,7 +918,7 @@ const ViewReport = () => {
             >
               <h4 className="font-semibold mb-2 text-sm flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <Network className="w-5 h-5 opacity-70" />
+                  <Network className="w-4 h-4 opacity-70" />
                   <span>Ductwork</span>
                 </div>
                 <div className="flex items-center gap-2">
