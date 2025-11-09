@@ -51,10 +51,16 @@ const TechnicianDashboard = () => {
     }
   };
 
-  // Filter reports based on search, date, and archive status
+  // Filter reports based on view filter, search, and date
   const filteredReports = reports.filter(report => {
-    // Filter by archive status
-    const matchesArchiveFilter = showArchived ? report.archived === true : report.archived !== true;
+    // Filter by view selection
+    let matchesViewFilter = true;
+    if (viewFilter === 'active') {
+      matchesViewFilter = report.archived !== true;
+    } else if (viewFilter === 'archived') {
+      matchesViewFilter = report.archived === true;
+    }
+    // 'all' shows everything, so no filter needed
     
     const matchesSearch = !searchQuery || 
       report.customer_name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -63,7 +69,7 @@ const TechnicianDashboard = () => {
     const matchesDate = !dateFilter || 
       new Date(report.created_at).toLocaleDateString() === new Date(dateFilter).toLocaleDateString();
     
-    return matchesArchiveFilter && matchesSearch && matchesDate;
+    return matchesViewFilter && matchesSearch && matchesDate;
   });
 
   const copyLink = async (uniqueLink) => {
