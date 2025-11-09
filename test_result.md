@@ -186,6 +186,21 @@ frontend:
       - working: true
         agent: "testing"
         comment: "✅ VERIFIED: Condenser Coils dropdown is working correctly with all 4 required options. Successfully tested at /technician/create-report. Default value verification: 'Cleaned with Fresh Water' is correctly set as default ✓. All 4 options present in correct order: 1) 'Cleaned with Fresh Water' ✓, 2) 'Unable to clean (Hose bib not accessible within 40ft)' ✓, 3) 'Coils excessively dirty (Cabinet must be disassembled to properly clean)' ✓, 4) 'Debris and leaves clogging coils (Cabinet must be disassembled to properly clean)' ✓. Option selection functionality tested - successfully selected 'Unable to clean (Hose bib not accessible within 40ft)' and dropdown updated correctly. All option text matches requirements exactly."
+  
+  - task: "Remove Electrical Section"
+    implemented: true
+    working: "NA"
+    file: "/app/frontend/src/pages/CreateReport.jsx, /app/frontend/src/pages/ViewReport.jsx, /app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: "NA"
+        agent: "main"
+        comment: "Removed entire Electrical section from application. Frontend: Removed amp_draw, rated_amps, electrical_photos from formData state and handleSubmit. Removed entire Electrical UI section from CreateReport.jsx and ViewReport.jsx. Backend: Removed amp_draw, rated_amps, electrical_photos from Report model. Removed amp_status from ReportResponse model. Removed check_amp_draw function call and amp_status variable. Removed amp draw warnings from warnings list. Removed amp_draw and rated_amps from performance score calculation (calculate_performance_score function). All linting passed."
+      - working: "NA"
+        agent: "user"
+        comment: "User requested to delete the Electrical section and its fields"
 
 metadata:
   created_by: "main_agent"
