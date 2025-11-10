@@ -937,17 +937,20 @@ const ViewReport = () => {
 
             {/* Air Filters */}
             <div 
-              className={`p-3 rounded-lg border-2 shadow-sm ${
-                currentData.air_filters === "Customer will replace the filters soon" || 
-                currentData.air_filters === "Tech will return to replace filters"
-                  ? 'bg-orange-100 border-orange-300 text-orange-800'
-                  : 'bg-green-100 border-green-300 text-green-800'
-              }`}
+              className="p-3 rounded-lg border-2 shadow-sm bg-white border-gray-300"
               data-testid="air-filters-metric-card"
             >
-              <h4 className="font-semibold mb-2 text-sm flex items-center justify-between">
-                <span>Air Filters</span>
-                <Filter className="w-4 h-4 opacity-60" />
+              <h4 className="font-semibold mb-2 text-sm flex items-center justify-between rounded-t-lg px-3 py-2 text-white -mx-3 -mt-3" style={{backgroundColor: '#1C325E'}}>
+                <div className="flex items-center gap-2">
+                  <Filter className="w-4 h-4" />
+                  <span className="text-xs">Air Filters</span>
+                </div>
+                {currentData.air_filters === "Customer will replace the filters soon" || 
+                 currentData.air_filters === "Tech will return to replace filters" ? (
+                  <AlertCircle className="w-5 h-5 text-orange-600 bg-white rounded-full p-0.5" />
+                ) : (
+                  <CheckCircle className="w-5 h-5 text-green-600 bg-white rounded-full p-0.5" />
+                )}
               </h4>
               <p className="text-xs font-medium">{currentData.air_filters}</p>
               {currentData.filters_list && currentData.filters_list.length > 0 && (
