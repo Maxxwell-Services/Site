@@ -556,6 +556,8 @@ const ViewReport = () => {
           <div className="p-4">
           
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
+          </div>
+        </div>
             {/* Blower Motor Capacitor - Only show if PSC Motor */}
             {currentData.blower_motor_type === "PSC Motor" && currentData.blower_motor_capacitor_health && (
               <div 
