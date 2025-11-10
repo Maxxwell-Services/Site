@@ -583,6 +583,7 @@ const ViewReport = () => {
                   </div>
                 </div>
                 <p className="text-[10px] mt-2 opacity-70 italic">Click for info</p>
+                </div>
               </div>
             )}
 
