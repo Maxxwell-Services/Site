@@ -542,8 +542,9 @@ const ViewReport = () => {
         </div>
 
         {/* Performance Metrics */}
-        <div className="bg-white rounded-lg shadow-sm p-4 mb-4 border" style={{borderColor: '#e5e7eb'}}>
-          <h3 className="text-base font-bold mb-3 pb-2 border-b" style={{color: '#1C325E', borderColor: '#e5e7eb'}}>SYSTEM PERFORMANCE METRICS</h3>
+        <div className="bg-white rounded-lg shadow-sm mb-4 border" style={{borderColor: '#e5e7eb'}}>
+          <h3 className="text-base font-bold px-4 py-3 text-white rounded-t-lg" style={{backgroundColor: '#1C325E'}}>SYSTEM PERFORMANCE METRICS</h3>
+          <div className="p-4">
           
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
             {/* Blower Motor Capacitor - Only show if PSC Motor */}
