@@ -474,35 +474,37 @@ const ViewReport = () => {
                     <h3 className="text-xs font-semibold">Indoor Unit</h3>
                   </div>
                   <div className="p-3">
-                  <div className="space-y-1.5">
-                    <div>
-                      <span className="text-[10px] text-gray-500 uppercase">Brand</span>
-                      <p className="text-xs font-medium" style={{color: '#1C325E'}}>{currentData.evaporator_brand}</p>
-                    </div>
-                    <div>
-                      <span className="text-[10px] text-gray-500 uppercase">Model</span>
-                      <p className="text-[11px] font-medium truncate" style={{color: '#1C325E'}}>{currentData.evaporator_model_number}</p>
-                    </div>
-                    <div>
-                      <span className="text-[10px] text-gray-500 uppercase">Age</span>
-                      <p className="text-xs font-medium" style={{color: '#1C325E'}}>{currentData.evaporator_age || 'N/A'}</p>
-                    </div>
-                    <div>
-                      <span className={`inline-block text-[10px] font-medium px-2 py-0.5 rounded-full ${
-                        currentData.evaporator_warranty_status === 'Active' 
-                          ? 'bg-green-100 text-green-800' 
-                          : 'bg-gray-100 text-gray-800'
-                      }`}>{currentData.evaporator_warranty_status}</span>
+                    <div className="space-y-1.5">
+                      <div>
+                        <span className="text-[10px] text-gray-500 uppercase">Brand</span>
+                        <p className="text-xs font-medium" style={{color: '#1C325E'}}>{currentData.evaporator_brand}</p>
+                      </div>
+                      <div>
+                        <span className="text-[10px] text-gray-500 uppercase">Model</span>
+                        <p className="text-[11px] font-medium truncate" style={{color: '#1C325E'}}>{currentData.evaporator_model_number}</p>
+                      </div>
+                      <div>
+                        <span className="text-[10px] text-gray-500 uppercase">Age</span>
+                        <p className="text-xs font-medium" style={{color: '#1C325E'}}>{currentData.evaporator_age || 'N/A'}</p>
+                      </div>
+                      <div>
+                        <span className={`inline-block text-[10px] font-medium px-2 py-0.5 rounded-full ${
+                          currentData.evaporator_warranty_status === 'Active' 
+                            ? 'bg-green-100 text-green-800' 
+                            : 'bg-gray-100 text-gray-800'
+                        }`}>{currentData.evaporator_warranty_status}</span>
+                      </div>
                     </div>
                   </div>
                 </div>
 
                 {/* Condenser Unit - Compact */}
-                <div className="bg-orange-50 rounded p-2">
-                  <div className="flex items-center gap-1.5 mb-2">
-                    <Snowflake className="w-3.5 h-3.5" style={{color: '#DB7218'}} />
-                    <h3 className="text-xs font-semibold" style={{color: '#1C325E'}}>Condenser Unit</h3>
+                <div className="border-r border-gray-200">
+                  <div className="flex items-center gap-2 px-3 py-2 text-white" style={{backgroundColor: '#1C325E'}}>
+                    <Snowflake className="w-3.5 h-3.5" />
+                    <h3 className="text-xs font-semibold">Condenser Unit</h3>
                   </div>
+                  <div className="p-3">
                   <div className="space-y-1.5">
                     <div>
                       <span className="text-[10px] text-gray-500 uppercase">Brand</span>
