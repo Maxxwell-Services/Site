@@ -937,22 +937,28 @@ const ViewReport = () => {
 
             {/* Air Filters */}
             <div 
-              className="p-3 rounded-lg border-2 shadow-sm bg-white border-gray-300"
+              className="p-0 rounded-lg border-2 shadow-sm bg-white border-gray-300"
               data-testid="air-filters-metric-card"
             >
-              <h4 className="font-semibold mb-2 text-sm flex items-center justify-between rounded-t-lg px-3 py-2 text-white -mx-3 -mt-3" style={{backgroundColor: '#1C325E'}}>
-                <div className="flex items-center gap-2">
-                  <Filter className="w-4 h-4" />
-                  <span className="text-xs">Air Filters</span>
-                </div>
-                {currentData.air_filters === "Customer will replace the filters soon" || 
-                 currentData.air_filters === "Tech will return to replace filters" ? (
-                  <AlertCircle className="w-5 h-5 text-orange-600 bg-white rounded-full p-0.5" />
-                ) : (
-                  <CheckCircle className="w-5 h-5 text-green-600 bg-white rounded-full p-0.5" />
-                )}
+              <h4 className="font-semibold text-sm px-3 py-2 text-white flex items-center gap-2 rounded-t-lg" style={{backgroundColor: '#1C325E'}}>
+                <Filter className="w-4 h-4" />
+                <span className="text-xs">Air Filters</span>
               </h4>
-              <p className="text-xs font-medium">{currentData.air_filters}</p>
+              <div className="p-3">
+                <div className="flex items-center gap-2 mb-2">
+                  {currentData.air_filters === "Customer will replace the filters soon" || 
+                   currentData.air_filters === "Tech will return to replace filters" ? (
+                    <AlertCircle className="w-5 h-5 text-orange-600" />
+                  ) : (
+                    <CheckCircle className="w-5 h-5 text-green-600" />
+                  )}
+                  <span className="text-xs font-semibold">
+                    {currentData.air_filters === "Customer will replace the filters soon" || 
+                     currentData.air_filters === "Tech will return to replace filters" ? 'Needs Replacement' : 'Good'}
+                  </span>
+                </div>
+                <p className="text-xs font-medium">{currentData.air_filters}</p>
+              </div>
               {currentData.filters_list && currentData.filters_list.length > 0 && (
                 <div className="mt-2 space-y-1">
                   {currentData.filters_list.map((filter, index) => (
