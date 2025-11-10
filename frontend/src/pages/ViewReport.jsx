@@ -568,6 +568,24 @@ const ViewReport = () => {
                   <span className="text-xs">Blower Motor Capacitor</span>
                 </h4>
                 <div className="p-3">
+                <div className="flex items-center justify-between mb-2">
+                  <div className="flex items-center gap-2">
+                    {getStatusIcon(currentData.blower_motor_capacitor_health)}
+                    <span className="text-xs font-semibold">{currentData.blower_motor_capacitor_health}</span>
+                  </div>
+                  {currentData.capacitor_photos && currentData.capacitor_photos.length > 0 && (
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        openPhotoModal(currentData.capacitor_photos, 'Capacitor Photos');
+                      }}
+                      className="hover:scale-110 transition-transform"
+                      title={`${currentData.capacitor_photos.length} photo(s) available`}
+                    >
+                      <Camera className="w-4 h-4 text-blue-600" />
+                    </button>
+                  )}
+                </div>
                 <div className="space-y-1">
                   <div className="flex justify-between text-xs">
                     <span className="opacity-80">Rating:</span>
