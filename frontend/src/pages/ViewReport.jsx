@@ -450,28 +450,30 @@ const ViewReport = () => {
                     <h3 className="text-xs font-semibold">Customer</h3>
                   </div>
                   <div className="p-3">
-                  <div className="space-y-1.5">
-                    <div>
-                      <span className="text-[10px] text-gray-500 uppercase">Name</span>
-                      <p className="text-xs font-medium" style={{color: '#1C325E'}}>{currentData.customer_name}</p>
-                    </div>
-                    <div>
-                      <span className="text-[10px] text-gray-500 uppercase">Email</span>
-                      <p className="text-[11px] font-medium truncate" style={{color: '#1C325E'}}>{currentData.customer_email}</p>
-                    </div>
-                    <div>
-                      <span className="text-[10px] text-gray-500 uppercase">Phone</span>
-                      <p className="text-xs font-medium" style={{color: '#1C325E'}}>{currentData.customer_phone}</p>
+                    <div className="space-y-1.5">
+                      <div>
+                        <span className="text-[10px] text-gray-500 uppercase">Name</span>
+                        <p className="text-xs font-medium" style={{color: '#1C325E'}}>{currentData.customer_name}</p>
+                      </div>
+                      <div>
+                        <span className="text-[10px] text-gray-500 uppercase">Email</span>
+                        <p className="text-[11px] font-medium truncate" style={{color: '#1C325E'}}>{currentData.customer_email}</p>
+                      </div>
+                      <div>
+                        <span className="text-[10px] text-gray-500 uppercase">Phone</span>
+                        <p className="text-xs font-medium" style={{color: '#1C325E'}}>{currentData.customer_phone}</p>
+                      </div>
                     </div>
                   </div>
                 </div>
 
                 {/* Indoor Unit - Compact */}
-                <div className="bg-blue-50 rounded p-2">
-                  <div className="flex items-center gap-1.5 mb-2">
-                    <Snowflake className="w-3.5 h-3.5" style={{color: '#DB7218'}} />
-                    <h3 className="text-xs font-semibold" style={{color: '#1C325E'}}>Indoor Unit</h3>
+                <div className="border-r border-gray-200">
+                  <div className="flex items-center gap-2 px-3 py-2 text-white" style={{backgroundColor: '#1C325E'}}>
+                    <Snowflake className="w-3.5 h-3.5" />
+                    <h3 className="text-xs font-semibold">Indoor Unit</h3>
                   </div>
+                  <div className="p-3">
                   <div className="space-y-1.5">
                     <div>
                       <span className="text-[10px] text-gray-500 uppercase">Brand</span>
