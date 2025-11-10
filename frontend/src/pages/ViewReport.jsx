@@ -536,20 +536,21 @@ const ViewReport = () => {
                     <h3 className="text-xs font-semibold">Service Info</h3>
                   </div>
                   <div className="p-3">
-                  <div className="space-y-1.5">
-                    <div>
-                      <span className="text-[10px] text-gray-500 uppercase">Date</span>
-                      <p className="text-xs font-medium" style={{color: '#1C325E'}}>{new Date(currentData.created_at).toLocaleDateString()}</p>
-                    </div>
-                    <div>
-                      <span className="text-[10px] text-gray-500 uppercase">Technician</span>
-                      <p className="text-xs font-medium truncate" style={{color: '#1C325E'}}>{currentData.technician_name || 'N/A'}</p>
-                    </div>
-                    <div>
-                      <span className="text-[10px] text-gray-500 uppercase">Version</span>
-                      <p className="text-xs font-medium" style={{color: '#1C325E'}}>
-                        {currentData.current_version === 1 ? 'Initial' : `Repair ${currentData.current_version - 1}`}
-                      </p>
+                    <div className="space-y-1.5">
+                      <div>
+                        <span className="text-[10px] text-gray-500 uppercase">Date</span>
+                        <p className="text-xs font-medium" style={{color: '#1C325E'}}>{new Date(currentData.created_at).toLocaleDateString()}</p>
+                      </div>
+                      <div>
+                        <span className="text-[10px] text-gray-500 uppercase">Technician</span>
+                        <p className="text-xs font-medium truncate" style={{color: '#1C325E'}}>{currentData.technician_name || 'N/A'}</p>
+                      </div>
+                      <div>
+                        <span className="text-[10px] text-gray-500 uppercase">Version</span>
+                        <p className="text-xs font-medium" style={{color: '#1C325E'}}>
+                          {currentData.current_version === 1 ? 'Initial' : `Repair ${currentData.current_version - 1}`}
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
