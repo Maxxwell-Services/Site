@@ -505,35 +505,37 @@ const ViewReport = () => {
                     <h3 className="text-xs font-semibold">Condenser Unit</h3>
                   </div>
                   <div className="p-3">
-                  <div className="space-y-1.5">
-                    <div>
-                      <span className="text-[10px] text-gray-500 uppercase">Brand</span>
-                      <p className="text-xs font-medium" style={{color: '#1C325E'}}>{currentData.condenser_brand}</p>
-                    </div>
-                    <div>
-                      <span className="text-[10px] text-gray-500 uppercase">Model</span>
-                      <p className="text-[11px] font-medium truncate" style={{color: '#1C325E'}}>{currentData.condenser_model_number}</p>
-                    </div>
-                    <div>
-                      <span className="text-[10px] text-gray-500 uppercase">Age</span>
-                      <p className="text-xs font-medium" style={{color: '#1C325E'}}>{currentData.condenser_age || 'N/A'}</p>
-                    </div>
-                    <div>
-                      <span className={`inline-block text-[10px] font-medium px-2 py-0.5 rounded-full ${
-                        currentData.condenser_warranty_status === 'Active' 
-                          ? 'bg-green-100 text-green-800' 
-                          : 'bg-gray-100 text-gray-800'
-                      }`}>{currentData.condenser_warranty_status}</span>
+                    <div className="space-y-1.5">
+                      <div>
+                        <span className="text-[10px] text-gray-500 uppercase">Brand</span>
+                        <p className="text-xs font-medium" style={{color: '#1C325E'}}>{currentData.condenser_brand}</p>
+                      </div>
+                      <div>
+                        <span className="text-[10px] text-gray-500 uppercase">Model</span>
+                        <p className="text-[11px] font-medium truncate" style={{color: '#1C325E'}}>{currentData.condenser_model_number}</p>
+                      </div>
+                      <div>
+                        <span className="text-[10px] text-gray-500 uppercase">Age</span>
+                        <p className="text-xs font-medium" style={{color: '#1C325E'}}>{currentData.condenser_age || 'N/A'}</p>
+                      </div>
+                      <div>
+                        <span className={`inline-block text-[10px] font-medium px-2 py-0.5 rounded-full ${
+                          currentData.condenser_warranty_status === 'Active' 
+                            ? 'bg-green-100 text-green-800' 
+                            : 'bg-gray-100 text-gray-800'
+                        }`}>{currentData.condenser_warranty_status}</span>
+                      </div>
                     </div>
                   </div>
                 </div>
 
                 {/* Service Date - Compact */}
-                <div className="bg-purple-50 rounded p-2">
-                  <div className="flex items-center gap-1.5 mb-2">
-                    <Calendar className="w-3.5 h-3.5" style={{color: '#1C325E'}} />
-                    <h3 className="text-xs font-semibold" style={{color: '#1C325E'}}>Service Info</h3>
+                <div>
+                  <div className="flex items-center gap-2 px-3 py-2 text-white rounded-tr-lg" style={{backgroundColor: '#1C325E'}}>
+                    <Calendar className="w-3.5 h-3.5" />
+                    <h3 className="text-xs font-semibold">Service Info</h3>
                   </div>
+                  <div className="p-3">
                   <div className="space-y-1.5">
                     <div>
                       <span className="text-[10px] text-gray-500 uppercase">Date</span>
