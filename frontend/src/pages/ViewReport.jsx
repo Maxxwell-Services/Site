@@ -441,14 +441,15 @@ const ViewReport = () => {
             )}
 
             {/* Compact Customer & System Info */}
-            <div className="bg-white rounded-lg shadow-sm p-3 mb-3 border" style={{borderColor: '#e5e7eb'}}>
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+            <div className="bg-white rounded-lg shadow-sm mb-3 border" style={{borderColor: '#e5e7eb'}}>
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-0">
                 {/* Customer Information - Compact */}
-                <div className="bg-gray-50 rounded p-2">
-                  <div className="flex items-center gap-1.5 mb-2">
-                    <User className="w-3.5 h-3.5" style={{color: '#1C325E'}} />
-                    <h3 className="text-xs font-semibold" style={{color: '#1C325E'}}>Customer</h3>
+                <div className="border-r border-gray-200">
+                  <div className="flex items-center gap-2 px-3 py-2 text-white rounded-tl-lg" style={{backgroundColor: '#1C325E'}}>
+                    <User className="w-3.5 h-3.5" />
+                    <h3 className="text-xs font-semibold">Customer</h3>
                   </div>
+                  <div className="p-3">
                   <div className="space-y-1.5">
                     <div>
                       <span className="text-[10px] text-gray-500 uppercase">Name</span>
