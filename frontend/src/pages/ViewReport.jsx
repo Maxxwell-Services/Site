@@ -559,32 +559,15 @@ const ViewReport = () => {
             {/* Blower Motor Capacitor - Only show if PSC Motor */}
             {currentData.blower_motor_type === "PSC Motor" && currentData.blower_motor_capacitor_health && (
               <div 
-                className={`p-3 rounded-lg border-2 shadow-sm cursor-pointer hover:shadow-md transition-shadow ${getSeverityColor(currentData.blower_motor_capacitor_health.toLowerCase())}`}
+                className="p-0 rounded-lg border-2 shadow-sm cursor-pointer hover:shadow-md transition-shadow bg-white border-gray-300"
                 onClick={() => openMetricInfo('capacitor', currentData.blower_motor_capacitor_health.toLowerCase())}
                 data-testid="blower-capacitor-metric-card"
               >
-                <h4 className="font-semibold mb-2 text-sm flex items-center justify-between rounded-t-lg px-3 py-2 text-white" style={{backgroundColor: '#1C325E'}}>
-                  <div className="flex items-center gap-2">
-                    <Plug2 className="w-4 h-4" />
-                    <span className="text-xs">Blower Motor Capacitor</span>
-                  </div>
-                  <div className="flex items-center gap-1.5">
-                    {getStatusIcon(currentData.blower_motor_capacitor_health)}
-                    {currentData.capacitor_photos && currentData.capacitor_photos.length > 0 && (
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          openPhotoModal(currentData.capacitor_photos, 'Capacitor Photos');
-                        }}
-                        className="hover:scale-110 transition-transform"
-                        title={`${currentData.capacitor_photos.length} photo(s) available`}
-                      >
-                        <Camera className="w-3.5 h-3.5 text-blue-600" />
-                      </button>
-                    )}
-                    <Info className="w-3 h-3 opacity-60" />
-                  </div>
+                <h4 className="font-semibold text-sm px-3 py-2 text-white flex items-center gap-2 rounded-t-lg" style={{backgroundColor: '#1C325E'}}>
+                  <Plug2 className="w-4 h-4" />
+                  <span className="text-xs">Blower Motor Capacitor</span>
                 </h4>
+                <div className="p-3">
                 <div className="space-y-1">
                   <div className="flex justify-between text-xs">
                     <span className="opacity-80">Rating:</span>
