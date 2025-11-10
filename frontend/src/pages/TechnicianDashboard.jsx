@@ -233,13 +233,13 @@ const TechnicianDashboard = () => {
           ) : (
             <div className="grid gap-4">
               {filteredReports.map((report) => (
-                <div key={report.id} className="glass rounded-xl p-6 card-hover" data-testid={`report-${report.id}`}>
-                  <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-                    <div className="flex-1">
-                      <h3 className="text-xl font-bold text-blue-900 mb-1">{report.customer_name}</h3>
-                      <p className="text-sm text-blue-700">
-                        <span className="font-semibold">Created:</span> {new Date(report.created_at).toLocaleDateString()}
-                      </p>
+                <div key={report.id} className="glass rounded-xl p-4 hover:shadow-lg transition-shadow" data-testid={`report-${report.id}`}>
+                  <div className="flex justify-between items-center gap-4">
+                    <div className="flex items-center gap-4 flex-1 min-w-0">
+                      <h3 className="text-lg font-bold text-blue-900 truncate">{report.customer_name}</h3>
+                      <span className="text-sm text-blue-600 whitespace-nowrap">
+                        {new Date(report.created_at).toLocaleDateString()}
+                      </span>
                     </div>
                     <div className="flex flex-wrap gap-2">
                       <Button
