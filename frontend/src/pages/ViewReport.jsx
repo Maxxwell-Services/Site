@@ -78,12 +78,21 @@ const ViewReport = () => {
   };
 
   const getSeverityColor = (severity) => {
-    switch(severity) {
-      case 'critical': return 'bg-red-100 border-red-300 text-red-800';
-      case 'warning': return 'bg-orange-100 border-orange-300 text-orange-800';
-      case 'good': return 'bg-green-100 border-green-300 text-green-800';
-      default: return 'bg-blue-100 border-blue-300 text-blue-800';
+    // All cards now have neutral styling
+    return 'bg-white border-gray-300';
+  };
+
+  const getStatusIcon = (status) => {
+    if (status === 'Good' || status === 'Clean' || status === 'Draining properly') {
+      return <CheckCircle className="w-5 h-5 text-green-600" />;
     }
+    if (status === 'Warning' || status === 'Slightly dirty' || status === 'Slow drainage' || status === 'Some buildup') {
+      return <AlertCircle className="w-5 h-5 text-orange-600" />;
+    }
+    if (status === 'Critical' || status === 'Very dirty' || status === 'Clogged' || status === 'Rusty or cracked' || status === 'Low') {
+      return <AlertCircle className="w-5 h-5 text-red-600" />;
+    }
+    return null;
   };
 
   const handleVersionChange = (version) => {
