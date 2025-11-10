@@ -563,16 +563,13 @@ const ViewReport = () => {
                 onClick={() => openMetricInfo('capacitor', currentData.blower_motor_capacitor_health.toLowerCase())}
                 data-testid="blower-capacitor-metric-card"
               >
-                <h4 className="font-medium mb-2 text-sm flex items-center justify-between">
-                  <div className="flex items-center gap-1.5">
-                    <Plug2 className="w-4 h-4 opacity-70" />
+                <h4 className="font-semibold mb-2 text-sm flex items-center justify-between rounded-t-lg px-3 py-2 text-white" style={{backgroundColor: '#1C325E'}}>
+                  <div className="flex items-center gap-2">
+                    <Plug2 className="w-4 h-4" />
                     <span className="text-xs">Blower Motor Capacitor</span>
                   </div>
                   <div className="flex items-center gap-1.5">
-                    <span className={`text-[10px] px-1.5 py-0.5 rounded-full ${
-                      currentData.blower_motor_capacitor_health === 'Good' ? 'bg-green-200' :
-                      currentData.blower_motor_capacitor_health === 'Warning' ? 'bg-orange-200' : 'bg-red-200'
-                    }`}>{currentData.blower_motor_capacitor_health}</span>
+                    {getStatusIcon(currentData.blower_motor_capacitor_health)}
                     {currentData.capacitor_photos && currentData.capacitor_photos.length > 0 && (
                       <button
                         onClick={(e) => {
