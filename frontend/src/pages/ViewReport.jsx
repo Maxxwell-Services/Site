@@ -1117,8 +1117,12 @@ const ViewReport = () => {
             </div>
 
             {/* Electrical section removed */}
+            </div>
           </div>
+        </div>
 
+        {/* Technician Notes and Recommendations */}
+        <div className="bg-white rounded-lg shadow-sm p-6 border" style={{borderColor: '#e5e7eb'}}>
           {currentData.notes && (
             <div className="mt-6 p-4 rounded-lg bg-blue-50 border border-blue-200">
               <h4 className="font-medium text-blue-900 mb-2">Technician Notes</h4>
